@@ -14,6 +14,10 @@ interface UserRepo {
         password: String
     ): APIResource<ResponseWrapper<UserDetailsResponseModel>>
 
+    suspend fun refreshToken(
+        refreshToken: String
+    ): APIResource<ResponseWrapper<UserDetailsResponseModel>>
+
     fun saveNotificationStatus(flag: Boolean)
     fun getNotificationStatus(): Boolean
 

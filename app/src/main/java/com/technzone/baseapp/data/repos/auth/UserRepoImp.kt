@@ -31,6 +31,18 @@ class UserRepoImp @Inject constructor(
         }
     }
 
+    override suspend fun refreshToken(refreshToken: String): APIResource<ResponseWrapper<UserDetailsResponseModel>> {
+        return try {
+            responseHandle.handleSuccess(
+                userRemoteDao.refreshToken(
+                    refreshToken
+                )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
     override fun saveAccessToken(accessToken: String) {
         userPref.saveAccessToken(accessToken)
     }

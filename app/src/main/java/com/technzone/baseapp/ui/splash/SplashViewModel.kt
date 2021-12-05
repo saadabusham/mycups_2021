@@ -1,20 +1,28 @@
 package com.technzone.baseapp.ui.splash
 
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.technzone.baseapp.data.api.response.APIResource
 import com.technzone.baseapp.data.enums.UserEnums
+import com.technzone.baseapp.data.models.auth.login.UserDetailsResponseModel
+import com.technzone.baseapp.data.pref.configuration.ConfigurationPref
+import com.technzone.baseapp.data.pref.user.UserPref
 import com.technzone.baseapp.data.repos.auth.UserRepo
 import com.technzone.baseapp.data.repos.configuration.ConfigurationRepo
 import com.technzone.baseapp.ui.base.viewmodel.BaseViewModel
+import com.technzone.baseapp.utils.LocaleUtil
 import com.technzone.baseapp.utils.pref.SharedPreferencesUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val userRepo: UserRepo,
     private val configurationRepo: ConfigurationRepo,
-    private val sharedPreferencesUtil: SharedPreferencesUtil
+    private val sharedPreferencesUtil: SharedPreferencesUtil,
+    private val userPref: UserPref,
+    private val configurationPref: ConfigurationPref
 ) : BaseViewModel() {
 
     fun getConfigurationData() = liveData {
@@ -22,49 +30,21 @@ class SplashViewModel @Inject constructor(
         val response = configurationRepo.loadConfigurationData()
         emit(response)
     }
-//    fun updateAccessToken() {
-//        updateTokenResult.postValue(Result.Loading)
-//        compositeDisposable + userRepo.updateAccessToken(getAccessToken())
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe({
-//                if (it.success) {
-//                    storeUser(it.data!!)
-//                    it.data?.token?.let { it1 -> userRepo.saveAccessToken(it1) }
-//                    updateTokenResult.postValue(ResponseSubErrorsCodeEnum.Success(it))
-//                } else {
-//                    updateTokenResult.postValue(
-//                        Result.CustomError(
-//                            errorCode = it.code,
-//                            message = it.message
-//                        )
-//                    )
-//                }
-//            }, {
-//                updateTokenResult.postValue(Result.Error(it))
-//            })
-//
-//    }
-//    fun storeUser(user: UserDetailsResponseModel) {
-//        user.id?.let {
-//            userRepo.setUserId(it)
-//        }
-//        user.token?.let { userRepo.saveAccessToken(it) }
-//        userRepo.setUserStatus(UserEnums.UserState.LoggedIn)
-//        userRepo.setUser(user)
-//    }
-//
-//    fun getAccessToken(): String {
-//        return userRepo.getUser()?.refreshToken?.refreshToken ?: ""
-//    }
-//
-//
-//    fun logout() {
-//        if (userRepo.getTouchIdStatus())
-//            sharedPreferencesUtil.logout()
-//        else
-//            sharedPreferencesUtil.clearPreference()
-//    }
 
+    fun updateAccessToken() = liveData {
+        emit(APIResource.loading())
+        val response = userRepo.refreshToken(userRepo.getUser()?.refreshToken?.refreshToken ?: "")
+        emit(response)
+    }
+
+    fun logout() = viewModelScope.launch {
+        sharedPreferencesUtil.clearPreference()
+        userPref.setIsFirstOpen(false)
+        configurationPref.setAppLanguageValue(LocaleUtil.getLanguage())
+    }
+
+    fun storeUser(user: UserDetailsResponseModel) {
+        userRepo.setUser(user)
+    }
     fun isUserLoggedIn() = userRepo.getUserStatus() == UserEnums.UserState.LoggedIn
 }

@@ -12,7 +12,8 @@ import com.technzone.baseapp.utils.HandleRequestFailedUtil
 class CustomObserverResponse<T>(
     private val activity: Activity,
     private val apiCallBack: APICallBack<T>,
-    private val withProgress: Boolean = true
+    private val withProgress: Boolean = true,
+    private val showError: Boolean = true
 ) : CustomDialogUtils(activity, withProgress, false),
     Observer<APIResource<ResponseWrapper<T>>> {
 
@@ -40,10 +41,12 @@ class CustomObserverResponse<T>(
                             ?: -1, responseWrapperResponse.statusSubCode, responseWrapperResponse
                     )
                 } else {
-                    handleRequestFailedMessages(
-                        responseWrapperResponse.statusSubCode,
-                        responseWrapperResponse.messages
-                    )
+                    if (showError)
+                        handleRequestFailedMessages(
+                            responseWrapperResponse.statusSubCode,
+                            responseWrapperResponse.messages
+                        )
+
                     responseWrapperResponse.messages?.let {
                         responseWrapperResponse.statusSubCode?.let { it1 ->
                             apiCallBack.onError(it1, it)
@@ -55,10 +58,11 @@ class CustomObserverResponse<T>(
                 if (withProgress) {
                     hideProgress()
                 }
-                handleRequestFailedMessages(
-                    responseWrapperResponse.statusSubCode,
-                    responseWrapperResponse.messages
-                )
+                if (showError)
+                    handleRequestFailedMessages(
+                        responseWrapperResponse.statusSubCode,
+                        responseWrapperResponse.messages
+                    )
                 responseWrapperResponse.messages?.let {
                     responseWrapperResponse.statusSubCode?.let { it1 ->
                         apiCallBack.onError(it1, it)

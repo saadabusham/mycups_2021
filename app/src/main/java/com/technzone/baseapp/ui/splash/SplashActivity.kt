@@ -14,6 +14,7 @@ import com.technzone.baseapp.data.api.response.APIResource
 import com.technzone.baseapp.data.api.response.RequestStatusEnum
 import com.technzone.baseapp.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.baseapp.data.common.CustomObserverResponse
+import com.technzone.baseapp.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.baseapp.data.models.configuration.ConfigurationWrapperResponse
 import com.technzone.baseapp.databinding.ActivitySplashBinding
 import com.technzone.baseapp.ui.MainActivity
@@ -53,55 +54,41 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ConfigurationWrapperResponse?
                 ) {
-                    when {
-                        subErrorCode == ResponseSubErrorsCodeEnum.Success -> {
-                            SharedPreferencesUtil.getInstance(this@SplashActivity)
-                                .setConfigurationPreferences(data)
-                            goToNextPage()
-                        }
-                    }
+                    SharedPreferencesUtil.getInstance(this@SplashActivity)
+                        .setConfigurationPreferences(data)
+                    goToNextPage()
                 }
             })
     }
 
-    private val configurationResultObserver =
-        Observer<APIResource<ConfigurationWrapperResponse>> {
-            when (it.status) {
-                RequestStatusEnum.SUCCESS -> {
-                    hideLoadingView()
-                    when {
-                        it.statusSubCode == ResponseSubErrorsCodeEnum.Success -> {
-                            SharedPreferencesUtil.getInstance(this)
-                                .setConfigurationPreferences(it.data)
-                            goToNextPage()
-                        }
-                        else -> {
-                            handleRequestFailedMessages(
-                                it.statusCode,
-                                it?.statusSubCode,
-                                it.messages ?: ""
-                            )
-                        }
-                    }
+    private fun tokenObserver(): CustomObserverResponse<UserDetailsResponseModel> {
+        return CustomObserverResponse(
+            this,
+            object : CustomObserverResponse.APICallBack<UserDetailsResponseModel> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: UserDetailsResponseModel?
+                ) {
+                    data?.let { it1 -> viewModel.storeUser(it1) }
+                    MainActivity.start(this@SplashActivity)
                 }
-                RequestStatusEnum.FAILED -> {
-                    hideLoadingView()
-                    handleRequestFailedMessages(
-                        it.statusCode,
-                        it.statusSubCode,
-                        it.messages
-                    )
+
+                override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
+                    viewModel.logout()
+                    AuthActivity.start(this@SplashActivity)
                 }
-                RequestStatusEnum.LOADING -> showLoadingView()
             }
-        }
+        )
+
+    }
 
     private fun goToNextPage() {
         if (!viewModel.isUserLoggedIn()) {
             AuthActivity.start(this)
-        } else
-            MainActivity.start(this)
-
+        } else {
+            viewModel.updateAccessToken().observe(this, tokenObserver())
+        }
     }
 
     override fun onStart() {

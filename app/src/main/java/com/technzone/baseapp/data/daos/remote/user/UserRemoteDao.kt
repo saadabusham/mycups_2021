@@ -17,4 +17,12 @@ interface UserRemoteDao {
         @Field("Username") userName: String,
         @Field("Password") password: String
     ): ResponseWrapper<UserDetailsResponseModel>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @FormUrlEncoded
+    @POST("api/user/refreshToken")
+    suspend fun refreshToken(
+        @Field("Token") refreshToken: String
+    ): ResponseWrapper<UserDetailsResponseModel>
+
 }
