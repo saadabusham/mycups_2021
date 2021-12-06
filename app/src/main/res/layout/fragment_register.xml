@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.technzone.baseapp.ui.auth.register.viewmodels.RegistrationViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/relativeHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_100sdp"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/layout_toolbar"
+                layout="@layout/layout_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/_10sdp" />
+        </RelativeLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_60sdp"
+            android:clipToPadding="false"
+            android:fillViewport="true">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:shapeAppearanceOverlay="@style/top_cardview_corner">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.technzone.baseapp.ui.base.views.AppTextView
+                            style="@style/textview_normal_bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/thousands_of_business_nwaiting_for_you"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_21ssp" />
+
+                        <com.technzone.baseapp.ui.base.views.AppTextInputLayout
+                            android:id="@+id/tfFirstName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:hint="@string/first_name">
+
+                            <com.technzone.baseapp.ui.base.views.AppTextInputEditText
+                                android:id="@+id/edFirstName"
+                                style="@style/TextInputEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@={viewModel.firstNameMutableLiveData}" />
+
+                        </com.technzone.baseapp.ui.base.views.AppTextInputLayout>
+
+                        <com.technzone.baseapp.ui.base.views.AppTextInputLayout
+                            android:id="@+id/tfLastName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/last_name">
+
+                            <com.technzone.baseapp.ui.base.views.AppTextInputEditText
+                                android:id="@+id/edLastName"
+                                style="@style/TextInputEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@={viewModel.lastNameMutableLiveData}"/>
+
+                        </com.technzone.baseapp.ui.base.views.AppTextInputLayout>
+
+                        <com.technzone.baseapp.ui.base.views.AppTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:text="@string/phone_number" />
+
+                        <LinearLayout
+                            android:id="@+id/linearMobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="horizontal">
+
+                            <com.technzone.baseapp.ui.base.views.AppTextView
+                                android:id="@+id/tvCountryCode"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                style="@style/textview_normal_regular"
+                                android:background="?selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:drawableEnd="@drawable/ic_dropdown_arrow"
+                                android:drawablePadding="@dimen/_7sdp"
+                                android:focusable="true"
+                                android:gravity="center"
+                                android:text="@{viewModel.selectedCountryCode.code}"
+                                android:textColor="@color/text_color"
+                                android:textSize="@dimen/_11ssp"
+                                tools:text="+962" />
+
+                            <View
+                                android:id="@+id/dividerMobileNumber"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/divider_gray"
+                                android:visibility="gone" />
+
+                            <com.technzone.baseapp.ui.base.views.AppEditText
+                                android:id="@+id/edPhoneNumber"
+                                style="@style/textview_normal_regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_3sdp"
+                                android:layout_weight="1"
+                                android:hint="@string/_700000000"
+                                android:inputType="phone"
+                                android:textColor="@color/black"
+                                android:text="@={viewModel.phoneNumberWithoutCountryCode}"
+                                android:textSize="@dimen/_11ssp"  />
+
+                        </LinearLayout>
+
+                        <View
+                            android:id="@+id/divConfidential"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/unfocused_color" />
+
+                        <com.technzone.baseapp.ui.base.views.AppTextInputLayout
+                            android:id="@+id/tfEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_7sdp"
+                            android:hint="@string/email">
+
+                            <com.technzone.baseapp.ui.base.views.AppTextInputEditText
+                                android:id="@+id/edEmail"
+                                style="@style/TextInputEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:maxLines="1"
+                                android:text="@={viewModel.emailMutableLiveData}"/>
+
+                        </com.technzone.baseapp.ui.base.views.AppTextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:passwordToggleEnabled="true">
+
+                            <com.technzone.baseapp.ui.base.views.AppEditText
+                                android:id="@+id/et_password"
+                                style="@style/TextInputEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/password"
+                                android:inputType="textPassword"
+                                android:text="@={viewModel.passwordMutableLiveData}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:passwordToggleEnabled="true">
+
+                            <com.technzone.baseapp.ui.base.views.AppEditText
+                                android:id="@+id/et_confirm_password"
+                                style="@style/TextInputEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/confirm_password"
+                                android:inputType="textPassword"
+                                android:text="@={viewModel.confirmPasswordMutableLiveData}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSignUp"
+                            style="@style/AppTheme.Button"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/button_height"
+                            android:layout_gravity="bottom"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_15sdp"
+                            android:text="@string/sign_up"
+                            android:textSize="@dimen/_11ssp" />
+
+                        <LinearLayout
+                            android:id="@+id/linear_SignInOption"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <View
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="1dp"
+                                android:background="@color/divider_gray" />
+
+                            <com.technzone.baseapp.ui.base.views.AppTextView
+                                style="@style/textview_normal_regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:text="@string/or_sign_in_with" />
+
+                            <View
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="1dp"
+                                android:background="@color/divider_gray" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/imgIdRecognition"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:src="@drawable/ic_touchid"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.technzone.baseapp.ui.base.views.AppTextView
+                            style="@style/textview_normal_medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/already_have_an_account"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11ssp" />
+
+                        <com.technzone.baseapp.ui.base.views.AppTextView
+                            android:id="@+id/tvSignIn"
+                            style="@style/textview_normal_medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_3sdp"
+                            android:gravity="center"
+                            android:text="@string/sign_in_here"
+                            android:textAllCaps="false"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/_11ssp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
+
+</layout>

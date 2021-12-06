@@ -13,6 +13,11 @@ object Constants {
 
     object BundleData {
 
+        const val COUNTRY: String = "countryCode"
+        const val SHOW_CODE: String = "showCode"
+        const val CURRENT_COUNTRY: String = "currentCountry"
+        const val IS_LOGIN_SUCCESS: String = "isLoginSuccess"
+        const val IS_ACTIVITY_RESULT: String = "isActivityResult"
     }
 
     object NotificationsChannels {

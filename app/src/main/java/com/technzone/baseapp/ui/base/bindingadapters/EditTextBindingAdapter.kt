@@ -8,6 +8,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.IdRes
 import androidx.databinding.BindingAdapter
 import com.technzone.baseapp.R
+import com.technzone.baseapp.data.enums.InputFieldValidStateEnums
 
 @BindingAdapter("etOnEditorActionListener")
 fun EditText?.setOnEditorActionListener(
@@ -41,6 +42,28 @@ fun EditText?.setOnFocustChangeTitleFocus(
             textView?.setTextColor(resources.getColor(focusColor ?: R.color.text_dark_color))
         } else {
             textView?.setTextColor(resources.getColor(notFocusColor ?: R.color.text_gray_color))
+        }
+    }
+}
+
+fun TextView.updateStrokeColor(inputFieldValidStateEnums: InputFieldValidStateEnums) {
+    when(inputFieldValidStateEnums){
+        InputFieldValidStateEnums.VALID -> {
+            this.background = context.resources.getDrawable(R.drawable.shape_edittext)
+        }
+        InputFieldValidStateEnums.ERROR -> {
+            this.background = context.resources.getDrawable(R.drawable.shape_edittext_error)
+        }
+    }
+}
+
+fun TextView.updateStrokeLightColor(inputFieldValidStateEnums: InputFieldValidStateEnums) {
+    when(inputFieldValidStateEnums){
+        InputFieldValidStateEnums.VALID -> {
+            this.background = context.resources.getDrawable(R.drawable.shape_edittext_not_focused)
+        }
+        InputFieldValidStateEnums.ERROR -> {
+            this.background = context.resources.getDrawable(R.drawable.shape_edittext_error_view)
         }
     }
 }

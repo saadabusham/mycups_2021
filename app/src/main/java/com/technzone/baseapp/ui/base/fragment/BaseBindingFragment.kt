@@ -21,6 +21,7 @@ import com.technzone.baseapp.ui.base.dialogs.progressdialog.ProgressDialogUtil
 import com.technzone.baseapp.utils.HandleRequestFailedUtil
 import com.technzone.baseapp.utils.extensions.longToast
 import com.technzone.baseapp.utils.extensions.refreshLocal
+import com.technzone.baseapp.utils.extensions.startTransitionDelay
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
@@ -87,7 +88,7 @@ abstract class BaseBindingFragment<BINDING : ViewDataBinding> : Fragment(),
         super.startActivity(
             intent, ActivityOptions.makeCustomAnimation(
                 context,
-                R.anim.slide_in_right, R.anim.slide_out_left
+                R.anim.slide_in_end, R.anim.slide_out_left
             ).toBundle()
         )
 
@@ -96,7 +97,7 @@ abstract class BaseBindingFragment<BINDING : ViewDataBinding> : Fragment(),
         super.startActivityForResult(
             intent, requestCode, ActivityOptions.makeCustomAnimation(
                 context,
-                R.anim.slide_in_right, R.anim.slide_out_left
+                R.anim.slide_in_end, R.anim.slide_out_left
             ).toBundle()
         )
 
@@ -218,5 +219,13 @@ abstract class BaseBindingFragment<BINDING : ViewDataBinding> : Fragment(),
 
     override fun onDestroy() {
         super.onDestroy()
+    }
+
+    internal fun startTransitionDelay(viewGroup: ViewGroup? = null) {
+        if (viewGroup == null)
+            (binding?.root as ViewGroup).startTransitionDelay()
+        else {
+            viewGroup.startTransitionDelay()
+        }
     }
 }

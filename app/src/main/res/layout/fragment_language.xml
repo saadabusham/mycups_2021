@@ -17,128 +17,100 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="@dimen/_87sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_language_logo" />
+
+            <TextView
+                style="@style/textview_normal_semibold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="@string/select_language"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_21ssp" />
+
+            <TextView
+                style="@style/textview_normal_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="@string/select_your_preferred_language"
+                android:textColor="@color/text_gray_color"
+                android:textSize="@dimen/_14ssp" />
+
             <com.google.android.material.card.MaterialCardView
-                style="@style/bottomcardview_corner"
+                android:id="@+id/cvEnglish"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_280sdp"
-                app:shapeAppearanceOverlay="@style/bottomcardview_corner">
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:layout_marginEnd="@dimen/_30sdp"
+                android:onClick="@{()->viewModel.onEnglishClicked()}"
+                app:cardBackgroundColor="@{viewModel.englishSelected ? @color/indicator_active : @color/white}"
+                app:cardCornerRadius="@dimen/_4sdp"
+                app:cardElevation="0dp"
+                app:strokeWidth="@dimen/_1sdp"
+                app:strokeColor="@{viewModel.englishSelected ? @color/indicator_active : @color/edittext_boarder_gray}">
 
-                <LinearLayout
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvEnglish"
+                    style="@style/textview_normal_regular"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/_25sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:src="@mipmap/ic_launcher"/>
-
-                    <TextView
-                        style="@style/textview_normal_medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        tools:text="@string/app_name"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_28ssp" />
-                </LinearLayout>
+                    android:textColor="@{viewModel.englishSelected ? @color/white : @color/black}"
+                    android:text="@string/english"
+                    tools:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp" />
             </com.google.android.material.card.MaterialCardView>
 
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvArabic"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:orientation="vertical">
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_30sdp"
+                android:onClick="@{()->viewModel.onArabicClicked()}"
+                app:cardBackgroundColor="@{viewModel.englishSelected ? @color/white : @color/indicator_active}"
+                app:cardCornerRadius="@dimen/_4sdp"
+                app:cardElevation="0dp"
+                app:strokeWidth="@dimen/_1sdp"
+                app:strokeColor="@{viewModel.englishSelected ? @color/edittext_boarder_gray : @color/indicator_active}">
 
-                <TextView
+                <com.technzone.baseapp.ui.base.views.AppTextView
+                    android:id="@+id/tvArabic"
                     style="@style/textview_normal_regular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/welcome"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_21ssp" />
-
-                <TextView
-                    style="@style/textview_normal_regular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/please_choose_your_preferred_language"
-                    android:textColor="@color/text_gray_color"
-                    android:textSize="@dimen/_12ssp" />
-
-                <LinearLayout
-                    android:id="@+id/linEnglish"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:background="@drawable/shape_button_selected"
                     android:gravity="center"
-                    android:onClick="@{()->viewModel.onEnglishClicked()}">
+                    android:text="@string/arabic"
+                    android:textColor="@{viewModel.englishSelected ? @color/black : @color/white}"
+                    android:textSize="@dimen/_12ssp"
+                    tools:textColor="@color/black" />
+            </com.google.android.material.card.MaterialCardView>
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvEnglish"
-                        style="@style/textview_normal_regular"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_20sdp"
-                        android:drawableEnd="@{viewModel.englishSelected ? @drawable/ic_true : null}"
-                        android:drawablePadding="@dimen/_3sdp"
-                        android:gravity="center|start"
-                        android:text="@string/english"
-                        android:textColor="@color/text_gray_color"
-                        android:textSize="@dimen/_12ssp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linArabic"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:background="@drawable/shape_button_selected"
-                    android:gravity="center"
-                    android:onClick="@{()->viewModel.onArabicClicked()}">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvArabic"
-                        style="@style/textview_normal_regular"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_20sdp"
-                        android:drawableEnd="@{viewModel.englishSelected ? null :  @drawable/ic_true}"
-                        android:drawablePadding="@dimen/_3sdp"
-                        android:gravity="center|start"
-                        android:layoutDirection="ltr"
-                        android:text="@string/arabic"
-                        android:textColor="@color/text_gray_color"
-                        android:textSize="@dimen/_12ssp" />
-                </LinearLayout>
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnContinue"
-                    style="@style/AppTheme.Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_gravity="bottom"
-                    android:layout_margin="@dimen/_15sdp"
-                    android:text="@string/continue_"
-                    android:textAppearance="@style/normalMediumFontStyle"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/_14ssp" />
-            </LinearLayout>
         </LinearLayout>
 
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnContinue"
+            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_margin="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_60sdp"
+            android:text="@string/next"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 </layout>

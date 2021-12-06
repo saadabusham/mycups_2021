@@ -7,7 +7,7 @@ import com.technzone.baseapp.data.enums.UserEnums
 import com.technzone.baseapp.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.baseapp.data.pref.configuration.ConfigurationPref
 import com.technzone.baseapp.data.pref.user.UserPref
-import com.technzone.baseapp.data.repos.auth.UserRepo
+import com.technzone.baseapp.data.repos.user.UserRepo
 import com.technzone.baseapp.data.repos.configuration.ConfigurationRepo
 import com.technzone.baseapp.ui.base.viewmodel.BaseViewModel
 import com.technzone.baseapp.utils.LocaleUtil

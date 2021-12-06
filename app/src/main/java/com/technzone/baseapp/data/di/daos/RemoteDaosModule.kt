@@ -1,6 +1,7 @@
 package com.technzone.baseapp.data.di.daos
 
 import com.technzone.baseapp.data.daos.remote.configuration.ConfigurationRemoteDao
+import com.technzone.baseapp.data.daos.remote.lookups.LookupsRemoteDao
 import com.technzone.baseapp.data.daos.remote.user.UserRemoteDao
 import dagger.Module
 import dagger.Provides
@@ -30,4 +31,13 @@ object RemoteDaosModule {
     ): ConfigurationRemoteDao {
         return retrofit.create(ConfigurationRemoteDao::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideLookUpsRemoteDao(
+        retrofit: Retrofit
+    ): LookupsRemoteDao {
+        return retrofit.create(LookupsRemoteDao::class.java)
+    }
+
 }

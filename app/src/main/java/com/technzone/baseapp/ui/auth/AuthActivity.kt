@@ -1,5 +1,6 @@
 package com.technzone.baseapp.ui.auth
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -16,15 +17,6 @@ import javax.inject.Inject
 class AuthActivity : BaseBindingActivity<ActivityAuthBinding>() {
 
     @Inject lateinit var prefs : UserPref
-    companion object {
-        fun start(
-            context: Context?
-        ) {
-            val intent = Intent(context, AuthActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            context?.startActivity(intent)
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +34,31 @@ class AuthActivity : BaseBindingActivity<ActivityAuthBinding>() {
         if (prefs.getIsFirstOpen()) {
             graph.startDestination = R.id.languageFragment
         } else {
-//            graph.startDestination = R.id.loginFragment
+            graph.startDestination = R.id.loginFragment
         }
 
         navHostFragment.navController.graph = graph
+    }
+    companion object {
+
+        const val REQUEST_CODE = 2
+        fun start(
+            context: Context?
+        ) {
+            val intent = Intent(context, AuthActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            context?.startActivity(intent)
+        }
+        fun startForResult(
+            context: Activity?,
+            isActivityResult: Boolean
+        ) {
+//            val intent = Intent(context, AuthActivity::class.java)
+//            intent.putExtra(Constants.BundleData.IS_ACTIVITY_RESULT, isActivityResult)
+//            context?.startActivityForResult(intent, REQUEST_CODE)
+            val intent = Intent(context, AuthActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            context?.startActivity(intent)
+        }
     }
 }

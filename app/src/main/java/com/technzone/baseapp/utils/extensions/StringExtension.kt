@@ -71,3 +71,30 @@ fun String.replaceArabicDigitsWithEnglish() :String{
     return result
 }
 
+fun String.checkPhoneNumberFormat(): String {
+    val mobile = when {
+        this.startsWith("00962") -> this.replaceFirst("00962", "")
+        this.startsWith("962") -> this.replaceFirst("962", "")
+        this.startsWith("+962") -> this.replaceFirst("+962", "")
+        else -> this
+    }
+
+    return if (mobile.startsWith("07")) {
+        mobile.replaceFirst("07", "7")
+    } else {
+        mobile
+    }
+}
+
+fun String.concatStrings(stringToMerge: String, before: Boolean = true): String {
+    return if (before) {
+        stringToMerge + this
+    } else this + stringToMerge
+}
+
+fun Context.getStringFormatted(resId: Int, textToJoin: String): String {
+    return this.getString(
+        resId,
+        textToJoin
+    )
+}

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.technzone.baseapp.ui.auth.login.viewmodels.LoginViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/layout_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/_10sdp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_60sdp"
+            android:layout_above="@id/btnResendCode"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.technzone.baseapp.ui.base.views.AppTextView
+                    android:id="@+id/tvHeader"
+                    style="@style/textview_normal_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/enter_the_5_digits_code_sent_to"
+                    android:textColor="@color/title_color"
+                    android:textSize="@dimen/_15ssp" />
+
+                <com.technzone.baseapp.ui.base.views.AppTextView
+                    style="@style/textview_normal_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/title_color"
+                    android:textSize="@dimen/_15ssp"
+                    android:text="@{viewModel.selectedCountryCode + viewModel.phoneNumberWithoutCountryCode}"
+                    tools:text="+962787901166" />
+
+                <com.technzone.baseapp.ui.base.views.AppTextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/we_ve_sent_a_5_digit_code_to_your_phone_number_please_enter_the_verification_code"
+                    android:textColor="@color/subtitle_color"
+                    android:textSize="@dimen/_14ssp" />
+
+                <com.mukesh.OtpView
+                    android:id="@+id/otp_view"
+                    style="@style/normalBoldFontStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:inputType="number"
+                    android:itemBackground="@color/divider_gray_alpha_30"
+                    android:text="@={viewModel.signUpVerificationCode}"
+                    android:textColor="@color/text_gray_color"
+                    android:textSize="@dimen/_15ssp"
+                    app:itemCount="5"
+                    app:itemHeight="@dimen/_43sdp"
+                    app:itemRadius="@dimen/_4sdp"
+                    app:itemSpacing="@dimen/_18sdp"
+                    app:itemWidth="@dimen/_43sdp"
+                    app:lineColor="@color/divider_gray_alpha_30"
+                    app:lineWidth="0dp"
+                    app:state_filled="true"
+                    app:validateMaxLength="@{viewModel.VALIDATION_CODE_LENGTH}"
+                    app:validateMinLength="@{viewModel.VALIDATION_CODE_LENGTH}"
+                    app:viewType="rectangle"
+                    tools:text="12345" />
+
+                <com.technzone.baseapp.ui.base.views.AppTextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_70sdp"
+                    android:text="@string/didn_t_receive_the_sms"
+                    android:textSize="@dimen/_11ssp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:orientation="horizontal">
+
+                    <com.technzone.baseapp.ui.base.views.AppTextView
+                        style="@style/textview_normal_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/request_new_code_in"
+                        android:textColor="@color/title_color"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <com.technzone.baseapp.ui.base.views.AppTextView
+                        android:id="@+id/tvTimeToResend"
+                        style="@style/textview_normal_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:text="@{viewModel.signUpResendTimer}"
+                        android:textColor="@color/title_color"
+                        android:textSize="@dimen/_11ssp"
+                        tools:text="00:00" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnResendCode"
+            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:layout_alignParentBottom="true"
+            android:enabled="@{viewModel.signUpResendPinCodeEnabled}"
+            android:text="@string/request_new_code"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_12ssp" />
+
+    </RelativeLayout>
+
+</layout>

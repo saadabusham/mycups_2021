@@ -9,12 +9,16 @@ import android.content.res.Configuration
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
+import android.telephony.TelephonyManager
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.technzone.baseapp.R
 import com.technzone.baseapp.utils.pref.PrefConstants.APP_LANGUAGE_VALUE
 import com.technzone.baseapp.common.CommonEnums
+import com.technzone.baseapp.data.models.general.Countries
+import com.technzone.baseapp.utils.CountryToPhonePrefix.getCountryByCode
 import com.technzone.baseapp.utils.pref.SharedPreferencesUtil
 import java.util.*
 
@@ -115,6 +119,12 @@ fun Context?.deviceIsConnectedToInternet(): Boolean {
         }
     }
     return false
+}
+fun Context.getDeviceCountryCode(): Countries {
+    val tm =this.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+    val localData: List<Countries> =
+        readRawJson(this, R.raw.countries)
+    return localData.getCountryByCode(tm.networkCountryIso)
 }
 
 

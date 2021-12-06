@@ -110,4 +110,41 @@
     <color name="textview_number_black">#1E1F20</color>
 
     <color name="defaultTextColor">#2F2C37</color>
+
+
+    <color name="otp_color">#2E3A59</color>
+    <color name="focused_color">#E9591C</color>
+    <color name="unfocused_color">#D8D8D8</color>
+    <color name="transparent_outline_button_stroke">#084043</color>
+
+
+    <color name="switch_thumb_active">#F7B500</color>
+    <color name="switch_thumb_unactive">#7E7E7E</color>
+    <color name="switch_track_active">#80F7B500</color>
+    <color name="switch_track_unactive">#807E7E7E</color>
+
+    <color name="edit_text_background">#4DB8BCBF</color>
+    <color name="button_color">#084043</color>
+    <color name="button_color_alpha50">#80084043</color>
+
+    <color name="promos_color">#126267</color>
+    <color name="order_color">#1C4890</color>
+    <color name="delivery_color">#F7B500</color>
+    <color name="account_color">#475362</color>
+    <color name="error_color">#DC0C0C</color>
+
+    <color name="title_color">#000A14</color>
+    <color name="subtitle_color">#828588</color>
+    <color name="input_error_color">#E02020</color>
+    <color name="google_color">#EB4335</color>
+    <color name="apple_color">#000000</color>
+    <color name="app_light_orange">#0DF7B500</color>
+    <!--    divider color-->
+    <color name="divider_dark_gray">#1A020306</color>
+    <color name="divider_gray_alpha_30">#4DB8BCBF</color>
+    <color name="divider_gray_alpha_50">#80111111</color>
+
+    <color name="indicator_active">#F7B500</color>
+    <color name="indicator_desactive">#4DF2C94C</color>
+
 </resources>

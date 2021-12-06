@@ -12,6 +12,7 @@ abstract class BaseBindingRecyclerViewAdapter<MODEL>(
     var itemClickListener: OnItemClickListener? = null
 
 
+
     fun submitItems(newItems: List<MODEL>) {
         if (items == newItems) {
             return
@@ -21,6 +22,14 @@ abstract class BaseBindingRecyclerViewAdapter<MODEL>(
         notifyDataSetChanged()
     }
 
+    fun submitNewItems(list: List<MODEL>?) {
+        items = ArrayList()
+        list?.let {
+            items.addAll(it)
+            notifyDataSetChanged()
+        }
+
+    }
     fun submitItemsToTop(newItems: List<MODEL>) {
         items.addAll(0,newItems)
         notifyDataSetChanged()
@@ -45,6 +54,10 @@ abstract class BaseBindingRecyclerViewAdapter<MODEL>(
         notifyDataSetChanged()
     }
 
+    fun removeItemAt(position: Int){
+        items.removeAt(position)
+        notifyItemRemoved(position)
+    }
     override fun getItemCount(): Int = items.size
 
     interface OnItemClickListener {
