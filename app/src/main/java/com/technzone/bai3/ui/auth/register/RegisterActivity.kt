@@ -13,28 +13,34 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RegisterActivity : BaseBindingActivity<ActivityRegisterBinding>() {
 
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.nothing, R.anim.slide_in_bottom);
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        overridePendingTransition(R.anim.slide_out_bottom, R.anim.nothing)
+        setContentView(R.layout.activity_register, hasToolbar = false)
+    }
+
     companion object {
         const val REQUEST_CODE = 1
         fun start(
-                context: Context?
+            context: Context?
         ) {
             val intent = Intent(context, RegisterActivity::class.java)
             context?.startActivity(intent)
         }
 
         fun startForResult(
-                context: Activity?,
-                isActivityResult: Boolean
+            context: Activity?,
+            isActivityResult: Boolean
         ) {
             val intent = Intent(context, RegisterActivity::class.java)
             intent.putExtra(Constants.BundleData.IS_ACTIVITY_RESULT, isActivityResult)
             context?.startActivityForResult(intent, REQUEST_CODE)
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register, hasToolbar = false)
     }
 
 }

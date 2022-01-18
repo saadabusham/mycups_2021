@@ -22,11 +22,10 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="@dimen/_87sdp"
-                android:layout_height="@dimen/_100sdp"
+                android:layout_width="@dimen/_105sdp"
+                android:layout_height="@dimen/_45sdp"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_50sdp"
-                android:scaleType="centerCrop"
                 android:src="@drawable/ic_language_logo" />
 
             <TextView
@@ -57,11 +56,11 @@
                 android:layout_marginTop="@dimen/_50sdp"
                 android:layout_marginEnd="@dimen/_30sdp"
                 android:onClick="@{()->viewModel.onEnglishClicked()}"
-                app:cardBackgroundColor="@{viewModel.englishSelected ? @color/indicator_active : @color/white}"
+                app:cardBackgroundColor="@{viewModel.englishSelected ? @color/language_button_color : @color/white}"
                 app:cardCornerRadius="@dimen/_4sdp"
                 app:cardElevation="0dp"
                 app:strokeWidth="@dimen/_1sdp"
-                app:strokeColor="@{viewModel.englishSelected ? @color/indicator_active : @color/edittext_boarder_gray}">
+                app:strokeColor="@{viewModel.englishSelected ? @color/language_button_color : @color/edittext_boarder_gray}">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvEnglish"
@@ -83,11 +82,11 @@
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_30sdp"
                 android:onClick="@{()->viewModel.onArabicClicked()}"
-                app:cardBackgroundColor="@{viewModel.englishSelected ? @color/white : @color/indicator_active}"
+                app:cardBackgroundColor="@{viewModel.englishSelected ? @color/white : @color/language_button_color}"
                 app:cardCornerRadius="@dimen/_4sdp"
                 app:cardElevation="0dp"
                 app:strokeWidth="@dimen/_1sdp"
-                app:strokeColor="@{viewModel.englishSelected ? @color/edittext_boarder_gray : @color/indicator_active}">
+                app:strokeColor="@{viewModel.englishSelected ? @color/edittext_boarder_gray : @color/language_button_color}">
 
                 <com.technzone.bai3.ui.base.views.AppTextView
                     android:id="@+id/tvArabic"
@@ -108,8 +107,10 @@
             style="@style/AppTheme.Button"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
-            android:layout_margin="@dimen/_15sdp"
-            android:layout_marginBottom="@dimen/_60sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:text="@string/next"
             android:textColor="@android:color/white" />
     </LinearLayout>

@@ -36,6 +36,7 @@ class ForgetPasswordViewModel @Inject constructor(
 
     val email: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val selectedCountryCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val buttonEnabled:MutableLiveData<Boolean> = MutableLiveData(false)
 
     val passwordMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val confirmPasswordMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }

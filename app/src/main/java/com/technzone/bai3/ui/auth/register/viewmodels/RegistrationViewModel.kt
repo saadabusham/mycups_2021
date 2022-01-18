@@ -48,6 +48,7 @@ class RegistrationViewModel @Inject constructor(
     val passwordMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val confirmPasswordMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val userIdMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>("") }
+    val buttonEnabled:MutableLiveData<Boolean> = MutableLiveData(false)
 
     // SignUp Verification Code
     val signUpVerificationCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }

@@ -2,14 +2,18 @@ package com.technzone.bai3.ui.auth.forgetpassword.fragments
 
 import androidx.fragment.app.activityViewModels
 import com.technzone.bai3.R
+import com.technzone.bai3.common.interfaces.TextTypingCallback
 import com.technzone.bai3.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.bai3.data.common.CustomObserverResponse
+import com.technzone.bai3.data.enums.InputFieldValidStateEnums
 import com.technzone.bai3.databinding.FragmentForgetPasswordBinding
-import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
-import com.technzone.bai3.utils.extensions.showErrorAlert
-import com.technzone.bai3.utils.validation.ValidatorInputTypesEnums
 import com.technzone.bai3.ui.auth.forgetpassword.viewmodels.ForgetPasswordViewModel
+import com.technzone.bai3.ui.base.bindingadapters.updateStrokeColor
+import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
+import com.technzone.bai3.utils.extensions.gone
 import com.technzone.bai3.utils.extensions.validate
+import com.technzone.bai3.utils.extensions.visible
+import com.technzone.bai3.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
@@ -27,7 +31,7 @@ class ForgetPasswordFragment : BaseBindingFragment<FragmentForgetPasswordBinding
             toolbarView = toolbar,
             hasBackButton = true,
             showBackArrow = true,
-            hasTitle = false,
+            hasTitle = true,
             title = R.string.empty_string
         )
         setUpBinding()
@@ -41,11 +45,21 @@ class ForgetPasswordFragment : BaseBindingFragment<FragmentForgetPasswordBinding
 
     private fun setUpListeners() {
         binding?.btnSendCode?.setOnClickListener {
-            if (validateInput()) {
+            val isValid = validateInput()
+            setButtonEnable(isValid)
+            if (isValid)
                 viewModel.resendVerificationCode().observe(this, sendOtpResultObserver())
-            }
+        }
+        binding?.edEmail?.addTextChangedListener(inputListeners)
+    }
+
+    private val inputListeners = object : TextTypingCallback {
+        override fun textChanged(text: String) {
+            val isValid = validateInput()
+            setButtonEnable(isValid)
         }
     }
+
 
     private fun sendOtpResultObserver(): CustomObserverResponse<String> {
         return CustomObserverResponse(
@@ -62,15 +76,21 @@ class ForgetPasswordFragment : BaseBindingFragment<FragmentForgetPasswordBinding
             })
     }
 
+    fun setButtonEnable(isEnable: Boolean) {
+        viewModel.buttonEnabled.postValue(isEnable)
+    }
+
     private fun validateInput(): Boolean {
-        binding?.edEmail?.text.toString().validate(ValidatorInputTypesEnums.EMAIL, requireContext())
-            .let {
+        binding?.edEmail?.text.toString()
+            .validate(ValidatorInputTypesEnums.EMAIL, requireContext()).let {
                 if (!it.isValid) {
-                    requireActivity().showErrorAlert(
-                        title = it.errorTitle,
-                        message = it.errorMessage
-                    )
+                    binding?.tvEmailError?.text = it.errorMessage
+                    binding?.tvEmailError?.visible()
+                    binding?.edEmail?.updateStrokeColor(InputFieldValidStateEnums.ERROR)
                     return false
+                } else {
+                    binding?.edEmail?.updateStrokeColor(InputFieldValidStateEnums.VALID)
+                    binding?.tvEmailError?.gone()
                 }
             }
         return true

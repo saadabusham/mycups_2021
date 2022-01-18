@@ -36,10 +36,9 @@ class LoginViewModel @Inject constructor(
 
     }
 
-    val phoneNumberWithoutCountryCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
-    val selectedCountryCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val emailMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val passwordMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
-
+    val buttonEnabled:MutableLiveData<Boolean> = MutableLiveData(false)
     // Login Verification Code
     val signUpVerificationCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val signUpResendPinCodeEnabled: MutableLiveData<Boolean>
@@ -66,7 +65,7 @@ class LoginViewModel @Inject constructor(
     fun loginUser() = liveData {
         emit(APIResource.loading())
         val response = userRepo.login(
-            selectedCountryCode.value.toString()+phoneNumberWithoutCountryCode.value.toString(),
+            emailMutableLiveData.value.toString(),
             passwordMutableLiveData.value.toString()
         )
         emit(response)
@@ -107,7 +106,7 @@ class LoginViewModel @Inject constructor(
     fun resendVerificationCode() = liveData {
         emit(APIResource.loading())
         val response = userRepo.resendCode(
-            selectedCountryCode.value.toString()+phoneNumberWithoutCountryCode.value.toString().checkPhoneNumberFormat(),
+            emailMutableLiveData.value.toString()
         )
         emit(response)
     }

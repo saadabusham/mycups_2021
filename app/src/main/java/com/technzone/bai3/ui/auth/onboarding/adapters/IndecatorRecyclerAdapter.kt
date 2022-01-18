@@ -32,9 +32,9 @@ class IndecatorRecyclerAdapter(
 
         override fun bind(item: Boolean) {
             if (item) {
-                binding.imgDotImage.setCardBackgroundColor(context.resources.getColor(R.color.white))
+                binding.imgDotImage.setCardBackgroundColor(context.resources.getColor(R.color.indicator_active))
             } else {
-                binding.imgDotImage.setCardBackgroundColor(context.resources.getColor(R.color.shimmer_background))
+                binding.imgDotImage.setCardBackgroundColor(context.resources.getColor(R.color.indicator_desactive))
             }
         }
     }

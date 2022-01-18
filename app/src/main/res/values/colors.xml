@@ -2,16 +2,17 @@
 <resources>
 
     <!-- App Colors -->
-    <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#FFFFFF</color>
-    <color name="colorAccent">#ED222F</color>
+    <color name="colorPrimary">#009C9B</color>
+    <color name="colorPrimaryDark">#009C9B</color>
+    <color name="colorAccent">#FFFFFF</color>
     <color name="colorAccentDark">#4f5b74</color>
     <color name="color_app_background">#FFFFFF</color>
     <color name="ripple_color">#0be8252e</color>
     <color name="app_background_color">#FFFFFF</color>
+    <color name="splash_background_color">#009C9B</color>
     <!-- Views Default colors -->
     <color name="text_default_color">#7f8592</color>
-    <color name="text_dark_color">#3A4155</color>
+    <color name="text_dark_color">#806D6F72</color>
     <color name="text_gray_color">#606060</color>
     <color name="text_header_dark_gray">#8C8896</color>
     <!--    divider color-->
@@ -49,7 +50,7 @@
     <color name="welcome_back_blue">#0E4A86</color>
     <color name="night_blue">#24253D</color>
     <!-- Red -->
-    <color name="red">#c1113b</color>
+    <color name="red">#E7293E</color>
 
     <!-- Alert !-->
     <color name="alert_red">#DC0C0C</color>
@@ -112,9 +113,9 @@
 
 
     <color name="otp_color">#2E3A59</color>
-    <color name="focused_color">#E9591C</color>
-    <color name="unfocused_color">#D8D8D8</color>
-    <color name="transparent_outline_button_stroke">#084043</color>
+    <color name="focused_color">#313133</color>
+    <color name="unfocused_color">#806D6F72</color>
+    <color name="transparent_outline_button_stroke">#707070</color>
 
 
     <color name="switch_thumb_active">#F7B500</color>
@@ -123,14 +124,15 @@
     <color name="switch_track_unactive">#807E7E7E</color>
 
     <color name="edit_text_background">#4DB8BCBF</color>
-    <color name="button_color">#084043</color>
+    <color name="button_color">#009C9B</color>
+    <color name="button_color_disabled">#F0F0F0</color>
     <color name="button_color_alpha50">#80084043</color>
 
     <color name="promos_color">#126267</color>
     <color name="order_color">#1C4890</color>
     <color name="delivery_color">#F7B500</color>
     <color name="account_color">#475362</color>
-    <color name="error_color">#DC0C0C</color>
+    <color name="error_color">#E7293E</color>
 
     <color name="title_color">#000A14</color>
     <color name="subtitle_color">#828588</color>
@@ -143,7 +145,11 @@
     <color name="divider_gray_alpha_30">#4DB8BCBF</color>
     <color name="divider_gray_alpha_50">#80111111</color>
 
-    <color name="indicator_active">#F7B500</color>
-    <color name="indicator_desactive">#4DF2C94C</color>
+    <color name="language_button_color">#F5700F</color>
+    <color name="indicator_active">#009C9B</color>
+    <color name="indicator_desactive">#CCEBEB</color>
+    <color name="app_orange_color">#F5700F</color>
+    <color name="on_boarding_bg_color">#F1F9F9</color>
+    <color name="edit_text_title_color">#6D6F72</color>
 
 </resources>

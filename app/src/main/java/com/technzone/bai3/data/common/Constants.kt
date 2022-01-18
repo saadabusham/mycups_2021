@@ -18,6 +18,7 @@ object Constants {
         const val CURRENT_COUNTRY: String = "currentCountry"
         const val IS_LOGIN_SUCCESS: String = "isLoginSuccess"
         const val IS_ACTIVITY_RESULT: String = "isActivityResult"
+        const val IMAGE: String = "image"
     }
 
     object NotificationsChannels {

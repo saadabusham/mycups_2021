@@ -49,7 +49,7 @@ fun EditText?.setOnFocustChangeTitleFocus(
 fun TextView.updateStrokeColor(inputFieldValidStateEnums: InputFieldValidStateEnums) {
     when(inputFieldValidStateEnums){
         InputFieldValidStateEnums.VALID -> {
-            this.background = context.resources.getDrawable(R.drawable.shape_edittext)
+            this.background = context.resources.getDrawable(R.drawable.edittext_shape_selector)
         }
         InputFieldValidStateEnums.ERROR -> {
             this.background = context.resources.getDrawable(R.drawable.shape_edittext_error)

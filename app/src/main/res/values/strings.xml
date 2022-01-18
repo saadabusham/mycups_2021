@@ -111,16 +111,18 @@
     <string name="description_on_boarding_4">description_on_boarding_4</string>
 
     <!--    Forget password-->
-    <string name="reset_your_password">Reset your password</string>
-    <string name="enter_your_email_below_to_receive_instructions_to_reset_nyour_password">Enter your email below to receive instructions to reset your password</string>
+    <string name="forget_your_password">Forget your password?</string>
+    <string name="enter_your_email_and_well_send_you_a_link_to_create_a_new_password">Enter your email and we’ll send you a link to create a new password</string>
     <string name="you_successfully_changed_your_password_nuse_the_new_password_to_log_in_to_your_account">You successfully changed your password.\nUse the new password to log in to your account.</string>
+    <string name="we_just_sent_a_confirmation_link_to_your_email_follow_the_link_to_create_your_new_password">We just sent a confirmation link to your email, Follow the link to create your new password.</string>
     <string name="success">Success!</string>
+    <string name="check_your_email">Check your email!</string>
     <string name="change_your_password">Change your password</string>
     <string name="enter_a_new_password_below">Enter a new password below</string>
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
     <string name="enter_new_password">Enter your password</string>
-    <string name="reset_password_">Reset Password</string>
+    <string name="reset_your_password_">Reset Your Password</string>
     <string name="change_password">Change Password</string>
     <string name="email_address">Email Address</string>
     <!--    Verification-->
@@ -142,7 +144,8 @@
     <string name="continue_with_apple">Continue with Apple</string>
     <string name="dont_have_an_account">Don\'t have an account?</string>
     <string name="register">Register</string>
-    <string name="google_login">Google login</string>
+    <string name="google_login">Continue with Google</string>
+    <string name="email_login">Continue with Email</string>
     <string name="failed_to_login_with_your_account">Failed to login with your account</string>
     <string name="you_have_to_login">You have to login!</string>
     <string name="you_can_t_see_the_business_details_you_have_to_login_first">You can’t see the business details, you have to login first.</string>
@@ -162,8 +165,10 @@
     <string name="create_your_account">Create your account</string>
     <string name="sign_up_for_explore_all_the_genuine_products_and_get_deliver_to_your_doorstep">Sign up for Explore all the genuine products and get deliver to your doorstep.</string>
     <string name="full_name">Full Name</string>
+    <string name="mobile_number_optional">Mobile Number <font color='#806D6F72'>(Optional)</font></string>
     <string name="by_joining_you_are_agree_to_our">By joining you are agree to our</string>
-    <string name="terms_of_service">Terms of Service</string>
+    <string name="by_signing_up_i_agree_to_the">By signing up I agree to the</string>
+    <string name="terms_and_conditions">Terms &amp; Conditions</string>
     <string name="privacy_policy">Privacy Policy.</string>
     <string name="and">and</string>
     <string name="phone_verified">Phone verified</string>
@@ -192,4 +197,9 @@
     <string name="enable_face_id_to_let_you_login_proceed_your_insurance_faster"><![CDATA[Enable Face ID to let you login & proceed your insurance faster.]]></string>
     <string name="skip_i_ll_do_this_later">Skip, I’ll do this later</string>
     <string name="go_to_home">Go to home</string>
+    <string name="log_in_with_email">Log in with email</string>
+
+    <!--    City Picker-->
+    <string name="select_a_city">Select a City</string>
+    <string name="where_should_we_place_your_ads">Where should we place your ads?</string>
 </resources>
