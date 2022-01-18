@@ -45,7 +45,6 @@
     <!-- Blue -->
     <color name="lite_blue">#e7ecf2</color>
     <color name="dark_blue">#0B256E</color>
-    <color name="flyus_button_color">#0B256E</color>
     <color name="blue">#259DDB</color>
     <color name="welcome_back_blue">#0E4A86</color>
     <color name="night_blue">#24253D</color>

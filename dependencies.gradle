@@ -32,7 +32,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
 
     // location
-    implementation "com.google.android.gms:play-services-location:19.0.0"
+    implementation "com.google.android.gms:play-services-location:19.0.1"
     implementation('io.nlopez.smartlocation:library:3.3.3') {
         exclude group: 'com.google.android.gms', module: 'play-services-location'
     }
@@ -108,7 +108,7 @@ dependencies {
     implementation "com.facebook.stetho:stetho:$stetho_version"
 
     // Map
-    implementation 'com.google.android.gms:play-services-maps:18.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
 
     // search location
     implementation 'com.google.android.gms:play-services-places:17.0.0'
@@ -149,7 +149,7 @@ dependencies {
 
     implementation 'com.mikhaellopez:circularimageview:4.2.0'
 
-    implementation 'com.google.android.gms:play-services-maps:18.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
 
     implementation 'com.google.android:flexbox:2.0.1'
     implementation 'com.github.markomilos:paginate:1.0.0'

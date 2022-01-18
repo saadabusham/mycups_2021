@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.baseapp.ui.base.dialogs.appupdate.UpdateAppDialog" />
+            type="com.technzone.bai3.ui.base.dialogs.appupdate.UpdateAppDialog" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -53,7 +53,7 @@
                 android:layout_marginTop="@dimen/_35sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:gravity="center"
-                android:text="@string/there_s_a_new_update_available_for_fly_us_vip"
+                android:text="@string/there_s_a_new_update_available_for_bai3"
                 android:textColor="@color/text_gray_color"
                 android:textSize="@dimen/_11ssp" />
 
@@ -68,7 +68,7 @@
 
                 <include
                     android:id="@+id/cvUpdateNow"
-                    layout="@layout/mystreyin_button"
+                    layout="@layout/app_button"
                     android:onClick="@{()->viewModel.onUpdateClicked()}" />
 
                 <androidx.appcompat.widget.AppCompatTextView

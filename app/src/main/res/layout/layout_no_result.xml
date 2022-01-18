@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.technzone.baseapp.ui.base.views.AppImageView
+        <com.technzone.bai3.ui.base.views.AppImageView
             android:id="@+id/imgIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <com.technzone.baseapp.ui.base.views.AppTextView
+        <com.technzone.bai3.ui.base.views.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_regular"
             android:layout_width="wrap_content"

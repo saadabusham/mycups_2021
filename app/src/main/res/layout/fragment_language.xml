@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.baseapp.ui.auth.language.LanguageViewModel" />
+            type="com.technzone.bai3.ui.auth.language.LanguageViewModel" />
     </data>
 
     <LinearLayout
@@ -89,7 +89,7 @@
                 app:strokeWidth="@dimen/_1sdp"
                 app:strokeColor="@{viewModel.englishSelected ? @color/edittext_boarder_gray : @color/indicator_active}">
 
-                <com.technzone.baseapp.ui.base.views.AppTextView
+                <com.technzone.bai3.ui.base.views.AppTextView
                     android:id="@+id/tvArabic"
                     style="@style/textview_normal_regular"
                     android:layout_width="match_parent"
