@@ -102,8 +102,8 @@
                         android:layout_marginBottom="@dimen/_10sdp"
                         android:text="@string/google_login"
                         android:textSize="@dimen/_14ssp"
-                        app:icon="@drawable/google"
-                        app:iconTintMode="screen"
+                        app:icon="@drawable/ic_google_colored"
+                        app:iconTint="@null"
                         app:iconGravity="textStart"
                         app:iconPadding="@dimen/_10sdp" />
 

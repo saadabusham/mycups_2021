@@ -179,6 +179,7 @@
     <string name="thousands_of_business_nwaiting_for_you">Thousands of business\nwaiting for you</string>
     <string name="_700000000">xxxxxxxxx</string>
     <string name="or_sign_in_with">Or sign in with</string>
+    <string name="sign_up_to_bai3">Sign up to Bai3</string>
 
     <!--    Verification Login-->
     <string name="enter_the_5_digits_code_sent_to">Enter the 5 digits code sent to</string>
