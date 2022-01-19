@@ -7,7 +7,7 @@ apply plugin: 'dagger.hilt.android.plugin'
 android {
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
-
+    def currentVersion = "1.0"
     signingConfigs {
         config {
             storeFile file("${project.rootDir}/keystore/clubzero.jks")
@@ -26,7 +26,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
-        setProperty("archivesBaseName", "Bai3")
+        setProperty("archivesBaseName", "Bai3 $currentVersion")
         vectorDrawables {
             useSupportLibrary = true
         }
