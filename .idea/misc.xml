@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/TechZone Work/Apps Files/bai3/bai3/app/src/main/res/drawable/ic_google.xml" value="0.20833333333333334" />
-        <entry key="..\:/TechZone Work/Apps Files/bai3/bai3/app/src/main/res/layout/fragment_forget_password.xml" value="0.18923076923076923" />
-        <entry key="..\:/TechZone Work/Apps Files/bai3/bai3/app/src/main/res/layout/fragment_language.xml" value="0.18923076923076923" />
-        <entry key="..\:/TechZone Work/Apps Files/bai3/bai3/app/src/main/res/layout/fragment_on_boarding.xml" value="0.22" />
-        <entry key="..\:/TechZone Work/Apps Files/bai3/bai3/app/src/main/res/layout/fragment_register.xml" value="0.18923076923076923" />
-      </map>
-    </option>
-  </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
