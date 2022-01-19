@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.technzone.bai3.ui.auth.register.viewmodels.RegistrationViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/layout_toolbar"/>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/layout_toolbar"
+            android:clipToPadding="false"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:orientation="vertical">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgLogo"
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_logo_colored"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.technzone.bai3.ui.base.views.AppTextView
+                    android:id="@+id/tvHeader"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:text="@string/sign_up_to_bai3"
+                    android:textColor="@color/title_color"
+                    android:textSize="@dimen/_17ssp" />
+
+                <com.technzone.bai3.ui.base.views.AppTextView
+                    android:id="@+id/tvFirstName"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|start"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:text="@string/first_name"
+                    android:textColor="@color/edit_text_title_color"
+                    android:textSize="@dimen/_13ssp" />
+
+                <com.technzone.bai3.ui.base.views.AppTextInputEditText
+                    android:id="@+id/edFirstName"
+                    style="@style/TextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:hint="@string/first_name"
+                    android:layout_height="@dimen/Edittext_height"
+                    android:text="@={viewModel.firstNameMutableLiveData}" />
+
+                <com.technzone.bai3.ui.base.views.AppTextView
+                    android:id="@+id/tvFirstNameError"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/ic_error_input"
+                    android:drawablePadding="@dimen/_3sdp"
+                    android:textColor="@color/input_error_color"
+                    android:textSize="@dimen/_9ssp"
+                    android:visibility="gone"
+                    tools:text="Your phone number is incorrect." />
+
+                <com.technzone.bai3.ui.base.views.AppTextView
+                    android:id="@+id/tvLastName"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|start"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:text="@string/last_name"
+                    android:textColor="@color/edit_text_title_color"
+                    android:textSize="@dimen/_13ssp" />
+
+                <com.technzone.bai3.ui.base.views.AppTextInputEditText
+                    android:id="@+id/edLastName"
+                    style="@style/TextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_height="@dimen/Edittext_height"
+                    android:hint="@string/last_name"
+                    android:text="@={viewModel.lastNameMutableLiveData}"/>
+
+                <com.technzone.bai3.ui.base.views.AppTextView
+                    android:id="@+id/tvLastNameError"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/ic_error_input"
+                    android:drawablePadding="@dimen/_3sdp"
+                    android:textColor="@color/input_error_color"
+                    android:textSize="@dimen/_9ssp"
+                    android:visibility="gone"
+                    tools:text="Your phone number is incorrect." />
+
+                <com.technzone.bai3.ui.base.views.AppTextView
+                    android:id="@+id/tvEmail"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|start"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:text="@string/email_address"
+                    android:textColor="@color/edit_text_title_color"
+                    android:textSize="@dimen/_13ssp" />
+
+                <com.technzone.bai3.ui.base.views.AppTextInputEditText
+                    android:id="@+id/edEmail"
+                    style="@style/TextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/Edittext_height"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:hint="@string/email_address"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:text="@={viewModel.emailMutableLiveData}"/>
+
+                <com.technzone.bai3.ui.base.views.AppTextView
+                    android:id="@+id/tvEmailError"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/ic_error_input"
+                    android:drawablePadding="@dimen/_3sdp"
+                    android:textColor="@color/input_error_color"
+                    android:textSize="@dimen/_9ssp"
+                    android:visibility="gone"
+                    tools:text="Your phone number is incorrect." />
+
+                <com.technzone.bai3.ui.base.views.AppTextView
+                    android:id="@+id/tvPhoneNumber"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|start"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:text="@string/mobile_number_optional"
+                    android:textColor="@color/edit_text_title_color"
+                    android:textSize="@dimen/_13ssp" />
+
+                <com.technzone.bai3.ui.base.views.AppTextInputEditText
+                    android:id="@+id/edPhoneNumber"
+                    style="@style/TextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_height="@dimen/Edittext_height"
+                    android:hint="@string/_700000000"
+                    android:inputType="phone"
+                    android:textColor="@color/black"
+                    android:text="@={viewModel.phoneNumberWithoutCountryCode}"
+                    android:textSize="@dimen/_11ssp"  />
+
+                <com.technzone.bai3.ui.base.views.AppTextView
+                    android:id="@+id/tvPhoneNumberError"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/ic_error_input"
+                    android:drawablePadding="@dimen/_3sdp"
+                    android:textColor="@color/input_error_color"
+                    android:textSize="@dimen/_9ssp"
+                    android:visibility="gone"
+                    tools:text="Your phone number is incorrect." />
+
+                <com.technzone.bai3.ui.base.views.AppTextView
+                    android:id="@+id/tvPassword"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|start"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:text="@string/password"
+                    android:textColor="@color/edit_text_title_color"
+                    android:textSize="@dimen/_13ssp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    app:passwordToggleEnabled="true">
+
+                    <com.technzone.bai3.ui.base.views.AppEditText
+                        android:id="@+id/et_password"
+                        style="@style/TextInputEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/Edittext_height"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:text="@={viewModel.passwordMutableLiveData}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.technzone.bai3.ui.base.views.AppTextView
+                    android:id="@+id/tvPasswordError"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/ic_error_input"
+                    android:drawablePadding="@dimen/_3sdp"
+                    android:textColor="@color/input_error_color"
+                    android:textSize="@dimen/_9ssp"
+                    android:visibility="gone"
+                    tools:text="Your phone number is incorrect." />
+                <com.technzone.bai3.ui.base.views.AppTextView
+                    android:id="@+id/tvConfirmPassword"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|start"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:text="@string/confirm_password"
+                    android:textColor="@color/edit_text_title_color"
+                    android:textSize="@dimen/_13ssp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    app:passwordToggleEnabled="true">
+
+                    <com.technzone.bai3.ui.base.views.AppEditText
+                        android:id="@+id/et_confirm_password"
+                        style="@style/TextInputEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/Edittext_height"
+                        android:hint="@string/confirm_password"
+                        android:inputType="textPassword"
+                        android:text="@={viewModel.confirmPasswordMutableLiveData}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.technzone.bai3.ui.base.views.AppTextView
+                    android:id="@+id/tvConfirmPasswordError"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/ic_error_input"
+                    android:drawablePadding="@dimen/_3sdp"
+                    android:textColor="@color/input_error_color"
+                    android:textSize="@dimen/_9ssp"
+                    android:visibility="gone"
+                    tools:text="Your phone number is incorrect." />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSignUp"
+                    style="@style/AppTheme.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:text="@string/sign_up"
+                    btnEnabledClick="@{viewModel.buttonEnabled}"
+                    android:textSize="@dimen/_11ssp" />
+
+                <LinearLayout
+                    android:id="@+id/linear_SignInOption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <View
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="1dp"
+                        android:background="@color/divider_gray" />
+
+                    <com.technzone.bai3.ui.base.views.AppTextView
+                        style="@style/textview_normal_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text="@string/or_sign_in_with" />
+
+                    <View
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="1dp"
+                        android:background="@color/divider_gray" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imgIdRecognition"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:src="@drawable/ic_touchid"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
+
+</layout>

@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.eftimoff:android-viewpager-transformers:1.0.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/88d5d27f630d09a8e30b2c67e29cc3b2/jetified-android-viewpager-transformers-1.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/88d5d27f630d09a8e30b2c67e29cc3b2/jetified-android-viewpager-transformers-1.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/88d5d27f630d09a8e30b2c67e29cc3b2/jetified-android-viewpager-transformers-1.0.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ce5a0a6c78f5c156eb8835a5742b7f5/jetified-android-viewpager-transformers-1.0.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ce5a0a6c78f5c156eb8835a5742b7f5/jetified-android-viewpager-transformers-1.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ce5a0a6c78f5c156eb8835a5742b7f5/jetified-android-viewpager-transformers-1.0.1/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,206 @@
+<resources>
+    <string name="app_name">Bai3</string>
+    <string name="app_license">Copyright@Technzone Company</string>
+
+    <!-- SelectLanguageFragment-->
+    <string name="welcome">Welcome</string>
+    <string name="please_choose_your_preference_language">Please choose your preferred language!</string>
+    <string name="english">English</string>
+    <string name="arabic">العربية</string>
+    <string name="start">Start</string>
+    <string name="select_language">Select Language</string>
+    <string name="select_your_preferred_language">Select your preferred language!</string>
+
+    <!-- error view -->
+    <string name="btn_try_again">try Again</string>
+    <string name="error_no_internet">No Internet connection</string>
+    <string name="error_server">timeout</string>
+    <string name="error_msg">Something went wrong</string>
+    <string name="session_ended">Session Ended</string>
+    <string name="screen_shot_denied">Grant stoarge permission to take screenshot!</string>
+    <string name="camera_permission_denied">Grant camera permission to take the 3 seconds video</string>
+    <string name="screen_shot">take screenshot</string>
+
+    <string name="alert_dialog_title">Bai3</string>
+    <string name="alert_dialog_all_info_in_english">All information entered must be in English</string>
+    <string name="not_available_yet">This feature is coming soon to Al Alami app!</string>
+    <!-- General -->
+    <string name="cancel">Cancel</string>
+    <string name="select">Select</string>
+    <string name="loading">Loading …</string>
+    <string name="under_development">Under Development</string>
+    <string name="ok">OK</string>
+    <string name="none">None</string>
+    <string name="edit">Edit</string>
+    <string name="updated_successfully">Updated Successfully</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="empty_string" />
+    <string name="km">km</string>
+    <string name="you_re_not_logged_in">You\'re Not Logged In.</string>
+    <string name="you_need_to_login_into_your_account_to_see_this_screen">You need to login into your account\nto see this screen</string>
+
+    <!-- Image Picker Strings -->
+    <string name="go_to_settings">Go To Settings</string>
+    <string name="no_activity_data_chart_err">No Data Yet !</string>
+    <string name="choose_image_folders_mode_title">select Image</string>
+    <string name="choose_image_done_button_txt">Done</string>
+    <string name="choose_image_max_select_message">You have reached selection limit!</string>
+    <string name="general_err_msg">"SomeThing Happened Please Try Again "</string>
+
+    <!--  Validator strings  -->
+    <string name="must_not_be_empty">must not be empty</string>
+    <string name="must_not_be_at_least">must not be at least </string>
+    <string name="characters"> characters</string>
+    <string name="numbers"> numbers</string>
+    <string name="text">Text</string>
+    <string name="date">Date</string>
+    <string name="email_not_valid_err">Enter a valid email address (example: aaa@bbb.ccc)</string>
+    <string name="phone_not_valid_err">Enter a valid phone number (example: 07xxxxxxx)</string>
+    <string name="password_not_valid_err">Enter a valid password (example: P@ssw0rd)</string>
+    <string name="please_select_your_gender">Please select your gender</string>
+    <string name="password_not_match">Password not match</string>
+    <string name="text_not_valid_err">Enter a valid Text</string>
+    <string name="date_not_valid_err">Enter a valid date</string>
+    <string name="time_not_valid_err">Enter a valid time</string>
+    <string name="digits">digits</string>
+    <string name="travllers">Travellers</string>
+    <string name="next">NEXT</string>
+    <string name="select_time">Select time</string>
+    <string name="adult">Adult</string>
+    <string name="submit">Submit</string>
+    <string name="data_missing">Data missing</string>
+    <string name="please_fill_data_fields">Please fill all the data fields</string>
+
+    <string name="confirm_password">Confirm Password</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="hint_date">Date</string>
+    <string name="time">Time</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="phone_number">Phone number</string>
+    <string name="otp">OTP</string>
+    <string name="number">Number</string>
+
+    <!--    Update App-->
+    <string name="new_update">NEW UPDATE!</string>
+    <string name="there_s_a_new_update_available_for_bai3">There’s a new update available for\nBai3</string>
+    <string name="update_now">UPDATE NOW</string>
+    <string name="remind_me_later">REMIND ME LATER</string>
+    <string name="close_app">CLOSE APP</string>
+    <string name="important_update">IMPORTANT UPDATE!</string>
+
+    <!--    Completed dialog-->
+    <string name="completed_successfully">Completed Successfully</string>
+
+    <!--    Language    -->
+    <string name="continue_">Continue</string>
+    <string name="please_choose_your_preferred_language">Please choose your preferred language!</string>
+
+    <!--    OnBoarding  -->
+    <string name="title_on_boarding_1">title_on_boarding_1</string>
+    <string name="description_on_boarding_1">description_on_boarding_1</string>
+    <string name="title_on_boarding_2">title_on_boarding_2</string>
+    <string name="description_on_boarding_2">description_on_boarding_2</string>
+    <string name="title_on_boarding_3">title_on_boarding_3</string>
+    <string name="description_on_boarding_3">description_on_boarding_3</string>
+    <string name="title_on_boarding_4">title_on_boarding_4</string>
+    <string name="description_on_boarding_4">description_on_boarding_4</string>
+
+    <!--    Forget password-->
+    <string name="forget_your_password">Forget your password?</string>
+    <string name="enter_your_email_and_well_send_you_a_link_to_create_a_new_password">Enter your email and we’ll send you a link to create a new password</string>
+    <string name="you_successfully_changed_your_password_nuse_the_new_password_to_log_in_to_your_account">You successfully changed your password.\nUse the new password to log in to your account.</string>
+    <string name="we_just_sent_a_confirmation_link_to_your_email_follow_the_link_to_create_your_new_password">We just sent a confirmation link to your email, Follow the link to create your new password.</string>
+    <string name="success">Success!</string>
+    <string name="check_your_email">Check your email!</string>
+    <string name="change_your_password">Change your password</string>
+    <string name="enter_a_new_password_below">Enter a new password below</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="enter_new_password">Enter your password</string>
+    <string name="reset_your_password_">Reset Your Password</string>
+    <string name="change_password">Change Password</string>
+    <string name="email_address">Email Address</string>
+    <!--    Verification-->
+
+    <string name="send_again">Send again</string>
+    <string name="didn_t_receive_the_code">Didn\'t receive your code?</string>
+    <string name="verify_your_account">Verify your account</string>
+    <string name="enter_the_verification_code_we_sent_to_your">Enter the verification code we sent to your</string>
+    <string name="verify">Verify</string>
+
+    <!--    Login-->
+    <string name="login">Login</string>
+    <string name="resend_code">Resend Code</string>
+    <string name="welcome_to_for9a">Welcome to For9a</string>
+    <string name="log_in_explore_all_the_genuine_products_and_get_deliver_to_your_doorstep">Log in Explore all the genuine products and get deliver to your doorstep.</string>
+    <string name="forget_password_">Forget Password?</string>
+    <string name="or">Or</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="continue_with_apple">Continue with Apple</string>
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+    <string name="register">Register</string>
+    <string name="google_login">Continue with Google</string>
+    <string name="email_login">Continue with Email</string>
+    <string name="failed_to_login_with_your_account">Failed to login with your account</string>
+    <string name="you_have_to_login">You have to login!</string>
+    <string name="you_can_t_see_the_business_details_you_have_to_login_first">You can’t see the business details, you have to login first.</string>
+    <string name="skip">Skip</string>
+
+    <!--    Search -->
+    <string name="no_results">No Results</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Search ...</string>
+
+
+    <!--    Country-->
+    <string name="select_countries">Select Country</string>
+    <string name="please_select_country">Please select country</string>
+
+    <!--    Register-->
+    <string name="create_your_account">Create your account</string>
+    <string name="sign_up_for_explore_all_the_genuine_products_and_get_deliver_to_your_doorstep">Sign up for Explore all the genuine products and get deliver to your doorstep.</string>
+    <string name="full_name">Full Name</string>
+    <string name="mobile_number_optional">Mobile Number <font color='#806D6F72'>(Optional)</font></string>
+    <string name="by_joining_you_are_agree_to_our">By joining you are agree to our</string>
+    <string name="by_signing_up_i_agree_to_the">By signing up I agree to the</string>
+    <string name="terms_and_conditions">Terms &amp; Conditions</string>
+    <string name="privacy_policy">Privacy Policy.</string>
+    <string name="and">and</string>
+    <string name="phone_verified">Phone verified</string>
+    <string name="congratulations_your_phone_number_has_been_verified_you_can_now_start_using_the_app">Congratulations, your phone number has been verified. You can now start using the app.</string>
+
+    <string name="sign_in_here">Sign in here</string>
+    <string name="sign_up">Sign up</string>
+    <string name="thousands_of_business_nwaiting_for_you">Thousands of business\nwaiting for you</string>
+    <string name="_700000000">xxxxxxxxx</string>
+    <string name="or_sign_in_with">Or sign in with</string>
+    <string name="sign_up_to_bai3">Sign up to Bai3</string>
+
+    <!--    Verification Login-->
+    <string name="enter_the_5_digits_code_sent_to">Enter the 5 digits code sent to</string>
+    <string name="didn_t_receive_the_sms">Didn’t receive the SMS?</string>
+    <string name="we_ve_sent_a_5_digit_code_to_your_phone_number_please_enter_the_verification_code">We’ve sent a 5 digit code to your phone number. Please enter the verification code.</string>
+    <string name="request_new_code_in">Request new code in</string>
+    <!--    Forget Password-->
+    <string name="forget_password">Forget Password</string>
+    <string name="enter_the_phone_number_associated_with_your_account_and_we_ll_send_a_message_to_reset_you_password">Enter the phone number associated with your account and we’ll send a message to reset you password</string>
+    <string name="password_rested_msuccessfully">Password Rested\nSuccessfully</string>
+    <string name="congratulations_your_password_has_been_rested_you_can_now_start_using_the_app">Congratulations, your password has been rested. You can now start using the app.</string>
+    <string name="request_new_code">Request new code</string>
+    <!--    TouchId     -->
+    <string name="enable_touch_id">Enable Touch ID</string>
+    <string name="touch_id_for_faster_login">Touch ID for faster login</string>
+    <string name="enable_face_id_to_let_you_login_proceed_your_insurance_faster"><![CDATA[Enable Face ID to let you login & proceed your insurance faster.]]></string>
+    <string name="skip_i_ll_do_this_later">Skip, I’ll do this later</string>
+    <string name="go_to_home">Go to home</string>
+    <string name="log_in_with_email">Log in with email</string>
+
+    <!--    City Picker-->
+    <string name="select_a_city">Select a City</string>
+    <string name="where_should_we_place_your_ads">Where should we place your ads?</string>
+</resources>

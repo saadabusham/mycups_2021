@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="dialog"
+            type="com.technzone.bai3.ui.base.dialogs.CompletedDialog" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:cardCornerRadius="@dimen/_20sdp"
+        app:cardElevation="@dimen/_3sdp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_40sdp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                imageRec="@{dialog.icon}"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                tools:src="@drawable/ic_completed" />
+
+            <TextView
+                style="@style/textview_normal_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@{dialog.title}"
+                android:textSize="@dimen/_11ssp"
+                tools:text="@string/completed_successfully" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

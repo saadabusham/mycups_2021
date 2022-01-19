@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- App Colors -->
+    <color name="colorPrimary">#009C9B</color>
+    <color name="colorPrimaryDark">#009C9B</color>
+    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorAccentDark">#4f5b74</color>
+    <color name="color_app_background">#FFFFFF</color>
+    <color name="ripple_color">#0be8252e</color>
+    <color name="app_background_color">#FFFFFF</color>
+    <color name="splash_background_color">#009C9B</color>
+    <!-- Views Default colors -->
+    <color name="text_default_color">#7f8592</color>
+    <color name="text_dark_color">#806D6F72</color>
+    <color name="text_gray_color">#606060</color>
+    <color name="text_header_dark_gray">#8C8896</color>
+    <!--    divider color-->
+    <color name="divider_color">#f0f1f2</color>
+    <color name="divider_gray">#BDC0C8</color>
+
+    <color name="semibold_text_gray">#373840</color>
+    <color name="text_gray_trip_info">#8F92A1</color>
+
+    <!-- Shimmering -->
+    <color name="shimmer_background">#dddddd</color>
+    <color name="shimmer_background_light">#C6C3C3</color>
+
+    <color name="texts_background_color">#F0F0F0</color>
+    <color name="texts_background_border">#DFE0E5</color>
+    <!-- White -->
+    <color name="white">#ffffff</color>
+    <color name="alpha_white">#4DFFFFFF</color>
+    <color name="alpha_white_60">#4DFFFFFF</color>
+
+    <!-- Black -->
+    <color name="black">#000000</color>
+    <color name="black_alpha">#80000000</color>
+    <color name="divider_black">#1A000000</color>
+
+    <!-- Gray -->
+    <color name="default_gary">#dfe0e5</color>
+    <color name="lite_gray">#f4f5f7</color>
+    <color name="edittext_boarder_gray">#E6E6E6</color>
+
+    <!-- Blue -->
+    <color name="lite_blue">#e7ecf2</color>
+    <color name="dark_blue">#0B256E</color>
+    <color name="blue">#259DDB</color>
+    <color name="welcome_back_blue">#0E4A86</color>
+    <color name="night_blue">#24253D</color>
+    <!-- Red -->
+    <color name="red">#E7293E</color>
+
+    <!-- Alert !-->
+    <color name="alert_red">#DC0C0C</color>
+
+    <!-- Orange -->
+    <color name="orange">#DAA42A</color>
+
+    <!-- Image Picker Colors -->
+    <color name="counter_bg">@android:color/white</color>
+    <color name="counter_color">@color/text_default_color</color>
+    <color name="selector_color">@color/colorAccent</color>
+    <color name="place_holder_color">@android:color/white</color>
+    <color name="toolbar_bg">@color/colorPrimary</color>
+    <color name="done">@color/colorAccent</color>
+    <color name="permission_alert_bg">@android:color/white</color>
+    <color name="permission_alert_color">@color/text_default_color</color>
+    <color name="circle_image_stroke_color">#707070</color>
+    <!-- Toolbar -->
+    <color name="title_toolbar_color">@android:color/black</color>
+    <color name="subtitle_toolbar_color">#7a7a7a</color>
+    <color name="secondary_toolbar_color">@android:color/black</color>
+
+    <!-- TextInputLayout -->
+    <color name="tab_selected_text_color">#161f3d</color>
+    <color name="tab_not_selected_text_color">#4D161F3D</color>
+
+    <!--  TabLayout  -->
+    <color name="tab_background">#3AA7DE</color>
+    <color name="tab_unselected">#B2B2B2</color>
+    <color name="tab_background_ground">#FBFBFB</color>
+
+    <color name="color_7C88A0">#7C88A0</color>
+
+    <color name="selected_chip">#334A66</color>
+    <color name="un_selected_chip">#DFE0E5</color>
+    <color name="un_selected_chip_text">#1B2749</color>
+
+    <color name="color_not_valid">#F1F1F1</color>
+    <color name="color_valid">@color/colorAccent</color>
+
+    <!-- Cardview -->
+    <color name="cardview_state_focused">#259DDB</color>
+    <color name="cardview_state_unfocused">#E6E6E6</color>
+    <color name="cardveiw_state_error">#DC0C0C</color>
+    <color name="cardveiw_state_valid">#60bf04</color>
+    <color name="cardview_orange">#F9C332</color>
+    <color name="cardview_stroke_gray">#D8D8D8</color>
+    <color name="cardview_fill_gray">#FBFBFC</color>
+    <color name="cardview_border_gray">#E8E8E8</color>
+
+    <!--    Search -->
+    <color name="cardview_search_background">#F8F8FA</color>
+    <color name="textview_search_gray">#808A8A8D</color>
+    <!--  TextView  -->
+    <color name="textview_header_gray">#202224</color>
+    <color name="textview_header_gray_alpha">#99202224</color>
+    <color name="textview_number_black">#1E1F20</color>
+
+    <color name="defaultTextColor">#2F2C37</color>
+
+
+    <color name="otp_color">#2E3A59</color>
+    <color name="focused_color">#313133</color>
+    <color name="unfocused_color">#806D6F72</color>
+    <color name="transparent_outline_button_stroke">#707070</color>
+
+
+    <color name="switch_thumb_active">#F7B500</color>
+    <color name="switch_thumb_unactive">#7E7E7E</color>
+    <color name="switch_track_active">#80F7B500</color>
+    <color name="switch_track_unactive">#807E7E7E</color>
+
+    <color name="edit_text_background">#4DB8BCBF</color>
+    <color name="button_color">#009C9B</color>
+    <color name="button_color_disabled">#F0F0F0</color>
+    <color name="button_color_alpha50">#80084043</color>
+
+    <color name="promos_color">#126267</color>
+    <color name="order_color">#1C4890</color>
+    <color name="delivery_color">#F7B500</color>
+    <color name="account_color">#475362</color>
+    <color name="error_color">#E7293E</color>
+
+    <color name="title_color">#000A14</color>
+    <color name="subtitle_color">#828588</color>
+    <color name="input_error_color">#E02020</color>
+    <color name="google_color">#EB4335</color>
+    <color name="apple_color">#000000</color>
+    <color name="app_light_orange">#0DF7B500</color>
+    <!--    divider color-->
+    <color name="divider_dark_gray">#1A020306</color>
+    <color name="divider_gray_alpha_30">#4DB8BCBF</color>
+    <color name="divider_gray_alpha_50">#80111111</color>
+
+    <color name="language_button_color">#F5700F</color>
+    <color name="indicator_active">#009C9B</color>
+    <color name="indicator_desactive">#CCEBEB</color>
+    <color name="app_orange_color">#F5700F</color>
+    <color name="on_boarding_bg_color">#F1F9F9</color>
+    <color name="edit_text_title_color">#6D6F72</color>
+
+</resources>

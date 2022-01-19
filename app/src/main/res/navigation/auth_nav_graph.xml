@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_nav_graph"
+    app:startDestination="@id/languageFragment">
+
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.technzone.bai3.ui.auth.language.LanguageFragment"
+        android:label="LanguageFragment"
+        tools:layout="@layout/fragment_language">
+        <action
+            android:id="@+id/action_languageFragment_to_onBoardingFragment"
+            app:destination="@id/onBoardingFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.technzone.bai3.ui.auth.onboarding.OnBoardingFragment"
+        android:label="OnBoardingFragment"
+        tools:layout="@layout/fragment_on_boarding">
+        <action
+            android:id="@+id/action_onBoardingFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.technzone.bai3.ui.auth.login.fragments.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_verificationLoginFragment"
+            app:destination="@id/verificationLoginFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/verificationLoginFragment"
+        android:name="com.technzone.bai3.ui.auth.login.fragments.VerificationLoginFragment"
+        android:label="VerificationLoginFragment"
+        tools:layout="@layout/fragment_verification_login">
+        <action
+            android:id="@+id/action_verificationLoginFragment_to_phoneVerifiedFragment"
+            app:destination="@id/phoneVerifiedFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneVerifiedFragment"
+        android:name="com.technzone.bai3.ui.auth.login.fragments.PhoneVerifiedFragment"
+        android:label="PhoneVerifiedFragment"
+        tools:layout="@layout/fragment_phone_verified"/>
+</navigation>

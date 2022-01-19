@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.technzone.bai3.ui.base.dialogs.appupdate.UpdateAppDialog" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/_24sdp"
+        android:layout_marginEnd="@dimen/_24sdp"
+        android:elevation="0dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/_20sdp"
+        app:cardElevation="@dimen/_20sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_15sdp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/HeaderSemiBoldFontStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:text="@{viewModel.updateStatus.isMandatory() ? @string/new_update : @string/new_update}"
+                android:textColor="@color/textview_header_gray"
+                android:textSize="@dimen/_18ssp"
+                tools:text="@string/new_update" />
+
+            <TextView
+                android:id="@+id/tvFillField"
+                style="@style/textview_normal_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:gravity="center"
+                android:text="@string/there_s_a_new_update_available_for_bai3"
+                android:textColor="@color/text_gray_color"
+                android:textSize="@dimen/_11ssp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:paddingTop="@dimen/_3sdp"
+                android:paddingBottom="@dimen/_3sdp">
+
+                <include
+                    android:id="@+id/cvUpdateNow"
+                    layout="@layout/app_button"
+                    android:onClick="@{()->viewModel.onUpdateClicked()}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/button_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:elevation="@dimen/_3sdp"
+                    android:text="@string/update_now"
+                    android:textSize="@dimen/_11ssp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvRemindMeLater"
+                style="@style/textview_normal_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:gravity="center"
+                android:onClick="@{()->viewModel.onRemindMeLaterClicked()}"
+                android:text="@string/remind_me_later"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/_9ssp"
+                android:visibility="@{viewModel.updateStatus.isMandatory() ? View.GONE : View.VISIBLE}" />
+
+            <TextView
+                android:id="@+id/tvCloseApp"
+                style="@style/textview_normal_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:gravity="center"
+                android:onClick="@{()->viewModel.onCloseAppClicked()}"
+                android:text="@string/close_app"
+                android:textColor="@color/alert_red"
+                android:textSize="@dimen/_9ssp"
+                android:visibility="@{viewModel.updateStatus.isMandatory() ? View.VISIBLE : View.GONE}" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
