@@ -56,9 +56,6 @@ class RegistrationFragment :
             if (isValid)
                 viewModel.registerUser().observe(this, registerResultObserver())
         }
-        requireContext().getDeviceCountryCode().let {
-            viewModel.selectedCountryCode.postValue(it)
-        }
         binding?.edFirstName?.addTextChangedListener(inputListeners)
         binding?.edLastName?.addTextChangedListener(inputListeners)
         binding?.edEmail?.addTextChangedListener(inputListeners)
@@ -73,14 +70,6 @@ class RegistrationFragment :
             setButtonEnable(isValid)
         }
     }
-
-    var resultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-                viewModel.selectedCountryCode.postValue(data?.getSerializableExtra(Constants.BundleData.COUNTRY) as Countries)
-            }
-        }
 
     private fun setUpData() {
         val localData: List<Countries> =
@@ -97,7 +86,7 @@ class RegistrationFragment :
                     data: String?
                 ) {
                     viewModel.userIdMutableLiveData.value = data
-                    navigationController.navigate(R.id.action_registrationFragment_to_verificationSignUpFragment)
+                    navigationController.navigate(R.id.action_registrationFragment_to_registerSuccessFragment)
                 }
             })
     }
@@ -181,7 +170,7 @@ class RegistrationFragment :
                     binding?.etConfirmPassword?.updateStrokeColor(InputFieldValidStateEnums.ERROR)
                     return false
                 } else {
-                    binding?.etPassword?.updateStrokeColor(InputFieldValidStateEnums.VALID)
+                    binding?.etConfirmPassword?.updateStrokeColor(InputFieldValidStateEnums.VALID)
                     binding?.tvConfirmPasswordError?.gone()
                 }
             }

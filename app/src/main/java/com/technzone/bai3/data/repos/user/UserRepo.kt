@@ -20,11 +20,11 @@ interface UserRepo {
         password: String,
         firstName: String,
         lastName: String,
-        phoneNumber: String,
+        phoneNumber: String?,
         email: String,
         registrationId: String,
         deviceType: Int,
-        applicationType: Int
+        userName: String
     ): APIResource<ResponseWrapper<String>>
 
     suspend fun forgetPassword(
@@ -48,7 +48,6 @@ interface UserRepo {
     ): APIResource<ResponseWrapper<UserDetailsResponseModel>>
 
     suspend fun updateProfile(
-        email: RequestBody? =null,
         firstName: RequestBody,
         lastName: RequestBody,
         phoneNumber: RequestBody

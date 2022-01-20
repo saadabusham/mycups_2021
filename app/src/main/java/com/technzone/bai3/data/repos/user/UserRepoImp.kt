@@ -39,11 +39,11 @@ class UserRepoImp @Inject constructor(
         password: String,
         firstName: String,
         lastName: String,
-        phoneNumber: String,
+        phoneNumber: String?,
         email: String,
         registrationId: String,
         deviceType: Int,
-        applicationType: Int
+        userName: String
     ): APIResource<ResponseWrapper<String>> {
         return try {
             responseHandle.handleSuccess(
@@ -55,7 +55,7 @@ class UserRepoImp @Inject constructor(
                     email,
                     registrationId,
                     deviceType,
-                    applicationType
+                    userName
                 )
             )
         } catch (e: Exception) {
@@ -123,7 +123,6 @@ class UserRepoImp @Inject constructor(
     }
 
     override suspend fun updateProfile(
-        email: RequestBody?,
         firstName: RequestBody,
         lastName: RequestBody,
         phoneNumber: RequestBody
@@ -131,7 +130,7 @@ class UserRepoImp @Inject constructor(
         return try {
             responseHandle.handleSuccess(
                 userRemoteDao.updateProfile(
-                    email, firstName, lastName, phoneNumber
+                    firstName, lastName, phoneNumber
                 )
             )
         } catch (e: Exception) {

@@ -41,7 +41,6 @@ class RegistrationViewModel @Inject constructor(
     }
 
     val phoneNumberWithoutCountryCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
-    val selectedCountryCode: MutableLiveData<Countries> by lazy { MutableLiveData<Countries>() }
     val firstNameMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val lastNameMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val emailMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
@@ -84,13 +83,12 @@ class RegistrationViewModel @Inject constructor(
         val response = userRepo.register(
             firstName = firstNameMutableLiveData.value.toString(),
             lastName = lastNameMutableLiveData.value.toString(),
-            phoneNumber = selectedCountryCode.value?.code + phoneNumberWithoutCountryCode.value.toString()
-                .checkPhoneNumberFormat(),
+            phoneNumber = if(phoneNumberWithoutCountryCode.value.isNullOrEmpty()) null else phoneNumberWithoutCountryCode.value.toString(),
             email = emailMutableLiveData.value.toString(),
             password = passwordMutableLiveData.value.toString(),
-            applicationType = Constants.APPLICATION_TYPE,
             deviceType = Constants.DEVICE_TYPE,
-            registrationId = ""
+            registrationId = "",
+            userName = emailMutableLiveData.value.toString()
         )
         emit(response)
     }

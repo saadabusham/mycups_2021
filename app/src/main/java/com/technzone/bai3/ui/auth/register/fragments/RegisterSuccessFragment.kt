@@ -52,7 +52,8 @@ class RegisterSuccessFragment : BaseBindingFragment<FragmentRegisterSuccessBindi
                 requireActivity().setResult(RESULT_OK)
                 requireActivity().finish()
             } else {
-                MainActivity.start(requireContext())
+//                MainActivity.start(requireContext())
+                requireActivity().onBackPressed()
             }
         }
         binding?.tvSkip?.setOnClickListener {
@@ -67,7 +68,8 @@ class RegisterSuccessFragment : BaseBindingFragment<FragmentRegisterSuccessBindi
                 requireActivity().setResult(RESULT_OK)
                 requireActivity().finish()
             } else {
-                MainActivity.start(requireContext())
+//                MainActivity.start(requireContext())
+                requireActivity().onBackPressed()
             }
         }
     }

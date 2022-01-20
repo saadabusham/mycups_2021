@@ -25,17 +25,18 @@ interface UserRemoteDao {
         @Field("Password") password: String,
         @Field("FirstName") firstName: String,
         @Field("LastName") lastName: String,
-        @Field("PhoneNumber") phoneNumber: String,
+        @Field("PhoneNumber") phoneNumber: String?,
         @Field("Email") email: String,
         @Field("RegistrationId") registrationId: String,
         @Field("DeviceType") deviceType: Int,
-        @Field("ApplicationType") applicationType: Int
+        @Field("UserName") userName: String
     ): ResponseWrapper<String>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:true")
+    @FormUrlEncoded
     @POST("api/user/forgetPassword/{email}")
     suspend fun forgetPassword(
-        @Path("email") email: String
+        @Field("email") email: String
     ): ResponseWrapper<String>
 
 
@@ -43,7 +44,7 @@ interface UserRemoteDao {
     @FormUrlEncoded
     @POST("api/user/verify")
     suspend fun verify(
-        @Field("UserId") userId: String,
+        @Field("Email") userId: String,
         @Field("VerificationCode") verificationCode: String
     ): ResponseWrapper<UserDetailsResponseModel>
 
@@ -69,7 +70,6 @@ interface UserRemoteDao {
     @Multipart
     @PATCH("api/user/update")
     suspend fun updateProfile(
-        @Part("Email") email: RequestBody?,
         @Part("FirstName") firstName: RequestBody,
         @Part("LastName") lastName: RequestBody,
         @Part("PhoneNumber") phoneNumber: RequestBody
