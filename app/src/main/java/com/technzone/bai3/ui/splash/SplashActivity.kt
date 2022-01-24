@@ -13,9 +13,9 @@ import com.technzone.bai3.data.common.CustomObserverResponse
 import com.technzone.bai3.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.bai3.data.models.configuration.ConfigurationWrapperResponse
 import com.technzone.bai3.databinding.ActivitySplashBinding
-import com.technzone.bai3.ui.MainActivity
 import com.technzone.bai3.ui.auth.AuthActivity
 import com.technzone.bai3.ui.base.activity.BaseBindingActivity
+import com.technzone.bai3.ui.main.activity.MainActivity
 import com.technzone.bai3.utils.pref.SharedPreferencesUtil
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -81,7 +81,8 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
 
     private fun goToNextPage() {
         if (!viewModel.isUserLoggedIn()) {
-            AuthActivity.start(this)
+//            AuthActivity.start(this)
+            MainActivity.start(this)
         } else {
             viewModel.updateAccessToken().observe(this, tokenObserver())
         }

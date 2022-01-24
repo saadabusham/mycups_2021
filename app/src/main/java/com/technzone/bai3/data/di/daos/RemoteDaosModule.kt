@@ -1,5 +1,7 @@
 package com.technzone.bai3.data.di.daos
 
+import com.technzone.bai3.data.daos.remote.cart.CartRemoteDao
+import com.technzone.bai3.data.daos.remote.common.CommonRemoteDao
 import com.technzone.bai3.data.daos.remote.configuration.ConfigurationRemoteDao
 import com.technzone.bai3.data.daos.remote.lookups.LookupsRemoteDao
 import com.technzone.bai3.data.daos.remote.user.UserRemoteDao
@@ -38,6 +40,22 @@ object RemoteDaosModule {
         retrofit: Retrofit
     ): LookupsRemoteDao {
         return retrofit.create(LookupsRemoteDao::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideCommonRemoteDao(
+        retrofit: Retrofit
+    ): CommonRemoteDao {
+        return retrofit.create(CommonRemoteDao::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideCartRemoteDao(
+        retrofit: Retrofit
+    ): CartRemoteDao {
+        return retrofit.create(CartRemoteDao::class.java)
     }
 
 }

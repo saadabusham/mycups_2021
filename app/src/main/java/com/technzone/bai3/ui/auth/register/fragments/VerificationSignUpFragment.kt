@@ -6,9 +6,9 @@ import com.technzone.bai3.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.bai3.data.common.CustomObserverResponse
 import com.technzone.bai3.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.bai3.databinding.FragmentVerificationRegisterBinding
-import com.technzone.bai3.ui.MainActivity
 import com.technzone.bai3.ui.auth.register.viewmodels.RegistrationViewModel
 import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
+import com.technzone.bai3.ui.main.activity.MainActivity
 import com.technzone.bai3.utils.extensions.showErrorAlert
 import com.technzone.bai3.utils.extensions.validate
 import com.technzone.bai3.utils.validation.ValidatorInputTypesEnums

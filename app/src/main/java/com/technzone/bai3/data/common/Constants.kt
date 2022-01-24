@@ -19,6 +19,8 @@ object Constants {
         const val IS_LOGIN_SUCCESS: String = "isLoginSuccess"
         const val IS_ACTIVITY_RESULT: String = "isActivityResult"
         const val IMAGE: String = "image"
+        const val FAVORITE_LIST: String = "favoriteList"
+        const val CART_LIST: String = "cartList"
     }
 
     object NotificationsChannels {

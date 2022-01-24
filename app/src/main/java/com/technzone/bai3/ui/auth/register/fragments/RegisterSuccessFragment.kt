@@ -7,7 +7,6 @@ import com.technzone.bai3.R
 import com.technzone.bai3.data.common.Constants
 import com.technzone.bai3.data.pref.user.UserPref
 import com.technzone.bai3.databinding.FragmentRegisterSuccessBinding
-import com.technzone.bai3.ui.MainActivity
 import com.technzone.bai3.ui.auth.register.viewmodels.RegistrationViewModel
 import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
 import dagger.hilt.android.AndroidEntryPoint

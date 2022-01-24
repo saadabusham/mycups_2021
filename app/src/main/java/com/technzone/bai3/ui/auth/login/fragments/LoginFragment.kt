@@ -12,11 +12,11 @@ import com.technzone.bai3.data.enums.InputFieldValidStateEnums
 import com.technzone.bai3.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.bai3.data.pref.user.UserPref
 import com.technzone.bai3.databinding.FragmentLoginBinding
-import com.technzone.bai3.ui.MainActivity
 import com.technzone.bai3.ui.auth.forgetpassword.ForgetPasswordActivity
 import com.technzone.bai3.ui.auth.login.viewmodels.LoginViewModel
 import com.technzone.bai3.ui.base.bindingadapters.updateStrokeColor
 import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
+import com.technzone.bai3.ui.main.activity.MainActivity
 import com.technzone.bai3.utils.extensions.gone
 import com.technzone.bai3.utils.extensions.validate
 import com.technzone.bai3.utils.extensions.visible

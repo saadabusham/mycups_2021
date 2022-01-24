@@ -5,8 +5,8 @@ import android.content.Intent
 import com.technzone.bai3.R
 import com.technzone.bai3.data.common.Constants
 import com.technzone.bai3.databinding.FragmentPhoneVerifiedBinding
-import com.technzone.bai3.ui.MainActivity
 import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
+import com.technzone.bai3.ui.main.activity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

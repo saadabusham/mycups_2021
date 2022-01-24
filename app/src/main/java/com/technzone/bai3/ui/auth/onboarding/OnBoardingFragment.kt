@@ -6,7 +6,6 @@ import com.technzone.bai3.R
 import com.technzone.bai3.data.common.Constants
 import com.technzone.bai3.data.models.auth.onboarding.OnBoardingItem
 import com.technzone.bai3.databinding.FragmentOnBoardingBinding
-import com.technzone.bai3.ui.MainActivity
 import com.technzone.bai3.ui.auth.AuthViewModel
 import com.technzone.bai3.ui.auth.onboarding.adapters.IndecatorRecyclerAdapter
 import com.technzone.bai3.ui.auth.onboarding.adapters.OnBoardingAdapter
@@ -14,6 +13,7 @@ import com.technzone.bai3.ui.auth.register.RegisterActivity
 import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
 import com.technzone.bai3.ui.base.views.UltraScaleTransformer
 import com.technzone.bai3.ui.dataview.dataviewer.DataViewerActivity
+import com.technzone.bai3.ui.main.activity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_on_boarding.*
 

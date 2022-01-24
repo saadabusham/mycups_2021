@@ -1,8 +1,12 @@
 package com.technzone.bai3.data.di
 
 import android.content.Context
+import com.technzone.bai3.data.pref.cart.CartPref
+import com.technzone.bai3.data.pref.cart.CartPrefImp
 import com.technzone.bai3.data.pref.configuration.ConfigurationPref
 import com.technzone.bai3.data.pref.configuration.ConfigurationPrefImp
+import com.technzone.bai3.data.pref.favorite.FavoritePref
+import com.technzone.bai3.data.pref.favorite.FavoritePrefImp
 import com.technzone.bai3.data.pref.user.UserPref
 import com.technzone.bai3.data.pref.user.UserPrefImp
 import com.technzone.bai3.utils.pref.SharedPreferencesUtil
@@ -34,4 +38,15 @@ object PrefModule {
     fun provideUserPref(preferencesUtil: SharedPreferencesUtil): UserPref {
         return UserPrefImp(preferencesUtil)
     }
+
+    @Singleton
+    @Provides
+    fun provideFavoritePreferences(preferencesUtil: SharedPreferencesUtil): FavoritePref =
+        FavoritePrefImp(preferencesUtil)
+
+    @Singleton
+    @Provides
+    fun provideCartPreferences(preferencesUtil: SharedPreferencesUtil): CartPref =
+        CartPrefImp(preferencesUtil)
+
 }

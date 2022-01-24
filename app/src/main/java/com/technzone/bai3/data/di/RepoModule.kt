@@ -1,6 +1,10 @@
 package com.technzone.bai3.data.di
 
 
+import com.technzone.bai3.data.repos.cart.CartRepo
+import com.technzone.bai3.data.repos.cart.CartRepoImp
+import com.technzone.bai3.data.repos.common.CommonRepo
+import com.technzone.bai3.data.repos.common.CommonRepoImp
 import com.technzone.bai3.data.repos.user.UserRepo
 import com.technzone.bai3.data.repos.user.UserRepoImp
 import com.technzone.bai3.data.repos.configuration.ConfigurationRepo
@@ -29,5 +33,12 @@ abstract class RepoModule {
     @Binds
     abstract fun bindLookUpsRepo(lookupsRepoImp: LookupsRepoImp): LookupsRepo
 
+    @Singleton
+    @Binds
+    abstract fun bindCommonRepo(commonRepoImp: CommonRepoImp): CommonRepo
+
+    @Singleton
+    @Binds
+    abstract fun bindCartRepo(cartRepoImp: CartRepoImp): CartRepo
 
 }

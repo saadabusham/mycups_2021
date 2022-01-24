@@ -203,4 +203,13 @@
     <!--    City Picker-->
     <string name="select_a_city">Select a City</string>
     <string name="where_should_we_place_your_ads">Where should we place your ads?</string>
+
+
+    <!--   MainActivity-->
+    <string name="nav_home">Home</string>
+    <string name="nav_favorites">Favorites</string>
+    <string name="nav_buy">Buy</string>
+    <string name="nav_chat">Chat</string>
+    <string name="nav_profile">Profile</string>
+
 </resources>
