@@ -1,10 +1,17 @@
 package com.technzone.bai3.ui.base.activity
 
+import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+import android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+import android.view.WindowManager
+import android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
@@ -25,6 +32,7 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
 
+
 abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActivity(),
     IBaseBindingActivity {
 
@@ -43,12 +51,28 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
     private val localizationDelegate = LocalizationActivityDelegate(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setNavigationBarButtonsColor(R.color.black)
+//        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+//        window.statusBarColor = this.resources.getColor(R.color.colorPrimaryDark)
         localizationDelegate.addOnLocaleChangedListener(this)
         localizationDelegate.onCreate()
         customDialogUtils = CustomDialogUtils(this, withProgress = true, isShowNow = false)
         super.onCreate(savedInstanceState)
     }
+    private fun setNavigationBarButtonsColor(navigationBarColor: Int) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val decorView = window.decorView;
+            decorView.setSystemUiVisibility(FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS or SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+//            var flags = window.decorView.systemUiVisibility
+//            decorView.systemUiVisibility = flags and View.
+        }
+    }
 
+    private fun isColorLight(color: Int): Boolean {
+        val darkness: Double =
+            1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255
+        return darkness < 0.5
+    }
     open fun setContentView(
         layoutResID: Int,
         hasToolbar: Boolean = false,

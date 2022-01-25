@@ -19,7 +19,7 @@ interface UserRepo {
     suspend fun register(
         password: String,
         firstName: String,
-        lastName: String,
+//        lastName: String,
         phoneNumber: String?,
         email: String,
         registrationId: String,

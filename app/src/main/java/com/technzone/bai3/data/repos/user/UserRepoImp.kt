@@ -38,7 +38,7 @@ class UserRepoImp @Inject constructor(
     override suspend fun register(
         password: String,
         firstName: String,
-        lastName: String,
+//        lastName: String,
         phoneNumber: String?,
         email: String,
         registrationId: String,
@@ -50,7 +50,7 @@ class UserRepoImp @Inject constructor(
                 userRemoteDao.register(
                     password,
                     firstName,
-                    lastName,
+//                    lastName,
                     phoneNumber,
                     email,
                     registrationId,

@@ -25,6 +25,7 @@
 
         <item name="android:windowBackground">@color/color_app_background</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:navigationBarColor">@color/white</item>
         // To change status bar icon to be dark, set false to change icons to light
 
         <!-- Set Views Default Style -->
@@ -348,23 +349,23 @@
         <item name="android:windowAnimationStyle">@style/DialogAnimations</item>
     </style>
 
-    <!--  Full Screen Dialog  -->
-    <style name="FullScreenDialog">
+<!--    &lt;!&ndash;  Full Screen Dialog  &ndash;&gt;-->
+<!--    <style name="FullScreenDialog">-->
 
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">fill_parent</item>
-        <!-- No backgrounds, titles or window float -->
-        <item name="android:windowBackground">#A6000000</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-        <item name="android:statusBarColor">@color/white</item>
-        <item name="android:windowAnimationStyle">@style/DialogAnimations</item>
-        // CardView
-        <item name="materialButtonStyle">@null</item>
-        <!-- !Important! Add this to force the use of the Spinner mode -->
-        <!--        <item name="android:datePickerStyle">@style/AppTheme.DatePickerStyle</item>-->
-    </style>
+<!--        <item name="android:layout_width">fill_parent</item>-->
+<!--        <item name="android:layout_height">fill_parent</item>-->
+<!--        &lt;!&ndash; No backgrounds, titles or window float &ndash;&gt;-->
+<!--        <item name="android:windowBackground">#A6000000</item>-->
+<!--        <item name="android:windowNoTitle">true</item>-->
+<!--        <item name="android:windowIsFloating">false</item>-->
+<!--        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>-->
+<!--        <item name="android:statusBarColor">@color/white</item>-->
+<!--        <item name="android:windowAnimationStyle">@style/DialogAnimations</item>-->
+<!--        // CardView-->
+<!--        <item name="materialButtonStyle">@null</item>-->
+<!--        &lt;!&ndash; !Important! Add this to force the use of the Spinner mode &ndash;&gt;-->
+<!--        &lt;!&ndash;        <item name="android:datePickerStyle">@style/AppTheme.DatePickerStyle</item>&ndash;&gt;-->
+<!--    </style>-->
 
     <!--  Full Screen Transparent Dialog  -->
     <style name="FullScreenTransparentDialog" parent="Theme.AppCompat.Light.DialogWhenLarge">
@@ -831,6 +832,16 @@
         <item name="cardBackgroundColor">@color/white</item>
     </style>
 
+    <style name="nav_top_cardview_corner" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/_18sdp</item>
+        <item name="cornerSizeTopRight">@dimen/_18sdp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">@color/white</item>
+    </style>
+
     <style name="bottomcardview_corner" parent="@style/Widget.MaterialComponents.CardView">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopLeft">0dp</item>
@@ -892,5 +903,21 @@
         <item name="fontFamily">@font/en_normal_regular</item>
         <item name="android:layout_height">@dimen/button_height</item>
         <item name="cardCornerRadius">@dimen/_5sdp</item>
+    </style>
+
+    <!--  NoConnectionDialog  -->
+    <style name="AppTheme.FullScreenDialog" parent="@style/Theme.MaterialComponents.Dialog">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <!-- No backgrounds, titles or window float -->
+<!--        <item name="android:windowBackground">@android:color/transparent</item>-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+<!--        <item name="android:navigationBarColor">@android:color/transparent</item>-->
+    </style>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_up_animation</item>
+        <item name="android:windowExitAnimation">@anim/slide_down_animation</item>
     </style>
 </resources>

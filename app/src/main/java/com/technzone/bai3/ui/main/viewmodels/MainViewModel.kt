@@ -5,6 +5,7 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.technzone.bai3.data.api.response.APIResource
 import com.technzone.bai3.data.common.Constants
+import com.technzone.bai3.data.enums.NavigationTabsEnum
 import com.technzone.bai3.data.enums.UserEnums
 import com.technzone.bai3.data.pref.cart.CartPref
 import com.technzone.bai3.data.repos.user.UserRepo
@@ -21,7 +22,7 @@ class MainViewModel @Inject constructor(
     private val sharedPreferencesUtil: SharedPreferencesUtil,
     private val cartPref: CartPref,
 ) : BaseViewModel() {
-
+    val selectedTab:MutableLiveData<NavigationTabsEnum> = MutableLiveData(NavigationTabsEnum.HOME)
     val cartCount: MutableLiveData<Int> = MutableLiveData(0)
     fun isNewNotification(): Boolean {
         return sharedPreferencesUtil.getIsNewNotifications()

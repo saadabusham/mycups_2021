@@ -17,11 +17,12 @@ import com.technzone.bai3.common.interfaces.LoginCallBack
 import com.technzone.bai3.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.bai3.data.common.Constants
 import com.technzone.bai3.data.common.CustomObserverResponse
+import com.technzone.bai3.data.enums.NavigationTabsEnum
 import com.technzone.bai3.databinding.ActivityMainBinding
 import com.technzone.bai3.ui.base.activity.BaseBindingActivity
 import com.technzone.bai3.ui.checkout.viewmodels.CheckoutViewModel
-import com.technzone.bai3.ui.main.viewmodels.MainViewModel
 import com.technzone.bai3.ui.main.fragments.favorites.viewmodels.FavoritesViewModel
+import com.technzone.bai3.ui.main.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_auth.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -34,6 +35,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
     private val checkoutViewModel: CheckoutViewModel by viewModels()
     var loginCallBack: LoginCallBack? = null
     var navController: NavController? = null
+
     override fun onResume() {
         super.onResume()
         loadCarts()
@@ -43,12 +45,17 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main, hasToolbar = false)
+        setUpBinding()
         setupNavigation()
         setUpListeners()
 //        updateFcmToken()
         handleNewNotifications()
         checkDeepLink()
         handleNotifications()
+    }
+
+    private fun setUpBinding(){
+        binding?.viewModel = viewModel
     }
 
     private fun setUpListeners() {
@@ -147,30 +154,30 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
         binding?.bnvMain?.itemIconTintList = null
         navController = findNavController(R.id.main_nav_host_fragment)
         navController?.saveState()
-        navController?.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.nav_home -> {
-//                    babMain.show()
-//                    fabBook.show()
-                }
-                R.id.nav_favorites -> {
-//                    babMain.show()
-//                    fabBook.show()
-                }
-                R.id.nav_buy -> {
-//                    babMain.show()
-//                    fabBook.show()
-                }
-                R.id.nav_chat -> {
-//                    babMain.show()
-//                    fabBook.show()
-                }
-                else -> {
-//                    babMain.invisible()
-//                    fabBook.hide()
-                }
-            }
-        }
+//        navController?.addOnDestinationChangedListener { _, destination, _ ->
+//            when (destination.id) {
+//                R.id.nav_home -> {
+////                    babMain.show()
+////                    fabBook.show()
+//                }
+//                R.id.nav_favorites -> {
+////                    babMain.show()
+////                    fabBook.show()
+//                }
+//                R.id.nav_buy -> {
+////                    babMain.show()
+////                    fabBook.show()
+//                }
+//                R.id.nav_chat -> {
+////                    babMain.show()
+////                    fabBook.show()
+//                }
+//                else -> {
+////                    babMain.invisible()
+////                    fabBook.hide()
+//                }
+//            }
+//        }
 
         binding?.bnvMain?.let {
             navController?.let { navController ->
@@ -182,24 +189,46 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
             it.setOnNavigationItemReselectedListener {
                 // Do Nothing To Disable ReLunch fragment when reClick on nav icon
             }
-            it.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener {
+            it.setOnNavigationItemSelectedListener {
                 when (it.itemId) {
                     R.id.nav_home -> {
+                        viewModel.selectedTab.postValue(NavigationTabsEnum.HOME)
                         navController?.navigate(R.id.nav_home)
                     }
                     R.id.nav_favorites -> {
+                        viewModel.selectedTab.postValue(NavigationTabsEnum.FAVORITES)
                         navController?.navigate(R.id.nav_favorites)
                     }
                     R.id.nav_chat -> {
+                        viewModel.selectedTab.postValue(NavigationTabsEnum.CHART)
                         navController?.navigate(R.id.nav_chat)
                     }
-                    R.id.nav_profile -> {
+                    else -> {
+                        viewModel.selectedTab.postValue(NavigationTabsEnum.MORE)
                         navController?.navigate(R.id.nav_profile)
                     }
                 }
-                return@OnNavigationItemSelectedListener true
-            })
+                return@setOnNavigationItemSelectedListener true
+            }
         }
+//            it.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener {
+//                when (it.itemId) {
+//                    R.id.nav_home -> {
+//                        navController?.navigate(R.id.nav_home)
+//                    }
+//                    R.id.nav_favorites -> {
+//                        navController?.navigate(R.id.nav_favorites)
+//                    }
+//                    R.id.nav_chat -> {
+//                        navController?.navigate(R.id.nav_chat)
+//                    }
+//                    R.id.nav_profile -> {
+//                        navController?.navigate(R.id.nav_profile)
+//                    }
+//                }
+//                return@OnNavigationItemSelectedListener true
+//            })
+//        }
         setStartDestination()
     }
 

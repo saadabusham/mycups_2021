@@ -3,6 +3,7 @@ package com.technzone.bai3.ui.auth.login.fragments
 import android.app.Activity
 import android.content.Intent
 import androidx.fragment.app.activityViewModels
+import com.technzone.bai3.BuildConfig
 import com.technzone.bai3.R
 import com.technzone.bai3.common.interfaces.TextTypingCallback
 import com.technzone.bai3.data.api.response.ResponseSubErrorsCodeEnum
@@ -89,6 +90,10 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>() {
 //                MainActivity.start(requireContext())
 //            }
 //        }
+        if(BuildConfig.DEBUG){
+            viewModel.emailMutableLiveData.postValue("sa2edabusham87@gmail.com")
+            viewModel.passwordMutableLiveData.postValue("P@ssw0rd")
+        }
         binding?.edEmail?.addTextChangedListener(inputListeners)
         binding?.edPassword?.addTextChangedListener(inputListeners)
     }

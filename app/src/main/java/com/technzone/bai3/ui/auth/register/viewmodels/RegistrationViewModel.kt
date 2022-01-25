@@ -82,7 +82,7 @@ class RegistrationViewModel @Inject constructor(
         emit(APIResource.loading())
         val response = userRepo.register(
             firstName = firstNameMutableLiveData.value.toString(),
-            lastName = lastNameMutableLiveData.value.toString(),
+//            lastName = lastNameMutableLiveData.value.toString(),
             phoneNumber = if(phoneNumberWithoutCountryCode.value.isNullOrEmpty()) null else phoneNumberWithoutCountryCode.value.toString(),
             email = emailMutableLiveData.value.toString(),
             password = passwordMutableLiveData.value.toString(),

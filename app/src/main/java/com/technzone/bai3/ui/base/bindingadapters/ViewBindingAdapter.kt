@@ -8,3 +8,7 @@ import androidx.databinding.BindingAdapter
 fun View?.setHexBackgroundColor(color: String) {
     this?.setBackgroundColor(Color.parseColor(color))
 }
+@BindingAdapter("backgroundRes")
+fun View?.setBackgroundColorRes(color: Int) {
+    this?.setBackgroundColor(context.getColor(color))
+}

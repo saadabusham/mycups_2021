@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|start"
                     android:layout_marginTop="@dimen/_30sdp"
-                    android:text="@string/first_name"
+                    android:text="@string/full_name"
                     android:textColor="@color/edit_text_title_color"
                     android:textSize="@dimen/_13ssp" />
 
@@ -94,6 +94,7 @@
                     android:layout_gravity="center|start"
                     android:layout_marginTop="@dimen/_12sdp"
                     android:text="@string/last_name"
+                    android:visibility="gone"
                     android:textColor="@color/edit_text_title_color"
                     android:textSize="@dimen/_13ssp" />
 
@@ -104,6 +105,7 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_height="@dimen/Edittext_height"
                     android:hint="@string/last_name"
+                    android:visibility="gone"
                     android:text="@={viewModel.lastNameMutableLiveData}"/>
 
                 <com.technzone.bai3.ui.base.views.AppTextView
