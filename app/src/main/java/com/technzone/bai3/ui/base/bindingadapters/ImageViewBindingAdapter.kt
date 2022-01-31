@@ -35,7 +35,8 @@ fun ImageView.setImageFromResources(@DrawableRes imageRes: Int) {
         "ivImageProgressId",
         "ivImageIsCircle",
         "ivImageIsRoundedCorners",
-        "ivImageRoundedRadius"
+        "ivImageRoundedRadius",
+        "ivSrcImageFromResources"
     ],
     requireAll = false
 )
@@ -46,8 +47,13 @@ fun ImageView.setImageFromUrl(
     @IdRes imageProgressId: Int,
     imageIsCircle: Boolean = false,
     imageIsRoundedCorners: Boolean = false,
-    roundingRadius: Int?
+    roundingRadius: Int?,
+    @DrawableRes imageRes: Int? = null
 ) {
+    if(imageRes !=null){
+        setImageFromResources(imageRes)
+        return
+    }
     if (imageUrl.isNullOrEmpty()) {
         setImageResource(imageErrorPlaceholder ?: R.drawable.ic_default_image_place_holder)
         return

@@ -3,5 +3,5 @@
     <item android:color="#313133" android:state_focused="true"/>
     <item android:color="#313133" android:state_hovered="true"/>
     <item android:color="#806D6F72" android:state_enabled="false"/>
-    <item android:color="#806D6F72"/>  <!-- unfocused -->
+    <item android:color="#313133"/>  <!-- unfocused -->
 </selector>

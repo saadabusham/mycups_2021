@@ -1,5 +1,7 @@
 package com.technzone.bai3.ui.main.fragments.home.viewmodels
 
+import androidx.lifecycle.liveData
+import com.technzone.bai3.data.api.response.APIResource
 import com.technzone.bai3.data.enums.UserEnums
 import com.technzone.bai3.data.repos.common.CommonRepo
 import com.technzone.bai3.data.repos.user.UserRepo
@@ -16,4 +18,11 @@ class HomeViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     fun isUserLoggedIn() = userRepo.getUserStatus() == UserEnums.UserState.LoggedIn
+
+    fun getCategoriesData() = liveData {
+        emit(APIResource.loading())
+        val categoriesResponse = commonRepo.getCategories(pageSize = 8, pageNumber = 1)
+        emit(categoriesResponse)
+    }
+
 }

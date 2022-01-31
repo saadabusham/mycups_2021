@@ -151,5 +151,6 @@
     <color name="app_orange_color">#F5700F</color>
     <color name="on_boarding_bg_color">#F1F9F9</color>
     <color name="edit_text_title_color">#6D6F72</color>
+    <color name="edit_text_title_color_alpha50">#806D6F72</color>
 
 </resources>

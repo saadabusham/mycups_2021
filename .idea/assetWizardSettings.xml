@@ -298,8 +298,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_active_dot" />
-                            <entry key="sourceFile" value="D:\work\Apps\bai3\data\Subtraction 2.svg" />
+                            <entry key="outputName" value="ic_search" />
+                            <entry key="sourceFile" value="D:\work\Apps\bai3\data\loupe.svg" />
                           </map>
                         </option>
                       </PersistentState>

@@ -211,5 +211,6 @@
     <string name="nav_buy">Buy</string>
     <string name="nav_chat">Chat</string>
     <string name="nav_profile">Profile</string>
+    <string name="see_all">See All</string>
 
 </resources>
