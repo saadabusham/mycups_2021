@@ -1,9 +1,12 @@
 package com.technzone.bai3.data.di.daos
 
+import com.technzone.bai3.data.daos.remote.adresses.AddressRemoteDao
 import com.technzone.bai3.data.daos.remote.cart.CartRemoteDao
 import com.technzone.bai3.data.daos.remote.common.CommonRemoteDao
 import com.technzone.bai3.data.daos.remote.configuration.ConfigurationRemoteDao
+import com.technzone.bai3.data.daos.remote.favorites.FavoritesRemoteDao
 import com.technzone.bai3.data.daos.remote.lookups.LookupsRemoteDao
+import com.technzone.bai3.data.daos.remote.orders.OrdersRemoteDao
 import com.technzone.bai3.data.daos.remote.user.UserRemoteDao
 import dagger.Module
 import dagger.Provides
@@ -56,6 +59,30 @@ object RemoteDaosModule {
         retrofit: Retrofit
     ): CartRemoteDao {
         return retrofit.create(CartRemoteDao::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAddressRemoteDao(
+        retrofit: Retrofit
+    ): AddressRemoteDao {
+        return retrofit.create(AddressRemoteDao::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideOrdersRemoteDao(
+        retrofit: Retrofit
+    ): OrdersRemoteDao {
+        return retrofit.create(OrdersRemoteDao::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideFavoritesRemoteDao(
+        retrofit: Retrofit
+    ): FavoritesRemoteDao {
+        return retrofit.create(FavoritesRemoteDao::class.java)
     }
 
 }

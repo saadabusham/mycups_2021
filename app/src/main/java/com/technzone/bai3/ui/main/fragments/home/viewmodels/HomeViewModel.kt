@@ -25,4 +25,10 @@ class HomeViewModel @Inject constructor(
         emit(categoriesResponse)
     }
 
+    fun getBannerData() = liveData {
+        emit(APIResource.loading())
+        val dealResponse = commonRepo.getBanner(pageSize = 10, pageNumber = 1)
+        emit(dealResponse)
+    }
+
 }

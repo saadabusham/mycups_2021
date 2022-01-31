@@ -14,9 +14,11 @@ import com.technzone.bai3.data.models.cart.request.RemoveFromCartRequest
 import com.technzone.bai3.data.models.promocode.PromoCode
 import com.technzone.bai3.data.pref.cart.CartPref
 import com.technzone.bai3.data.pref.favorite.FavoritePref
+import com.technzone.bai3.data.repos.address.AddressRepo
 import com.technzone.bai3.data.repos.cart.CartRepo
 import com.technzone.bai3.data.repos.common.CommonRepo
 import com.technzone.bai3.data.repos.configuration.ConfigurationRepo
+import com.technzone.bai3.data.repos.favorites.FavoritesRepo
 import com.technzone.bai3.data.repos.user.UserRepo
 import com.technzone.bai3.ui.base.viewmodel.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,7 +31,8 @@ class CheckoutViewModel @Inject constructor(
     private val favoritePref: FavoritePref,
     private val cartRepo: CartRepo,
     private val cartPref: CartPref,
-    private val commonRepo: CommonRepo
+    private val commonRepo: CommonRepo,
+    private val addressRepo: AddressRepo
 ) : BaseViewModel() {
     val user: MutableLiveData<UserDetailsResponseModel> = MutableLiveData(userRepo.getUser())
     val contactNumber: MutableLiveData<String> =
@@ -134,7 +137,7 @@ class CheckoutViewModel @Inject constructor(
     fun getUserAddress(
     ) = liveData {
         emit(APIResource.loading())
-        val response = commonRepo.getMyAddress()
+        val response = addressRepo.getMyAddress()
         emit(response)
     }
 

@@ -7,6 +7,7 @@ import com.technzone.bai3.data.models.FaqsResponse
 import com.technzone.bai3.data.models.addresses.AddressList
 import com.technzone.bai3.data.models.category.Category
 import com.technzone.bai3.data.models.general.ListWrapper
+import com.technzone.bai3.data.models.home.banner.Banner
 import com.technzone.bai3.data.models.home.product.ProductFilter
 import com.technzone.bai3.data.models.home.product.productdetails.Product
 import com.technzone.bai3.data.models.home.product.productdetails.SocialMedia
@@ -23,21 +24,6 @@ interface CommonRepo {
         pageSize: Int,
         pageNumber: Int
     ): APIResource<ResponseWrapper<ListWrapper<Notification>>>
-
-    suspend fun getFavorites(
-        productFilter: ProductFilter
-    ): APIResource<ResponseWrapper<ListWrapper<Product>>>
-
-    suspend fun getFavoriteIds(
-    ): APIResource<ResponseWrapper<List<Int>>>
-
-    suspend fun addFavorite(
-        id: Int
-    ): APIResource<ResponseWrapper<Any>>
-
-    suspend fun removeFavorite(
-        id: Int
-    ): APIResource<ResponseWrapper<Any>>
 
     suspend fun getFaqs(
         pageSize: Int,
@@ -58,54 +44,12 @@ interface CommonRepo {
         parentId: Int? = null
     ): APIResource<ResponseWrapper<ListWrapper<Category>>>
 
-    suspend fun getMyAddress(
-    ): APIResource<ResponseWrapper<List<AddressList>>>
-
-    suspend fun addAddress(
-        name: String,
-        contactName: String,
-        phoneNumber: String,
-        longitude: Double?,
-        latitude: Double?,
-        zipCode: String,
-        addressLine1: String,
-        addressLine2: String,
-        city: String,
-        countryId: Int,
-        isDefault: Boolean,
-        countryCode: String,
-    ): APIResource<ResponseWrapper<String>>
-
-    suspend fun updateAddress(
-        id: Int,
-        name: String,
-        contactName: String,
-        phoneNumber: String,
-        longitude: Double?,
-        latitude: Double?,
-        zipCode: String,
-        addressLine1: String,
-        addressLine2: String,
-        city: String,
-        countryId: Int,
-        isDefault: Boolean,
-        countryCode: String
-    ): APIResource<ResponseWrapper<String>>
-
-    suspend fun deleteAddress(
-        id: String
-    ): APIResource<ResponseWrapper<Any>>
-
-    suspend fun getOrders(
-        pageSize: Int,
-        pageNumber: Int,
-        status: Int?
-    ): APIResource<ResponseWrapper<ListWrapper<Order>>>
-
-    suspend fun getOrderDetails(
-        id: Int
-    ): APIResource<ResponseWrapper<OrderDetails>>
-
     suspend fun getContactUsSocialMedia(
     ): APIResource<ResponseWrapper<List<SocialMedia>>>
+
+    suspend fun getBanner(
+        pageSize: Int,
+        pageNumber: Int
+    ): APIResource<ResponseWrapper<ListWrapper<Banner>>>
+
 }

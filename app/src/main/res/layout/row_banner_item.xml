@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.technzone.bai3.R" />
+
+        <variable
+            name="item"
+            type="com.technzone.bai3.data.models.home.banner.Banner" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="@dimen/_7sdp"
+        app:cardElevation="0dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:id="@+id/imgPicture"
+            ivImageUrl="@{item.image}"
+            ivImagePlaceholder="@{R.drawable.ic_banner_place_holder}"
+            ivImageErrorPlaceholder="@{R.drawable.ic_banner_place_holder}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:transitionName="blog_image_transition"
+            tools:src="@drawable/ic_banner_place_holder" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

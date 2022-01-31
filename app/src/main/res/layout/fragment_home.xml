@@ -35,9 +35,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
                 android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:background="?android:selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
-                android:background="?android:selectableItemBackgroundBorderless"
                 android:padding="@dimen/_3sdp"
                 android:src="@drawable/ic_notifications_active" />
         </RelativeLayout>
@@ -53,33 +53,33 @@
                 android:id="@+id/edTitle"
                 style="@style/textview_normal_regular"
                 android:layout_width="match_parent"
-                android:background="@drawable/edittext_shape_selector"
                 android:layout_height="@dimen/Edittext_height"
-                android:paddingStart="@dimen/_15sdp"
-                android:paddingEnd="@dimen/_10sdp"
-                android:textSize="@dimen/_13ssp"
-                android:textColor="@color/edit_text_title_color_alpha50"
+                android:background="@drawable/edittext_shape_selector"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="@dimen/_5sdp"
-                android:text="@string/search_hint" />
+                android:paddingStart="@dimen/_15sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="@string/search_hint"
+                android:textColor="@color/edit_text_title_color_alpha50"
+                android:textSize="@dimen/_13ssp" />
 
             <com.technzone.bai3.ui.base.views.AppTextView
                 android:id="@+id/edCity"
                 style="@style/textview_normal_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/Edittext_height"
-                android:textSize="@dimen/_11ssp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?selectableItemBackground"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:textColor="@color/edit_text_text_color"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
                 android:drawableEnd="@drawable/ic_arrow_down"
-                android:drawableTint="@color/focused_color"
                 android:drawablePadding="@dimen/_5sdp"
-                android:text="Riyadh" />
+                android:drawableTint="@color/focused_color"
+                android:focusable="true"
+                android:text="Riyadh"
+                android:textColor="@color/edit_text_text_color"
+                android:textSize="@dimen/_11ssp" />
 
         </RelativeLayout>
 
@@ -88,12 +88,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/layouts_margin_start"
             android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:layout_marginBottom="@dimen/_10sdp"
             app:cardCornerRadius="@dimen/_8sdp"
             app:cardElevation="0dp"
-            app:strokeWidth="@dimen/_1sdp"
             app:strokeColor="@color/color_not_valid"
-            android:layout_marginEnd="@dimen/layouts_margin_end"
-            android:layout_marginBottom="@dimen/_10sdp">
+            app:strokeWidth="@dimen/_1sdp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCatData"
@@ -112,6 +112,9 @@
 
         </com.google.android.material.card.MaterialCardView>
 
+        <include
+            android:id="@+id/layout_banner"
+            layout="@layout/layout_banner" />
     </LinearLayout>
 
 </layout>
