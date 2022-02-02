@@ -211,6 +211,13 @@
     <string name="nav_buy">Buy</string>
     <string name="nav_chat">Chat</string>
     <string name="nav_profile">Profile</string>
+
+    <!--    Home -->
     <string name="see_all">See All</string>
+    <string name="price_">%s SR</string>
+    <string name="bed_count_">%s Bed</string>
+    <string name="bath_count_">%s Bath</string>
+    <string name="no_products_yet">No product yet</string>
+
 
 </resources>

@@ -1,6 +1,7 @@
 package com.technzone.bai3.data.models.category
 
 import com.google.gson.annotations.SerializedName
+import com.technzone.bai3.data.models.home.product.productdetails.Product
 import java.io.Serializable
 
 data class Category(
@@ -18,6 +19,9 @@ data class Category(
     val localIcon: Int? = null,
 
     @field:SerializedName("hasChild")
-    val hasChild: Boolean? = null
+    val hasChild: Boolean? = null,
+
+    @field:SerializedName("products")
+    var products: List<Product>? = null
 
 ):Serializable

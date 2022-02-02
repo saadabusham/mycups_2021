@@ -7,6 +7,7 @@ import com.technzone.bai3.data.daos.remote.configuration.ConfigurationRemoteDao
 import com.technzone.bai3.data.daos.remote.favorites.FavoritesRemoteDao
 import com.technzone.bai3.data.daos.remote.lookups.LookupsRemoteDao
 import com.technzone.bai3.data.daos.remote.orders.OrdersRemoteDao
+import com.technzone.bai3.data.daos.remote.product.ProductRemoteDao
 import com.technzone.bai3.data.daos.remote.user.UserRemoteDao
 import dagger.Module
 import dagger.Provides
@@ -84,5 +85,9 @@ object RemoteDaosModule {
     ): FavoritesRemoteDao {
         return retrofit.create(FavoritesRemoteDao::class.java)
     }
+
+    @Provides
+    fun provideProductRemoteDao(retrofit: Retrofit): ProductRemoteDao =
+        retrofit.create(ProductRemoteDao::class.java)
 
 }

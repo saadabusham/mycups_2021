@@ -207,12 +207,10 @@ import java.util.concurrent.TimeUnit
         fun start(
             context: Activity?,
             currentCode: String? = "",
-            resultLauncher: ActivityResultLauncher<Intent>,
-            showCode: Boolean = true
+            resultLauncher: ActivityResultLauncher<Intent>
         ) {
             val intent = Intent(context, CitiesPickerActivity::class.java).apply {
                 putExtra(Constants.BundleData.CURRENT_COUNTRY, currentCode)
-                putExtra(Constants.BundleData.SHOW_CODE, showCode)
             }
             resultLauncher.launch(intent)
         }

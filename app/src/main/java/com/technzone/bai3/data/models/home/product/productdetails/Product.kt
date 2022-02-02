@@ -23,10 +23,6 @@ data class Product(
 	@ColumnInfo(name = "name")
 	val name: String? = null,
 
-	@field:SerializedName("discountPrice")
-	@ColumnInfo(name = "discountPrice")
-	val discountPrice: Double? = null,
-
 	@field:SerializedName("icon")
 	@ColumnInfo(name = "icon")
 	val icon: String? = null,
@@ -48,6 +44,10 @@ data class Product(
 	@ColumnInfo(name = "categoryName")
 	val categoryName: String? = null,
 
+	@field:SerializedName("categoryType")
+	@ColumnInfo(name = "categoryType")
+	val categoryType: Int? = null,
+
 	@field:SerializedName("shopUsername")
 	@ColumnInfo(name = "shopUsername")
 	val shopUsername: String? = null,
@@ -68,4 +68,11 @@ data class Product(
 	@ColumnInfo(name = "soldOut")
 	val soldOut: Boolean? = null
 
-):Serializable
+):Serializable{
+	fun bedCount():Int{
+		return 2
+	}
+	fun bathCount():Int{
+		return 3
+	}
+}

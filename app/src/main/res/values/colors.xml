@@ -134,8 +134,8 @@
     <color name="account_color">#475362</color>
     <color name="error_color">#E7293E</color>
 
-    <color name="title_color">#000A14</color>
-    <color name="subtitle_color">#828588</color>
+    <color name="title_color">#000000</color>
+    <color name="subtitle_color">#6D6F72</color>
     <color name="input_error_color">#E02020</color>
     <color name="google_color">#EB4335</color>
     <color name="apple_color">#000000</color>
@@ -152,5 +152,7 @@
     <color name="on_boarding_bg_color">#F1F9F9</color>
     <color name="edit_text_title_color">#6D6F72</color>
     <color name="edit_text_title_color_alpha50">#806D6F72</color>
+    <color name="see_all_color">#F5700F</color>
+    <color name="price_color">#008E4A</color>
 
 </resources>

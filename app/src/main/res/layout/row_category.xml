@@ -28,14 +28,14 @@
             android:orientation="vertical">
 
             <com.technzone.bai3.ui.base.views.AppImageView
-                ivImageErrorPlaceholder="@{R.drawable.ic_logo_colored}"
-                ivImagePlaceholder="@{R.drawable.ic_logo_colored}"
+                ivImageErrorPlaceholder="@{R.drawable.ic_category_place_holder}"
+                ivImagePlaceholder="@{R.drawable.ic_category_place_holder}"
                 ivImageUrl="@{item.icon}"
                 ivSrcImageFromResources="@{item.localIcon}"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                tools:src="@drawable/ic_category_see_all" />
+                tools:src="@drawable/ic_category_place_holder" />
 
             <com.technzone.bai3.ui.base.views.AppTextView
                 android:id="@+id/tvTitle"

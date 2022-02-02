@@ -17,6 +17,8 @@ import com.technzone.bai3.data.repos.lookups.LookupsRepo
 import com.technzone.bai3.data.repos.lookups.LookupsRepoImp
 import com.technzone.bai3.data.repos.orders.OrdersRepo
 import com.technzone.bai3.data.repos.orders.OrdersRepoImp
+import com.technzone.bai3.data.repos.product.ProductRepo
+import com.technzone.bai3.data.repos.product.ProductRepoImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -58,5 +60,9 @@ abstract class RepoModule {
     @Singleton
     @Binds
     abstract fun bindFavoritesRepo(favoritesRepoImp: FavoritesRepoImp): FavoritesRepo
+
+    @Singleton
+    @Binds
+    abstract fun provideProductRepository(productRepoImpl: ProductRepoImpl): ProductRepo
 
 }

@@ -19,5 +19,259 @@
         android:orientation="vertical">
 
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.technzone.bai3.ui.base.views.AppTextView
+                android:id="@+id/tvTitle"
+                style="@style/textview_normal_semibold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="@string/nav_profile"
+                android:textAlignment="textStart"
+                android:textColor="@color/title_color"
+                android:textSize="@dimen/_17ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:paddingBottom="@dimen/_35sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|top"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/linProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="@{viewModel.loggedIn ? View.VISIBLE : View.GONE}">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cvPicture"
+                            android:layout_width="@dimen/_70sdp"
+                            android:layout_height="@dimen/_70sdp"
+                            android:layout_marginTop="@dimen/_25sdp"
+                            app:cardCornerRadius="@dimen/_35sdp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:strokeColor="@color/profile_corner"
+                            app:strokeWidth="3dp">
+
+                            <com.technzone.forsa.ui.base.views.appviews.AppImageView
+                                android:id="@+id/imgProfilePicture"
+                                ivImageErrorPlaceholder="@{R.drawable.ic_profile_place_holder}"
+                                ivImagePlaceholder="@{R.drawable.ic_profile_place_holder}"
+                                ivImageUrl="@{viewModel.userImageMutableLiveData}"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_profile_place_holder"
+                                android:transitionName="image" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.technzone.forsa.ui.base.views.appviews.AppTextView
+                            android:id="@+id/tvName"
+                            style="@style/textview_normal_bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:gravity="center"
+                            android:text="@{viewModel.fullNameMutableLiveData}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_17ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cvPicture"
+                            tools:text="John Smith" />
+
+                        <com.technzone.forsa.ui.base.views.appviews.AppTextView
+                            android:id="@+id/tvEmail"
+                            style="@style/textview_normal_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text="@{viewModel.emailMutableLiveData}"
+                            android:textColor="@color/black_alpha"
+                            android:textSize="@dimen/_11ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvName"
+                            tools:text="John@gmail.com" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layouts_margin_start"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/layouts_margin_end"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <include
+                            android:id="@+id/layout_not_logged_in"
+                            layout="@layout/layout_not_logged_in"
+                            android:visibility="@{viewModel.loggedIn ? View.GONE : View.VISIBLE}" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.technzone.forsa.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvGeneral"
+                        style="@style/textview_normal_semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|start"
+                        android:layout_marginStart="@dimen/layouts_margin_start"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/layouts_margin_end"
+                        android:text="@string/general"
+                        android:textColor="@color/title_color"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layouts_margin_start"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/layouts_margin_end"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:layout_constraintTop_toBottomOf="@id/tvEmail">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvGeneral"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:nestedScrollingEnabled="false"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintHorizontal_bias="0.516"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintVertical_bias="0.0"
+                            tools:itemCount="5"
+                            tools:listitem="@layout/row_more_item" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.technzone.forsa.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvSupport"
+                        style="@style/textview_normal_semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|start"
+                        android:layout_marginStart="@dimen/layouts_margin_start"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/layouts_margin_end"
+                        android:text="@string/support"
+                        android:textColor="@color/title_color"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layouts_margin_start"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/layouts_margin_end"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:layout_constraintTop_toBottomOf="@id/tvEmail">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvSupport"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:nestedScrollingEnabled="false"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintHorizontal_bias="0.516"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintVertical_bias="0.0"
+                            tools:itemCount="5"
+                            tools:listitem="@layout/row_more_item" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cvLogout"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_48sdp"
+                        android:layout_marginStart="@dimen/layouts_margin_start"
+                        android:layout_marginEnd="@dimen/layouts_margin_end"
+                        android:visibility="@{viewModel.loggedIn ? View.VISIBLE : View.GONE}"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:layout_constraintTop_toBottomOf="@id/tvEmail">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingEnd="@dimen/layouts_margin_end">
+
+                            <ImageView
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:src="@drawable/ic_more_logout" />
+
+                            <com.technzone.forsa.ui.base.views.appviews.AppTextView
+                                style="@style/textview_normal_regular"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginTop="@dimen/_9sdp"
+                                android:layout_marginBottom="@dimen/_9sdp"
+                                android:layout_weight="1"
+                                android:drawableEnd="@drawable/ic_arrow_next"
+                                android:text="@string/more_logout"
+                                android:textColor="@color/profile_text_color"
+                                android:textSize="@dimen/_13ssp" />
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.technzone.forsa.ui.base.views.appviews.AppTextView
+                        style="@style/textview_normal_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_35sdp"
+                        android:text="@{@string/app_version(viewModel.appVersion())}"
+                        android:textSize="@dimen/_11ssp"
+                        tools:text="Version 1.15.0" />
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
 </layout>

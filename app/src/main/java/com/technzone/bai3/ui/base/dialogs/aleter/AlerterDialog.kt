@@ -41,6 +41,8 @@ class AlerterDialog(
             ViewGroup.LayoutParams.FILL_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT)
         window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+        
         setCancelable(false)
         setUpListeners()
         dismissTimer.start()

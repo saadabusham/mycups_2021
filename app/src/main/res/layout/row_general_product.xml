@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.technzone.bai3.R" />
+
+        <import type="android.view.View" />
+
+        <import type="com.technzone.bai3.utils.extensions.DataTimeExtensionsKt" />
+
+        <variable
+            name="item"
+            type="com.technzone.bai3.data.models.home.product.productdetails.Product" />
+
+        <variable
+            name="favorite"
+            type="Boolean" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_12sdp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvImage"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_170sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="@dimen/_7sdp"
+            app:cardElevation="@dimen/dimen_zero">
+
+            <com.technzone.bai3.ui.base.views.AppImageView
+                android:id="@+id/imgPhoto"
+                ivImageErrorPlaceholder="@{R.drawable.ic_product_place_holder}"
+                ivImagePlaceholder="@{R.drawable.ic_product_place_holder}"
+                ivImageUrl="@{item.icon}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_product_place_holder" />
+        </com.google.android.material.card.MaterialCardView>
+        <com.technzone.bai3.ui.base.views.AppTextView
+            android:id="@+id/tvTitle"
+            style="@style/textview_normal_medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginEnd="@dimen/_7sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:lineSpacingMultiplier="1"
+            android:maxLines="1"
+            android:minLines="1"
+            android:text="@{item.name}"
+            android:textAlignment="textStart"
+            android:textColor="@color/title_color"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cvImage"
+            tools:text="Wood Office" />
+
+        <com.technzone.bai3.ui.base.views.AppTextView
+            android:id="@+id/tvSubTitle"
+            style="@style/textview_normal_regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_7sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            android:lineSpacingMultiplier="1"
+            android:maxLines="1"
+            android:minLines="1"
+            android:text="@{item.description}"
+            android:textAlignment="textStart"
+            android:textColor="@color/subtitle_color"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            tools:text="Al Khaldeen St, Khalda" />
+
+        <com.technzone.bai3.ui.base.views.AppTextView
+            android:id="@+id/tvCurrentPrice"
+            style="@style/textview_normal_bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_17sdp"
+            android:text="@{@string/price_(item.price)}"
+            android:textAlignment="textStart"
+            android:textColor="@color/price_color"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSubTitle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="1900,00 SR" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

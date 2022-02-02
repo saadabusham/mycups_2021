@@ -2,7 +2,9 @@ package com.technzone.bai3.utils.extensions
 
 import android.app.Activity
 import com.technzone.bai3.R
+import com.technzone.bai3.databinding.PopupAlerterBinding
 import com.technzone.bai3.ui.base.dialogs.aleter.AlerterDialog
+import com.technzone.bai3.ui.base.dialogs.aleter.AlerterPopup
 
 fun Activity?.showErrorAlert(
     title: String = "",
@@ -21,14 +23,22 @@ fun Activity?.showErrorAlert(
 //        .setLayoutGravity(Gravity.BOTTOM)
 //        .show()
     this?.let {
-        AlerterDialog(
+//        AlerterDialog(
+//            context = it,
+//            title = title,
+//            description = message,
+//            titleColor = titleColor,
+//            lineColor = lineColor,
+//            timeToDismiss = timeToDismiss
+//        ).show()
+        AlerterPopup(
             context = it,
             title = title,
             description = message,
             titleColor = titleColor,
             lineColor = lineColor,
             timeToDismiss = timeToDismiss
-        ).show()
+        ).build()
     }
 }
 

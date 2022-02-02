@@ -42,79 +42,102 @@
                 android:src="@drawable/ic_notifications_active" />
         </RelativeLayout>
 
-        <RelativeLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/layouts_margin_start"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/layouts_margin_end">
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:fillViewport="true">
 
-            <com.technzone.bai3.ui.base.views.AppTextView
-                android:id="@+id/edTitle"
-                style="@style/textview_normal_regular"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/Edittext_height"
-                android:background="@drawable/edittext_shape_selector"
-                android:drawableStart="@drawable/ic_search"
-                android:drawablePadding="@dimen/_5sdp"
-                android:paddingStart="@dimen/_15sdp"
-                android:paddingEnd="@dimen/_10sdp"
-                android:text="@string/search_hint"
-                android:textColor="@color/edit_text_title_color_alpha50"
-                android:textSize="@dimen/_13ssp" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <com.technzone.bai3.ui.base.views.AppTextView
-                android:id="@+id/edCity"
-                style="@style/textview_normal_regular"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/Edittext_height"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:background="?selectableItemBackground"
-                android:clickable="true"
-                android:drawableEnd="@drawable/ic_arrow_down"
-                android:drawablePadding="@dimen/_5sdp"
-                android:drawableTint="@color/focused_color"
-                android:focusable="true"
-                android:text="Riyadh"
-                android:textColor="@color/edit_text_text_color"
-                android:textSize="@dimen/_11ssp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end">
 
-        </RelativeLayout>
+                    <com.technzone.bai3.ui.base.views.AppTextView
+                        android:id="@+id/edTitle"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/Edittext_height"
+                        android:background="@drawable/edittext_shape_selector"
+                        android:drawableStart="@drawable/ic_search"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:text="@string/search_hint"
+                        android:textColor="@color/edit_text_title_color_alpha50"
+                        android:textSize="@dimen/_13ssp" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/layouts_margin_start"
-            android:layout_marginTop="@dimen/_25sdp"
-            android:layout_marginEnd="@dimen/layouts_margin_end"
-            android:layout_marginBottom="@dimen/_10sdp"
-            app:cardCornerRadius="@dimen/_8sdp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/color_not_valid"
-            app:strokeWidth="@dimen/_1sdp">
+                    <com.technzone.bai3.ui.base.views.AppTextView
+                        android:id="@+id/edCity"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/Edittext_height"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="?selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableEnd="@drawable/ic_arrow_down"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:drawableTint="@color/focused_color"
+                        android:focusable="true"
+                        android:text="Riyadh"
+                        android:textColor="@color/edit_text_text_color"
+                        android:textSize="@dimen/_11ssp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvCatData"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:nestedScrollingEnabled="false"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:layout_constrainedWidth="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvTitle"
-                app:spanCount="4"
-                tools:itemCount="8"
-                tools:listitem="@layout/row_category" />
+                </RelativeLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/color_not_valid"
+                    app:strokeWidth="@dimen/_1sdp">
 
-        <include
-            android:id="@+id/layout_banner"
-            layout="@layout/layout_banner" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvCatData"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="4"
+                        tools:itemCount="8"
+                        tools:listitem="@layout/row_category" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <include
+                    android:id="@+id/layout_banner"
+                    layout="@layout/layout_banner" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCategoriesItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingBottom="@dimen/_100sdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:spanCount="4"
+                    tools:itemCount="8"
+                    tools:listitem="@layout/row_categories_items" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
     </LinearLayout>
 
 </layout>

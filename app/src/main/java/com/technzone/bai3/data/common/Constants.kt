@@ -13,6 +13,7 @@ object Constants {
 
     object BundleData {
 
+        const val CITY: String = "city"
         const val COUNTRY: String = "countryCode"
         const val SHOW_CODE: String = "showCode"
         const val CURRENT_COUNTRY: String = "currentCountry"

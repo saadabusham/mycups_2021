@@ -7,31 +7,40 @@
 
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relativeSlider"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_110sdp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/layouts_margin_start"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/layouts_margin_end"
         android:layout_marginBottom="@dimen/_15sdp"
+        android:gravity="center"
         android:orientation="vertical">
 
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/rvPagerData"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:nestedScrollingEnabled="false"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/row_banner_item" />
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardElevation="0dp">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/rvPagerData"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_135sdp"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/row_banner_item" />
+
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerInParent="true"
             android:layout_marginStart="@dimen/layouts_margin_start"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/layouts_margin_end"
@@ -57,5 +66,5 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-    </RelativeLayout>
+    </LinearLayout>
 </layout>

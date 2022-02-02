@@ -37,7 +37,7 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
     IBaseBindingActivity {
 
     var binding: BINDING? = null
-    private var toolbar: Toolbar? = null
+    var toolbar: Toolbar? = null
 
 
     lateinit var customDialogUtils: CustomDialogUtils
