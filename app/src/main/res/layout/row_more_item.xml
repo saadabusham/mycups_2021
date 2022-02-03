@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.technzone.bai3.data.enums.MoreEnums" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="data"
+            type="com.technzone.bai3.data.models.profile.More" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:minHeight="@dimen/_46sdp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:orientation="horizontal"
+            android:paddingEnd="@dimen/layouts_margin_end">
+
+            <ImageView
+                ivSetSrcImageFromResources="@{data.icon}"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                tools:src="@drawable/ic_profile_place_holder" />
+
+            <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                style="@style/textview_normal_regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:layout_marginBottom="@dimen/_9sdp"
+                android:layout_weight="1"
+                android:drawableEnd="@drawable/ic_more_arrow_next"
+                android:text="@{data.title}"
+                android:textColor="@color/focused_color"
+                android:textSize="@dimen/_13ssp"
+                tools:text="Account" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/divider_dark_gray"/>
+    </LinearLayout>
+</layout>

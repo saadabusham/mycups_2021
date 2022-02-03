@@ -15,7 +15,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.technzone.bai3.ui.base.views.TouchImageView
+        <com.technzone.bai3.ui.base.views.appviews.TouchImageView
             android:id="@+id/imgPicture"
             ivImageUrl="@{data}"
             android:layout_width="match_parent"

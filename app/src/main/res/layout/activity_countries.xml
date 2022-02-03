@@ -12,7 +12,7 @@
             android:id="@+id/layout_toolbar"
             layout="@layout/layout_toolbar" />
 
-        <com.technzone.bai3.ui.base.views.AppEditText
+        <com.technzone.bai3.ui.base.views.appviews.AppEditText
             android:id="@+id/edTitle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/Edittext_height"

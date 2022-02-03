@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.technzone.bai3.ui.base.views.AppCardView
+        <com.technzone.bai3.ui.base.views.appviews.AppCardView
             android:layout_width="match_parent"
             android:layout_height="@dimen/_370sdp"
             app:cardBackgroundColor="@color/on_boarding_bg_color"
@@ -94,7 +94,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/recyclerViewImagesDot">
 
-                    <com.technzone.bai3.ui.base.views.AppButton
+                    <com.technzone.bai3.ui.base.views.appviews.AppButton
                         android:id="@+id/btnGoogleLogin"
                         style="@style/AppTheme.Button.TransparentOutline"
                         android:layout_width="match_parent"
@@ -107,7 +107,7 @@
                         app:iconGravity="textStart"
                         app:iconPadding="@dimen/_10sdp" />
 
-                    <com.technzone.bai3.ui.base.views.AppButton
+                    <com.technzone.bai3.ui.base.views.appviews.AppButton
                         android:id="@+id/btnEmailLogin"
                         style="@style/AppTheme.Button.TransparentOutline"
                         android:layout_width="match_parent"
@@ -133,7 +133,7 @@
                             android:gravity="center"
                             android:orientation="horizontal">
 
-                            <com.technzone.bai3.ui.base.views.AppTextView
+                            <com.technzone.bai3.ui.base.views.appviews.AppTextView
                                 style="@style/textview_normal_regular"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
                                 android:textColor="@color/defaultTextColor"
                                 android:textSize="@dimen/_11ssp" />
 
-                            <com.technzone.bai3.ui.base.views.AppTextView
+                            <com.technzone.bai3.ui.base.views.appviews.AppTextView
                                 android:id="@+id/tvTermsAndConditions"
                                 style="@style/textview_normal_regular"
                                 android:layout_width="wrap_content"
@@ -163,7 +163,7 @@
                             android:gravity="center"
                             android:orientation="horizontal">
 
-                            <com.technzone.bai3.ui.base.views.AppTextView
+                            <com.technzone.bai3.ui.base.views.appviews.AppTextView
                                 style="@style/textview_normal_regular"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
                                 android:textColor="@color/defaultTextColor"
                                 android:textSize="@dimen/_10ssp" />
 
-                            <com.technzone.bai3.ui.base.views.AppTextView
+                            <com.technzone.bai3.ui.base.views.appviews.AppTextView
                                 android:id="@+id/tvPrivacyPolicy"
                                 style="@style/textview_normal_regular"
                                 android:layout_width="wrap_content"
@@ -196,7 +196,7 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <com.technzone.bai3.ui.base.views.AppTextView
+                        <com.technzone.bai3.ui.base.views.appviews.AppTextView
                             style="@style/textview_normal_regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -205,7 +205,7 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/_11ssp" />
 
-                        <com.technzone.bai3.ui.base.views.AppTextView
+                        <com.technzone.bai3.ui.base.views.appviews.AppTextView
                             android:id="@+id/tvSignUp"
                             style="@style/textview_normal_medium"
                             android:layout_width="wrap_content"

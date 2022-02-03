@@ -1,24 +1,20 @@
-package com.technzone.bai3.ui.base.views
+package com.technzone.bai3.ui.base.views.appviews
 
 import android.content.Context
 import android.os.SystemClock
 import android.util.AttributeSet
 import android.view.MotionEvent
-import com.google.android.material.button.MaterialButton
+import com.google.android.material.card.MaterialCardView
 import com.technzone.bai3.R
 
 
-class AppButton @JvmOverloads constructor(
-        context: Context,
-        private val attrs: AttributeSet? = null,
-        defStyleAttr: Int = R.attr.materialButtonStyle
-) : MaterialButton(context, attrs, defStyleAttr) {
+class AppCardView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet,
+    defStyleAttr: Int = R.style.AppTheme_CardView
+) : MaterialCardView(context, attrs, defStyleAttr){
 
     var lastClickTime: Long = 0
-
-    init {
-        initAttrs()
-    }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
@@ -37,13 +33,5 @@ class AppButton @JvmOverloads constructor(
                 true
             } else false
         }
-
-    private fun initAttrs() {
-        val btnAttr = context.obtainStyledAttributes(
-                attrs,
-                R.styleable.MaterialButton
-        )
-        btnAttr.recycle()
-    }
 
 }

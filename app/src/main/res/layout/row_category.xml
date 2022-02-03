@@ -27,7 +27,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <com.technzone.bai3.ui.base.views.AppImageView
+            <com.technzone.bai3.ui.base.views.appviews.AppImageView
                 ivImageErrorPlaceholder="@{R.drawable.ic_category_place_holder}"
                 ivImagePlaceholder="@{R.drawable.ic_category_place_holder}"
                 ivImageUrl="@{item.icon}"
@@ -37,7 +37,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 tools:src="@drawable/ic_category_place_holder" />
 
-            <com.technzone.bai3.ui.base.views.AppTextView
+            <com.technzone.bai3.ui.base.views.appviews.AppTextView
                 android:id="@+id/tvTitle"
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"

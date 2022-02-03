@@ -59,7 +59,22 @@
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
         <activity
+            android:name="com.technzone.bai3.ui.more.settings.activity.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false"/>
+        <activity
+            android:name="com.technzone.bai3.ui.more.faqs.FaqsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false"/>
+        <activity
             android:name="com.technzone.bai3.ui.main.activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false"/>
+        <activity
+            android:name="com.technzone.bai3.ui.more.changepassword.ChangePasswordActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearNotLoggedIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <com.technzone.bai3.ui.base.views.appviews.AppTextView
+            android:id="@+id/tvTitle"
+            style="@style/textview_normal_bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/welcome"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_17ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/_15sdp"
+            app:layout_constraintBottom_toTopOf="@id/tvDescription"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <com.technzone.bai3.ui.base.views.appviews.AppTextView
+            android:id="@+id/tvDescription"
+            style="@style/textview_normal_regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:gravity="center"
+            android:text="@string/you_need_to_login_to_see_this_screen_s_content"
+            android:textColor="@color/subtitle_color"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintBottom_toTopOf="@id/btnLogin"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogin"
+            style="@style/AppTheme.Button"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/login_now"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

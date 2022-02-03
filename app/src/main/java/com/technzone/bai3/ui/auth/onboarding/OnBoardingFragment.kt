@@ -11,7 +11,7 @@ import com.technzone.bai3.ui.auth.onboarding.adapters.IndecatorRecyclerAdapter
 import com.technzone.bai3.ui.auth.onboarding.adapters.OnBoardingAdapter
 import com.technzone.bai3.ui.auth.register.RegisterActivity
 import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
-import com.technzone.bai3.ui.base.views.UltraScaleTransformer
+import com.technzone.bai3.ui.base.views.appviews.UltraScaleTransformer
 import com.technzone.bai3.ui.dataview.dataviewer.DataViewerActivity
 import com.technzone.bai3.ui.main.activity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint

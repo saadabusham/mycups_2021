@@ -118,6 +118,7 @@
     <string name="success">Success!</string>
     <string name="check_your_email">Check your email!</string>
     <string name="change_your_password">Change your password</string>
+    <string name="change_your_password_">Change your password?</string>
     <string name="enter_a_new_password_below">Enter a new password below</string>
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
@@ -218,6 +219,36 @@
     <string name="bed_count_">%s Bed</string>
     <string name="bath_count_">%s Bath</string>
     <string name="no_products_yet">No product yet</string>
+
+    <!--    Login View-->
+    <string name="login_now">Login Now</string>
+    <string name="you_need_to_login_to_see_this_screen_s_content">You need to login to see this screen’s\ncontent.</string>
+
+    <!--    More Screen-->
+    <string name="account">Account</string>
+    <string name="general">General</string>
+    <string name="legal_information">Legal Information</string>
+    <string name="logins">Logins</string>
+    <string name="more_logout">Logout</string>
+    <string name="more_my_ads">My Ads</string>
+    <string name="more_recent_search">Recent Search</string>
+    <string name="more_my_orders">My Orders</string>
+    <string name="more_change_password">Change Password</string>
+    <string name="more_settings">Settings</string>
+    <string name="more_share_app">Share App</string>
+    <string name="more_customer_sppoirt">Customer Support</string>
+    <string name="more_faqs">FAQ\'S</string>
+    <string name="more_privacy_policy">Privacy Policy</string>
+    <string name="more_terms_and_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="app_version">Version %s</string>
+
+    <!--    Settings-->
+    <string name="turn_on_notifications">Turn on notifications</string>
+    <string name="allow_notification_previews_at_the_top_of_the_screen">Allow notification previews at the top of the screen</string>
+    <string name="language">Language</string>
+    <string name="change_language">Change Language</string>
+    <string name="how_to_search">How To Search:</string>
+    <string name="enter_your_old_and_new_passwords_to_change_your_password">Enter your old and new passwords to change your password.</string>
 
 
 </resources>

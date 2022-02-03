@@ -6,6 +6,7 @@
     <data>
 
         <import type="com.technzone.bai3.R" />
+        <import type="android.view.View"/>
 
         <variable
             name="viewModel"
@@ -23,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.technzone.bai3.ui.base.views.AppTextView
+            <com.technzone.bai3.ui.base.views.appviews.AppTextView
                 android:id="@+id/tvTitle"
                 style="@style/textview_normal_semibold"
                 android:layout_width="0dp"
@@ -44,7 +45,7 @@
                 android:layout_height="0dp"
                 android:clipToPadding="false"
                 android:fillViewport="true"
-                android:paddingBottom="@dimen/_35sdp"
+                android:paddingBottom="@dimen/_70sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle">
 
@@ -73,9 +74,9 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:strokeColor="@color/profile_corner"
-                            app:strokeWidth="3dp">
+                            app:strokeWidth="@dimen/_1sdp">
 
-                            <com.technzone.forsa.ui.base.views.appviews.AppImageView
+                            <com.technzone.bai3.ui.base.views.appviews.AppImageView
                                 android:id="@+id/imgProfilePicture"
                                 ivImageErrorPlaceholder="@{R.drawable.ic_profile_place_holder}"
                                 ivImagePlaceholder="@{R.drawable.ic_profile_place_holder}"
@@ -87,7 +88,7 @@
                                 android:transitionName="image" />
                         </com.google.android.material.card.MaterialCardView>
 
-                        <com.technzone.forsa.ui.base.views.appviews.AppTextView
+                        <com.technzone.bai3.ui.base.views.appviews.AppTextView
                             android:id="@+id/tvName"
                             style="@style/textview_normal_bold"
                             android:layout_width="wrap_content"
@@ -102,7 +103,7 @@
                             app:layout_constraintTop_toBottomOf="@id/cvPicture"
                             tools:text="John Smith" />
 
-                        <com.technzone.forsa.ui.base.views.appviews.AppTextView
+                        <com.technzone.bai3.ui.base.views.appviews.AppTextView
                             android:id="@+id/tvEmail"
                             style="@style/textview_normal_regular"
                             android:layout_width="wrap_content"
@@ -139,7 +140,37 @@
 
                     </com.google.android.material.card.MaterialCardView>
 
-                    <com.technzone.forsa.ui.base.views.appviews.AppTextView
+                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvAccount"
+                        style="@style/textview_normal_semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|start"
+                        android:layout_marginStart="@dimen/layouts_margin_start"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/layouts_margin_end"
+                        android:text="@string/account"
+                        android:textColor="@color/title_color"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvAccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:layout_marginStart="@dimen/layouts_margin_start"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/layouts_margin_end"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintHorizontal_bias="0.516"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        tools:itemCount="3"
+                        tools:listitem="@layout/row_more_item" />
+
+                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
                         android:id="@+id/tvGeneral"
                         style="@style/textview_normal_semibold"
                         android:layout_width="wrap_content"
@@ -152,32 +183,25 @@
                         android:textColor="@color/title_color"
                         android:textSize="@dimen/_12ssp" />
 
-                    <com.google.android.material.card.MaterialCardView
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvGeneral"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
                         android:layout_marginStart="@dimen/layouts_margin_start"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/layouts_margin_end"
-                        app:cardCornerRadius="@dimen/_12sdp"
-                        app:layout_constraintTop_toBottomOf="@id/tvEmail">
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintHorizontal_bias="0.516"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        tools:itemCount="4"
+                        tools:listitem="@layout/row_more_item" />
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rvGeneral"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:clipToPadding="false"
-                            android:nestedScrollingEnabled="false"
-                            android:orientation="vertical"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            app:layout_constraintHorizontal_bias="0.516"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintVertical_bias="0.0"
-                            tools:itemCount="5"
-                            tools:listitem="@layout/row_more_item" />
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.technzone.forsa.ui.base.views.appviews.AppTextView
-                        android:id="@+id/tvSupport"
+                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvLegalInfo"
                         style="@style/textview_normal_semibold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -185,80 +209,81 @@
                         android:layout_marginStart="@dimen/layouts_margin_start"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:layout_marginEnd="@dimen/layouts_margin_end"
-                        android:text="@string/support"
+                        android:text="@string/legal_information"
                         android:textColor="@color/title_color"
                         android:textSize="@dimen/_12ssp" />
 
-                    <com.google.android.material.card.MaterialCardView
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvLegalInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
                         android:layout_marginStart="@dimen/layouts_margin_start"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/layouts_margin_end"
-                        android:layout_marginBottom="@dimen/_20sdp"
-                        app:cardCornerRadius="@dimen/_12sdp"
-                        app:layout_constraintTop_toBottomOf="@id/tvEmail">
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintHorizontal_bias="0.516"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        tools:itemCount="3"
+                        tools:listitem="@layout/row_more_item" />
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rvSupport"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:clipToPadding="false"
-                            android:nestedScrollingEnabled="false"
-                            android:orientation="vertical"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            app:layout_constraintHorizontal_bias="0.516"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintVertical_bias="0.0"
-                            tools:itemCount="5"
-                            tools:listitem="@layout/row_more_item" />
-                    </com.google.android.material.card.MaterialCardView>
+                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvLogin"
+                        style="@style/textview_normal_semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|start"
+                        android:layout_marginStart="@dimen/layouts_margin_start"
+                        android:visibility="@{viewModel.loggedIn ? View.VISIBLE : View.GONE}"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/layouts_margin_end"
+                        android:text="@string/logins"
+                        android:textColor="@color/title_color"
+                        android:textSize="@dimen/_12ssp" />
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cvLogout"
+                    <LinearLayout
+                        android:id="@+id/linLogout"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_48sdp"
                         android:layout_marginStart="@dimen/layouts_margin_start"
                         android:layout_marginEnd="@dimen/layouts_margin_end"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?selectableItemBackground"
                         android:visibility="@{viewModel.loggedIn ? View.VISIBLE : View.GONE}"
-                        app:cardCornerRadius="@dimen/_12sdp"
-                        app:layout_constraintTop_toBottomOf="@id/tvEmail">
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingEnd="@dimen/layouts_margin_end">
 
-                        <LinearLayout
+                        <ImageView
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:src="@drawable/ic_more_logout" />
+
+                        <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                            style="@style/textview_normal_regular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_9sdp"
+                            android:layout_marginBottom="@dimen/_9sdp"
                             android:layout_marginEnd="@dimen/_5sdp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:paddingEnd="@dimen/layouts_margin_end">
+                            android:drawableEnd="@drawable/ic_more_arrow_next"
+                            android:text="@string/more_logout"
+                            android:textColor="@color/focused_color"
+                            android:textSize="@dimen/_13ssp" />
 
-                            <ImageView
-                                android:layout_width="@dimen/_15sdp"
-                                android:layout_height="@dimen/_20sdp"
-                                android:layout_gravity="center"
-                                android:layout_marginStart="@dimen/_10sdp"
-                                android:src="@drawable/ic_more_logout" />
+                    </LinearLayout>
 
-                            <com.technzone.forsa.ui.base.views.appviews.AppTextView
-                                style="@style/textview_normal_regular"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_10sdp"
-                                android:layout_marginTop="@dimen/_9sdp"
-                                android:layout_marginBottom="@dimen/_9sdp"
-                                android:layout_weight="1"
-                                android:drawableEnd="@drawable/ic_arrow_next"
-                                android:text="@string/more_logout"
-                                android:textColor="@color/profile_text_color"
-                                android:textSize="@dimen/_13ssp" />
-
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.technzone.forsa.ui.base.views.appviews.AppTextView
+                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
                         style="@style/textview_normal_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

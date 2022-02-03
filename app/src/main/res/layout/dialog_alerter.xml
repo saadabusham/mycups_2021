@@ -42,7 +42,7 @@
                     tools:text="Invalid password"
                     tools:textColor="#E7293E" />
 
-                <com.technzone.bai3.ui.base.views.AppImageView
+                <com.technzone.bai3.ui.base.views.appviews.AppImageView
                     android:id="@+id/imgClose"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"

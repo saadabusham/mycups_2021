@@ -12,7 +12,7 @@
             android:id="@+id/layout_toolbar"
             layout="@layout/layout_toolbar" />
 
-        <com.technzone.bai3.ui.base.views.AppTextView
+        <com.technzone.bai3.ui.base.views.appviews.AppTextView
             android:id="@+id/tvHeader"
             style="@style/textview_normal_medium"
             android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
             android:layout_gravity="center"
             android:textSize="@dimen/_17ssp" />
 
-        <com.technzone.bai3.ui.base.views.AppTextView
+        <com.technzone.bai3.ui.base.views.appviews.AppTextView
             style="@style/textview_normal_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             android:lineSpacingExtra="@dimen/_3sdp"
             android:textSize="@dimen/_11ssp" />
 
-        <com.technzone.bai3.ui.base.views.AppEditText
+        <com.technzone.bai3.ui.base.views.appviews.AppEditText
             android:id="@+id/edTitle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/Edittext_height"

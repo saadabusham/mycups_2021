@@ -18,7 +18,7 @@
         android:layout_marginBottom="@dimen/_15sdp"
         android:background="@android:color/transparent">
 
-        <com.technzone.bai3.ui.base.views.AppTextView
+        <com.technzone.bai3.ui.base.views.appviews.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_semibold"
             android:layout_width="0dp"
@@ -34,7 +34,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Discover the best property" />
 
-        <com.technzone.bai3.ui.base.views.AppTextView
+        <com.technzone.bai3.ui.base.views.appviews.AppTextView
             android:id="@+id/tvSeeAll"
             style="@style/textview_normal_regular"
             android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
             tools:itemCount="8"
             tools:listitem="@layout/row_general_product" />
 
-        <com.technzone.bai3.ui.base.views.AppTextView
+        <com.technzone.bai3.ui.base.views.appviews.AppTextView
             style="@style/textview_normal_medium"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120sdp"

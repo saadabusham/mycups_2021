@@ -118,10 +118,10 @@
     <color name="transparent_outline_button_stroke">#707070</color>
 
 
-    <color name="switch_thumb_active">#F7B500</color>
-    <color name="switch_thumb_unactive">#7E7E7E</color>
-    <color name="switch_track_active">#80F7B500</color>
-    <color name="switch_track_unactive">#807E7E7E</color>
+    <color name="switch_thumb_active">#009C9B</color>
+    <color name="switch_thumb_unactive">#DADBDB</color>
+    <color name="switch_track_active">#B2E1E1</color>
+    <color name="switch_track_unactive">#6D6F72</color>
 
     <color name="edit_text_background">#4DB8BCBF</color>
     <color name="button_color">#009C9B</color>
@@ -155,4 +155,5 @@
     <color name="see_all_color">#F5700F</color>
     <color name="price_color">#008E4A</color>
 
+    <color name="profile_corner">#126267</color>
 </resources>

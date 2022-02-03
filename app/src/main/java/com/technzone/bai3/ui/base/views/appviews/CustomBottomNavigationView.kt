@@ -1,4 +1,4 @@
-package com.technzone.bai3.ui.base.views
+package com.technzone.bai3.ui.base.views.appviews
 
 import android.content.Context
 import android.graphics.*
