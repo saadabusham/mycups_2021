@@ -172,7 +172,7 @@
     </style>
 
     <!-- Default Button Style -->
-    <style name="AppTheme.Button" parent="Widget.MaterialComponents.Button">
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button">
         <item name="cornerRadius">@dimen/_5sdp</item>
         <item name="backgroundTint">@color/color_button_default_background</item>
         <item name="android:textAllCaps">true</item>

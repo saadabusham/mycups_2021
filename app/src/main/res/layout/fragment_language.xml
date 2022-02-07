@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="presenter"
+            type="com.technzone.bai3.ui.auth.language.LanguagePresenter" />
+
+        <variable
             name="viewModel"
             type="com.technzone.bai3.ui.auth.language.LanguageViewModel" />
     </data>
@@ -59,8 +63,8 @@
                 app:cardBackgroundColor="@{viewModel.englishSelected ? @color/language_button_color : @color/white}"
                 app:cardCornerRadius="@dimen/_4sdp"
                 app:cardElevation="0dp"
-                app:strokeWidth="@dimen/_1sdp"
-                app:strokeColor="@{viewModel.englishSelected ? @color/language_button_color : @color/edittext_boarder_gray}">
+                app:strokeColor="@{viewModel.englishSelected ? @color/language_button_color : @color/edittext_boarder_gray}"
+                app:strokeWidth="@dimen/_1sdp">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvEnglish"
@@ -68,10 +72,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:gravity="center"
-                    android:textColor="@{viewModel.englishSelected ? @color/white : @color/black}"
                     android:text="@string/english"
-                    tools:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textColor="@{viewModel.englishSelected ? @color/white : @color/black}"
+                    android:textSize="@dimen/_12ssp"
+                    tools:textColor="@color/black" />
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
@@ -85,8 +89,8 @@
                 app:cardBackgroundColor="@{viewModel.englishSelected ? @color/white : @color/language_button_color}"
                 app:cardCornerRadius="@dimen/_4sdp"
                 app:cardElevation="0dp"
-                app:strokeWidth="@dimen/_1sdp"
-                app:strokeColor="@{viewModel.englishSelected ? @color/edittext_boarder_gray : @color/language_button_color}">
+                app:strokeColor="@{viewModel.englishSelected ? @color/edittext_boarder_gray : @color/language_button_color}"
+                app:strokeWidth="@dimen/_1sdp">
 
                 <com.technzone.bai3.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvArabic"
@@ -107,10 +111,11 @@
             style="@style/AppTheme.Button"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
-            android:layout_marginBottom="@dimen/_15sdp"
             android:layout_marginStart="@dimen/_30sdp"
-            android:layout_marginEnd="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:onClick="@{()->presenter.onContinueClicked()}"
             android:text="@string/next"
             android:textColor="@android:color/white" />
     </LinearLayout>
