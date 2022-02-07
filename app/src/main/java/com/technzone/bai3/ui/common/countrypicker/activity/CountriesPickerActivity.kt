@@ -34,7 +34,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
-class CountriesPickerActivity : BaseBindingActivity<ActivityCountriesBinding>(),
+class CountriesPickerActivity : BaseBindingActivity<ActivityCountriesBinding,Nothing>(),
     BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
     private val viewModel: CountriesViewModel by viewModels()

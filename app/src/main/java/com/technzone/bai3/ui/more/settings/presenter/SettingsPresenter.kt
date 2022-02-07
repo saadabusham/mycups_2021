@@ -1,7 +1,7 @@
-package com.technzone.bai3.ui.more.changepassword
+package com.technzone.bai3.ui.more.settings.presenter
 
 import com.technzone.bai3.ui.base.presenters.BaseBindingPresenter
 
-interface ChangePasswordPresenter :BaseBindingPresenter{
-    fun onChangeClicked()
+interface SettingsPresenter :BaseBindingPresenter{
+    fun onLanguageClicked()
 }

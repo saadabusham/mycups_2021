@@ -1,8 +1,7 @@
-package com.technzone.bai3.ui.main.fragments.home.presenter
+package com.technzone.bai3.ui.auth.forgetpassword.presenters
 
 import com.technzone.bai3.ui.base.presenters.BaseBindingPresenter
 
-interface HomePresenter :BaseBindingPresenter{
-    fun onSearchClicked()
-    fun onCityClicked()
+interface ForgetPasswordPresenter :BaseBindingPresenter{
+    fun onSendCodeClicked()
 }

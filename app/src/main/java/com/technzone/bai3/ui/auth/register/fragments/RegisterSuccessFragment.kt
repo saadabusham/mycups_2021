@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class RegisterSuccessFragment : BaseBindingFragment<FragmentRegisterSuccessBinding>() {
+class RegisterSuccessFragment : BaseBindingFragment<FragmentRegisterSuccessBinding,Nothing>() {
 
     private val viewModel: RegistrationViewModel by activityViewModels()
 

@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.activity_auth.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
-class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
+class MainActivity : BaseBindingActivity<ActivityMainBinding,Nothing>() {
 
     private val viewModel: MainViewModel by viewModels()
     private val favoriteViewModel: FavoritesViewModel by viewModels()

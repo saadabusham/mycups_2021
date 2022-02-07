@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="presenter"
+            type="com.technzone.bai3.ui.auth.register.presenter.RegisterPresenter" />
         <variable
             name="viewModel"
             type="com.technzone.bai3.ui.auth.register.viewmodels.RegistrationViewModel" />
@@ -281,6 +283,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_15sdp"
                     android:text="@string/sign_up"
+                    android:onClick="@{()->presenter.onRegisterClicked()}"
                     btnEnabledClick="@{viewModel.buttonEnabled}"
                     android:textSize="@dimen/_11ssp" />
 

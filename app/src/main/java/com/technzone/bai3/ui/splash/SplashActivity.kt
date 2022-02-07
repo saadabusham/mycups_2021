@@ -21,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
+class SplashActivity : BaseBindingActivity<ActivitySplashBinding,Nothing>() {
 
     private val viewModel: SplashViewModel by viewModels { defaultViewModelProviderFactory }
 

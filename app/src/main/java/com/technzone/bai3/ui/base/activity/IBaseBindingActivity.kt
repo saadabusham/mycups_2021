@@ -7,8 +7,11 @@ import androidx.annotation.StringRes
 import androidx.appcompat.widget.Toolbar
 import com.technzone.bai3.R
 import com.technzone.bai3.data.api.response.ResponseSubErrorsCodeEnum
+import com.technzone.bai3.ui.base.presenters.BaseBindingPresenter
 
-interface IBaseBindingActivity {
+interface IBaseBindingActivity<PRESENTER: BaseBindingPresenter?> {
+
+    fun getPresenter(): PRESENTER?
 
     fun addToolbar(
         hasToolbar: Boolean,

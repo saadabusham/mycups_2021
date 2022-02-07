@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_on_boarding.*
 
 @AndroidEntryPoint
-class OnBoardingFragment : BaseBindingFragment<FragmentOnBoardingBinding>() {
+class OnBoardingFragment : BaseBindingFragment<FragmentOnBoardingBinding,Nothing>() {
 
     override fun getLayoutId(): Int = R.layout.fragment_on_boarding
     private val viewModel: AuthViewModel by activityViewModels()

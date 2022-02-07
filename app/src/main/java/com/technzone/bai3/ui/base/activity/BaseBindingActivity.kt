@@ -21,9 +21,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
+import com.technzone.bai3.BR
 import com.technzone.bai3.R
 import com.technzone.bai3.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.bai3.ui.base.dialogs.CustomDialogUtils
+import com.technzone.bai3.ui.base.presenters.BaseBindingPresenter
 import com.technzone.bai3.utils.HandleRequestFailedUtil
 import com.technzone.bai3.utils.extensions.longToast
 import com.technzone.bai3.utils.pref.SharedPreferencesUtil
@@ -33,12 +35,15 @@ import java.io.IOException
 import java.net.SocketTimeoutException
 
 
-abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActivity(),
-    IBaseBindingActivity {
+abstract class BaseBindingActivity<BINDING : ViewDataBinding, PRESENTER : BaseBindingPresenter?> : LocalizationActivity(),
+    IBaseBindingActivity<PRESENTER> {
 
     var binding: BINDING? = null
     var toolbar: Toolbar? = null
 
+    override fun getPresenter(): PRESENTER? {
+        return null
+    }
 
     lateinit var customDialogUtils: CustomDialogUtils
     override fun showLoadingView() {
@@ -92,6 +97,9 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
             //To use a LiveData object with your binding class,
             // you need to specify a lifecycle owner to define the scope of the LiveData object.
             binding?.lifecycleOwner = this
+            getPresenter()?.let {
+                binding?.setVariable(BR.presenter, it)
+            }
             super.setContentView(binding?.root)
         } else {
             super.setContentView(layoutResID)

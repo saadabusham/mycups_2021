@@ -20,10 +20,10 @@ import kotlinx.android.synthetic.main.activity_change_password.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
-class ChangePasswordActivity : BaseBindingActivity<ActivityChangePasswordBinding>() {
+class ChangePasswordActivity : BaseBindingActivity<ActivityChangePasswordBinding,ChangePasswordPresenter>(),ChangePasswordPresenter {
 
     private val viewModel: ChangePasswordViewModel by viewModels()
-
+    override fun getPresenter(): ChangePasswordPresenter = this
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(
@@ -36,10 +36,9 @@ class ChangePasswordActivity : BaseBindingActivity<ActivityChangePasswordBinding
             title = R.string.change_password
         )
         binding?.viewModel = viewModel
-        setUpListeners()
     }
 
-    private fun setUpListeners() {
+    override fun onChangeClicked() {
         binding?.btnChangePassword?.setOnClickListener {
             if (validateInput())
                 viewModel.changePassword().observe(this, changePasswordResultObserver())

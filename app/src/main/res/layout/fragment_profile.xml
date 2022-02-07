@@ -7,7 +7,9 @@
 
         <import type="com.technzone.bai3.R" />
         <import type="android.view.View"/>
-
+        <variable
+            name="presenter"
+            type="com.technzone.bai3.ui.main.fragments.profile.presenter.ProfilePresenter" />
         <variable
             name="viewModel"
             type="com.technzone.bai3.ui.main.fragments.profile.viewmodels.ProfileViewModel" />
@@ -258,6 +260,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:onClick="@{()->presenter.onLogoutClicked()}"
                         android:orientation="horizontal"
                         android:paddingEnd="@dimen/layouts_margin_end">
 

@@ -11,7 +11,7 @@ import com.technzone.bai3.ui.base.activity.BaseBindingActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RegisterActivity : BaseBindingActivity<ActivityRegisterBinding>() {
+class RegisterActivity : BaseBindingActivity<ActivityRegisterBinding,Nothing>() {
 
     override fun finish() {
         super.finish()

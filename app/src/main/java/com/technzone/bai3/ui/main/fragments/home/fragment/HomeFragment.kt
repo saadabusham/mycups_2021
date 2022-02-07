@@ -25,6 +25,7 @@ import com.technzone.bai3.ui.main.fragments.home.adapters.BannerAdapter
 import com.technzone.bai3.ui.main.fragments.home.adapters.BannerIndicatorRecyclerAdapter
 import com.technzone.bai3.ui.main.fragments.home.adapters.CategoriesAdapter
 import com.technzone.bai3.ui.main.fragments.home.adapters.CategoriesItemsAdapter
+import com.technzone.bai3.ui.main.fragments.home.presenter.HomePresenter
 import com.technzone.bai3.ui.main.fragments.home.viewmodels.HomeViewModel
 import com.technzone.bai3.utils.extensions.connectToHomeIndicator
 import com.technzone.bai3.utils.extensions.startSlider
@@ -32,7 +33,7 @@ import com.technzone.bai3.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), LoginCallBack {
+class HomeFragment : BaseBindingFragment<FragmentHomeBinding,HomePresenter>(),HomePresenter, LoginCallBack {
 
     private val viewModel: HomeViewModel by activityViewModels()
 
@@ -41,6 +42,8 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), LoginCallBack {
     var bannerAdapter: BannerAdapter? = null
     lateinit var indicatorRecyclerAdapter: BannerIndicatorRecyclerAdapter
     override fun getLayoutId(): Int = R.layout.fragment_home
+
+    override fun getPresenter(): HomePresenter = this
 
     override fun onViewVisible() {
         super.onViewVisible()
@@ -55,15 +58,20 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), LoginCallBack {
         binding?.viewModel = viewModel
     }
 
+    override fun onSearchClicked() {
+
+    }
+
+    override fun onCityClicked() {
+        CitiesPickerActivity.start(
+            context = requireActivity(),
+            currentCode = viewModel.selectedCity.value?.name,
+            resultLauncher = citiesResultLauncher
+        )
+    }
+
     private fun setUpListeners() {
         (requireActivity() as MainActivity).loginCallBack = this
-        binding?.edCity?.setOnClickListener {
-            CitiesPickerActivity.start(
-                context = requireActivity(),
-                currentCode = viewModel.selectedCity.value?.name,
-                resultLauncher = citiesResultLauncher
-            )
-        }
     }
 
     var citiesResultLauncher =

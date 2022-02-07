@@ -11,15 +11,17 @@ import com.technzone.bai3.data.common.CustomObserverResponse
 import com.technzone.bai3.databinding.ActivitySettingsBinding
 import com.technzone.bai3.ui.base.activity.BaseBindingActivity
 import com.technzone.bai3.ui.more.settings.dialogs.LanguageBottomSheet
+import com.technzone.bai3.ui.more.settings.presenter.SettingsPresenter
 import com.technzone.bai3.ui.more.settings.viewmodels.SettingsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
-class SettingsActivity : BaseBindingActivity<ActivitySettingsBinding>() {
+class SettingsActivity : BaseBindingActivity<ActivitySettingsBinding, SettingsPresenter>(),SettingsPresenter {
 
     private val viewModel: SettingsViewModel by viewModels()
+    override fun getPresenter(): SettingsPresenter = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,16 +45,16 @@ class SettingsActivity : BaseBindingActivity<ActivitySettingsBinding>() {
 //                .observe(this, notificationStatusObserver(isChecked))
             viewModel.setIsNotificationsIsEnabled(isChecked)
         }
-        linearLanguage?.setOnClickListener {
-            showLanguageDialog()
-        }
     }
 
+    override fun onLanguageClicked() {
+        showLanguageDialog()
+    }
     private fun showLanguageDialog() {
         LanguageBottomSheet(object : LanguageBottomSheet.LanguageCallBack {
             override fun callBack(englishSelected: Boolean) {
                 viewModel.saveLanguage(englishSelected).observe(this@SettingsActivity, {
-                    (this@SettingsActivity as BaseBindingActivity<*>)
+                    (this@SettingsActivity as BaseBindingActivity<*,*>)
                         .setLanguage(
                             if (englishSelected)
                                 CommonEnums.Languages.English.value

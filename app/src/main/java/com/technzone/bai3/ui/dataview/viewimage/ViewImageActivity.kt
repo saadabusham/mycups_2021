@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class ViewImageActivity : BaseBindingActivity<ActivityViewImageBinding>() {
+class ViewImageActivity : BaseBindingActivity<ActivityViewImageBinding,Nothing>() {
 
     companion object {
         fun start(

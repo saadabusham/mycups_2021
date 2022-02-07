@@ -9,7 +9,7 @@ import com.technzone.bai3.ui.base.activity.BaseBindingActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ForgetPasswordActivity : BaseBindingActivity<ActivityForgetPasswordBinding>() {
+class ForgetPasswordActivity : BaseBindingActivity<ActivityForgetPasswordBinding,Nothing>() {
 
     override fun finish() {
         super.finish()

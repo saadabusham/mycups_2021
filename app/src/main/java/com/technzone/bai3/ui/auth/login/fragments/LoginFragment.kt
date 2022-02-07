@@ -14,6 +14,7 @@ import com.technzone.bai3.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.bai3.data.pref.user.UserPref
 import com.technzone.bai3.databinding.FragmentLoginBinding
 import com.technzone.bai3.ui.auth.forgetpassword.ForgetPasswordActivity
+import com.technzone.bai3.ui.auth.login.presenter.LoginPresenter
 import com.technzone.bai3.ui.auth.login.viewmodels.LoginViewModel
 import com.technzone.bai3.ui.base.bindingadapters.updateStrokeColor
 import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
@@ -28,7 +29,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class LoginFragment : BaseBindingFragment<FragmentLoginBinding>() {
+class LoginFragment : BaseBindingFragment<FragmentLoginBinding,LoginPresenter>(),LoginPresenter {
 
     @Inject
     lateinit var prefs: UserPref
@@ -36,7 +37,7 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>() {
 //    var googleLoginHandler: GoogleLoginHandler? = null
 
     override fun getLayoutId(): Int = R.layout.fragment_login
-
+    override fun getPresenter(): LoginPresenter = this
 
 //    override fun onResume() {
 //        super.onResume()
@@ -68,17 +69,18 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>() {
         binding?.viewModel = viewModel
     }
 
+    override fun onLoginClicked() {
+        val isValid = validateInput()
+        setButtonEnable(isValid)
+        if (isValid) {
+            viewModel.loginUser().observe(this, loginResultObserver())
+        }
+    }
+
+    override fun onForgetPasswordClicked() {
+        ForgetPasswordActivity.start(requireContext())
+    }
     private fun setUpListeners() {
-        binding?.btnLogin?.setOnClickListener {
-            val isValid = validateInput()
-            setButtonEnable(isValid)
-            if (isValid) {
-                viewModel.loginUser().observe(this, loginResultObserver())
-            }
-        }
-        tvForgetPassword?.setOnClickListener {
-            ForgetPasswordActivity.start(requireContext())
-        }
 //        binding?.tvSkip?.setOnClickListener {
 //            if (requireActivity().intent.getBooleanExtra(
 //                    Constants.BundleData.IS_ACTIVITY_RESULT,

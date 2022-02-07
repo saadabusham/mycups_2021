@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="presenter"
+            type="com.technzone.bai3.ui.auth.login.presenter.VerifiedPresenter" />
     </data>
 
     <LinearLayout
@@ -53,6 +55,7 @@
             android:layout_marginStart="@dimen/layouts_margin_start"
             android:layout_marginEnd="@dimen/layouts_margin_end"
             android:text="@string/continue_"
+            android:onClick="@{()->presenter.onContinueClicked()}"
             android:textColor="@android:color/white"
             android:textSize="@dimen/_12ssp" />
 

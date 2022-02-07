@@ -1,4 +1,4 @@
-package com.technzone.alalami.ui.base.adapters
+package com.technzone.bai3.ui.base.adapters
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

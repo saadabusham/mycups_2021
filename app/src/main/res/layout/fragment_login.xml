@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="presenter"
+            type="com.technzone.bai3.ui.auth.login.presenter.LoginPresenter" />
         <variable
             name="viewModel"
             type="com.technzone.bai3.ui.auth.login.viewmodels.LoginViewModel" />
@@ -146,6 +148,7 @@
                     android:layout_marginTop="@dimen/_15sdp"
                     android:text="@string/forget_password_"
                     android:textColor="@color/app_orange_color"
+                    android:onClick="@{()->presenter.onForgetPasswordClicked()}"
                     android:textSize="@dimen/_12ssp" />
 
             </LinearLayout>
@@ -163,9 +166,9 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/layouts_margin_end"
             android:layout_marginBottom="@dimen/_15sdp"
+            android:onClick="@{()->presenter.onLoginClicked()}"
             android:text="@string/login"
             android:textSize="@dimen/_12ssp" />
-        <!--        example:state_enabled_click="@{viewModel.buttonEnabled}"-->
     </LinearLayout>
 
 </layout>

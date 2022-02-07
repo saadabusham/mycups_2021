@@ -1,18 +1,15 @@
 package com.technzone.bai3.ui.auth.register.fragments
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import com.technzone.bai3.R
 import com.technzone.bai3.common.interfaces.TextTypingCallback
 import com.technzone.bai3.data.api.response.ResponseSubErrorsCodeEnum
-import com.technzone.bai3.data.common.Constants
 import com.technzone.bai3.data.common.CustomObserverResponse
 import com.technzone.bai3.data.enums.InputFieldValidStateEnums
 import com.technzone.bai3.data.models.general.Countries
 import com.technzone.bai3.databinding.FragmentRegisterBinding
+import com.technzone.bai3.ui.auth.register.presenter.RegisterPresenter
 import com.technzone.bai3.ui.auth.register.viewmodels.RegistrationViewModel
 import com.technzone.bai3.ui.base.bindingadapters.updateStrokeColor
 import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
@@ -23,11 +20,13 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
 class RegistrationFragment :
-    BaseBindingFragment<FragmentRegisterBinding>() {
+    BaseBindingFragment<FragmentRegisterBinding, RegisterPresenter>(), RegisterPresenter {
 
     private val viewModel: RegistrationViewModel by activityViewModels()
 
     override fun getLayoutId(): Int = R.layout.fragment_register
+
+    override fun getPresenter(): RegisterPresenter = this
 
     override fun onViewVisible() {
         super.onViewVisible()
@@ -49,13 +48,14 @@ class RegistrationFragment :
         setHasOptionsMenu(false)
     }
 
+    override fun onRegisterClicked() {
+        val isValid = isDataValidate()
+        setButtonEnable(isValid)
+        if (isValid)
+            viewModel.registerUser().observe(this, registerResultObserver())
+    }
+
     private fun setUpListener() {
-        binding?.btnSignUp?.setOnClickListener {
-            val isValid = isDataValidate()
-            setButtonEnable(isValid)
-            if (isValid)
-                viewModel.registerUser().observe(this, registerResultObserver())
-        }
         binding?.edFirstName?.addTextChangedListener(inputListeners)
         binding?.edLastName?.addTextChangedListener(inputListeners)
         binding?.edEmail?.addTextChangedListener(inputListeners)

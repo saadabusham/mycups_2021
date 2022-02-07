@@ -25,7 +25,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
-class FaqsActivity : BaseBindingActivity<ActivityFaqsBinding>() {
+class FaqsActivity : BaseBindingActivity<ActivityFaqsBinding,Nothing>() {
 
     private val viewModel: FaqsViewModel by viewModels()
     lateinit var adapter: FaqsRecyclerAdapter

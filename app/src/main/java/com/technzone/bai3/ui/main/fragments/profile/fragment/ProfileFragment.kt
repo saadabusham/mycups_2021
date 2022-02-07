@@ -17,6 +17,7 @@ import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
 import com.technzone.bai3.ui.dataview.dataviewer.DataViewerActivity
 import com.technzone.bai3.ui.main.activity.MainActivity
 import com.technzone.bai3.ui.main.fragments.profile.adapters.MoreRecyclerAdapter
+import com.technzone.bai3.ui.main.fragments.profile.presenter.ProfilePresenter
 import com.technzone.bai3.ui.main.fragments.profile.viewmodels.ProfileViewModel
 import com.technzone.bai3.ui.more.changepassword.ChangePasswordActivity
 import com.technzone.bai3.ui.more.faqs.FaqsActivity
@@ -25,7 +26,8 @@ import com.technzone.bai3.utils.extensions.openShareView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
+class ProfileFragment : BaseBindingFragment<FragmentProfileBinding, ProfilePresenter>(),
+    ProfilePresenter,
     BaseBindingRecyclerViewAdapter.OnItemClickListener, LoginCallBack {
 
     private val viewModel: ProfileViewModel by activityViewModels()
@@ -34,6 +36,7 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
     private lateinit var generalMoreRecyclerAdapter: MoreRecyclerAdapter
     private lateinit var legMoreRecyclerAdapter: MoreRecyclerAdapter
     override fun getLayoutId(): Int = R.layout.fragment_profile
+    override fun getPresenter(): ProfilePresenter = this
 
     override fun onResume() {
         super.onResume()
@@ -61,14 +64,14 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
 
     private fun setUpListeners() {
         (requireActivity() as MainActivity).loginCallBack = this
-        binding?.linLogout?.setOnClickListener {
-//            viewModel.logout()
-            AuthActivity.start(requireContext())
-        }
         binding?.layoutNotLoggedIn?.btnLogin?.setOnClickListener {
             AuthActivity.startForResult(requireActivity(), true)
         }
+    }
 
+    override fun onLogoutClicked() {
+        //            viewModel.logout()
+        AuthActivity.start(requireContext())
     }
 
     private fun setUpAccountRecyclerView() {

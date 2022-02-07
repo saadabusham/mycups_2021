@@ -1,7 +1,7 @@
-package com.technzone.bai3.ui.auth.forgetpassword.presenters
+package com.technzone.bai3.ui.auth.language
 
 import com.technzone.bai3.ui.base.presenters.BaseBindingPresenter
 
-interface ForgetPasswordPresenter :BaseBindingPresenter{
-    fun onSendCodeClicked()
+interface LanguagePresenter :BaseBindingPresenter{
+    fun onContinueClicked()
 }

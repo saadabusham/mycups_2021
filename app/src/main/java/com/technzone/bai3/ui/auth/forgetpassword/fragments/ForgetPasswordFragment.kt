@@ -7,6 +7,7 @@ import com.technzone.bai3.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.bai3.data.common.CustomObserverResponse
 import com.technzone.bai3.data.enums.InputFieldValidStateEnums
 import com.technzone.bai3.databinding.FragmentForgetPasswordBinding
+import com.technzone.bai3.ui.auth.forgetpassword.presenters.ForgetPasswordPresenter
 import com.technzone.bai3.ui.auth.forgetpassword.viewmodels.ForgetPasswordViewModel
 import com.technzone.bai3.ui.base.bindingadapters.updateStrokeColor
 import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
@@ -18,10 +19,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
-class ForgetPasswordFragment : BaseBindingFragment<FragmentForgetPasswordBinding>() {
+class ForgetPasswordFragment : BaseBindingFragment<FragmentForgetPasswordBinding,ForgetPasswordPresenter>(),ForgetPasswordPresenter {
 
     private val viewModel: ForgetPasswordViewModel by activityViewModels()
-
+    override fun getPresenter(): ForgetPasswordPresenter = this
     override fun getLayoutId(): Int = R.layout.fragment_forget_password
 
     override fun onViewVisible() {
@@ -43,13 +44,14 @@ class ForgetPasswordFragment : BaseBindingFragment<FragmentForgetPasswordBinding
         binding?.viewModel = viewModel
     }
 
+    override fun onSendCodeClicked() {
+        val isValid = validateInput()
+        setButtonEnable(isValid)
+        if (isValid)
+            viewModel.resendVerificationCode().observe(this, sendOtpResultObserver())
+    }
+
     private fun setUpListeners() {
-        binding?.btnSendCode?.setOnClickListener {
-            val isValid = validateInput()
-            setButtonEnable(isValid)
-            if (isValid)
-                viewModel.resendVerificationCode().observe(this, sendOtpResultObserver())
-        }
         binding?.edEmail?.addTextChangedListener(inputListeners)
     }
 
@@ -95,6 +97,7 @@ class ForgetPasswordFragment : BaseBindingFragment<FragmentForgetPasswordBinding
             }
         return true
     }
+
 
 
 }

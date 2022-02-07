@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_auth.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AuthActivity : BaseBindingActivity<ActivityAuthBinding>() {
+class AuthActivity : BaseBindingActivity<ActivityAuthBinding,Nothing>() {
 
     @Inject lateinit var prefs : UserPref
 

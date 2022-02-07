@@ -5,6 +5,7 @@ import com.technzone.bai3.R
 import com.technzone.bai3.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.bai3.data.common.CustomObserverResponse
 import com.technzone.bai3.databinding.FragmentRecoveryPasswordBinding
+import com.technzone.bai3.ui.auth.forgetpassword.presenters.RecoverPasswordPresenter
 import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
 import com.technzone.bai3.utils.extensions.showErrorAlert
 import com.technzone.bai3.utils.validation.ValidatorInputTypesEnums
@@ -16,9 +17,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
-class RecoveryPasswordFragment : BaseBindingFragment<FragmentRecoveryPasswordBinding>() {
+class RecoveryPasswordFragment : BaseBindingFragment<FragmentRecoveryPasswordBinding,RecoverPasswordPresenter>(),RecoverPasswordPresenter {
 
     private val viewModel: ForgetPasswordViewModel by activityViewModels()
+
+    override fun getPresenter(): RecoverPasswordPresenter  = this
 
     override fun getLayoutId(): Int = R.layout.fragment_recovery_password
 
@@ -34,7 +37,6 @@ class RecoveryPasswordFragment : BaseBindingFragment<FragmentRecoveryPasswordBin
         )
         setUpBinding()
         setUpData()
-        setUpListeners()
     }
 
 
@@ -45,11 +47,9 @@ class RecoveryPasswordFragment : BaseBindingFragment<FragmentRecoveryPasswordBin
         binding?.viewModel = viewModel
     }
 
-    private fun setUpListeners() {
-        binding?.btnContinue?.setOnClickListener {
-            if (isDataValidate(true)) {
-                viewModel.recoveryPassword().observe(this, recoverPasswordResultObserver())
-            }
+    override fun onChangeClicked() {
+        if (isDataValidate(true)) {
+            viewModel.recoveryPassword().observe(this, recoverPasswordResultObserver())
         }
     }
 

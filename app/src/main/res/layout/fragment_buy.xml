@@ -6,7 +6,9 @@
     <data>
 
         <import type="com.technzone.bai3.R" />
-
+        <variable
+            name="presenter"
+            type="com.technzone.bai3.ui.main.fragments.buy.presenter.BuyPresenter" />
         <variable
             name="viewModel"
             type="com.technzone.bai3.ui.main.fragments.buy.viewmodels.BuyViewModel" />

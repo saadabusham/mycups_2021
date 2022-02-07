@@ -6,15 +6,18 @@ import com.technzone.bai3.common.interfaces.LoginCallBack
 import com.technzone.bai3.databinding.FragmentFavoritesBinding
 import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
 import com.technzone.bai3.ui.main.activity.MainActivity
+import com.technzone.bai3.ui.main.fragments.favorites.presenter.FavoritesPresenter
 import com.technzone.bai3.ui.main.fragments.favorites.viewmodels.FavoritesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FavoritesFragment : BaseBindingFragment<FragmentFavoritesBinding>(), LoginCallBack {
+class FavoritesFragment : BaseBindingFragment<FragmentFavoritesBinding, FavoritesPresenter>(),
+    FavoritesPresenter, LoginCallBack {
 
     private val viewModel: FavoritesViewModel by activityViewModels()
 
     override fun getLayoutId(): Int = R.layout.fragment_favorites
+    override fun getPresenter(): FavoritesPresenter = this
 
     override fun onViewVisible() {
         super.onViewVisible()

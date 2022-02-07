@@ -35,7 +35,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
-    class CitiesPickerActivity : BaseBindingActivity<ActivityCitiesBinding>(),
+    class CitiesPickerActivity : BaseBindingActivity<ActivityCitiesBinding,Nothing>(),
     BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
     private val viewModel: CitiesViewModel by viewModels()

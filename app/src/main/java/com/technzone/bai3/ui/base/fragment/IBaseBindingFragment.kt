@@ -6,10 +6,13 @@ import androidx.annotation.StringRes
 import androidx.appcompat.widget.Toolbar
 import com.technzone.bai3.R
 import com.technzone.bai3.data.api.response.ResponseSubErrorsCodeEnum
+import com.technzone.bai3.ui.base.presenters.BaseBindingPresenter
 
-interface IBaseBindingFragment {
+interface IBaseBindingFragment<PRESENTER:BaseBindingPresenter?> {
 
     fun getLayoutId(): Int
+    fun getPresenter(): PRESENTER?
+    fun getParentPresenter(): BaseBindingPresenter?
 
     /** Called JUST  first time draw view OR when shouldRefreshPageWhenReturn == true**/
     fun onViewVisible() {}

@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
 class RecoveryPasswordSuccessFragment :
-    BaseBindingFragment<FragmentRecoveryPasswordSuccessBinding>() {
+    BaseBindingFragment<FragmentRecoveryPasswordSuccessBinding,Nothing>() {
 
     override fun getLayoutId(): Int = R.layout.fragment_recovery_password_success
 

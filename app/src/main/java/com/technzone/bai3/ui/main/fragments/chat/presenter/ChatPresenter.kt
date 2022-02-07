@@ -1,7 +1,7 @@
-package com.technzone.bai3.ui.main.fragments.buy.presenter
+package com.technzone.bai3.ui.main.fragments.chat.presenter
 
 import com.technzone.bai3.ui.base.presenters.BaseBindingPresenter
 
-interface BuyPresenter :BaseBindingPresenter{
+interface ChatPresenter :BaseBindingPresenter{
 
 }

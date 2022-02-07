@@ -6,6 +6,7 @@ import com.technzone.bai3.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.bai3.data.common.CustomObserverResponse
 import com.technzone.bai3.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.bai3.databinding.FragmentVerificationRegisterBinding
+import com.technzone.bai3.ui.auth.register.presenter.VerificationRegisterPresenter
 import com.technzone.bai3.ui.auth.register.viewmodels.RegistrationViewModel
 import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
 import com.technzone.bai3.ui.main.activity.MainActivity
@@ -17,11 +18,12 @@ import kotlinx.android.synthetic.main.fragment_verification_register.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
-class VerificationSignUpFragment : BaseBindingFragment<FragmentVerificationRegisterBinding>() {
+class VerificationSignUpFragment : BaseBindingFragment<FragmentVerificationRegisterBinding, VerificationRegisterPresenter>(),VerificationRegisterPresenter {
 
     private val viewModel: RegistrationViewModel by activityViewModels()
 
     override fun getLayoutId(): Int = R.layout.fragment_verification_register
+    override fun getPresenter(): VerificationRegisterPresenter = this
 
     override fun onViewVisible() {
         super.onViewVisible()
@@ -75,18 +77,19 @@ class VerificationSignUpFragment : BaseBindingFragment<FragmentVerificationRegis
 
     private fun setUpViewsListeners() {
         otp_view.setAnimationEnable(true)
-        tvTimeToResend?.setOnClickListener {
-            if (viewModel.signUpResendPinCodeEnabled.value == true) {
-                viewModel.resendVerificationCode().observe(this, sendOtpResultObserver())
-            }
-        }
-        binding?.btnConfirm?.setOnClickListener {
-            if (validateInput()) {
-                viewModel.verifyCode().observe(this, verifyOtpResultObserver())
-            }
+    }
+
+    override fun onResendClicked() {
+        if (viewModel.signUpResendPinCodeEnabled.value == true) {
+            viewModel.resendVerificationCode().observe(this, sendOtpResultObserver())
         }
     }
 
+    override fun onVerifyClicked() {
+        if (validateInput()) {
+            viewModel.verifyCode().observe(this, verifyOtpResultObserver())
+        }
+    }
     private fun validateInput(): Boolean {
         otp_view.text.toString().validate(ValidatorInputTypesEnums.OTP, requireContext()).let {
             if (!it.isValid) {

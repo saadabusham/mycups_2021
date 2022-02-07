@@ -6,7 +6,9 @@
     <data>
 
         <import type="com.technzone.bai3.R" />
-
+        <variable
+            name="presenter"
+            type="com.technzone.bai3.ui.main.fragments.home.presenter.HomePresenter" />
         <variable
             name="viewModel"
             type="com.technzone.bai3.ui.main.fragments.home.viewmodels.HomeViewModel" />
@@ -89,6 +91,7 @@
                         android:drawableTint="@color/focused_color"
                         android:focusable="true"
                         android:text="Riyadh"
+                        android:onClick="@{()->presenter.onCityClicked()}"
                         android:textColor="@color/edit_text_text_color"
                         android:textSize="@dimen/_11ssp" />
 

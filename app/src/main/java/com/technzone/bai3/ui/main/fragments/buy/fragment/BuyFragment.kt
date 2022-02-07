@@ -6,15 +6,18 @@ import com.technzone.bai3.common.interfaces.LoginCallBack
 import com.technzone.bai3.databinding.FragmentBuyBinding
 import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
 import com.technzone.bai3.ui.main.activity.MainActivity
+import com.technzone.bai3.ui.main.fragments.buy.presenter.BuyPresenter
 import com.technzone.bai3.ui.main.fragments.buy.viewmodels.BuyViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BuyFragment : BaseBindingFragment<FragmentBuyBinding>(), LoginCallBack {
+class BuyFragment : BaseBindingFragment<FragmentBuyBinding, BuyPresenter>(),BuyPresenter, LoginCallBack {
 
     private val viewModel: BuyViewModel by activityViewModels()
 
     override fun getLayoutId(): Int = R.layout.fragment_buy
+
+    override fun getPresenter(): BuyPresenter = this
 
     override fun onViewVisible() {
         super.onViewVisible()

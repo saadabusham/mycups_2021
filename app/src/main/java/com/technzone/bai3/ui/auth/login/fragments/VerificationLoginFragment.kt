@@ -7,6 +7,7 @@ import com.technzone.bai3.data.common.CustomObserverResponse
 import com.technzone.bai3.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.bai3.data.pref.user.UserPref
 import com.technzone.bai3.databinding.FragmentVerificationLoginBinding
+import com.technzone.bai3.ui.auth.login.presenter.VerificationLoginPresenter
 import com.technzone.bai3.ui.auth.login.viewmodels.LoginViewModel
 import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,14 +16,19 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class VerificationLoginFragment : BaseBindingFragment<FragmentVerificationLoginBinding>() {
+class VerificationLoginFragment :
+    BaseBindingFragment<FragmentVerificationLoginBinding, VerificationLoginPresenter>(),
+    VerificationLoginPresenter {
 
     private val viewModel: LoginViewModel by activityViewModels()
 
     override fun getLayoutId(): Int = R.layout.fragment_verification_login
 
+    override fun getPresenter(): VerificationLoginPresenter = this
+
     @Inject
     lateinit var prefs: UserPref
+
     override fun onViewVisible() {
         super.onViewVisible()
         addToolbar(
@@ -76,15 +82,20 @@ class VerificationLoginFragment : BaseBindingFragment<FragmentVerificationLoginB
             })
     }
 
+    override fun onVerifyClicked() {
+
+    }
+
+    override fun onResendClicked() {
+        if (viewModel.signUpResendPinCodeEnabled.value == true) {
+            viewModel.resendVerificationCode().observe(this, sendOtpResultObserver())
+        }
+    }
+
     private fun setUpViewsListeners() {
         otp_view.setAnimationEnable(true)
         binding?.otpView?.setOtpCompletionListener {
             viewModel.verifyCode().observe(this, verifyOtpResultObserver())
-        }
-        binding?.btnResendCode?.setOnClickListener {
-            if (viewModel.signUpResendPinCodeEnabled.value == true) {
-                viewModel.resendVerificationCode().observe(this, sendOtpResultObserver())
-            }
         }
     }
 

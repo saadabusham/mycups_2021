@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
-class DataViewerActivity : BaseBindingActivity<ActivityDataviewerBinding>() {
+class DataViewerActivity : BaseBindingActivity<ActivityDataviewerBinding,Nothing>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
