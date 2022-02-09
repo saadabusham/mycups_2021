@@ -5,7 +5,7 @@ import com.technzone.bai3.data.api.response.ResponseHandler
 import com.technzone.bai3.data.api.response.ResponseWrapper
 import com.technzone.bai3.data.daos.remote.product.ProductRemoteDao
 import com.technzone.bai3.data.models.general.ListWrapper
-import com.technzone.bai3.data.models.home.product.productdetails.Product
+import com.technzone.bai3.data.models.home.product.productdetails.Ads
 import com.technzone.bai3.data.repos.base.BaseRepo
 import javax.inject.Inject
 
@@ -14,7 +14,7 @@ class ProductRepoImpl @Inject constructor(
     private val remoteDao: ProductRemoteDao
 ) : BaseRepo(responseHandler), ProductRepo {
 
-    override suspend fun getProductById(productId: Int?): APIResource<ResponseWrapper<Product>> {
+    override suspend fun getProductById(productId: Int?): APIResource<ResponseWrapper<Ads>> {
         return try {
             responseHandle.handleSuccess(
                 remoteDao.getProductById(productId)
@@ -24,7 +24,7 @@ class ProductRepoImpl @Inject constructor(
         }
     }
 
-    override suspend fun getProductsList(fields: Map<String, String>): APIResource<ResponseWrapper<ListWrapper<Product>>> {
+    override suspend fun getProductsList(fields: Map<String, String>): APIResource<ResponseWrapper<ListWrapper<Ads>>> {
         return try {
             responseHandle.handleSuccess(
                 remoteDao.getProductsList(fields)

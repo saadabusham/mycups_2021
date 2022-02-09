@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.technzone.bai3.data.models.category.Category
 import com.technzone.bai3.databinding.RowCategoriesItemsBinding
-import com.technzone.bai3.databinding.RowCategoryBinding
 import com.technzone.bai3.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.bai3.ui.base.adapters.BaseViewHolder
 import com.technzone.bai3.ui.base.bindingadapters.setOnItemClickListener
@@ -31,16 +30,16 @@ class CategoriesItemsAdapter(
 
     inner class ViewHolder(private val binding: RowCategoriesItemsBinding) :
         BaseViewHolder<Category>(binding.root) {
-        var adapter : ProductsAdapter?=null
+        var adapter : AdsAdapter?=null
         override fun bind(item: Category) {
             binding.item = item
-            binding.root.setOnClickListener {
+            binding.tvSeeAll.setOnClickListener {
                 itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }
-            if(adapter == null && !item.products.isNullOrEmpty()){
+            if(adapter == null && !item.ads.isNullOrEmpty()){
                 binding.rvData.adapter = adapter
                 binding.rvData.setOnItemClickListener(itemClickListener)
-                adapter?.submitNewItems(item.products)
+                adapter?.submitNewItems(item.ads)
             }
         }
     }

@@ -6,7 +6,7 @@ import com.technzone.bai3.data.api.response.APIResource
 import com.technzone.bai3.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.bai3.data.enums.UserEnums
 import com.technzone.bai3.data.models.general.City
-import com.technzone.bai3.data.models.home.product.productdetails.Product
+import com.technzone.bai3.data.models.home.product.productdetails.Ads
 import com.technzone.bai3.data.pref.favorite.FavoritePref
 import com.technzone.bai3.data.repos.common.CommonRepo
 import com.technzone.bai3.data.repos.product.ProductRepo
@@ -46,14 +46,14 @@ class HomeViewModel @Inject constructor(
             response.data?.data?.data?.forEach { categoryResponse ->
                 categoryResponse.id?.let { it1 ->
                     getCategoriesProducts(it1).let {
-                        categoryResponse.products = it
+                        categoryResponse.ads = it
                     }
                 }
             }
         }
         emit(response)
     }
-    private suspend fun getCategoriesProducts(categoryId: Int): MutableList<Product> {
+    private suspend fun getCategoriesProducts(categoryId: Int): MutableList<Ads> {
         val map: HashMap<String, String> = HashMap()
         map["PageSize"] = "5"
         map["PageNumber"] = "1"

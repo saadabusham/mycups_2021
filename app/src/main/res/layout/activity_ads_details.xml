@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.technzone.bai3.R" />
+
+        <import type="com.technzone.bai3.data.enums.AdsTypesEnum" />
+        <variable
+            name="presenter"
+            type="com.technzone.bai3.ui.ads.presenter.AdsDetailsPresenter" />
+        <variable
+            name="viewModel"
+            type="com.technzone.bai3.ui.ads.viewmodels.AdsDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/layout_toolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

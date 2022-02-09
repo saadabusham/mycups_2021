@@ -6,7 +6,7 @@ import com.technzone.bai3.data.api.response.ResponseWrapper
 import com.technzone.bai3.data.daos.remote.favorites.FavoritesRemoteDao
 import com.technzone.bai3.data.models.general.ListWrapper
 import com.technzone.bai3.data.models.home.product.ProductFilter
-import com.technzone.bai3.data.models.home.product.productdetails.Product
+import com.technzone.bai3.data.models.home.product.productdetails.Ads
 import com.technzone.bai3.data.repos.base.BaseRepo
 import javax.inject.Inject
 
@@ -17,7 +17,7 @@ class FavoritesRepoImp @Inject constructor(
 
     override suspend fun getFavorites(
         productFilter: ProductFilter
-    ): APIResource<ResponseWrapper<ListWrapper<Product>>> {
+    ): APIResource<ResponseWrapper<ListWrapper<Ads>>> {
         return try {
             responseHandle.handleSuccess(
                 favoritesRemoteDao.getFavorites(

@@ -50,7 +50,7 @@
             android:textAlignment="textStart"
             android:textColor="@color/see_all_color"
             android:textSize="@dimen/_9ssp"
-            android:visibility="@{item.products.size() > 0 ? View.VISIBLE : View.GONE}"
+            android:visibility="@{item.ads.size() > 0 ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvTitle" />
 
@@ -66,13 +66,13 @@
             android:paddingStart="@dimen/layouts_margin_start"
             android:paddingEnd="@dimen/layouts_margin_end"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:visibility="@{item.products.size() > 0 ? View.VISIBLE : View.GONE}"
+            android:visibility="@{item.ads.size() > 0 ? View.VISIBLE : View.GONE}"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             tools:itemCount="8"
-            tools:listitem="@layout/row_general_product" />
+            tools:listitem="@layout/row_general_ads" />
 
         <com.technzone.bai3.ui.base.views.appviews.AppTextView
             style="@style/textview_normal_medium"
@@ -85,7 +85,7 @@
             android:textAlignment="center"
             android:textColor="@color/title_color"
             android:textSize="@dimen/_13ssp"
-            android:visibility="@{item.products.size() > 0 ? View.GONE : View.VISIBLE}"
+            android:visibility="@{item.ads.size() > 0 ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"

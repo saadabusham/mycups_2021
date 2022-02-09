@@ -15,7 +15,9 @@ import com.technzone.bai3.data.models.category.Category
 import com.technzone.bai3.data.models.general.City
 import com.technzone.bai3.data.models.general.ListWrapper
 import com.technzone.bai3.data.models.home.banner.Banner
+import com.technzone.bai3.data.models.home.product.productdetails.Ads
 import com.technzone.bai3.databinding.FragmentHomeBinding
+import com.technzone.bai3.ui.ads.activity.AdsDetailsActivity
 import com.technzone.bai3.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.bai3.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.bai3.ui.base.fragment.BaseBindingFragment
@@ -41,6 +43,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding,HomePresenter>(),Ho
     var categoriesItemsAdapter: CategoriesItemsAdapter? = null
     var bannerAdapter: BannerAdapter? = null
     lateinit var indicatorRecyclerAdapter: BannerIndicatorRecyclerAdapter
+
     override fun getLayoutId(): Int = R.layout.fragment_home
 
     override fun getPresenter(): HomePresenter = this
@@ -249,6 +252,15 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding,HomePresenter>(),Ho
         binding?.rvCategoriesItems.setOnItemClickListener(object :
             BaseBindingRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(view: View?, position: Int, item: Any) {
+                if(item is Ads) {
+                    item.id?.let { AdsDetailsActivity.start(requireContext(), it) }
+                }else if(item is Category){
+                    if(view?.id == R.id.tvSeeAll){
+
+                    }else{
+
+                    }
+                }
             }
         })
         viewModel.loadCategoriesProduct().observe(this, categoriesItemsResultObserver())

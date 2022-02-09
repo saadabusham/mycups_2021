@@ -1,21 +1,8 @@
 package com.technzone.bai3.data.daos.remote.adresses
 
-import androidx.room.FtsOptions
 import com.technzone.bai3.data.api.response.ResponseWrapper
 import com.technzone.bai3.data.common.NetworkConstants
-import com.technzone.bai3.data.models.FaqsResponse
 import com.technzone.bai3.data.models.addresses.AddressList
-import com.technzone.bai3.data.models.category.Category
-import com.technzone.bai3.data.models.general.ListWrapper
-import com.technzone.bai3.data.models.home.banner.Banner
-import com.technzone.bai3.data.models.home.product.ProductFilter
-import com.technzone.bai3.data.models.home.product.productdetails.Product
-import com.technzone.bai3.data.models.home.product.productdetails.SocialMedia
-import com.technzone.bai3.data.models.notification.Notification
-import com.technzone.bai3.data.models.orders.Order
-import com.technzone.bai3.data.models.orders.OrderDetails
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface AddressRemoteDao {

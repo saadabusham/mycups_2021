@@ -4,14 +4,14 @@ import com.technzone.bai3.data.api.response.APIResource
 import com.technzone.bai3.data.api.response.ResponseWrapper
 import com.technzone.bai3.data.models.general.ListWrapper
 import com.technzone.bai3.data.models.home.product.ProductFilter
-import com.technzone.bai3.data.models.home.product.productdetails.Product
+import com.technzone.bai3.data.models.home.product.productdetails.Ads
 
 
 interface FavoritesRepo {
 
     suspend fun getFavorites(
         productFilter: ProductFilter
-    ): APIResource<ResponseWrapper<ListWrapper<Product>>>
+    ): APIResource<ResponseWrapper<ListWrapper<Ads>>>
 
     suspend fun getFavoriteIds(
     ): APIResource<ResponseWrapper<List<Int>>>
