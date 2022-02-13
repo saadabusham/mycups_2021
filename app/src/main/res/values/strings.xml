@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bai3</string>
+    <string name="app_name">MyCups</string>
     <string name="app_license">Copyright@Technzone Company</string>
 
     <!-- SelectLanguageFragment-->
@@ -21,7 +21,7 @@
     <string name="camera_permission_denied">Grant camera permission to take the 3 seconds video</string>
     <string name="screen_shot">take screenshot</string>
 
-    <string name="alert_dialog_title">Bai3</string>
+    <string name="alert_dialog_title">MyCups</string>
     <string name="alert_dialog_all_info_in_english">All information entered must be in English</string>
     <string name="not_available_yet">This feature is coming soon to Al Alami app!</string>
     <!-- General -->
@@ -87,7 +87,7 @@
 
     <!--    Update App-->
     <string name="new_update">NEW UPDATE!</string>
-    <string name="there_s_a_new_update_available_for_bai3">There’s a new update available for\nBai3</string>
+    <string name="there_s_a_new_update_available_for_mycups">There’s a new update available for\nMyCups</string>
     <string name="update_now">UPDATE NOW</string>
     <string name="remind_me_later">REMIND ME LATER</string>
     <string name="close_app">CLOSE APP</string>
@@ -180,7 +180,7 @@
     <string name="thousands_of_business_nwaiting_for_you">Thousands of business\nwaiting for you</string>
     <string name="_700000000">xxxxxxxxx</string>
     <string name="or_sign_in_with">Or sign in with</string>
-    <string name="sign_up_to_bai3">Sign up to Bai3</string>
+    <string name="sign_up_to_mycups">Sign up to MyCups</string>
 
     <!--    Verification Login-->
     <string name="enter_the_5_digits_code_sent_to">Enter the 5 digits code sent to</string>
