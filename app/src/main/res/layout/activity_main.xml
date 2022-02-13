@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.technzone.bai3.data.enums.NavigationTabsEnum"/>
+        <import type="com.raantech.mycups.data.enums.NavigationTabsEnum"/>
         <variable
             name="viewModel"
-            type="com.technzone.bai3.ui.main.viewmodels.MainViewModel" />
+            type="com.raantech.mycups.ui.main.viewmodels.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

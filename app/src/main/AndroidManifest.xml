@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.technzone.bai3">
+    package="com.raantech.mycups">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:name="com.technzone.bai3.common.MyApplication"
+        android:name="com.raantech.mycups.common.MyApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="allowBackup">
-        <activity android:name="com.technzone.bai3.ui.splash.SplashActivity"
+        <activity android:name="com.raantech.mycups.ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,62 +24,62 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.technzone.bai3.ui.auth.AuthActivity"
+            android:name="com.raantech.mycups.ui.auth.AuthActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
         <activity
-            android:name="com.technzone.bai3.ui.auth.forgetpassword.ForgetPasswordActivity"
+            android:name="com.raantech.mycups.ui.auth.forgetpassword.ForgetPasswordActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
         <activity
-            android:name="com.technzone.bai3.ui.auth.register.RegisterActivity"
+            android:name="com.raantech.mycups.ui.auth.register.RegisterActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
         <activity
-            android:name="com.technzone.bai3.ui.common.countrypicker.activity.CountriesPickerActivity"
+            android:name="com.raantech.mycups.ui.common.countrypicker.activity.CountriesPickerActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
         <activity
-            android:name="com.technzone.bai3.ui.dataview.dataviewer.DataViewerActivity"
+            android:name="com.raantech.mycups.ui.dataview.dataviewer.DataViewerActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
         <activity
-            android:name="com.technzone.bai3.ui.dataview.viewimage.ViewImageActivity"
+            android:name="com.raantech.mycups.ui.dataview.viewimage.ViewImageActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
         <activity
-            android:name="com.technzone.bai3.ui.common.citypicker.activity.CitiesPickerActivity"
+            android:name="com.raantech.mycups.ui.common.citypicker.activity.CitiesPickerActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
         <activity
-            android:name="com.technzone.bai3.ui.more.settings.activity.SettingsActivity"
+            android:name="com.raantech.mycups.ui.more.settings.activity.SettingsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
         <activity
-            android:name="com.technzone.bai3.ui.more.faqs.FaqsActivity"
+            android:name="com.raantech.mycups.ui.more.faqs.FaqsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
         <activity
-            android:name="com.technzone.bai3.ui.main.activity.MainActivity"
+            android:name="com.raantech.mycups.ui.main.activity.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
         <activity
-            android:name="com.technzone.bai3.ui.more.changepassword.ChangePasswordActivity"
+            android:name="com.raantech.mycups.ui.more.changepassword.ChangePasswordActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
         <activity
-            android:name="com.technzone.bai3.ui.ads.activity.AdsDetailsActivity"
+            android:name="com.raantech.mycups.ui.ads.activity.AdsDetailsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>

@@ -7,7 +7,7 @@
 
         <variable
             name="dialog"
-            type="com.technzone.bai3.ui.base.dialogs.aleter.AlerterPopup" />
+            type="com.raantech.mycups.ui.base.dialogs.aleter.AlerterPopup" />
     </data>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
                     tools:text="Invalid password"
                     tools:textColor="#E7293E" />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppImageView
+                <com.raantech.mycups.ui.base.views.appviews.AppImageView
                     android:id="@+id/imgClose"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"

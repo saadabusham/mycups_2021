@@ -8,11 +8,11 @@
 
         <variable
             name="presenter"
-            type="com.technzone.bai3.ui.more.settings.presenter.SettingsPresenter" />
+            type="com.raantech.mycups.ui.more.settings.presenter.SettingsPresenter" />
 
         <variable
             name="viewModel"
-            type="com.technzone.bai3.ui.more.settings.viewmodels.SettingsViewModel" />
+            type="com.raantech.mycups.ui.more.settings.viewmodels.SettingsViewModel" />
     </data>
 
     <LinearLayout
@@ -51,7 +51,7 @@
                     android:layout_toStartOf="@id/switchNotifications"
                     android:orientation="vertical">
 
-                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         style="@style/textview_normal_semibold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                         android:textColor="@color/title_color"
                         android:textSize="@dimen/_14ssp" />
 
-                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         style="@style/textview_normal_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
                     android:onClick="@{()->presenter.onLanguageClicked()}"
                     android:orientation="vertical">
 
-                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         style="@style/textview_normal_semibold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -115,7 +115,7 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
-                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         style="@style/textview_normal_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

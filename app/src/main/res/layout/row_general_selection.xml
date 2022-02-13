@@ -5,11 +5,11 @@
 
     <data>
 
-        <import type="com.technzone.bai3.R" />
+        <import type="com.raantech.mycups.R" />
 
         <variable
             name="item"
-            type="com.technzone.bai3.data.models.general.GeneralLookup" />
+            type="com.raantech.mycups.data.models.general.GeneralLookup" />
     </data>
 
     <LinearLayout
@@ -36,7 +36,7 @@
                 android:src="@{item.selected ? @drawable/ic_circle_check : @drawable/ic_circle_uncheck}"
                 tools:src="@drawable/ic_circle_check" />
 
-            <com.technzone.bai3.ui.base.views.appviews.AppTextView
+            <com.raantech.mycups.ui.base.views.appviews.AppTextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

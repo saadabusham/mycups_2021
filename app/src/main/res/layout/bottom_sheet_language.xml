@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.bai3.ui.more.settings.dialogs.LanguageBottomSheet" />
+            type="com.raantech.mycups.ui.more.settings.dialogs.LanguageBottomSheet" />
     </data>
 
     <RelativeLayout
@@ -35,7 +35,7 @@
                     app:cardCornerRadius="@dimen/_3sdp"
                     app:cardElevation="0dp" />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     style="@style/textview_normal_semibold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

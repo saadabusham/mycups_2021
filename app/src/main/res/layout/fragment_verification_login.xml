@@ -6,10 +6,10 @@
     <data>
         <variable
             name="presenter"
-            type="com.technzone.bai3.ui.auth.login.presenter.VerificationLoginPresenter" />
+            type="com.raantech.mycups.ui.auth.login.presenter.VerificationLoginPresenter" />
         <variable
             name="viewModel"
-            type="com.technzone.bai3.ui.auth.login.viewmodels.LoginViewModel" />
+            type="com.raantech.mycups.ui.auth.login.viewmodels.LoginViewModel" />
     </data>
 
     <RelativeLayout
@@ -40,7 +40,7 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvHeader"
                     style="@style/textview_normal_bold"
                     android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
                     android:textColor="@color/title_color"
                     android:textSize="@dimen/_15ssp" />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     style="@style/textview_normal_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                     android:text="@{viewModel.emailMutableLiveData}"
                     tools:text="+962787901166" />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
                     app:viewType="rectangle"
                     tools:text="12345" />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
                     android:layout_marginTop="@dimen/_2sdp"
                     android:orientation="horizontal">
 
-                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         style="@style/textview_normal_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
                         android:textColor="@color/title_color"
                         android:textSize="@dimen/_11ssp" />
 
-                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         android:id="@+id/tvTimeToResend"
                         style="@style/textview_normal_medium"
                         android:layout_width="wrap_content"

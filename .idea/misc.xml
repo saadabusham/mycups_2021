@@ -5,10 +5,16 @@
       <map>
         <entry key="..\:/TechZone Work/Apps Files/bai3/bai3/app/src/main/res/layout/fragment_register.xml" value="0.1921875" />
         <entry key="..\:/TechZone Work/Apps Files/bai3/bai3/app/src/main/res/layout/fragment_register_success.xml" value="0.1921875" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/activity_ads_details.xml" value="0.10643115942028986" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/activity_view_image.xml" value="0.1" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/dialog_ios.xml" value="0.1" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/layout_no_result.xml" value="0.1" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/row_motor_ads.xml" value="0.1" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

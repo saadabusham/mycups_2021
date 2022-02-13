@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="com.technzone.bai3.data.models.auth.onboarding.OnBoardingItem" />
+            type="com.raantech.mycups.data.models.auth.onboarding.OnBoardingItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

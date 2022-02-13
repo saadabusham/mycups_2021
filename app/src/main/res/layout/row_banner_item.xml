@@ -4,11 +4,11 @@
 
     <data>
 
-        <import type="com.technzone.bai3.R" />
+        <import type="com.raantech.mycups.R" />
 
         <variable
             name="item"
-            type="com.technzone.bai3.data.models.home.banner.Banner" />
+            type="com.raantech.mycups.data.models.home.banner.Banner" />
     </data>
 
     <ImageView

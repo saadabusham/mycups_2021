@@ -5,15 +5,15 @@
 
     <data>
 
-        <import type="com.technzone.bai3.R" />
+        <import type="com.raantech.mycups.R" />
 
         <import type="android.view.View" />
 
-        <import type="com.technzone.bai3.utils.extensions.DataTimeExtensionsKt" />
+        <import type="com.raantech.mycups.utils.extensions.DataTimeExtensionsKt" />
 
         <variable
             name="item"
-            type="com.technzone.bai3.data.models.home.product.productdetails.Ads" />
+            type="com.raantech.mycups.data.models.home.product.productdetails.Ads" />
 
         <variable
             name="favorite"
@@ -39,7 +39,7 @@
             app:cardCornerRadius="@dimen/_7sdp"
             app:cardElevation="@dimen/dimen_zero">
 
-            <com.technzone.bai3.ui.base.views.appviews.AppImageView
+            <com.raantech.mycups.ui.base.views.appviews.AppImageView
                 android:id="@+id/imgPhoto"
                 ivImageErrorPlaceholder="@{R.drawable.ic_product_place_holder}"
                 ivImagePlaceholder="@{R.drawable.ic_product_place_holder}"
@@ -48,7 +48,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_product_place_holder" />
         </com.google.android.material.card.MaterialCardView>
-        <com.technzone.bai3.ui.base.views.appviews.AppTextView
+        <com.raantech.mycups.ui.base.views.appviews.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_medium"
             android:layout_width="0dp"
@@ -70,7 +70,7 @@
             app:layout_constraintTop_toBottomOf="@id/cvImage"
             tools:text="Wood Office" />
 
-        <com.technzone.bai3.ui.base.views.appviews.AppTextView
+        <com.raantech.mycups.ui.base.views.appviews.AppTextView
             android:id="@+id/tvYear"
             style="@style/textview_normal_regular"
             android:layout_width="0dp"
@@ -91,7 +91,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             tools:text="2019" />
 
-        <com.technzone.bai3.ui.base.views.appviews.AppImageView
+        <com.raantech.mycups.ui.base.views.appviews.AppImageView
             android:id="@+id/imgDot"
             android:layout_width="@dimen/_3sdp"
             android:layout_height="@dimen/_3sdp"
@@ -101,7 +101,7 @@
             app:layout_constraintBottom_toBottomOf="@id/tvYear"
             app:layout_constraintStart_toEndOf="@id/tvYear"/>
 
-        <com.technzone.bai3.ui.base.views.appviews.AppTextView
+        <com.raantech.mycups.ui.base.views.appviews.AppTextView
             android:id="@+id/tvKm"
             style="@style/textview_normal_regular"
             android:layout_width="0dp"
@@ -123,7 +123,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             tools:text="43,000 km" />
 
-        <com.technzone.bai3.ui.base.views.appviews.AppTextView
+        <com.raantech.mycups.ui.base.views.appviews.AppTextView
             android:id="@+id/tvCurrentPrice"
             style="@style/textview_normal_bold"
             android:layout_width="0dp"

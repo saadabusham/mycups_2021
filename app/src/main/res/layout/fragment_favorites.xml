@@ -6,10 +6,10 @@
     <data>
         <variable
             name="presenter"
-            type="com.technzone.bai3.ui.main.fragments.favorites.presenter.FavoritesPresenter" />
+            type="com.raantech.mycups.ui.main.fragments.favorites.presenter.FavoritesPresenter" />
         <variable
             name="viewModel"
-            type="com.technzone.bai3.ui.main.fragments.favorites.viewmodels.FavoritesViewModel" />
+            type="com.raantech.mycups.ui.main.fragments.favorites.viewmodels.FavoritesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

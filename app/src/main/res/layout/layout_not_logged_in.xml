@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:visibility="visible">
 
-        <com.technzone.bai3.ui.base.views.appviews.AppTextView
+        <com.raantech.mycups.ui.base.views.appviews.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_bold"
             android:layout_width="0dp"
@@ -28,7 +28,7 @@
             app:layout_constraintBottom_toTopOf="@id/tvDescription"
             app:layout_constraintVertical_chainStyle="packed"/>
 
-        <com.technzone.bai3.ui.base.views.appviews.AppTextView
+        <com.raantech.mycups.ui.base.views.appviews.AppTextView
             android:id="@+id/tvDescription"
             style="@style/textview_normal_regular"
             android:layout_width="0dp"

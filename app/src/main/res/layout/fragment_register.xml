@@ -6,10 +6,10 @@
     <data>
         <variable
             name="presenter"
-            type="com.technzone.bai3.ui.auth.register.presenter.RegisterPresenter" />
+            type="com.raantech.mycups.ui.auth.register.presenter.RegisterPresenter" />
         <variable
             name="viewModel"
-            type="com.technzone.bai3.ui.auth.register.viewmodels.RegistrationViewModel" />
+            type="com.raantech.mycups.ui.auth.register.viewmodels.RegistrationViewModel" />
     </data>
 
     <RelativeLayout
@@ -44,7 +44,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvHeader"
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
@@ -55,7 +55,7 @@
                     android:textColor="@color/title_color"
                     android:textSize="@dimen/_17ssp" />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvFirstName"
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
                     android:textColor="@color/edit_text_title_color"
                     android:textSize="@dimen/_13ssp" />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextInputEditText
+                <com.raantech.mycups.ui.base.views.appviews.AppTextInputEditText
                     android:id="@+id/edFirstName"
                     style="@style/TextInputEditTextStyle"
                     android:layout_width="match_parent"
@@ -75,7 +75,7 @@
                     android:layout_height="@dimen/Edittext_height"
                     android:text="@={viewModel.firstNameMutableLiveData}" />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvFirstNameError"
                     style="@style/textview_normal_medium"
                     android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                     android:visibility="gone"
                     tools:text="Your phone number is incorrect." />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvLastName"
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
                     android:textColor="@color/edit_text_title_color"
                     android:textSize="@dimen/_13ssp" />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextInputEditText
+                <com.raantech.mycups.ui.base.views.appviews.AppTextInputEditText
                     android:id="@+id/edLastName"
                     style="@style/TextInputEditTextStyle"
                     android:layout_width="match_parent"
@@ -110,7 +110,7 @@
                     android:visibility="gone"
                     android:text="@={viewModel.lastNameMutableLiveData}"/>
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvLastNameError"
                     style="@style/textview_normal_medium"
                     android:layout_width="match_parent"
@@ -123,7 +123,7 @@
                     android:visibility="gone"
                     tools:text="Your phone number is incorrect." />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvEmail"
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
@@ -134,7 +134,7 @@
                     android:textColor="@color/edit_text_title_color"
                     android:textSize="@dimen/_13ssp" />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextInputEditText
+                <com.raantech.mycups.ui.base.views.appviews.AppTextInputEditText
                     android:id="@+id/edEmail"
                     style="@style/TextInputEditTextStyle"
                     android:layout_width="match_parent"
@@ -146,7 +146,7 @@
                     android:maxLines="1"
                     android:text="@={viewModel.emailMutableLiveData}"/>
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvEmailError"
                     style="@style/textview_normal_medium"
                     android:layout_width="match_parent"
@@ -159,7 +159,7 @@
                     android:visibility="gone"
                     tools:text="Your phone number is incorrect." />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvPhoneNumber"
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
@@ -170,7 +170,7 @@
                     android:textColor="@color/edit_text_title_color"
                     android:textSize="@dimen/_13ssp" />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextInputEditText
+                <com.raantech.mycups.ui.base.views.appviews.AppTextInputEditText
                     android:id="@+id/edPhoneNumber"
                     style="@style/TextInputEditTextStyle"
                     android:layout_width="match_parent"
@@ -182,7 +182,7 @@
                     android:text="@={viewModel.phoneNumberWithoutCountryCode}"
                     android:textSize="@dimen/_11ssp"  />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvPhoneNumberError"
                     style="@style/textview_normal_medium"
                     android:layout_width="match_parent"
@@ -195,7 +195,7 @@
                     android:visibility="gone"
                     tools:text="Your phone number is incorrect." />
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvPassword"
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
@@ -212,7 +212,7 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     app:passwordToggleEnabled="true">
 
-                    <com.technzone.bai3.ui.base.views.appviews.AppEditText
+                    <com.raantech.mycups.ui.base.views.appviews.AppEditText
                         android:id="@+id/et_password"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
@@ -222,7 +222,7 @@
                         android:text="@={viewModel.passwordMutableLiveData}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvPasswordError"
                     style="@style/textview_normal_medium"
                     android:layout_width="match_parent"
@@ -234,7 +234,7 @@
                     android:textSize="@dimen/_9ssp"
                     android:visibility="gone"
                     tools:text="Your phone number is incorrect." />
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvConfirmPassword"
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
@@ -251,7 +251,7 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     app:passwordToggleEnabled="true">
 
-                    <com.technzone.bai3.ui.base.views.appviews.AppEditText
+                    <com.raantech.mycups.ui.base.views.appviews.AppEditText
                         android:id="@+id/et_confirm_password"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
@@ -261,7 +261,7 @@
                         android:text="@={viewModel.confirmPasswordMutableLiveData}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvConfirmPasswordError"
                     style="@style/textview_normal_medium"
                     android:layout_width="match_parent"
@@ -301,7 +301,7 @@
                         android:layout_height="1dp"
                         android:background="@color/divider_gray" />
 
-                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         style="@style/textview_normal_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

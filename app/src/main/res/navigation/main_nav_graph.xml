@@ -8,31 +8,31 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.technzone.bai3.ui.main.fragments.home.fragment.HomeFragment"
+        android:name="mycups.ui.main.fragments.home.fragment.HomeFragment"
         android:label="ListingFragment"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_favorites"
-        android:name="com.technzone.bai3.ui.main.fragments.favorites.fragment.FavoritesFragment"
+        android:name="mycups.ui.main.fragments.favorites.fragment.FavoritesFragment"
         android:label="FavoritesFragment"
         tools:layout="@layout/fragment_favorites" />
 
     <fragment
         android:id="@+id/nav_buy"
-        android:name="com.technzone.bai3.ui.main.fragments.buy.fragment.BuyFragment"
+        android:name="mycups.ui.main.fragments.buy.fragment.BuyFragment"
         android:label="MyOrdersFragment"
         tools:layout="@layout/fragment_buy"/>
 
     <fragment
         android:id="@+id/nav_chat"
-        android:name="com.technzone.bai3.ui.main.fragments.chat.fragment.ChatFragment"
+        android:name="mycups.ui.main.fragments.chat.fragment.ChatFragment"
         android:label="ChatFragment"
         tools:layout="@layout/fragment_chat"/>
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.technzone.bai3.ui.main.fragments.profile.fragment.ProfileFragment"
+        android:name="mycups.ui.main.fragments.profile.fragment.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile"/>
 

@@ -7,11 +7,11 @@
 
         <variable
             name="presenter"
-            type="com.technzone.bai3.ui.auth.language.LanguagePresenter" />
+            type="com.raantech.mycups.ui.auth.language.LanguagePresenter" />
 
         <variable
             name="viewModel"
-            type="com.technzone.bai3.ui.auth.language.LanguageViewModel" />
+            type="com.raantech.mycups.ui.auth.language.LanguageViewModel" />
     </data>
 
     <LinearLayout
@@ -92,7 +92,7 @@
                 app:strokeColor="@{viewModel.englishSelected ? @color/edittext_boarder_gray : @color/language_button_color}"
                 app:strokeWidth="@dimen/_1sdp">
 
-                <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvArabic"
                     style="@style/textview_normal_regular"
                     android:layout_width="match_parent"

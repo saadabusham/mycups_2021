@@ -5,13 +5,13 @@
 
     <data>
 
-        <import type="com.technzone.bai3.R" />
+        <import type="com.raantech.mycups.R" />
         <variable
             name="presenter"
-            type="com.technzone.bai3.ui.main.fragments.home.presenter.HomePresenter" />
+            type="com.raantech.mycups.ui.main.fragments.home.presenter.HomePresenter" />
         <variable
             name="viewModel"
-            type="com.technzone.bai3.ui.main.fragments.home.viewmodels.HomeViewModel" />
+            type="com.raantech.mycups.ui.main.fragments.home.viewmodels.HomeViewModel" />
 
     </data>
 
@@ -25,13 +25,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp">
 
-            <com.technzone.bai3.ui.base.views.appviews.AppImageView
+            <com.raantech.mycups.ui.base.views.appviews.AppImageView
                 android:layout_width="@dimen/_85sdp"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_marginStart="@dimen/layouts_margin_start"
                 android:src="@drawable/ic_logo_colored" />
 
-            <com.technzone.bai3.ui.base.views.appviews.AppImageView
+            <com.raantech.mycups.ui.base.views.appviews.AppImageView
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
                 android:layout_alignParentEnd="true"
@@ -62,7 +62,7 @@
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginEnd="@dimen/layouts_margin_end">
 
-                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         android:id="@+id/edTitle"
                         style="@style/textview_normal_regular"
                         android:layout_width="match_parent"
@@ -76,7 +76,7 @@
                         android:textColor="@color/edit_text_title_color_alpha50"
                         android:textSize="@dimen/_13ssp" />
 
-                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         android:id="@+id/edCity"
                         style="@style/textview_normal_regular"
                         android:layout_width="wrap_content"

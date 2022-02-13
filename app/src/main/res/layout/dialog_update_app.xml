@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.bai3.ui.base.dialogs.appupdate.UpdateAppDialog" />
+            type="com.raantech.mycups.ui.base.dialogs.appupdate.UpdateAppDialog" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

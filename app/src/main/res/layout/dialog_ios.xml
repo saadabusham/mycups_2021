@@ -8,7 +8,7 @@
     android:background="@drawable/ios_dialog_background"
     android:stateListAnimator="@null">
 
-    <com.technzone.alalami.ui.base.views.AppTextView
+    <com.raantech.mycups.ui.base.views.appviews.AppTextView
         android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         android:textStyle="bold"
         tools:text="title" />
 
-    <com.technzone.alalami.ui.base.views.AppTextView
+    <com.raantech.mycups.ui.base.views.appviews.AppTextView
         android:id="@+id/subtitle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
         android:layout_below="@+id/line"
         android:orientation="horizontal">
 
-        <com.technzone.alalami.ui.base.views.AppTextView
+        <com.raantech.mycups.ui.base.views.appviews.AppTextView
             android:id="@+id/dialogButtonNO"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
             android:layout_height="match_parent"
             android:background="#cdced2" />
 
-        <com.technzone.alalami.ui.base.views.AppTextView
+        <com.raantech.mycups.ui.base.views.appviews.AppTextView
             android:id="@+id/dialogButtonOK"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

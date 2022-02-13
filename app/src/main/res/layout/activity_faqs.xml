@@ -50,7 +50,7 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <com.technzone.bai3.ui.base.views.appviews.AppTextView
+        <com.raantech.mycups.ui.base.views.appviews.AppTextView
             android:id="@+id/tvHeader"
             style="@style/textview_normal_medium"
             android:layout_width="match_parent"

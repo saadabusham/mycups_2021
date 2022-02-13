@@ -3,13 +3,13 @@
 
     <data>
 
-        <import type="com.technzone.bai3.R" />
+        <import type="com.raantech.mycups.R" />
         <variable
             name="presenter"
-            type="com.technzone.bai3.ui.main.fragments.chat.presenter.ChatPresenter" />
+            type="com.raantech.mycups.ui.main.fragments.chat.presenter.ChatPresenter" />
         <variable
             name="viewModel"
-            type="com.technzone.bai3.ui.main.fragments.chat.viewmodels.ChatViewModel" />
+            type="com.raantech.mycups.ui.main.fragments.chat.viewmodels.ChatViewModel" />
 
     </data>
 

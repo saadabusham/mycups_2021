@@ -5,14 +5,14 @@
 
     <data>
 
-        <import type="com.technzone.bai3.R" />
+        <import type="com.raantech.mycups.R" />
         <import type="android.view.View"/>
         <variable
             name="presenter"
-            type="com.technzone.bai3.ui.main.fragments.profile.presenter.ProfilePresenter" />
+            type="com.raantech.mycups.ui.main.fragments.profile.presenter.ProfilePresenter" />
         <variable
             name="viewModel"
-            type="com.technzone.bai3.ui.main.fragments.profile.viewmodels.ProfileViewModel" />
+            type="com.raantech.mycups.ui.main.fragments.profile.viewmodels.ProfileViewModel" />
 
     </data>
 
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.technzone.bai3.ui.base.views.appviews.AppTextView
+            <com.raantech.mycups.ui.base.views.appviews.AppTextView
                 android:id="@+id/tvTitle"
                 style="@style/textview_normal_semibold"
                 android:layout_width="0dp"
@@ -78,7 +78,7 @@
                             app:strokeColor="@color/profile_corner"
                             app:strokeWidth="@dimen/_1sdp">
 
-                            <com.technzone.bai3.ui.base.views.appviews.AppImageView
+                            <com.raantech.mycups.ui.base.views.appviews.AppImageView
                                 android:id="@+id/imgProfilePicture"
                                 ivImageErrorPlaceholder="@{R.drawable.ic_profile_place_holder}"
                                 ivImagePlaceholder="@{R.drawable.ic_profile_place_holder}"
@@ -90,7 +90,7 @@
                                 android:transitionName="image" />
                         </com.google.android.material.card.MaterialCardView>
 
-                        <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                        <com.raantech.mycups.ui.base.views.appviews.AppTextView
                             android:id="@+id/tvName"
                             style="@style/textview_normal_bold"
                             android:layout_width="wrap_content"
@@ -105,7 +105,7 @@
                             app:layout_constraintTop_toBottomOf="@id/cvPicture"
                             tools:text="John Smith" />
 
-                        <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                        <com.raantech.mycups.ui.base.views.appviews.AppTextView
                             android:id="@+id/tvEmail"
                             style="@style/textview_normal_regular"
                             android:layout_width="wrap_content"
@@ -142,7 +142,7 @@
 
                     </com.google.android.material.card.MaterialCardView>
 
-                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         android:id="@+id/tvAccount"
                         style="@style/textview_normal_semibold"
                         android:layout_width="wrap_content"
@@ -172,7 +172,7 @@
                         tools:itemCount="3"
                         tools:listitem="@layout/row_more_item" />
 
-                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         android:id="@+id/tvGeneral"
                         style="@style/textview_normal_semibold"
                         android:layout_width="wrap_content"
@@ -202,7 +202,7 @@
                         tools:itemCount="4"
                         tools:listitem="@layout/row_more_item" />
 
-                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         android:id="@+id/tvLegalInfo"
                         style="@style/textview_normal_semibold"
                         android:layout_width="wrap_content"
@@ -232,7 +232,7 @@
                         tools:itemCount="3"
                         tools:listitem="@layout/row_more_item" />
 
-                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         android:id="@+id/tvLogin"
                         style="@style/textview_normal_semibold"
                         android:layout_width="wrap_content"
@@ -271,7 +271,7 @@
                             android:layout_marginStart="@dimen/_10sdp"
                             android:src="@drawable/ic_more_logout" />
 
-                        <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                        <com.raantech.mycups.ui.base.views.appviews.AppTextView
                             style="@style/textview_normal_regular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -286,7 +286,7 @@
 
                     </LinearLayout>
 
-                    <com.technzone.bai3.ui.base.views.appviews.AppTextView
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         style="@style/textview_normal_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
