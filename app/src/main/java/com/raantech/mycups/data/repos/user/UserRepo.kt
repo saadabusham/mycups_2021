@@ -16,6 +16,9 @@ interface UserRepo {
         password: String
     ): APIResource<ResponseWrapper<UserDetailsResponseModel>>
 
+    suspend fun logout(
+    ): APIResource<ResponseWrapper<Any>>
+
     suspend fun register(
         password: String,
         firstName: String,

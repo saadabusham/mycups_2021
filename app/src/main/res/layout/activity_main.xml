@@ -4,113 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.raantech.mycups.data.enums.NavigationTabsEnum"/>
         <variable
             name="viewModel"
             type="com.raantech.mycups.ui.main.viewmodels.MainViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/button_color"
+        tools:openDrawer="start">
 
-        <fragment
-            android:id="@+id/main_nav_host_fragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+        <include
+            android:id="@+id/app_bar_main"
+            layout="@layout/app_bar_main"
+            viewModel="@{viewModel}"
             android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/navigationView"
+            android:layout_width="@dimen/_120sdp"
             android:layout_height="match_parent"
-            android:layout_above="@id/relBvn"
-            android:paddingBottom="@dimen/_70sdp"
-            app:defaultNavHost="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/main_nav_graph" />
+            android:layout_gravity="start"
+            android:background="@color/button_color"
+            android:elevation="0dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/relBvn"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_65sdp"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <ImageView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/drawer_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_65sdp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_nav_bg" />
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="5"
+                tools:listitem="@layout/row_drawer_item" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_minus5sdp"
-                android:orientation="horizontal">
+        </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/imgHomeActive"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@{viewModel.selectedTab == NavigationTabsEnum.HOME ? @drawable/ic_active_dot : null}"
-                    tools:src="@drawable/ic_active_dot" />
 
-                <ImageView
-                    android:id="@+id/imgFavoriteActive"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@{viewModel.selectedTab == NavigationTabsEnum.FAVORITES ? @drawable/ic_active_dot : null}"
-                    tools:src="@drawable/ic_active_dot" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <ImageView
-                    android:id="@+id/imgCartActive"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@{viewModel.selectedTab == NavigationTabsEnum.CHART ? @drawable/ic_active_dot : null}"
-                    tools:src="@drawable/ic_active_dot" />
-
-                <ImageView
-                    android:id="@+id/imgProfileActive"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@{viewModel.selectedTab == NavigationTabsEnum.MORE ? @drawable/ic_active_dot : null}"
-                    tools:src="@drawable/ic_active_dot"/>
-            </LinearLayout>
-
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bnv_main"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_60sdp"
-                android:layout_alignParentBottom="true"
-                android:background="@android:color/transparent"
-                app:elevation="@dimen/dimen_zero"
-                app:itemIconSize="@dimen/_18sdp"
-                app:itemIconTint="@null"
-                app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
-                app:itemTextAppearanceInactive="@style/BottomNavigationView"
-                app:itemTextColor="@color/color_activity_main_navigation_view_item"
-                app:labelVisibilityMode="unlabeled"
-                app:menu="@menu/navigation_menu_main" />
-
-        </RelativeLayout>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabBuy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_45sdp"
-            android:src="@drawable/ic_add_product"
-            app:backgroundTint="@color/button_color"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:tint="@null" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

@@ -2,8 +2,15 @@ package com.raantech.mycups.ui.main.activity
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -11,29 +18,41 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.raantech.mycups.R
+import com.raantech.mycups.common.CommonEnums
 import com.raantech.mycups.common.MyApplication
 import com.raantech.mycups.common.interfaces.LoginCallBack
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
 import com.raantech.mycups.data.enums.NavigationTabsEnum
+import com.raantech.mycups.data.models.more.More
 import com.raantech.mycups.databinding.ActivityMainBinding
+import com.raantech.mycups.ui.auth.AuthActivity
 import com.raantech.mycups.ui.base.activity.BaseBindingActivity
+import com.raantech.mycups.ui.base.adapters.BaseBindingRecyclerViewAdapter
+import com.raantech.mycups.ui.base.bindingadapters.setOnItemClickListener
 import com.raantech.mycups.ui.checkout.viewmodels.CheckoutViewModel
+import com.raantech.mycups.ui.main.adapters.DrawerRecyclerAdapter
 import com.raantech.mycups.ui.main.fragments.favorites.viewmodels.FavoritesViewModel
 import com.raantech.mycups.ui.main.viewmodels.MainViewModel
+import com.raantech.mycups.ui.splash.SplashActivity
+import com.raantech.mycups.utils.LocaleUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_auth.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.math.abs
 
 @AndroidEntryPoint
-class MainActivity : BaseBindingActivity<ActivityMainBinding,Nothing>() {
+class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
+    BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
     private val viewModel: MainViewModel by viewModels()
     private val favoriteViewModel: FavoritesViewModel by viewModels()
     private val checkoutViewModel: CheckoutViewModel by viewModels()
     var loginCallBack: LoginCallBack? = null
     var navController: NavController? = null
+
+    lateinit var drawerRecyclerAdapter: DrawerRecyclerAdapter
 
     override fun onResume() {
         super.onResume()
@@ -46,6 +65,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding,Nothing>() {
         setContentView(R.layout.activity_main, hasToolbar = false)
         setUpBinding()
         setupNavigation()
+        setUpDrawer()
         setUpListeners()
 //        updateFcmToken()
         handleNewNotifications()
@@ -53,14 +73,12 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding,Nothing>() {
         handleNotifications()
     }
 
-    private fun setUpBinding(){
+    private fun setUpBinding() {
         binding?.viewModel = viewModel
     }
 
     private fun setUpListeners() {
-        binding?.fabBuy?.setOnClickListener {
-            navController?.navigate(R.id.nav_buy)
-        }
+
     }
 
     private fun updateFcmToken() {
@@ -150,93 +168,143 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding,Nothing>() {
     }
 
     private fun setupNavigation() {
-        binding?.bnvMain?.itemIconTintList = null
         navController = findNavController(R.id.main_nav_host_fragment)
-        navController?.saveState()
-//        navController?.addOnDestinationChangedListener { _, destination, _ ->
-//            when (destination.id) {
-//                R.id.nav_home -> {
-////                    babMain.show()
-////                    fabBook.show()
-//                }
-//                R.id.nav_favorites -> {
-////                    babMain.show()
-////                    fabBook.show()
-//                }
-//                R.id.nav_buy -> {
-////                    babMain.show()
-////                    fabBook.show()
-//                }
-//                R.id.nav_chat -> {
-////                    babMain.show()
-////                    fabBook.show()
-//                }
-//                else -> {
-////                    babMain.invisible()
-////                    fabBook.hide()
-//                }
-//            }
-//        }
-
-        binding?.bnvMain?.let {
-            navController?.let { navController ->
-                NavigationUI.setupWithNavController(
-                    it,
-                    navController
-                )
-            }
-            it.setOnNavigationItemReselectedListener {
-                // Do Nothing To Disable ReLunch fragment when reClick on nav icon
-            }
-            it.setOnNavigationItemSelectedListener {
-                when (it.itemId) {
-                    R.id.nav_home -> {
-                        viewModel.selectedTab.postValue(NavigationTabsEnum.HOME)
-                        navController?.navigate(R.id.nav_home)
-                    }
-                    R.id.nav_favorites -> {
-                        viewModel.selectedTab.postValue(NavigationTabsEnum.FAVORITES)
-                        navController?.navigate(R.id.nav_favorites)
-                    }
-                    R.id.nav_chat -> {
-                        viewModel.selectedTab.postValue(NavigationTabsEnum.CHART)
-                        navController?.navigate(R.id.nav_chat)
-                    }
-                    else -> {
-                        viewModel.selectedTab.postValue(NavigationTabsEnum.MORE)
-                        navController?.navigate(R.id.nav_profile)
-                    }
-                }
-                return@setOnNavigationItemSelectedListener true
-            }
-        }
-//            it.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener {
-//                when (it.itemId) {
-//                    R.id.nav_home -> {
-//                        navController?.navigate(R.id.nav_home)
-//                    }
-//                    R.id.nav_favorites -> {
-//                        navController?.navigate(R.id.nav_favorites)
-//                    }
-//                    R.id.nav_chat -> {
-//                        navController?.navigate(R.id.nav_chat)
-//                    }
-//                    R.id.nav_profile -> {
-//                        navController?.navigate(R.id.nav_profile)
-//                    }
-//                }
-//                return@OnNavigationItemSelectedListener true
-//            })
-//        }
-        setStartDestination()
     }
 
-    private fun setStartDestination() {
-        val navHostFragment = main_nav_host_fragment as NavHostFragment
-        val inflater = navHostFragment.navController.navInflater
-        val graph = inflater.inflate(R.navigation.main_nav_graph)
-        graph.startDestination = R.id.nav_home
-        navHostFragment.navController.graph = graph
+
+    private fun setUpDrawer() {
+        drawerRecyclerAdapter = DrawerRecyclerAdapter(this)
+        drawerRecyclerAdapter.submitItems(getDrawerList())
+        binding?.drawerRecyclerView?.adapter = drawerRecyclerAdapter
+        binding?.drawerRecyclerView?.setOnItemClickListener(this)
+        val toggle = ActionBarDrawerToggle(
+            this, binding?.drawerLayout, binding?.appBarMain?.layoutToolbar?.toolbar,
+            R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
+        initDrawer(toggle)
+    }
+
+    private fun initDrawer(toggle: ActionBarDrawerToggle) {
+        val drawable = ResourcesCompat.getDrawable(
+            resources, R.drawable.ic_menu,
+            theme
+        )
+        toggle.isDrawerIndicatorEnabled = false
+        toggle.setHomeAsUpIndicator(drawable)
+        binding?.drawerLayout?.addDrawerListener(toggle)
+        toggle.syncState()
+        toggle.toolbarNavigationClickListener = View.OnClickListener { v: View? ->
+            if (binding?.drawerLayout?.isDrawerVisible(GravityCompat.START) == true) {
+                binding?.drawerLayout?.closeDrawer(GravityCompat.START)
+            } else {
+                binding?.drawerLayout?.openDrawer(GravityCompat.START)
+            }
+        }
+        binding?.drawerLayout?.setScrimColor(Color.TRANSPARENT)
+        binding?.drawerLayout?.drawerElevation = 0.toFloat()
+        binding?.drawerLayout?.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
+            override fun onDrawerSlide(drawer: View, slideOffset: Float) {
+//                if (LocaleUtil.getLanguage() == "ar") {
+//                    binding?.appBarMain?.container?.x =
+//                        (binding?.navigationView?.width!! * (slideOffset)) * -1
+//                    binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.4f - 1)
+//                    binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.2f - 1)
+//                } else {
+//                    binding?.appBarMain?.container?.x =
+//                        (binding?.navigationView?.width!! * (slideOffset))
+//                    binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.4f - 1)
+//                    binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.2f - 1)
+//                }
+                if (LocaleUtil.getLanguage() == "ar") {
+                    binding?.appBarMain?.holder?.rotation = (slideOffset * -1) * 10
+                    binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.4f - 1)
+                    binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.4f - 1)
+                    binding?.appBarMain?.container?.pivotX = 0.toFloat()
+                    binding?.appBarMain?.container?.pivotY = (1000).toFloat()
+                } else {
+                    binding?.appBarMain?.container?.x =
+                        (binding?.navigationView?.width!! * (slideOffset))
+                    binding?.appBarMain?.holder?.rotation = slideOffset * 10
+                    binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.4f - 1)
+                    binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.4f - 1)
+                    binding?.appBarMain?.container?.pivotX = 0.toFloat()
+                    binding?.appBarMain?.container?.pivotY = (1000).toFloat()
+                }
+            }
+
+            override fun onDrawerClosed(drawerView: View) {}
+        }
+        )
+    }
+
+
+    private fun getDrawerList(): List<More> {
+        val list = mutableListOf<More>()
+        list.apply {
+            addAll(
+                arrayListOf(
+                    More(resources.getString(R.string.menu_my_orders)),
+                    More(resources.getString(R.string.menu_my_designes)),
+                    More(resources.getString(R.string.menu_my_storage)),
+                    More(resources.getString(R.string.media)),
+                    More(resources.getString(R.string.menu_account)),
+                    More(resources.getString(R.string.menu_customer_support)),
+                    More(resources.getString(R.string.menu_about_us))
+                )
+            )
+            add(
+                if (viewModel.isUserLoggedIn())
+                    More(resources.getString(R.string.logout))
+                else
+                    More(resources.getString(R.string.login))
+            )
+            add(More(resources.getString(R.string.menu_language)))
+        }
+        return list
+    }
+
+    override fun onItemClick(view: View?, position: Int, item: Any) {
+        if (item is More) {
+            binding?.drawerLayout?.closeDrawer(GravityCompat.START)
+            when (position) {
+//                0 -> WishListActivity.start(this)
+//                1 -> OrdersActivity.start(this)
+//                2 -> NotificationsActivity.start(this)
+//                3 -> UpdateProfileActivity.start(this)
+//                4 -> SettingsActivity.start(this)
+//                5 -> AboutUsActivity.start(this)
+//                6 -> viewModel.logoutRemote().observe(this, logoutResultObserver())
+                7 -> {
+                    if (viewModel.isUserLoggedIn())
+                        viewModel.logoutRemote().observe(this, logoutResultObserver())
+                    else
+                        AuthActivity.startForResult(this@MainActivity, true)
+                }
+                8 -> viewModel.saveLanguage().observe(this, Observer {
+                    this.let {
+                        (it as BaseBindingActivity<*, *>).setLanguage(
+                            if (viewModel.getAppLanguage() == "ar")
+                                CommonEnums.Languages.Arabic.value else CommonEnums.Languages.English.value
+                        )
+                    }
+                })
+            }
+        }
+    }
+
+    private fun logoutResultObserver(): CustomObserverResponse<Any> {
+        return CustomObserverResponse(
+            this,
+            object : CustomObserverResponse.APICallBack<Any> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: Any?
+                ) {
+                    viewModel.logoutLocale()
+                    SplashActivity.start(this@MainActivity)
+                }
+            })
     }
 
     private fun handleNewNotifications() {
@@ -261,8 +329,10 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding,Nothing>() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (data?.getBooleanExtra(Constants.BundleData.IS_LOGIN_SUCCESS, false) == true)
+        if (data?.getBooleanExtra(Constants.BundleData.IS_LOGIN_SUCCESS, false) == true){
+            setUpDrawer()
             loginCallBack?.loggedInSuccess()
+        }
     }
 
     companion object {

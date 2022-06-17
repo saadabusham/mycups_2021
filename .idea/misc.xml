@@ -5,11 +5,21 @@
       <map>
         <entry key="..\:/TechZone Work/Apps Files/bai3/bai3/app/src/main/res/layout/fragment_register.xml" value="0.1921875" />
         <entry key="..\:/TechZone Work/Apps Files/bai3/bai3/app/src/main/res/layout/fragment_register_success.xml" value="0.1921875" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/drawable/ic_cart.xml" value="0.20833333333333334" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/drawable/ic_menu.xml" value="0.20833333333333334" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/drawable/ic_more_logout.xml" value="0.20833333333333334" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/drawable/ic_search.xml" value="0.20833333333333334" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/activity_ads_details.xml" value="0.10643115942028986" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/activity_main_content.xml" value="0.1082427536231884" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/activity_view_image.xml" value="0.1" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/app_bar_main.xml" value="0.2" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/dialog_ios.xml" value="0.1" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/fragment_home.xml" value="0.21" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/layout_home_toolbar.xml" value="0.2" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/layout_no_result.xml" value="0.1" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/row_drawer_item.xml" value="0.2" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/row_motor_ads.xml" value="0.1" />
       </map>
     </option>

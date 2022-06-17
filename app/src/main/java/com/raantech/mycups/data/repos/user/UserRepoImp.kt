@@ -35,6 +35,17 @@ class UserRepoImp @Inject constructor(
         }
     }
 
+    override suspend fun logout(): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                userRemoteDao.logout(
+                )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
     override suspend fun register(
         password: String,
         firstName: String,

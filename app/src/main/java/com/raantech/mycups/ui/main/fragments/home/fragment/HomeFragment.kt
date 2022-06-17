@@ -17,7 +17,6 @@ import com.raantech.mycups.data.models.general.ListWrapper
 import com.raantech.mycups.data.models.home.banner.Banner
 import com.raantech.mycups.data.models.home.product.productdetails.Ads
 import com.raantech.mycups.databinding.FragmentHomeBinding
-import com.raantech.mycups.ui.ads.activity.AdsDetailsActivity
 import com.raantech.mycups.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.mycups.ui.base.bindingadapters.setOnItemClickListener
 import com.raantech.mycups.ui.base.fragment.BaseBindingFragment
@@ -252,15 +251,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding,HomePresenter>(),Ho
         binding?.rvCategoriesItems.setOnItemClickListener(object :
             BaseBindingRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(view: View?, position: Int, item: Any) {
-                if(item is Ads) {
-                    item.id?.let { AdsDetailsActivity.start(requireContext(), it) }
-                }else if(item is Category){
-                    if(view?.id == R.id.tvSeeAll){
 
-                    }else{
-
-                    }
-                }
             }
         })
         viewModel.loadCategoriesProduct().observe(this, categoriesItemsResultObserver())

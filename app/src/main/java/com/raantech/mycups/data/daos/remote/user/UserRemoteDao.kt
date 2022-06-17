@@ -17,6 +17,10 @@ interface UserRemoteDao {
         @Field("Password") password: String
     ): ResponseWrapper<UserDetailsResponseModel>
 
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @POST("user/auth/logout")
+    suspend fun logout(
+    ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:true")
     @FormUrlEncoded

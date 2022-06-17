@@ -35,7 +35,8 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding,Nothing>() {
             hasToolbar = false
         )
         Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.getConfigurationData().observe(this, configurationResultObserver())
+//            viewModel.getConfigurationData().observe(this, configurationResultObserver())
+            goToNextPage()
         }, 3000)
 
         RuntimeException("This is a RUNTIME EXCEPTION")
@@ -80,12 +81,7 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding,Nothing>() {
     }
 
     private fun goToNextPage() {
-        if (!viewModel.isUserLoggedIn()) {
-//            AuthActivity.start(this)
-            MainActivity.start(this)
-        } else {
-            viewModel.updateAccessToken().observe(this, tokenObserver())
-        }
+        MainActivity.start(this)
     }
 
     override fun onStart() {

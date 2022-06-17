@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.raantech.mycups.ui.main.viewmodels.MainViewModel" />
+    </data>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/AppTheme.ToolbarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp">
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    android:id="@+id/tvTitle"
+                    style="@style/textview_normal_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18ssp"
+                    tools:text="Title" />
+
+                <RelativeLayout
+                    android:id="@+id/relativeCart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/imgSearch">
+
+                    <ImageView
+                        android:id="@+id/imgCart"
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:background="?selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="@dimen/_3sdp"
+                        android:src="@drawable/ic_cart" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="@dimen/_15sdp"
+                        android:minHeight="@dimen/_15sdp"
+                        app:cardBackgroundColor="@color/black"
+                        app:cardCornerRadius="@dimen/_10sdp"
+                        app:cardElevation="0dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/_2sdp"
+                            android:gravity="center"
+                            android:text="@{viewModel.cartCount}"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_7ssp"
+                            tools:text="10" />
+                    </com.google.android.material.card.MaterialCardView>
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/imgSearch"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="@dimen/_3sdp"
+                    android:src="@drawable/ic_search" />
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+</layout>
+
+
