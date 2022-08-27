@@ -33,20 +33,8 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding,LoginPresenter>()
     @Inject
     lateinit var prefs: UserPref
     private val viewModel: LoginViewModel by activityViewModels()
-//    var googleLoginHandler: GoogleLoginHandler? = null
-
     override fun getLayoutId(): Int = R.layout.fragment_login
     override fun getPresenter(): LoginPresenter = this
-
-//    override fun onResume() {
-//        super.onResume()
-//        try {
-//            if (googleLoginHandler == null)
-//                initGoogle()
-//        } catch (e: Exception) {
-//            e
-//        }
-//    }
 
     override fun onViewVisible() {
         super.onViewVisible()
@@ -80,22 +68,11 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding,LoginPresenter>()
         ForgetPasswordActivity.start(requireContext())
     }
     private fun setUpListeners() {
-//        binding?.tvSkip?.setOnClickListener {
-//            if (requireActivity().intent.getBooleanExtra(
-//                    Constants.BundleData.IS_ACTIVITY_RESULT,
-//                    false
-//                )
-//            ) {
-//                requireActivity().finish()
-//            } else {
-//                MainActivity.start(requireContext())
-//            }
-//        }
         if(BuildConfig.DEBUG){
-            viewModel.emailMutableLiveData.postValue("sa2edabusham87@gmail.com")
-            viewModel.passwordMutableLiveData.postValue("P@ssw0rd")
+            viewModel.phoneNumberMutableLiveData.postValue("0787901166")
+            viewModel.passwordMutableLiveData.postValue("12345678")
         }
-        binding?.edEmail?.addTextChangedListener(inputListeners)
+        binding?.edPhoneNumber?.addTextChangedListener(inputListeners)
         binding?.edPassword?.addTextChangedListener(inputListeners)
     }
 
@@ -106,32 +83,7 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding,LoginPresenter>()
         }
     }
 
-//    private fun initGoogle() {
-//        googleLoginHandler =
-//            GoogleLoginHandler.getInstance(requireActivity() as AuthActivity).apply {
-//                setRegisterResult(googleLoginResultLauncher)
-//            }
-//        googleLoginHandler?.showError(true)
-//        googleLoginHandler?.setCallBack(object : SocialLoginCallBack {
-//            override fun onSuccess(provider: String, token: String) {
-//                viewModel.socialLoginUser(
-//                    accessToken = token,
-//                    provider = provider
-//                ).observe(requireActivity(), loginResultObserver(true))
-//            }
-//        })
-//        googleLoginHandler?.initGoogle()
-//    }
-//
-//    private var googleLoginResultLauncher =
-//        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-//            if (result.resultCode == Activity.RESULT_OK) {
-//                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-//                googleLoginHandler?.setResult(task)
-//            }
-//        }
-
-    private fun loginResultObserver(isSocialLogin: Boolean = false): CustomObserverResponse<UserDetailsResponseModel> {
+    private fun loginResultObserver(): CustomObserverResponse<UserDetailsResponseModel> {
         return CustomObserverResponse(
             requireActivity(),
             object : CustomObserverResponse.APICallBack<UserDetailsResponseModel> {
@@ -142,10 +94,9 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding,LoginPresenter>()
                 ) {
                     when (statusCode) {
                         ResponseSubErrorsCodeEnum.EmailNotVerified.value -> {
-                            viewModel.userIdMutableLiveData.postValue(data?.id)
-//                            navigationController.navigate(
-//                                R.id.action_loginFragment_to_verificationLoginFragment
-//                            )
+                            navigationController.navigate(
+                                R.id.action_loginFragment_to_verificationLoginFragment
+                            )
                         }
                         else -> {
                             data?.let {
@@ -184,34 +135,34 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding,LoginPresenter>()
     private fun validateInput(): Boolean {
         startTransitionDelay()
         var valid = true
-        binding?.edEmail?.text.toString().validate(
-            ValidatorInputTypesEnums.EMAIL,
+        binding?.edPhoneNumber?.text.toString().validate(
+            ValidatorInputTypesEnums.TEXT,
             requireContext()
         ).let {
             if (!it.isValid) {
-                binding?.tvEmailError?.text = it.errorMessage
-                binding?.tvEmailError?.visible()
-                binding?.edEmail?.updateStrokeColor(InputFieldValidStateEnums.ERROR)
+                binding?.tvPhoneNumberError?.text = it.errorMessage
+                binding?.tvPhoneNumberError?.visible()
+                binding?.edPhoneNumber?.updateStrokeColor(InputFieldValidStateEnums.ERROR)
                 return false
             } else {
-                binding?.edEmail?.updateStrokeColor(InputFieldValidStateEnums.VALID)
-                binding?.tvEmailError?.gone()
+                binding?.edPhoneNumber?.updateStrokeColor(InputFieldValidStateEnums.VALID)
+                binding?.tvPhoneNumberError?.gone()
             }
         }
-        binding?.edPassword?.text.toString().validate(
-            ValidatorInputTypesEnums.PASSWORD,
-            requireContext()
-        ).let {
-            if (!it.isValid) {
-                binding?.tvPasswordError?.text = it.errorMessage
-                binding?.tvPasswordError?.visible()
-                binding?.edPassword?.updateStrokeColor(InputFieldValidStateEnums.ERROR)
-                return false
-            } else {
-                binding?.edPassword?.updateStrokeColor(InputFieldValidStateEnums.VALID)
-                binding?.tvPasswordError?.gone()
-            }
-        }
+//        binding?.edPassword?.text.toString().validate(
+//            ValidatorInputTypesEnums.PASSWORD,
+//            requireContext()
+//        ).let {
+//            if (!it.isValid) {
+//                binding?.tvPasswordError?.text = it.errorMessage
+//                binding?.tvPasswordError?.visible()
+//                binding?.edPassword?.updateStrokeColor(InputFieldValidStateEnums.ERROR)
+//                return false
+//            } else {
+//                binding?.edPassword?.updateStrokeColor(InputFieldValidStateEnums.VALID)
+//                binding?.tvPasswordError?.gone()
+//            }
+//        }
         return valid
     }
 

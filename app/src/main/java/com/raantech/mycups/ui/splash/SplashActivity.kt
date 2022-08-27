@@ -8,6 +8,7 @@ import android.os.Looper
 import androidx.activity.viewModels
 import com.raantech.mycups.R
 import com.raantech.mycups.common.MyApplication
+import com.raantech.mycups.data.api.response.GeneralError
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.common.CustomObserverResponse
 import com.raantech.mycups.data.models.auth.login.UserDetailsResponseModel
@@ -71,7 +72,11 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding,Nothing>() {
                     MainActivity.start(this@SplashActivity)
                 }
 
-                override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
+                override fun onError(
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    message: String,
+                    errors: List<GeneralError>?
+                ) {
                     viewModel.logout()
                     AuthActivity.start(this@SplashActivity)
                 }

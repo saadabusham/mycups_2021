@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.raantech.mycups.ui.base.dialogs.ConfirmBottomSheet" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_60sdp"
+            app:cardBackgroundColor="@color/white"
+            app:cardPreventCornerOverlap="false"
+            app:shapeAppearance="@style/top_cardview_corner">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_4sdp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="#1D1D21"
+                    app:cardCornerRadius="@dimen/_3sdp"
+                    app:cardElevation="0dp" />
+
+                <TextView
+                    style="@style/textview_normal_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:gravity="center"
+                    android:text="@{viewModel.title}"
+                    android:textSize="@dimen/_15ssp"
+                    tools:text="Login" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|start"
+                    android:layout_marginTop="@dimen/_17sdp"
+                    android:gravity="center"
+                    android:text="@{viewModel.description}"
+                    android:textSize="@dimen/_13ssp"
+                    tools:text="Login" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppButton
+                    android:id="@+id/btnConfirm"
+                    style="@style/AppTheme.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginTop="@dimen/_70sdp"
+                    android:text="@{viewModel.btnConfirmTxt}"
+                    android:onClick="@{()->viewModel.onConfirmClicked()}" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppButton
+                    android:id="@+id/btnSignUp"
+                    style="@style/AppTheme.ButtonLight"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginBottom="@dimen/_30sdp"
+                    android:onClick="@{()->viewModel.onDeclineClicked()}"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@{viewModel.btnCancelTxt}"/>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </RelativeLayout>
+</layout>

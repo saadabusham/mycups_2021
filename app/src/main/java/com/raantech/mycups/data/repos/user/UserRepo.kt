@@ -3,9 +3,11 @@ package com.raantech.mycups.data.repos.user
 import com.raantech.mycups.data.api.response.APIResource
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.enums.UserEnums
+import com.raantech.mycups.data.models.auth.login.TokenModel
 import com.raantech.mycups.data.models.auth.login.UserDetailsResponseModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.Query
 
 
 interface UserRepo {
@@ -13,21 +15,22 @@ interface UserRepo {
 
     suspend fun login(
         userName: String,
-        password: String
+        password: String,
+        device_token: String,
+        platform: String
     ): APIResource<ResponseWrapper<UserDetailsResponseModel>>
 
     suspend fun logout(
+        deviceToken: String
     ): APIResource<ResponseWrapper<Any>>
 
     suspend fun register(
         password: String,
-        firstName: String,
-//        lastName: String,
+        name: String,
         phoneNumber: String?,
         email: String,
-        registrationId: String,
-        deviceType: Int,
-        userName: String
+        deviceToken: String,
+        platform: String
     ): APIResource<ResponseWrapper<String>>
 
     suspend fun forgetPassword(
@@ -35,13 +38,13 @@ interface UserRepo {
     ): APIResource<ResponseWrapper<String>>
 
     suspend fun verify(
-        userId: String,
+        token: String,
         verificationCode: String
     ): APIResource<ResponseWrapper<UserDetailsResponseModel>>
 
     suspend fun resendCode(
-        phoneNumber: String
-    ): APIResource<ResponseWrapper<String>>
+        token: String
+    ): APIResource<ResponseWrapper<TokenModel>>
 
     suspend fun refreshToken(
         refreshToken: String

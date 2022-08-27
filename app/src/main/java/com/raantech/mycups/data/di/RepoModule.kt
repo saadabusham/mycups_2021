@@ -19,6 +19,8 @@ import com.raantech.mycups.data.repos.orders.OrdersRepo
 import com.raantech.mycups.data.repos.orders.OrdersRepoImp
 import com.raantech.mycups.data.repos.product.ProductRepo
 import com.raantech.mycups.data.repos.product.ProductRepoImpl
+import com.raantech.mycups.data.repos.wishlist.WishListRepo
+import com.raantech.mycups.data.repos.wishlist.WishListRepoImp
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -35,7 +37,7 @@ abstract class RepoModule {
 
     @Singleton
     @Binds
-    abstract fun bindUserRepo(userRepoImp: UserRepoImp) : UserRepo
+    abstract fun bindUserRepo(userRepoImp: UserRepoImp): UserRepo
 
     @Singleton
     @Binds
@@ -64,5 +66,9 @@ abstract class RepoModule {
     @Singleton
     @Binds
     abstract fun provideProductRepository(productRepoImpl: ProductRepoImpl): ProductRepo
+
+    @Singleton
+    @Binds
+    abstract fun bindWishListRepo(wishListRepoImp: WishListRepoImp): WishListRepo
 
 }

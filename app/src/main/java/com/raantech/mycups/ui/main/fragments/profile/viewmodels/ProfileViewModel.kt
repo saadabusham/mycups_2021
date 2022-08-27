@@ -41,10 +41,10 @@ class ProfileViewModel @Inject constructor(
 
     fun getUser() {
         userRepo.getUser()?.let {
-            fullNameMutableLiveData.value = it.fullName
-            emailMutableLiveData.value = it.email
-            phoneNumberWithoutCountryCode.value = it.phoneNumber?.checkPhoneNumberFormat()
-            userImageMutableLiveData.value = it.picture
+            fullNameMutableLiveData.value = it.user?.name
+            emailMutableLiveData.value = it.user?.email
+            phoneNumberWithoutCountryCode.value = it.user?.phoneNumber?.checkPhoneNumberFormat()
+            userImageMutableLiveData.value = it.user?.picture
         }
     }
 
@@ -56,7 +56,7 @@ class ProfileViewModel @Inject constructor(
 
     fun getMyProfile() = liveData {
         emit(APIResource.loading())
-        val response = userRepo.refreshToken(userRepo.getUser()?.refreshToken?.refreshToken ?: "")
+        val response = userRepo.refreshToken(userRepo.getUser()?.accessToken ?: "")
         emit(response)
     }
 

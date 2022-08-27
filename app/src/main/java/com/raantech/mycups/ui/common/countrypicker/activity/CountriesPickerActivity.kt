@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.MutableLiveData
 import com.jakewharton.rxbinding3.widget.textChangeEvents
 import com.raantech.mycups.R
+import com.raantech.mycups.data.api.response.GeneralError
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
@@ -34,7 +35,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
-class CountriesPickerActivity : BaseBindingActivity<ActivityCountriesBinding,Nothing>(),
+class CountriesPickerActivity : BaseBindingActivity<ActivityCountriesBinding, Nothing>(),
     BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
     private val viewModel: CountriesViewModel by viewModels()
@@ -156,8 +157,11 @@ class CountriesPickerActivity : BaseBindingActivity<ActivityCountriesBinding,Not
                     hideShowNoData()
                 }
 
-                override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
-                    super.onError(subErrorCode, message)
+                override fun onError(
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    message: String,
+                    errors: List<GeneralError>?
+                ) {
                     loading.postValue(false)
                     hideShowNoData()
                 }

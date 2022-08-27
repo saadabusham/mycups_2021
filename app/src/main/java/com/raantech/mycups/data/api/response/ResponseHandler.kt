@@ -1,5 +1,6 @@
 package com.raantech.mycups.data.api.response
 
+import com.google.gson.JsonSyntaxException
 import retrofit2.HttpException
 import javax.inject.Inject
 
@@ -9,15 +10,30 @@ open class ResponseHandler @Inject constructor() {
             return APIResource.success(data)
         }
 
-        if (data.success) {
-            return APIResource.success(data, data.message,data.code.toInt())
+        if (data.errors == null) {
+            return APIResource.success(data, data.message, null, data.code.toInt())
         }
-        return APIResource.error(
-            data = data,
-            msgs = data.message,
-            statusCode = data.code.toInt(),
-            failedStatusSubCode = ResponseSubErrorsCodeEnum.getResponseSubErrorsCodeEnumByValue(data.code.toInt())
-        )
+        try {
+            return APIResource.error(
+                data = data,
+                msgs = data.message,
+                errors = data.errors,
+                statusCode = data.code,
+                failedStatusSubCode = ResponseSubErrorsCodeEnum.getResponseSubErrorsCodeEnumByValue(
+                    data.code.toInt()
+                )
+            )
+        } catch (jsonException: JsonSyntaxException) {
+            return APIResource.error(
+                data = data,
+                msgs = data.message,
+                errors = null,
+                statusCode = data.code,
+                failedStatusSubCode = ResponseSubErrorsCodeEnum.getResponseSubErrorsCodeEnumByValue(
+                    data.code.toInt()
+                )
+            )
+        }
     }
 
     fun <RESPONSE_DATA : Any> handleException(e: Exception): APIResource<RESPONSE_DATA> {
@@ -26,12 +42,14 @@ open class ResponseHandler @Inject constructor() {
                 APIResource.error(
                     getErrorMessage(e.code()),
                     null,
+                    null,
                     e.code(),
                     ResponseSubErrorsCodeEnum.GENERAL_FAILED
                 )
             }
             else -> APIResource.error(
                 getErrorMessage(Int.MAX_VALUE),
+                null,
                 null,
                 -1,
                 ResponseSubErrorsCodeEnum.GENERAL_FAILED

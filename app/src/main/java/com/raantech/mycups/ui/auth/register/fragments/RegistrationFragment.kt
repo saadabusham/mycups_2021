@@ -57,7 +57,6 @@ class RegistrationFragment :
 
     private fun setUpListener() {
         binding?.edFirstName?.addTextChangedListener(inputListeners)
-        binding?.edLastName?.addTextChangedListener(inputListeners)
         binding?.edEmail?.addTextChangedListener(inputListeners)
         binding?.edPhoneNumber?.addTextChangedListener(inputListeners)
         binding?.etPassword?.addTextChangedListener(inputListeners)
@@ -108,18 +107,6 @@ class RegistrationFragment :
                 } else {
                     binding?.edFirstName?.updateStrokeColor(InputFieldValidStateEnums.VALID)
                     binding?.tvFirstNameError?.gone()
-                }
-            }
-        binding?.edLastName?.text.toString()
-            .validate(ValidatorInputTypesEnums.LAST_NAME, requireContext()).let {
-                if (!it.isValid) {
-                    binding?.tvLastNameError?.text = it.errorMessage
-                    binding?.tvLastNameError?.visible()
-                    binding?.edLastName?.updateStrokeColor(InputFieldValidStateEnums.ERROR)
-                    return false
-                } else {
-                    binding?.edLastName?.updateStrokeColor(InputFieldValidStateEnums.VALID)
-                    binding?.tvLastNameError?.gone()
                 }
             }
         binding?.edPhoneNumber?.text.toString()

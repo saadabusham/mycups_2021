@@ -2,7 +2,7 @@ package com.raantech.mycups.data.common
 
 object Constants {
 
-    const val DEVICE_TYPE = 1
+    const val DEVICE_TYPE = "android"
     const val APPLICATION_TYPE = 1
 
     const val PAGE_SIZE = 10
@@ -23,6 +23,10 @@ object Constants {
         const val IMAGE: String = "image"
         const val FAVORITE_LIST: String = "favoriteList"
         const val CART_LIST: String = "cartList"
+        const val CATEGORY_ID: String = "categoryId"
+        const val CATEGORY_NAME: String = "categoryName"
+        const val PRODUCT_ID: String = "productId"
+        const val PRODUCT_NAME: String = "productName"
     }
 
     object NotificationsChannels {

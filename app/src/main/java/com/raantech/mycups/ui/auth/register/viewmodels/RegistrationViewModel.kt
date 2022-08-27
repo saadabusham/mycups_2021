@@ -39,13 +39,12 @@ class RegistrationViewModel @Inject constructor(
     }
 
     val phoneNumberWithoutCountryCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
-    val firstNameMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
-    val lastNameMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val fullNameMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val emailMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val passwordMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val confirmPasswordMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val userIdMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>("") }
-    val buttonEnabled:MutableLiveData<Boolean> = MutableLiveData(false)
+    val buttonEnabled: MutableLiveData<Boolean> = MutableLiveData(false)
 
     // SignUp Verification Code
     val signUpVerificationCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
@@ -79,14 +78,12 @@ class RegistrationViewModel @Inject constructor(
     fun registerUser() = liveData {
         emit(APIResource.loading())
         val response = userRepo.register(
-            firstName = firstNameMutableLiveData.value.toString(),
-//            lastName = lastNameMutableLiveData.value.toString(),
-            phoneNumber = if(phoneNumberWithoutCountryCode.value.isNullOrEmpty()) null else phoneNumberWithoutCountryCode.value.toString(),
+            name = fullNameMutableLiveData.value.toString(),
+            phoneNumber = phoneNumberWithoutCountryCode.value.toString(),
             email = emailMutableLiveData.value.toString(),
             password = passwordMutableLiveData.value.toString(),
-            deviceType = Constants.DEVICE_TYPE,
-            registrationId = "",
-            userName = emailMutableLiveData.value.toString()
+            platform = Constants.DEVICE_TYPE,
+            deviceToken = "",
         )
         emit(response)
     }
@@ -113,7 +110,7 @@ class RegistrationViewModel @Inject constructor(
         userRepo.saveUserPassword(passwordMutableLiveData.value ?: "")
         userRepo.setUserStatus(UserEnums.UserState.LoggedIn)
         userRepo.setUser(user)
-        user.token?.let { it1 -> userRepo.saveAccessToken(it1) }
+        user.accessToken?.let { it1 -> userRepo.saveAccessToken(it1) }
     }
 
     fun isTouchIdShouldVisible(): Boolean {

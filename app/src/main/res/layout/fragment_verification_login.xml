@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/title_color"
                     android:textSize="@dimen/_15ssp"
-                    android:text="@{viewModel.emailMutableLiveData}"
+                    android:text="@{viewModel.phoneNumberMutableLiveData}"
                     tools:text="+962787901166" />
 
                 <com.raantech.mycups.ui.base.views.appviews.AppTextView

@@ -4,7 +4,7 @@ import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.common.NetworkConstants
 import com.raantech.mycups.data.models.general.ListWrapper
 import com.raantech.mycups.data.models.home.product.ProductFilter
-import com.raantech.mycups.data.models.home.product.productdetails.Ads
+import com.raantech.mycups.data.models.home.product.productdetails.Product
 import retrofit2.http.*
 
 interface FavoritesRemoteDao {
@@ -13,7 +13,7 @@ interface FavoritesRemoteDao {
     @POST("api/product/search")
     suspend fun getFavorites(
             @Body productFilter: ProductFilter
-    ): ResponseWrapper<ListWrapper<Ads>>
+    ): ResponseWrapper<ListWrapper<Product>>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @GET("api/user/product/favorite")

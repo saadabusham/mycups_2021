@@ -35,7 +35,7 @@ class CheckoutViewModel @Inject constructor(
 ) : BaseViewModel() {
     val user: MutableLiveData<UserDetailsResponseModel> = MutableLiveData(userRepo.getUser())
     val contactNumber: MutableLiveData<String> =
-        MutableLiveData(userRepo.getUser()?.phoneNumber)
+        MutableLiveData(userRepo.getUser()?.user?.phoneNumber)
     val selectedAddress: MutableLiveData<AddressList> = MutableLiveData()
     val searchText: MutableLiveData<String> = MutableLiveData("")
     var categories: List<Int> = mutableListOf()

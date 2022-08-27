@@ -1,14 +1,17 @@
 package com.raantech.mycups.data.api.response
 
+import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
+import java.io.Serializable
 
 data class ResponseWrapper<RETURN_MODEL>(
-    @field:Json(name = "success")
-    val success: Boolean,
-    @field:Json(name = "errorCode")
+
+    @field:SerializedName("errors")
+    val errors: List<GeneralError>,
+    @field:SerializedName("code")
     val code: Int,
-    @field:Json(name = "errorMessage")
+    @field:SerializedName("message")
     val message: String,
-    @field:Json(name = "data")
-    val data: RETURN_MODEL?
-)
+    @field:SerializedName("body")
+    val body: RETURN_MODEL?
+):Serializable

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
 import androidx.navigation.fragment.NavHostFragment
 import com.raantech.mycups.R
 import com.raantech.mycups.data.common.Constants
@@ -38,9 +39,9 @@ class AuthActivity : BaseBindingActivity<ActivityAuthBinding,Nothing>() {
         val graph = inflater.inflate(R.navigation.auth_nav_graph)
 
         if (prefs.getIsFirstOpen()) {
-            graph.startDestination = R.id.languageFragment
+            graph.startDestination = R.id.loginFragment
         } else {
-            graph.startDestination = R.id.onBoardingFragment
+            graph.startDestination = R.id.loginFragment
         }
 
         navHostFragment.navController.graph = graph
@@ -59,11 +60,13 @@ class AuthActivity : BaseBindingActivity<ActivityAuthBinding,Nothing>() {
         }
         fun startForResult(
             context: Activity?,
-            isActivityResult: Boolean
+            isActivityResult: Boolean,
+            resultLauncher: ActivityResultLauncher<Intent>? = null
         ) {
             val intent = Intent(context, AuthActivity::class.java)
             intent.putExtra(Constants.BundleData.IS_ACTIVITY_RESULT, isActivityResult)
-            context?.startActivityForResult(intent, REQUEST_CODE)
+//            context?.startActivityForResult(intent, REQUEST_CODE)
+            resultLauncher?.launch(intent)
 //            val intent = Intent(context, AuthActivity::class.java)
 //            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
 //            context?.startActivity(intent)

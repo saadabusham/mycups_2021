@@ -9,3 +9,10 @@ fun TextView.textColorRes(
 ) {
     setTextColor(context.getColor(color))
 }
+
+@BindingAdapter("text_selected")
+fun TextView.setTextIsSelected(
+    selected: Boolean
+) {
+    isSelected = selected
+}

@@ -9,7 +9,7 @@
     <color name="color_app_background">#FFFFFF</color>
     <color name="ripple_color">#0be8252e</color>
     <color name="app_background_color">#FFFFFF</color>
-    <color name="splash_background_color">#009C9B</color>
+    <color name="splash_background_color">#ffffff</color>
     <!-- Views Default colors -->
     <color name="text_default_color">#7f8592</color>
     <color name="text_dark_color">#806D6F72</color>
@@ -97,7 +97,7 @@
     <color name="cardveiw_state_error">#DC0C0C</color>
     <color name="cardveiw_state_valid">#60bf04</color>
     <color name="cardview_orange">#F9C332</color>
-    <color name="cardview_stroke_gray">#D8D8D8</color>
+    <color name="cardview_stroke_gray">#E5E5E5</color>
     <color name="cardview_fill_gray">#FBFBFC</color>
     <color name="cardview_border_gray">#E8E8E8</color>
 
@@ -134,7 +134,7 @@
     <color name="account_color">#475362</color>
     <color name="error_color">#E7293E</color>
 
-    <color name="title_color">#000000</color>
+    <color name="title_color">#121111</color>
     <color name="subtitle_color">#6D6F72</color>
     <color name="input_error_color">#E02020</color>
     <color name="google_color">#EB4335</color>
@@ -156,4 +156,8 @@
     <color name="price_color">#008E4A</color>
 
     <color name="profile_corner">#126267</color>
+    <color name="tab_text_color">#333333</color>
+    <color name="stroke_color">#C3C3C3</color>
+    <color name="edit_text_focused_color">#C3C3C3</color>
+    <color name="edit_text_unfocused_color">#C3C3C3</color>
 </resources>

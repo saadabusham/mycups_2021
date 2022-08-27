@@ -1,69 +1,77 @@
 package com.raantech.mycups.ui.main.fragments.home.viewmodels
 
-import androidx.lifecycle.MutableLiveData
+import android.content.Context
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
+import com.raantech.mycups.R
 import com.raantech.mycups.data.api.response.APIResource
-import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
+import com.raantech.mycups.data.api.response.RequestStatusEnum
+import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.enums.UserEnums
-import com.raantech.mycups.data.models.general.City
-import com.raantech.mycups.data.models.home.product.productdetails.Ads
-import com.raantech.mycups.data.pref.favorite.FavoritePref
+import com.raantech.mycups.data.models.category.Category
 import com.raantech.mycups.data.repos.common.CommonRepo
-import com.raantech.mycups.data.repos.product.ProductRepo
 import com.raantech.mycups.data.repos.user.UserRepo
 import com.raantech.mycups.ui.base.viewmodel.BaseViewModel
-import com.raantech.mycups.utils.pref.SharedPreferencesUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.async
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val userRepo: UserRepo,
-    private val sharedPreferencesUtil: SharedPreferencesUtil,
     private val commonRepo: CommonRepo,
-    private val productRepo: ProductRepo,
-    private val favoritePref: FavoritePref
+    @ApplicationContext private val context: Context
 ) : BaseViewModel() {
 
-    val selectedCity : MutableLiveData<City> = MutableLiveData(City(name= "Riyadh"))
     fun isUserLoggedIn() = userRepo.getUserStatus() == UserEnums.UserState.LoggedIn
+    fun loadHomeData(
+    ) = liveData {
+        emit(APIResource.loading())
+        val list = mutableListOf<Category>()
+        val response = commonRepo.getHome()
+        if (response.status == RequestStatusEnum.SUCCESS) {
+            if (!response.data?.body?.offers.isNullOrEmpty())
+                list.add(
+                    Category(
+                        name = context.getString(R.string.latest_offers),
+                        items = response.data?.body?.offers
+                    )
+                )
 
-    fun getCategoriesData() = liveData {
-        emit(APIResource.loading())
-        val categoriesResponse = commonRepo.getCategories(pageSize = 8, pageNumber = 1)
-        emit(categoriesResponse)
-    }
+            if (!response.data?.body?.categories.isNullOrEmpty())
+                list.add(
+                    Category(
+                        name = context.getString(R.string.categories),
+                        items = response.data?.body?.categories
+                    )
+                )
 
-    fun getBannerData() = liveData {
-        emit(APIResource.loading())
-        val dealResponse = commonRepo.getBanner(pageSize = 10, pageNumber = 1)
-        emit(dealResponse)
-    }
-    fun loadCategoriesProduct() = liveData {
-        emit(APIResource.loading())
-        val response = commonRepo.getCategories(200, 1)
-        if (response.statusSubCode == ResponseSubErrorsCodeEnum.Success) {
-            response.data?.data?.data?.forEach { categoryResponse ->
-                categoryResponse.id?.let { it1 ->
-                    getCategoriesProducts(it1).let {
-                        categoryResponse.ads = it
-                    }
-                }
-            }
+            if (!response.data?.body?.latestProducts.isNullOrEmpty())
+                list.add(
+                    Category(
+                        name = context.getString(R.string.latest_products),
+                        items = response.data?.body?.latestProducts
+                    )
+                )
+            if (!response.data?.body?.latestDesigns.isNullOrEmpty())
+                list.add(
+                    Category(
+                        name = context.getString(R.string.latest_designs),
+                        items = response.data?.body?.latestDesigns
+                    )
+                )
         }
-        emit(response)
-    }
-    private suspend fun getCategoriesProducts(categoryId: Int): MutableList<Ads> {
-        val map: HashMap<String, String> = HashMap()
-        map["PageSize"] = "5"
-        map["PageNumber"] = "1"
-        map["CountryIds"] = categoryId.toString()
-        val response = productRepo.getProductsList(map)
-        favoritePref.getFavoriteList().forEach { favId ->
-            response.data?.data?.data?.singleOrNull { it.id == favId }
-                ?.let { it.favorite = true }
-        }
-        return response.data?.data?.data?.toMutableList() ?: mutableListOf()
+        emit(
+            APIResource.success(
+                ResponseWrapper(
+                    errors = listOf(),
+                    message = "",
+                    code = 0,
+                    body = list
+                )
+            )
+        )
     }
 
 }

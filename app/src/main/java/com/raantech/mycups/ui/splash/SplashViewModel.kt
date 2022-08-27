@@ -33,7 +33,7 @@ class SplashViewModel @Inject constructor(
 
     fun updateAccessToken() = liveData {
         emit(APIResource.loading())
-        val response = userRepo.refreshToken(userRepo.getUser()?.refreshToken?.refreshToken ?: "")
+        val response = userRepo.refreshToken(userRepo.getUser()?.accessToken ?: "")
         emit(response)
     }
 

@@ -79,7 +79,7 @@ class ForgetPasswordViewModel @Inject constructor(
         )
         if (response.statusSubCode == ResponseSubErrorsCodeEnum.Success) {
             signUpVerificationCode.postValue("")
-            userPref.saveAccessToken(response.data?.data?.token!!)
+            userPref.saveAccessToken(response.data?.body?.accessToken!!)
         }
         emit(response)
     }

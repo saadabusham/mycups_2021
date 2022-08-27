@@ -2,9 +2,14 @@ package com.raantech.mycups.ui.base.dialogs.aleter
 
 import android.app.Activity
 import android.os.CountDownTimer
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.WindowManager
 import android.widget.PopupWindow
+import androidx.databinding.DataBindingUtil
 import com.raantech.mycups.R
 import com.raantech.mycups.databinding.PopupAlerterBinding
+import com.raantech.mycups.ui.base.activity.BaseBindingActivity
 
 class AlerterPopup(
     val context: Activity,
@@ -19,30 +24,30 @@ class AlerterPopup(
     var popUpDialog: PopupWindow? = null
 
     fun build() {
-//        try {
-//            binding =
-//                DataBindingUtil.inflate(
-//                    LayoutInflater.from(context),
-//                    R.layout.popup_alerter,
-//                    null,
-//                    false
-//                )
-//            popUpDialog = PopupWindow(
-//                binding.root,
-//                WindowManager.LayoutParams.WRAP_CONTENT,
-//                WindowManager.LayoutParams.WRAP_CONTENT,
-//                false
-//            )
-//            popUpDialog?.animationStyle = R.style.DialogAnimation;
-//            binding.dialog = this
-//            dismissTimer.start()
-//            ((context as BaseBindingActivity<*>).binding?.root)?.post {
-//                popUpDialog?.showAtLocation((context.binding?.root), Gravity.BOTTOM, 0, 0)
-//            }
-//            setUpListeners()
-//        } catch (e: Exception) {
-//
-//        }
+        try {
+            binding =
+                DataBindingUtil.inflate(
+                    LayoutInflater.from(context),
+                    R.layout.popup_alerter,
+                    null,
+                    false
+                )
+            popUpDialog = PopupWindow(
+                binding.root,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                false
+            )
+            popUpDialog?.animationStyle = R.style.DialogAnimation;
+            binding.dialog = this
+            dismissTimer.start()
+            ((context as BaseBindingActivity<*,*>).binding?.root)?.post {
+                popUpDialog?.showAtLocation((context.binding?.root), Gravity.BOTTOM, 0, 0)
+            }
+            setUpListeners()
+        } catch (e: Exception) {
+
+        }
     }
 
     private fun setUpListeners() {

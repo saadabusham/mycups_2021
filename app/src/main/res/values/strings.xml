@@ -41,7 +41,8 @@
     <string name="empty_string" />
     <string name="km">km</string>
     <string name="you_re_not_logged_in">You\'re Not Logged In.</string>
-    <string name="you_need_to_login_into_your_account_to_see_this_screen">You need to login into your account\nto see this screen</string>
+    <string name="skip_for_now">Skip for now</string>
+    <string name="you_need_to_login_into_your_account_to_see_this_content">You need to login into your account\nto see this content</string>
 
     <!-- Image Picker Strings -->
     <string name="go_to_settings">Go To Settings</string>
@@ -168,7 +169,7 @@
     <string name="create_your_account">Create your account</string>
     <string name="sign_up_for_explore_all_the_genuine_products_and_get_deliver_to_your_doorstep">Sign up for Explore all the genuine products and get deliver to your doorstep.</string>
     <string name="full_name">Full Name</string>
-    <string name="mobile_number_optional">Mobile Number <font color='#806D6F72'>(Optional)</font></string>
+    <string name="mobile_number_optional">Mobile Number</string>
     <string name="by_joining_you_are_agree_to_our">By joining you are agree to our</string>
     <string name="by_signing_up_i_agree_to_the">By signing up I agree to the</string>
     <string name="terms_and_conditions">Terms &amp; Conditions</string>
@@ -220,7 +221,12 @@
     <string name="price_">%s SR</string>
     <string name="bed_count_">%s Bed</string>
     <string name="bath_count_">%s Bath</string>
-    <string name="no_products_yet">No product yet</string>
+    <string name="no_items_yet">No Items Yet</string>
+    <string name="latest_offers">Latest Offers</string>
+    <string name="categories">Categories</string>
+    <string name="top_selling">Top Selling</string>
+    <string name="latest_designs">Latest Designs</string>
+    <string name="latest_products">Latest Products</string>
 
     <!--    Login View-->
     <string name="login_now">Login Now</string>
@@ -268,6 +274,15 @@
     <string name="menu_about_us">About us</string>
     <string name="logout">Logout</string>
     <string name="menu_language">Language</string>
+
+    <!--    Product Details-->
+    <string name="add_to_cart">Add to cart</string>
+    <string name="choose_the_size">Choose the size</string>
+    <string name="suggested_designs">Suggested Designs</string>
+    <string name="upload_design">Upload Design</string>
+    <string name="the_design_file_must_be_in_one_of_the_following_formats_psd_pdf_il">The design file must be in one of the following formats: PSD, PDF, IL</string>
+    <string name="quantity">Quantity</string>
+    <string name="please_select_the_quantity">Please select the quantity</string>
 
 
 </resources>

@@ -35,7 +35,7 @@ class FavoritesViewModel @Inject constructor(
                         )
                 )
         favoritePref.getFavoriteList().forEach { favId ->
-            response.data?.data?.data?.singleOrNull { it.id == favId }?.let { it.favorite = true }
+            response.data?.body?.data?.singleOrNull { it.id == favId }?.let { it.isWishlist = true }
         }
         emit(response)
     }

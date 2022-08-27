@@ -4,8 +4,8 @@ import com.raantech.mycups.data.api.response.APIResource
 import com.raantech.mycups.data.api.response.ResponseHandler
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.daos.remote.product.ProductRemoteDao
-import com.raantech.mycups.data.models.general.ListWrapper
-import com.raantech.mycups.data.models.home.product.productdetails.Ads
+import com.raantech.mycups.data.models.home.product.productdetails.Product
+import com.raantech.mycups.data.models.home.product.productdetails.ProductResponse
 import com.raantech.mycups.data.repos.base.BaseRepo
 import javax.inject.Inject
 
@@ -14,7 +14,7 @@ class ProductRepoImpl @Inject constructor(
     private val remoteDao: ProductRemoteDao
 ) : BaseRepo(responseHandler), ProductRepo {
 
-    override suspend fun getProductById(productId: Int?): APIResource<ResponseWrapper<Ads>> {
+    override suspend fun getProductById(productId: Int?): APIResource<ResponseWrapper<ProductResponse>> {
         return try {
             responseHandle.handleSuccess(
                 remoteDao.getProductById(productId)
@@ -24,10 +24,10 @@ class ProductRepoImpl @Inject constructor(
         }
     }
 
-    override suspend fun getProductsList(fields: Map<String, String>): APIResource<ResponseWrapper<ListWrapper<Ads>>> {
+    override suspend fun getProductsList(categoryId: Int): APIResource<ResponseWrapper<List<Product>>> {
         return try {
             responseHandle.handleSuccess(
-                remoteDao.getProductsList(fields)
+                remoteDao.getProductsList(categoryId)
             )
         } catch (e: Exception) {
             responseHandle.handleException(e)

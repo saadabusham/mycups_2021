@@ -9,6 +9,7 @@ import com.raantech.mycups.data.daos.remote.lookups.LookupsRemoteDao
 import com.raantech.mycups.data.daos.remote.orders.OrdersRemoteDao
 import com.raantech.mycups.data.daos.remote.product.ProductRemoteDao
 import com.raantech.mycups.data.daos.remote.user.UserRemoteDao
+import com.raantech.mycups.data.daos.remote.wishlist.WishListRemoteDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -89,5 +90,13 @@ object RemoteDaosModule {
     @Provides
     fun provideProductRemoteDao(retrofit: Retrofit): ProductRemoteDao =
         retrofit.create(ProductRemoteDao::class.java)
+
+    @Singleton
+    @Provides
+    fun provideWishListRemoteDao(
+        retrofit: Retrofit
+    ): WishListRemoteDao {
+        return retrofit.create(WishListRemoteDao::class.java)
+    }
 
 }

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.raantech.mycups.R" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.raantech.mycups.data.models.home.offer.Offer" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvImage"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="@dimen/_210sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/button_color"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:cardElevation="@dimen/dimen_zero"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:strokeColor="@color/cardview_stroke_gray"
+            app:strokeWidth="@dimen/_2sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_140sdp"
+                android:orientation="vertical">
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    android:id="@+id/tvTitle"
+                    style="@style/textview_normal_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="@dimen/_3sdp"
+                    android:lineSpacingMultiplier="1"
+                    android:maxLines="1"
+                    android:minLines="1"
+                    android:text="@{item.name}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cvImage"
+                    tools:text="Paper Cup" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="@dimen/_3sdp"
+                    android:lineSpacingMultiplier="1"
+                    android:maxLines="1"
+                    android:minLines="1"
+                    android:text="@{item.description}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cvImage"
+                    tools:text="30% discount" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.raantech.mycups.ui.base.views.appviews.AppImageView
+            android:id="@+id/imgPhoto"
+            ivImageErrorPlaceholder="@{R.drawable.ic_offers_place_holder}"
+            ivImagePlaceholder="@{R.drawable.ic_offers_place_holder}"
+            ivImageUrl="@{item.icon}"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_170sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:elevation="@dimen/_4sdp"
+            android:src="@drawable/ic_offers_place_holder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

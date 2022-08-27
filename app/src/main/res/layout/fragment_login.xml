@@ -59,32 +59,33 @@
                     android:textSize="@dimen/_17ssp" />
 
                 <com.raantech.mycups.ui.base.views.appviews.AppTextView
-                    android:id="@+id/tvEmail"
+                    android:id="@+id/tvPhoneNumber"
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|start"
                     android:layout_marginTop="@dimen/_30sdp"
-                    android:text="@string/email_address"
+                    android:text="@string/phone_number"
                     android:textColor="@color/edit_text_title_color"
                     android:textSize="@dimen/_13ssp" />
 
                 <com.raantech.mycups.ui.base.views.appviews.AppEditText
-                    android:id="@+id/edEmail"
+                    android:id="@+id/edPhoneNumber"
                     style="@style/TextInputEditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/Edittext_height"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:gravity="center|start"
-                    android:hint="@string/email_address"
-                    android:inputType="textEmailAddress"
+                    android:hint="@string/phone_number"
+                    android:inputType="phone"
                     android:maxLines="1"
+                    android:digits="0123456789"
                     android:singleLine="true"
-                    android:text="@={viewModel.emailMutableLiveData}"
+                    android:text="@={viewModel.phoneNumberMutableLiveData}"
                     android:textAlignment="viewStart" />
 
                 <com.raantech.mycups.ui.base.views.appviews.AppTextView
-                    android:id="@+id/tvEmailError"
+                    android:id="@+id/tvPhoneNumberError"
                     style="@style/textview_normal_medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -147,7 +148,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:text="@string/forget_password_"
-                    android:textColor="@color/app_orange_color"
+                    android:textColor="@color/button_color"
                     android:onClick="@{()->presenter.onForgetPasswordClicked()}"
                     android:textSize="@dimen/_12ssp" />
 

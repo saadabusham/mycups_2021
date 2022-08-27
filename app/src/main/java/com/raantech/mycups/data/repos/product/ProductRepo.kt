@@ -3,16 +3,17 @@ package com.raantech.mycups.data.repos.product
 import com.raantech.mycups.data.api.response.APIResource
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.models.general.ListWrapper
-import com.raantech.mycups.data.models.home.product.productdetails.Ads
+import com.raantech.mycups.data.models.home.product.productdetails.Product
+import com.raantech.mycups.data.models.home.product.productdetails.ProductResponse
 
 interface ProductRepo {
 
     suspend fun getProductById(
         productId: Int?
-    ): APIResource<ResponseWrapper<Ads>>
+    ): APIResource<ResponseWrapper<ProductResponse>>
 
     suspend fun getProductsList(
-        fields: Map<String, String>,
-    ): APIResource<ResponseWrapper<ListWrapper<Ads>>>
+        categoryId:Int,
+    ): APIResource<ResponseWrapper<List<Product>>>
 
 }

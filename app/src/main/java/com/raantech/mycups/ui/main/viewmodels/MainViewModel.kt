@@ -59,7 +59,7 @@ class MainViewModel @Inject constructor(
 
     fun logoutRemote() = liveData {
         emit(APIResource.loading())
-        val response = userRepo.logout()
+        val response = userRepo.logout("")
         emit(response)
     }
 

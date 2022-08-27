@@ -4,14 +4,14 @@ import com.raantech.mycups.data.api.response.APIResource
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.models.general.ListWrapper
 import com.raantech.mycups.data.models.home.product.ProductFilter
-import com.raantech.mycups.data.models.home.product.productdetails.Ads
+import com.raantech.mycups.data.models.home.product.productdetails.Product
 
 
 interface FavoritesRepo {
 
     suspend fun getFavorites(
         productFilter: ProductFilter
-    ): APIResource<ResponseWrapper<ListWrapper<Ads>>>
+    ): APIResource<ResponseWrapper<ListWrapper<Product>>>
 
     suspend fun getFavoriteIds(
     ): APIResource<ResponseWrapper<List<Int>>>

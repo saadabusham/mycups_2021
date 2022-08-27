@@ -6,7 +6,7 @@ import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.daos.remote.favorites.FavoritesRemoteDao
 import com.raantech.mycups.data.models.general.ListWrapper
 import com.raantech.mycups.data.models.home.product.ProductFilter
-import com.raantech.mycups.data.models.home.product.productdetails.Ads
+import com.raantech.mycups.data.models.home.product.productdetails.Product
 import com.raantech.mycups.data.repos.base.BaseRepo
 import javax.inject.Inject
 
@@ -17,7 +17,7 @@ class FavoritesRepoImp @Inject constructor(
 
     override suspend fun getFavorites(
         productFilter: ProductFilter
-    ): APIResource<ResponseWrapper<ListWrapper<Ads>>> {
+    ): APIResource<ResponseWrapper<ListWrapper<Product>>> {
         return try {
             responseHandle.handleSuccess(
                 favoritesRemoteDao.getFavorites(

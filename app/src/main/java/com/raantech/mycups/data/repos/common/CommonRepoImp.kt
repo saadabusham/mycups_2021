@@ -6,8 +6,11 @@ import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.daos.remote.common.CommonRemoteDao
 import com.raantech.mycups.data.models.FaqsResponse
 import com.raantech.mycups.data.models.category.Category
+import com.raantech.mycups.data.models.category.DesignCategory
 import com.raantech.mycups.data.models.general.ListWrapper
 import com.raantech.mycups.data.models.home.banner.Banner
+import com.raantech.mycups.data.models.home.homedata.CategoriesItem
+import com.raantech.mycups.data.models.home.homedata.HomeResponse
 import com.raantech.mycups.data.models.home.product.productdetails.SocialMedia
 import com.raantech.mycups.data.models.notification.Notification
 import com.raantech.mycups.data.repos.base.BaseRepo
@@ -58,19 +61,30 @@ class CommonRepoImp @Inject constructor(
     }
 
     override suspend fun getCategories(
-        pageSize: Int,
-        pageNumber: Int,
-        name: String?,
-        parentId: Int?
-    ): APIResource<ResponseWrapper<ListWrapper<Category>>> {
+    ): APIResource<ResponseWrapper<List<Category>>> {
         return try {
             responseHandle.handleSuccess(
-                commonRemoteDao.getCategories(
-                    pageSize,
-                    pageNumber,
-                    name,
-                    parentId
-                )
+                commonRemoteDao.getCategories()
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun getSubCategories(categoryId: Int): APIResource<ResponseWrapper<List<CategoriesItem>>> {
+        return try {
+            responseHandle.handleSuccess(
+                commonRemoteDao.getSubCategories(categoryId)
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun getDesignCategories(): APIResource<ResponseWrapper<List<DesignCategory>>> {
+        return try {
+            responseHandle.handleSuccess(
+                commonRemoteDao.getDesignCategories()
             )
         } catch (e: Exception) {
             responseHandle.handleException(e)
@@ -96,4 +110,11 @@ class CommonRepoImp @Inject constructor(
         }
     }
 
+    override suspend fun getHome(): APIResource<ResponseWrapper<HomeResponse>> {
+        return try {
+            responseHandle.handleSuccess(commonRemoteDao.getHome())
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
 }

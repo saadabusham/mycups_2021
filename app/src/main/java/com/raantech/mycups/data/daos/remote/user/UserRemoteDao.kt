@@ -2,6 +2,7 @@ package com.raantech.mycups.data.daos.remote.user
 
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.common.NetworkConstants
+import com.raantech.mycups.data.models.auth.login.TokenModel
 import com.raantech.mycups.data.models.auth.login.UserDetailsResponseModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -10,59 +11,55 @@ import retrofit2.http.*
 interface UserRemoteDao {
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:true")
-    @FormUrlEncoded
-    @POST("api/user/authenticate")
+    @POST("auth/login")
     suspend fun login(
-        @Field("Username") userName: String,
-        @Field("Password") password: String
+        @Query("phone_number") userName: String,
+        @Query("password") password: String,
+        @Query("device_token") device_token: String,
+        @Query("platform") platform: String,
     ): ResponseWrapper<UserDetailsResponseModel>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @POST("user/auth/logout")
+    @POST("auth/logout")
     suspend fun logout(
+        @Query("device_token") deviceToken: String
     ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:true")
-    @FormUrlEncoded
-    @POST("api/user/register")
+    @POST("auth/register")
     suspend fun register(
-        @Field("Password") password: String,
-        @Field("FirstName") firstName: String,
-//        @Field("LastName") lastName: String,
-        @Field("PhoneNumber") phoneNumber: String?,
-        @Field("Email") email: String,
-        @Field("RegistrationId") registrationId: String,
-        @Field("DeviceType") deviceType: Int,
-        @Field("UserName") userName: String
+        @Query("password") password: String,
+        @Query("name") name: String,
+        @Query("phone_number") phoneNumber: String?,
+        @Query("email") email: String,
+        @Query("device_token") deviceToken: String,
+        @Query("platform") platform: String
     ): ResponseWrapper<String>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:true")
-    @FormUrlEncoded
-    @POST("api/user/forgetPassword/{email}")
+    @POST("auth/forgetPassword/{email}")
     suspend fun forgetPassword(
-        @Field("email") email: String
+        @Query("email") email: String
     ): ResponseWrapper<String>
 
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:true")
-    @FormUrlEncoded
-    @POST("api/user/verify")
+    @POST("auth/verify")
     suspend fun verify(
-        @Field("Email") userId: String,
-        @Field("VerificationCode") verificationCode: String
+        @Query("token") token: String,
+        @Query("code") verificationCode: String
     ): ResponseWrapper<UserDetailsResponseModel>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:true")
-    @GET("api/user/resendCode")
+    @GET("auth/resend")
     suspend fun resendCode(
-        @Query("PhoneNumber") phoneNumber: String
-    ): ResponseWrapper<String>
+        @Query("token") token: String
+    ): ResponseWrapper<TokenModel>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @FormUrlEncoded
     @POST("api/user/refreshToken")
     suspend fun refreshToken(
-        @Field("RefreshToken") refreshToken: String
+        @Query("RefreshToken") refreshToken: String
     ): ResponseWrapper<UserDetailsResponseModel>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
@@ -80,18 +77,16 @@ interface UserRemoteDao {
     ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @FormUrlEncoded
     @POST("api/user/newPassword")
     suspend fun updatePassword(
-        @Field("OldPassword") oldPassword: String,
-        @Field("Password") newPassword: String
+        @Query("OldPassword") oldPassword: String,
+        @Query("Password") newPassword: String
     ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @FormUrlEncoded
     @POST("api/user/newPassword")
     suspend fun resetPassword(
-        @Field("Password") newPassword: String
+        @Query("Password") newPassword: String
     ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")

@@ -6,9 +6,11 @@
     <data>
 
         <import type="com.raantech.mycups.R" />
+
         <variable
             name="presenter"
             type="com.raantech.mycups.ui.main.fragments.home.presenter.HomePresenter" />
+
         <variable
             name="viewModel"
             type="com.raantech.mycups.ui.main.fragments.home.viewmodels.HomeViewModel" />
@@ -20,33 +22,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp">
-
-            <com.raantech.mycups.ui.base.views.appviews.AppImageView
-                android:layout_width="@dimen/_85sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_marginStart="@dimen/layouts_margin_start"
-                android:src="@drawable/ic_logo_colored" />
-
-            <com.raantech.mycups.ui.base.views.appviews.AppImageView
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="@dimen/layouts_margin_end"
-                android:background="?android:selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="@dimen/_3sdp"
-                android:src="@drawable/ic_notifications_active" />
-        </RelativeLayout>
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_20sdp"
             android:clipToPadding="false"
             android:fillViewport="true">
 
@@ -55,79 +34,8 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/layouts_margin_start"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/layouts_margin_end">
-
-                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
-                        android:id="@+id/edTitle"
-                        style="@style/textview_normal_regular"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/Edittext_height"
-                        android:background="@drawable/edittext_shape_selector"
-                        android:drawableStart="@drawable/ic_search"
-                        android:drawablePadding="@dimen/_5sdp"
-                        android:paddingStart="@dimen/_15sdp"
-                        android:paddingEnd="@dimen/_10sdp"
-                        android:text="@string/search_hint"
-                        android:textColor="@color/edit_text_title_color_alpha50"
-                        android:textSize="@dimen/_13ssp" />
-
-                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
-                        android:id="@+id/edCity"
-                        style="@style/textview_normal_regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/Edittext_height"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        android:background="?selectableItemBackground"
-                        android:clickable="true"
-                        android:drawableEnd="@drawable/ic_arrow_down"
-                        android:drawablePadding="@dimen/_5sdp"
-                        android:drawableTint="@color/focused_color"
-                        android:focusable="true"
-                        android:text="Riyadh"
-                        android:onClick="@{()->presenter.onCityClicked()}"
-                        android:textColor="@color/edit_text_text_color"
-                        android:textSize="@dimen/_11ssp" />
-
-                </RelativeLayout>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/layouts_margin_start"
-                    android:layout_marginTop="@dimen/_25sdp"
-                    android:layout_marginEnd="@dimen/layouts_margin_end"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    app:cardCornerRadius="@dimen/_8sdp"
-                    app:cardElevation="0dp"
-                    app:strokeColor="@color/color_not_valid"
-                    app:strokeWidth="@dimen/_1sdp">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvCatData"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipToPadding="false"
-                        android:nestedScrollingEnabled="false"
-                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                        app:spanCount="4"
-                        tools:itemCount="8"
-                        tools:listitem="@layout/row_category" />
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <include
-                    android:id="@+id/layout_banner"
-                    layout="@layout/layout_banner" />
-
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCategoriesItems"
+                    android:id="@+id/rvHomeCategories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"
@@ -136,7 +44,7 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:spanCount="4"
                     tools:itemCount="8"
-                    tools:listitem="@layout/row_categories_items" />
+                    tools:listitem="@layout/row_home_categories" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

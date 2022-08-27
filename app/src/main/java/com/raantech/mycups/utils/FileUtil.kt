@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
 import java.io.ByteArrayOutputStream
+import java.io.File
 
 
 object FileUtil {
@@ -23,5 +24,16 @@ object FileUtil {
             e.printStackTrace()
         }
         return encodeString
+    }
+
+    fun getFileNameFromUri(path: String?): String {
+        try {
+            if (path == null)
+                return ""
+            val file = File(path)
+            return file.name ?: ""
+        }catch (e:Exception){
+            return ""
+        }
     }
 }

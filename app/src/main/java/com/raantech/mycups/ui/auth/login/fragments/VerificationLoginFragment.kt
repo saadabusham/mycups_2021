@@ -4,6 +4,7 @@ import androidx.fragment.app.activityViewModels
 import com.raantech.mycups.R
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.common.CustomObserverResponse
+import com.raantech.mycups.data.models.auth.login.TokenModel
 import com.raantech.mycups.data.models.auth.login.UserDetailsResponseModel
 import com.raantech.mycups.data.pref.user.UserPref
 import com.raantech.mycups.databinding.FragmentVerificationLoginBinding
@@ -67,16 +68,16 @@ class VerificationLoginFragment :
             })
     }
 
-    private fun sendOtpResultObserver(): CustomObserverResponse<String> {
+    private fun sendOtpResultObserver(): CustomObserverResponse<TokenModel> {
         return CustomObserverResponse(
             requireActivity(),
-            object : CustomObserverResponse.APICallBack<String> {
+            object : CustomObserverResponse.APICallBack<TokenModel> {
                 override fun onSuccess(
                     statusCode: Int,
                     subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: String?
+                    data: TokenModel?
                 ) {
-                    viewModel.userIdMutableLiveData.postValue(data)
+                    viewModel.userIdMutableLiveData.postValue(data?.token?:"")
                     viewModel.startHandleResendSignUpPinCodeTimer()
                 }
             })

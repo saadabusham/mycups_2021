@@ -2,20 +2,20 @@ package com.raantech.mycups.data.daos.remote.product
 
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.models.general.ListWrapper
-import com.raantech.mycups.data.models.home.product.productdetails.Ads
+import com.raantech.mycups.data.models.home.product.productdetails.Product
+import com.raantech.mycups.data.models.home.product.productdetails.ProductResponse
 import retrofit2.http.*
 
 interface ProductRemoteDao {
 
-    @GET("product/{id}")
+    @GET("products/{id}")
     suspend fun getProductById(
         @Path("id") productId: Int?
-    ): ResponseWrapper<Ads>
+    ): ResponseWrapper<ProductResponse>
 
-    @FormUrlEncoded
-    @POST("product/search")
+    @GET("category/{categoryId}/products")
     suspend fun getProductsList(
-        @FieldMap fields: Map<String, String>,
-    ): ResponseWrapper<ListWrapper<Ads>>
+        @Path("categoryId") categoryId: Int
+    ): ResponseWrapper<List<Product>>
 
 }

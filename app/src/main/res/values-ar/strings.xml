@@ -40,8 +40,8 @@
     <string name="female">Female</string>
     <string name="empty_string" />
     <string name="km">km</string>
-    <string name="you_re_not_logged_in">You\'re Not Logged In.</string>
-    <string name="you_need_to_login_into_your_account_to_see_this_screen">You need to login into your account\nto see this screen</string>
+    <string name="you_re_not_logged_in">أنت غير مسجل الدخول.</string>
+    <string name="you_need_to_login_into_your_account_to_see_this_screen">تحتاج إلى تسجيل الدخول إلى حسابك \n لمشاهدة هذه الشاشة</string>
 
     <!-- Image Picker Strings -->
     <string name="go_to_settings">Go To Settings</string>
@@ -75,16 +75,16 @@
     <string name="data_missing">Data missing</string>
     <string name="please_fill_data_fields">Please fill all the data fields</string>
 
-    <string name="confirm_password">Confirm Password</string>
+    <string name="confirm_password">تأكيد رقم الجوال</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="hint_date">Date</string>
     <string name="time">Time</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="phone_number">Phone number</string>
-    <string name="otp">OTP</string>
+    <string name="email">البريد الالكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="phone_number">رقم الجوال</string>
+    <string name="otp">رمز التحقق</string>
     <string name="number">Number</string>
 
     <!--    Update App-->
@@ -127,7 +127,7 @@
     <string name="enter_new_password">Enter your password</string>
     <string name="reset_your_password_">Reset Your Password</string>
     <string name="change_password">Change Password</string>
-    <string name="email_address">Email Address</string>
+    <string name="email_address">البريد الالكتروني</string>
     <!--    Verification-->
 
     <string name="send_again">Send again</string>
@@ -167,8 +167,8 @@
     <!--    Register-->
     <string name="create_your_account">Create your account</string>
     <string name="sign_up_for_explore_all_the_genuine_products_and_get_deliver_to_your_doorstep">Sign up for Explore all the genuine products and get deliver to your doorstep.</string>
-    <string name="full_name">Full Name</string>
-    <string name="mobile_number_optional">Mobile Number <font color='#806D6F72'>(Optional)</font></string>
+    <string name="full_name">الاسم</string>
+    <string name="mobile_number_optional">رقم الجوال</string>
     <string name="by_joining_you_are_agree_to_our">By joining you are agree to our</string>
     <string name="by_signing_up_i_agree_to_the">By signing up I agree to the</string>
     <string name="terms_and_conditions">Terms &amp; Conditions</string>
@@ -220,7 +220,12 @@
     <string name="price_">%s SR</string>
     <string name="bed_count_">%s Bed</string>
     <string name="bath_count_">%s Bath</string>
-    <string name="no_products_yet">No product yet</string>
+    <string name="no_items_yet">No product yet</string>
+    <string name="latest_offers">آخر العروض</string>
+    <string name="categories">التصنيفات</string>
+    <string name="top_selling">الاكثر مبيعات</string>
+    <string name="latest_designs">اخر التصاميم</string>
+    <string name="latest_products">احدث المنتجات</string>
 
     <!--    Login View-->
     <string name="login_now">Login Now</string>
@@ -268,6 +273,15 @@
     <string name="menu_about_us">عن الشركة</string>
     <string name="logout">تسجيل خروج</string>
     <string name="menu_language">اللغة</string>
+
+    <!--    Product Details-->
+    <string name="add_to_cart">أضف لسلة المشتريات</string>
+    <string name="choose_the_size">اختر القياس</string>
+    <string name="suggested_designs">تصاميم مقترحة</string>
+    <string name="upload_design">ارفع التصميم</string>
+    <string name="the_design_file_must_be_in_one_of_the_following_formats_psd_pdf_il">ملف التصميم يجب ان يكون باحدى الصيغ التالية PSD , PDF , IL</string>
+    <string name="quantity">الكمية</string>
+    <string name="please_select_the_quantity">يرجى تحديد الكمية</string>
 
 
 </resources>

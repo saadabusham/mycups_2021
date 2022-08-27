@@ -5,6 +5,7 @@ import android.os.CountDownTimer
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.raantech.mycups.data.api.response.APIResource
+import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.enums.UserEnums
 import com.raantech.mycups.data.models.auth.login.UserDetailsResponseModel
 import com.raantech.mycups.data.repos.user.UserRepo
@@ -35,7 +36,7 @@ class LoginViewModel @Inject constructor(
 
     }
 
-    val emailMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val phoneNumberMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val passwordMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val buttonEnabled:MutableLiveData<Boolean> = MutableLiveData(false)
     // Login Verification Code
@@ -44,7 +45,7 @@ class LoginViewModel @Inject constructor(
             by lazy { MutableLiveData<Boolean>(false) }
     val signUpResendTimer: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 
-    val userIdMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>("") }
+    val userIdMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     private val forgetCountDownTimer: CountDownTimer by lazy {
         object : CountDownTimer(
             RESEND_ENABLE_TIME_IN_MIN.minToMillisecond(),
@@ -64,8 +65,10 @@ class LoginViewModel @Inject constructor(
     fun loginUser() = liveData {
         emit(APIResource.loading())
         val response = userRepo.login(
-            emailMutableLiveData.value.toString(),
-            passwordMutableLiveData.value.toString()
+            phoneNumberMutableLiveData.value.toString(),
+            passwordMutableLiveData.value.toString(),
+            device_token = "",
+            platform = Constants.DEVICE_TYPE
         )
         emit(response)
     }
@@ -82,7 +85,7 @@ class LoginViewModel @Inject constructor(
 
     fun storeUser(user: UserDetailsResponseModel) {
         signUpVerificationCode.postValue("")
-        user.token?.let { userRepo.saveAccessToken(it) }
+        user.accessToken?.let { userRepo.saveAccessToken(it) }
         userRepo.setUserStatus(UserEnums.UserState.LoggedIn)
         userRepo.setUser(user)
     }
@@ -105,7 +108,7 @@ class LoginViewModel @Inject constructor(
     fun resendVerificationCode() = liveData {
         emit(APIResource.loading())
         val response = userRepo.resendCode(
-            emailMutableLiveData.value.toString()
+            phoneNumberMutableLiveData.value.toString()
         )
         emit(response)
     }
