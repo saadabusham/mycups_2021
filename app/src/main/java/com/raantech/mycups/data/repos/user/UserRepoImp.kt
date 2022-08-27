@@ -8,6 +8,7 @@ import com.raantech.mycups.data.enums.UserEnums
 import com.raantech.mycups.data.models.auth.login.TokenModel
 import com.raantech.mycups.data.pref.user.UserPref
 import com.raantech.mycups.data.models.auth.login.UserDetailsResponseModel
+import com.raantech.mycups.data.models.notification.Notification
 import com.raantech.mycups.data.repos.base.BaseRepo
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -195,6 +196,18 @@ class UserRepoImp @Inject constructor(
             responseHandle.handleSuccess(
                 userRemoteDao.updateProfilePicture(
                     image
+                )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun getNotifications(skip: Int): APIResource<ResponseWrapper<List<Notification>>> {
+        return try {
+            responseHandle.handleSuccess(
+                userRemoteDao.getNotifications(
+                    skip
                 )
             )
         } catch (e: Exception) {

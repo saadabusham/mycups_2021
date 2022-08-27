@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.raantech.mycups.ui.main.viewmodels.MainViewModel" />
@@ -43,7 +44,7 @@
                     android:id="@+id/relativeCart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toStartOf="@id/imgSearch">
+                    android:layout_toStartOf="@id/imgNotifications">
 
                     <ImageView
                         android:id="@+id/imgCart"
@@ -78,6 +79,18 @@
                             tools:text="10" />
                     </com.google.android.material.card.MaterialCardView>
                 </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/imgNotifications"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_centerInParent="true"
+                    android:layout_toStartOf="@id/imgSearch"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="@dimen/_3sdp"
+                    android:src="@drawable/ic_notifications" />
 
                 <ImageView
                     android:id="@+id/imgSearch"

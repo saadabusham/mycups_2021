@@ -77,7 +77,7 @@
                     android:id="@+id/imgPhoto"
                     ivImageErrorPlaceholder="@{R.drawable.ic_product_place_holder}"
                     ivImagePlaceholder="@{R.drawable.ic_product_place_holder}"
-                    ivImageUrl="@{viewModel.productToView.base_image}"
+                    ivImageUrl="@{viewModel.productToView.base_image.url}"
                     android:layout_width="@dimen/_180sdp"
                     android:layout_height="@dimen/_220sdp"
                     android:layout_gravity="center"

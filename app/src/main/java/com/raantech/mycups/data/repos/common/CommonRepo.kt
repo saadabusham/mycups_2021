@@ -4,6 +4,7 @@ import com.raantech.mycups.data.api.response.APIResource
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.common.NetworkConstants
 import com.raantech.mycups.data.models.FaqsResponse
+import com.raantech.mycups.data.models.category.CategoriesResponse
 import com.raantech.mycups.data.models.category.Category
 import com.raantech.mycups.data.models.category.DesignCategory
 import com.raantech.mycups.data.models.general.ListWrapper
@@ -42,7 +43,7 @@ interface CommonRepo {
 
     suspend fun getSubCategories(
         categoryId:Int
-    ): APIResource<ResponseWrapper<List<CategoriesItem>>>
+    ): APIResource<ResponseWrapper<CategoriesResponse>>
 
     suspend fun getDesignCategories(
     ): APIResource<ResponseWrapper<List<DesignCategory>>>

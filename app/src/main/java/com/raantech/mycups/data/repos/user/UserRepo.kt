@@ -5,6 +5,7 @@ import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.enums.UserEnums
 import com.raantech.mycups.data.models.auth.login.TokenModel
 import com.raantech.mycups.data.models.auth.login.UserDetailsResponseModel
+import com.raantech.mycups.data.models.notification.Notification
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Query
@@ -76,6 +77,10 @@ interface UserRepo {
     suspend fun updateProfilePicture(
         image: MultipartBody.Part
     ): APIResource<ResponseWrapper<Any>>
+
+    suspend fun getNotifications(
+        skip:Int
+    ): APIResource<ResponseWrapper<List<Notification>>>
 
     fun saveNotificationStatus(flag: Boolean)
     fun getNotificationStatus(): Boolean

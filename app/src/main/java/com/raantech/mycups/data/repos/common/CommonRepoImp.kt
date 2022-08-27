@@ -5,11 +5,11 @@ import com.raantech.mycups.data.api.response.ResponseHandler
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.daos.remote.common.CommonRemoteDao
 import com.raantech.mycups.data.models.FaqsResponse
+import com.raantech.mycups.data.models.category.CategoriesResponse
 import com.raantech.mycups.data.models.category.Category
 import com.raantech.mycups.data.models.category.DesignCategory
 import com.raantech.mycups.data.models.general.ListWrapper
 import com.raantech.mycups.data.models.home.banner.Banner
-import com.raantech.mycups.data.models.home.homedata.CategoriesItem
 import com.raantech.mycups.data.models.home.homedata.HomeResponse
 import com.raantech.mycups.data.models.home.product.productdetails.SocialMedia
 import com.raantech.mycups.data.models.notification.Notification
@@ -71,7 +71,7 @@ class CommonRepoImp @Inject constructor(
         }
     }
 
-    override suspend fun getSubCategories(categoryId: Int): APIResource<ResponseWrapper<List<CategoriesItem>>> {
+    override suspend fun getSubCategories(categoryId: Int): APIResource<ResponseWrapper<CategoriesResponse>> {
         return try {
             responseHandle.handleSuccess(
                 commonRemoteDao.getSubCategories(categoryId)

@@ -282,6 +282,7 @@
     <string name="the_design_file_must_be_in_one_of_the_following_formats_psd_pdf_il">ملف التصميم يجب ان يكون باحدى الصيغ التالية PSD , PDF , IL</string>
     <string name="quantity">الكمية</string>
     <string name="please_select_the_quantity">يرجى تحديد الكمية</string>
+    <string name="menu_notifications">الاشعارات</string>
 
 
 </resources>

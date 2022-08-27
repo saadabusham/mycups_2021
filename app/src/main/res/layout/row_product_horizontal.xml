@@ -51,7 +51,7 @@
                     android:id="@+id/imgPhoto"
                     ivImageErrorPlaceholder="@{R.drawable.ic_product_place_holder}"
                     ivImagePlaceholder="@{R.drawable.ic_product_place_holder}"
-                    ivImageUrl="@{item.base_image}"
+                    ivImageUrl="@{item.base_image.url}"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_90sdp"
                     android:layout_gravity="center"

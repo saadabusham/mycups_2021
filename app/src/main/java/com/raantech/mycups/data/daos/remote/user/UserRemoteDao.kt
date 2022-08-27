@@ -4,6 +4,7 @@ import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.common.NetworkConstants
 import com.raantech.mycups.data.models.auth.login.TokenModel
 import com.raantech.mycups.data.models.auth.login.UserDetailsResponseModel
+import com.raantech.mycups.data.models.notification.Notification
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
@@ -103,4 +104,11 @@ interface UserRemoteDao {
     suspend fun updateProfilePicture(
         @Part image: MultipartBody.Part
     ): ResponseWrapper<Any>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @GET("notifications")
+    suspend fun getNotifications(
+        @Query("skip") skip: Int
+    ): ResponseWrapper<List<Notification>>
+
 }

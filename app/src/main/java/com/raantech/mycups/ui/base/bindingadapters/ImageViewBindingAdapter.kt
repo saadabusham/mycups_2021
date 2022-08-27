@@ -108,15 +108,18 @@ fun setUpRequestOptions(
 
 fun getLoadingUrl(imageUrl: String): Any {
 
-    if (imageUrl.contains("storage")) {
+    if (imageUrl.startsWith("http") || imageUrl.startsWith("https")) {
+        return imageUrl
+    }else if (imageUrl.contains("/storage/")) {
+        return "$IMAGES_BASE_URL$imageUrl"
+    }else if (imageUrl.contains("storage")) {
         return Uri.fromFile(File(imageUrl))
     } else if (imageUrl.startsWith("content", true)) {
         return Uri.parse(imageUrl)
-    }else if (!imageUrl.startsWith("http")) {
-        return "$IMAGES_BASE_URL$imageUrl"
     }
     return imageUrl
 }
+
 
 @BindingAdapter("imageRec")
 fun ImageView?.setImageFromRec(

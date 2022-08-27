@@ -60,7 +60,6 @@
                     layout="@layout/layout_no_data"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/_70sdp"
                     android:layout_marginBottom="@dimen/_15sdp"
                     android:visibility="gone" />
 

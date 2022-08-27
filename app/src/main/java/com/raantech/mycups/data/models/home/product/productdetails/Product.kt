@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import com.raantech.mycups.data.models.Price
 import com.raantech.mycups.data.models.category.DesignCategory
+import com.raantech.mycups.data.models.media.Media
 import java.io.Serializable
 
 data class Product(
@@ -19,7 +20,7 @@ data class Product(
     val description: String? = null,
 
     @field:SerializedName("base_image")
-    val base_image: String? = null,
+    val base_image: Media? = null,
 
     @field:SerializedName("price")
     val price: Price? = null,
@@ -34,7 +35,7 @@ data class Product(
     var isWishlist: Boolean? = false,
 
     @field:SerializedName("additional_images")
-    var additionalImages: List<String>? = null,
+    var additionalImages: List<Media>? = null,
 
     @field:SerializedName("designs_categories")
     var designsCategories: List<DesignCategory>? = null,

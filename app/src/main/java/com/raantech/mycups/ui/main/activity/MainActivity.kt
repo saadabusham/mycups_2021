@@ -35,6 +35,7 @@ import com.raantech.mycups.ui.checkout.viewmodels.CheckoutViewModel
 import com.raantech.mycups.ui.main.adapters.DrawerRecyclerAdapter
 import com.raantech.mycups.ui.main.fragments.favorites.viewmodels.FavoritesViewModel
 import com.raantech.mycups.ui.main.viewmodels.MainViewModel
+import com.raantech.mycups.ui.notifications.activity.NotificationsActivity
 import com.raantech.mycups.ui.splash.SplashActivity
 import com.raantech.mycups.utils.LocaleUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -78,7 +79,17 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
     }
 
     private fun setUpListeners() {
-
+        binding?.appBarMain?.layoutToolbar?.imgCart?.setOnClickListener {
+            if (!viewModel.cartCount.value.equals("0")) {
+//                CartActivity.start(this)
+            }
+        }
+        binding?.appBarMain?.layoutToolbar?.imgSearch?.setOnClickListener {
+//            FiltersActivity.start(this)
+        }
+        binding?.appBarMain?.layoutToolbar?.imgNotifications?.setOnClickListener {
+            NotificationsActivity.start(this)
+        }
     }
 
     private fun updateFcmToken() {

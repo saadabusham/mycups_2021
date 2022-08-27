@@ -3,6 +3,7 @@ package com.raantech.mycups.data.daos.remote.common
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.common.NetworkConstants
 import com.raantech.mycups.data.models.FaqsResponse
+import com.raantech.mycups.data.models.category.CategoriesResponse
 import com.raantech.mycups.data.models.category.Category
 import com.raantech.mycups.data.models.category.DesignCategory
 import com.raantech.mycups.data.models.general.ListWrapper
@@ -50,7 +51,7 @@ interface CommonRemoteDao {
     @GET("main/categories/{categoryId}")
     suspend fun getSubCategories(
         @Path("categoryId") categoryId: Int
-    ): ResponseWrapper<List<CategoriesItem>>
+    ): ResponseWrapper<CategoriesResponse>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @GET("designs/categories")

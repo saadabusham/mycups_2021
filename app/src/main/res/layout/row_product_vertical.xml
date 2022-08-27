@@ -24,7 +24,7 @@
             android:id="@+id/imgIcon"
             ivImageErrorPlaceholder="@{R.drawable.ic_category_place_holder}"
             ivImagePlaceholder="@{R.drawable.ic_category_place_holder}"
-            ivImageUrl="@{item.base_image}"
+            ivImageUrl="@{item.base_image.url}"
             android:layout_width="@dimen/_30sdp"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginStart="@dimen/_10sdp"

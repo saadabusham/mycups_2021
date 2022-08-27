@@ -11,6 +11,7 @@ import com.raantech.mycups.data.api.response.GeneralError
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
+import com.raantech.mycups.data.models.category.CategoriesResponse
 import com.raantech.mycups.data.models.home.homedata.CategoriesItem
 import com.raantech.mycups.data.models.home.product.productdetails.Product
 import com.raantech.mycups.databinding.ActivitySubcategoryBinding
@@ -81,18 +82,19 @@ class SubcategoryActivity : BaseBindingActivity<ActivitySubcategoryBinding, Noth
         ).observe(this, categoriesResultObserver())
     }
 
-    private fun categoriesResultObserver(): CustomObserverResponse<List<CategoriesItem>> {
+    private fun categoriesResultObserver(): CustomObserverResponse<CategoriesResponse> {
         return CustomObserverResponse(
             this,
-            object : CustomObserverResponse.APICallBack<List<CategoriesItem>> {
+            object : CustomObserverResponse.APICallBack<CategoriesResponse> {
                 override fun onSuccess(
                     statusCode: Int,
                     subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: List<CategoriesItem>?
+                    data: CategoriesResponse?
                 ) {
                     loading.postValue(false)
-                    data?.let {
-                        handleCategoriesResult(it)
+                    data?.categories?.let {
+                        tabListRecyclerAdapter.submitNewItems(it)
+                        handleCategoriesResult(0)
                     }
                     checkTabList()
                 }
@@ -114,22 +116,13 @@ class SubcategoryActivity : BaseBindingActivity<ActivitySubcategoryBinding, Noth
         )
     }
 
-    private fun handleCategoriesResult(it: List<CategoriesItem>) {
-        val selectedIndex = tabListRecyclerAdapter.getSelectedItem()?.id
-        tabListRecyclerAdapter.clear()
-        if (it.isNotEmpty()) {
-            tabListRecyclerAdapter.submitItems(
-                it.apply {
-                    withIndex().singleOrNull { it.value.id == selectedIndex }.also {
-                        if (it != null) {
-                            it.value.isSelected.value = true
-                            loadProducts(it.value)
-                        } else {
-                            get(0).isSelected.value = true
-                            loadProducts(get(0))
-                        }
-                    }
-                })
+    private fun handleCategoriesResult(selectedPosition:Int) {
+        if(tabListRecyclerAdapter.items.isEmpty()){
+            return
+        }
+        tabListRecyclerAdapter.items[selectedPosition].let {
+            it.isSelected.value = true
+            loadProducts(it)
         }
     }
 
@@ -157,11 +150,8 @@ class SubcategoryActivity : BaseBindingActivity<ActivitySubcategoryBinding, Noth
                     data: List<Product>?
                 ) {
                     loading.postValue(false)
-                    productVerticalRecyclerAdapter.clear()
-                    if (data.isNullOrEmpty()) {
-                        hideShowNoData()
-                    } else
-                        productVerticalRecyclerAdapter.submitNewItems(data)
+                    productVerticalRecyclerAdapter.submitNewItems(data)
+                    hideShowNoData()
                 }
 
                 override fun onError(
