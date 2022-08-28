@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.raantech.mycups.R" />
+
+        <variable
+            name="presenter"
+            type="com.raantech.mycups.ui.more.contactus.presenter.ContactUsPresenter" />
+
+        <variable
+            name="viewModel"
+            type="com.raantech.mycups.ui.more.contactus.viewmodels.ContactUsViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/layout_toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:text="@string/do_you_have_a_problem_with_the_application_the_work_mechanism_or_any_comments_do_not_hesitate_to_send_them_to_us"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:text="@string/problem_title"
+                    android:textColor="@color/subtitle_color"
+                    android:textSize="@dimen/_13ssp" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppEditText
+                    android:id="@+id/edSubject"
+                    style="@style/TextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/Edittext_height"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:gravity="center|start"
+                    android:hint="@string/write_here"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@={viewModel.titleMutableLiveData}"
+                    android:textAlignment="viewStart" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:text="@string/problem_description"
+                    android:textColor="@color/subtitle_color"
+                    android:textSize="@dimen/_13ssp" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppEditText
+                    android:id="@+id/edMessage"
+                    style="@style/TextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:gravity="center|start|top"
+                    android:hint="@string/write_here"
+                    android:maxLines="7"
+                    android:minLines="4"
+                    android:padding="@dimen/_15sdp"
+                    android:text="@={viewModel.descriptionMutableLiveData}"
+                    android:textColor="@color/subtitle_color"
+                    android:textSize="@dimen/_14ssp" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:text="@string/attachments_if_any"
+                    android:visibility="gone"
+                    android:textColor="@color/subtitle_color"
+                    android:textSize="@dimen/_13ssp" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    android:id="@+id/tvAddImages"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:background="@drawable/edittext_shape_selector"
+                    android:gravity="center"
+                    android:drawableEnd="@drawable/ic_upload_doc"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:visibility="gone"
+                    android:onClick="@{()->presenter.onSelectImageClicked()}"
+                    android:text="@string/attachments"
+                    android:textColor="@color/subtitle_color"
+                    android:textSize="@dimen/_13ssp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/layouts_margin_start"
+                    android:paddingEnd="@dimen/layouts_margin_end"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="8"
+                    tools:listitem="@layout/row_image_view_small" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSend"
+            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:onClick="@{()->presenter.onSubmitClicked()}"
+            android:text="@string/submit"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_12ssp" />
+    </LinearLayout>
+</layout>

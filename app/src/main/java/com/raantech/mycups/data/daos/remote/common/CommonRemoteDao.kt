@@ -19,14 +19,14 @@ import retrofit2.http.*
 interface CommonRemoteDao {
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @GET("api/user/notification")
+    @GET("user/notification")
     suspend fun getNotifications(
         @Query("PageSize") pageSize: Int,
         @Query("PageNumber") pageNumber: Int
     ): ResponseWrapper<ListWrapper<Notification>>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:true")
-    @GET("api/faq")
+    @GET("faq")
     suspend fun getFaqs(
         @Query("PageSize") pageSize: Int,
         @Query("PageNumber") pageNumber: Int
@@ -34,12 +34,11 @@ interface CommonRemoteDao {
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @Multipart
-    @POST("api/contact-us")
+    @POST("tickets")
     suspend fun contactUs(
-        @Part("message") message: RequestBody,
-        @Part image1: MultipartBody.Part?,
-        @Part image2: MultipartBody.Part?,
-        @Part image3: MultipartBody.Part?,
+        @Part("title") title: RequestBody,
+        @Part("description") description: RequestBody,
+        @Part images: List<MultipartBody.Part>? = null
     ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
@@ -59,12 +58,12 @@ interface CommonRemoteDao {
     ): ResponseWrapper<List<DesignCategory>>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @GET("api/ContactUsSocialMedia")
+    @GET("ContactUsSocialMedia")
     suspend fun getContactUsSocialMedia(
     ): ResponseWrapper<List<SocialMedia>>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @GET("api/deal")
+    @GET("deal")
     suspend fun getBanner(
         @Query("PageSize") pageSize: Int,
         @Query("PageNumber") pageNumber: Int

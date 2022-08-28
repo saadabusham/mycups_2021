@@ -4,6 +4,7 @@ import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.models.general.ListWrapper
 import com.raantech.mycups.data.models.home.product.productdetails.Product
 import com.raantech.mycups.data.models.home.product.productdetails.ProductResponse
+import com.raantech.mycups.data.models.home.product.productdetails.ProductsResponse
 import retrofit2.http.*
 
 interface ProductRemoteDao {
@@ -16,6 +17,6 @@ interface ProductRemoteDao {
     @GET("category/{categoryId}/products")
     suspend fun getProductsList(
         @Path("categoryId") categoryId: Int
-    ): ResponseWrapper<List<Product>>
+    ): ResponseWrapper<ProductsResponse>
 
 }

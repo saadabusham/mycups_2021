@@ -297,11 +297,26 @@
                   <entry key="vectorAssetStep">
                     <value>
                       <PersistentState>
+                        <option name="children">
+                          <map>
+                            <entry key="clipartAsset">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/local_phone/baseline_local_phone_24.xml" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_notifications" />
-                            <entry key="sourceFile" value="H:\freelance\mycubs2021\data\icons\MDI - bell-outline.svg" />
+                            <entry key="outputName" value="ic_dial" />
+                            <entry key="sourceFile" value="H:\freelance\mycubs2021\data\icons\ic_dial.svg" />
                           </map>
                         </option>
                       </PersistentState>

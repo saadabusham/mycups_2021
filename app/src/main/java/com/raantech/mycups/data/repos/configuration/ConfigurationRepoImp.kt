@@ -6,6 +6,7 @@ import com.raantech.mycups.data.api.response.ResponseHandler
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.daos.remote.configuration.ConfigurationRemoteDao
 import com.raantech.mycups.data.models.configuration.ConfigurationWrapperResponse
+import com.raantech.mycups.data.models.more.AboutUsResponse
 import com.raantech.mycups.data.pref.configuration.ConfigurationPref
 import com.raantech.mycups.data.repos.base.BaseRepo
 import javax.inject.Inject
@@ -33,4 +34,11 @@ class ConfigurationRepoImp @Inject constructor(
         }
     }
 
+    override suspend fun getAboutUs(): APIResource<ResponseWrapper<AboutUsResponse>> {
+        return try {
+            responseHandle.handleSuccess(configurationRemoteDao.getAboutUs())
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
 }

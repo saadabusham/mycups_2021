@@ -44,8 +44,8 @@ abstract class BaseBindingRecyclerViewAdapter<MODEL>(
 
     }
 
-    fun submitItem(newItem: MODEL) {
-        items.add(newItem)
+    fun submitItem(newItem: MODEL, position: Int = 0) {
+        items.add(position, newItem)
         notifyDataSetChanged()
     }
 

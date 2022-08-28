@@ -24,12 +24,13 @@
 
                 <TextView
                     android:id="@+id/tvTitle"
-                    style="@style/textview_header_bold"
+                    style="@style/textview_normal_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:textColor="@color/textview_header_gray"
-                    android:textSize="@dimen/_11ssp" />
+                    android:textColor="@color/title_color"
+                    android:textSize="@dimen/_16ssp"
+                    android:text="Title"/>
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 

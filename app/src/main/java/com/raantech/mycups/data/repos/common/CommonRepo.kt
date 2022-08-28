@@ -32,10 +32,9 @@ interface CommonRepo {
     ): APIResource<ResponseWrapper<ListWrapper<FaqsResponse>>>
 
     suspend fun contactUs(
-        message: RequestBody,
-        image1: MultipartBody.Part? = null,
-        image2: MultipartBody.Part? = null,
-        image3: MultipartBody.Part? = null,
+        title: RequestBody,
+        description: RequestBody,
+        images: List<MultipartBody.Part>? = null
     ): APIResource<ResponseWrapper<Any>>
 
     suspend fun getCategories(

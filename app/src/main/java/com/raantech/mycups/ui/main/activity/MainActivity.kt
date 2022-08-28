@@ -1,10 +1,12 @@
 package com.raantech.mycups.ui.main.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.res.ResourcesCompat
@@ -35,6 +37,8 @@ import com.raantech.mycups.ui.checkout.viewmodels.CheckoutViewModel
 import com.raantech.mycups.ui.main.adapters.DrawerRecyclerAdapter
 import com.raantech.mycups.ui.main.fragments.favorites.viewmodels.FavoritesViewModel
 import com.raantech.mycups.ui.main.viewmodels.MainViewModel
+import com.raantech.mycups.ui.more.aboutus.AboutUsActivity
+import com.raantech.mycups.ui.more.contactus.activity.ContactUsActivity
 import com.raantech.mycups.ui.notifications.activity.NotificationsActivity
 import com.raantech.mycups.ui.splash.SplashActivity
 import com.raantech.mycups.utils.LocaleUtil
@@ -283,13 +287,13 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
 //                2 -> NotificationsActivity.start(this)
 //                3 -> UpdateProfileActivity.start(this)
 //                4 -> SettingsActivity.start(this)
-//                5 -> AboutUsActivity.start(this)
-//                6 -> viewModel.logoutRemote().observe(this, logoutResultObserver())
+                5 -> ContactUsActivity.start(this)
+                6 -> AboutUsActivity.start(this)
                 7 -> {
                     if (viewModel.isUserLoggedIn())
                         viewModel.logoutRemote().observe(this, logoutResultObserver())
                     else
-                        AuthActivity.startForResult(this@MainActivity, true)
+                        AuthActivity.startForResult(this@MainActivity, true,loginResultLauncher)
                 }
                 8 -> viewModel.saveLanguage().observe(this, Observer {
                     this.let {
@@ -302,7 +306,18 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
             }
         }
     }
+    var loginResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                if (result.data?.getBooleanExtra(
+                        Constants.BundleData.IS_LOGIN_SUCCESS,
+                        false
+                    ) == true
+                ) {
 
+                }
+            }
+        }
     private fun logoutResultObserver(): CustomObserverResponse<Any> {
         return CustomObserverResponse(
             this,

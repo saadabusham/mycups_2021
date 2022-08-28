@@ -14,6 +14,8 @@ import com.raantech.mycups.data.common.CustomObserverResponse
 import com.raantech.mycups.data.models.category.CategoriesResponse
 import com.raantech.mycups.data.models.home.homedata.CategoriesItem
 import com.raantech.mycups.data.models.home.product.productdetails.Product
+import com.raantech.mycups.data.models.home.product.productdetails.ProductResponse
+import com.raantech.mycups.data.models.home.product.productdetails.ProductsResponse
 import com.raantech.mycups.databinding.ActivitySubcategoryBinding
 import com.raantech.mycups.ui.base.activity.BaseBindingActivity
 import com.raantech.mycups.ui.base.adapters.BaseBindingRecyclerViewAdapter
@@ -140,17 +142,17 @@ class SubcategoryActivity : BaseBindingActivity<ActivitySubcategoryBinding, Noth
         }
     }
 
-    private fun productsResultObserver(): CustomObserverResponse<List<Product>> {
+    private fun productsResultObserver(): CustomObserverResponse<ProductsResponse> {
         return CustomObserverResponse(
             this,
-            object : CustomObserverResponse.APICallBack<List<Product>> {
+            object : CustomObserverResponse.APICallBack<ProductsResponse> {
                 override fun onSuccess(
                     statusCode: Int,
                     subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: List<Product>?
+                    data: ProductsResponse?
                 ) {
                     loading.postValue(false)
-                    productVerticalRecyclerAdapter.submitNewItems(data)
+                    productVerticalRecyclerAdapter.submitNewItems(data?.products)
                     hideShowNoData()
                 }
 

@@ -48,13 +48,12 @@ class CommonRepoImp @Inject constructor(
     }
 
     override suspend fun contactUs(
-        message: RequestBody,
-        image1: MultipartBody.Part?,
-        image2: MultipartBody.Part?,
-        image3: MultipartBody.Part?
+        title: RequestBody,
+        description: RequestBody,
+        images: List<MultipartBody.Part>?
     ): APIResource<ResponseWrapper<Any>> {
         return try {
-            responseHandle.handleSuccess(commonRemoteDao.contactUs(message, image1, image2, image3))
+            responseHandle.handleSuccess(commonRemoteDao.contactUs(title, description, images))
         } catch (e: Exception) {
             responseHandle.handleException(e)
         }
