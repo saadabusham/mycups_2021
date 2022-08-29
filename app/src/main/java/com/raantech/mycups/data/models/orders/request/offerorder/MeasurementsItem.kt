@@ -1,4 +1,4 @@
-package com.raantech.mycups.data.models.orders.request
+package com.raantech.mycups.data.models.orders.request.offerorder
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

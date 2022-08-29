@@ -120,7 +120,6 @@ class ProductDetailsActivity :
                     measurementAdapter?.submitNewItems(data?.product?.measurements)
                     handleDesigns(data?.product?.designsCategories)
                 }
-
             }
         )
     }
