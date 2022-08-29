@@ -5,18 +5,19 @@ import java.io.Serializable
 
 data class OfferOrderRequest(
 
+    @field:SerializedName("order_type")
+    val orderType: String? = null,
+
     @field:SerializedName("has_stock")
 	val hasStock: Boolean? = null,
 
-    @field:SerializedName("product")
-	val product: Product? = null,
-
     @field:SerializedName("design_id")
-	val designId: Int? = null,
+    var designId: Int? = null,
+
+    @field:SerializedName("product")
+	val product: OfferOrderProduct? = null,
 
     @field:SerializedName("files")
-	val files: Files? = null,
+	val files: Files? = null
 
-    @field:SerializedName("order_type")
-	val orderType: String? = null
 ):Serializable

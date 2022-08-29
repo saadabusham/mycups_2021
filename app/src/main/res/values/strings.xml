@@ -283,6 +283,8 @@
     <string name="the_design_file_must_be_in_one_of_the_following_formats_psd_pdf_il">The design file must be in one of the following formats: PSD, PDF, IL</string>
     <string name="quantity">Quantity</string>
     <string name="please_select_the_quantity">Please select the quantity</string>
+    <string name="design">Design</string>
+    <string name="please_select_the_design">Please select the design</string>
     <string name="menu_notifications">Notifications</string>
 
 

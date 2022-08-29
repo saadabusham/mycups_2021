@@ -14,6 +14,8 @@ import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
 import com.raantech.mycups.data.enums.MediaTypesEnum
+import com.raantech.mycups.data.enums.OrderTypesEnum
+import com.raantech.mycups.data.enums.PaymentTypeEnum
 import com.raantech.mycups.data.models.category.Category
 import com.raantech.mycups.data.models.category.DesignCategory
 import com.raantech.mycups.data.models.home.homedata.CategoriesItem
@@ -21,6 +23,12 @@ import com.raantech.mycups.data.models.home.product.productdetails.Measurement
 import com.raantech.mycups.data.models.home.product.productdetails.Product
 import com.raantech.mycups.data.models.home.product.productdetails.ProductResponse
 import com.raantech.mycups.data.models.media.Media
+import com.raantech.mycups.data.models.orders.request.offerorder.Files
+import com.raantech.mycups.data.models.orders.request.offerorder.MeasurementsItem
+import com.raantech.mycups.data.models.orders.request.offerorder.OfferOrderProduct
+import com.raantech.mycups.data.models.orders.request.offerorder.OfferOrderRequest
+import com.raantech.mycups.data.models.orders.request.purchaseorder.PurchaseOrderProducts
+import com.raantech.mycups.data.models.orders.request.purchaseorder.PurchaseOrderRequest
 import com.raantech.mycups.databinding.ActivityFastProductDetailsBinding
 import com.raantech.mycups.databinding.ActivityProductDetailsBinding
 import com.raantech.mycups.ui.base.activity.BaseBindingActivity
@@ -68,8 +76,40 @@ class ProductDetailsActivity :
     override fun onAddToCartClicked() {
         super.onAddToCartClicked()
         if (isDataValid()) {
-
+            viewModel.createOfferOrder(
+                OfferOrderRequest(
+                    orderType = OrderTypesEnum.OFFER.value,
+                    hasStock = viewModel.needStock.value,
+                    files = Files(designFile = viewModel.design.value?.id),
+                    product = OfferOrderProduct(
+                        productId = viewModel.productToView.value?.id,
+                        measurements = measurementAdapter?.items?.filter {
+                            (it.count.value ?: 0) > 0
+                        }?.map { MeasurementsItem(qty = it.count.value, measurementId = it.id) }
+                    )
+                ).apply {
+                    designsAdapter?.items?.singleOrNull { (it as DesignCategory).isSelected.value == true }
+                        ?.let {
+                            designId = (it as DesignCategory).id
+                        }
+                }
+            ).observe(this, orderResultObserver())
         }
+    }
+
+    private fun orderResultObserver(): CustomObserverResponse<Int> {
+        return CustomObserverResponse(
+            this,
+            object : CustomObserverResponse.APICallBack<Int> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: Int?
+                ) {
+
+                }
+            }
+        )
     }
 
     private fun isDataValid(): Boolean {
@@ -81,6 +121,15 @@ class ProductDetailsActivity :
             )
             return false
         }
+
+        if (viewModel.productToView.value?.can_upload_design == true && designsAdapter?.items?.singleOrNull { (it as DesignCategory).isSelected.value == true } == null && viewModel.design.value == null) {
+            showErrorAlert(
+                title = getString(R.string.quantity),
+                message = getString(R.string.please_select_the_design)
+            )
+            return false
+        }
+
         return valid
     }
 

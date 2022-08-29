@@ -192,6 +192,11 @@ Product details, any information you would like to add" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
+                <include
+                    android:id="@+id/layout_designs"
+                    layout="@layout/row_home_categories"
+                    android:visibility="gone" />
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnLogin"
                     style="@style/AppTheme.Button"

@@ -12,13 +12,13 @@ import retrofit2.http.*
 interface OrdersRemoteDao {
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @GET("orders")
+    @POST("orders")
     suspend fun createOfferOrder(
         @Body orderRequest: OfferOrderRequest
     ): ResponseWrapper<Int>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @GET("orders")
+    @POST("orders")
     suspend fun createPurchaseOrder(
         @Body orderRequest: PurchaseOrderRequest
     ): ResponseWrapper<Int>

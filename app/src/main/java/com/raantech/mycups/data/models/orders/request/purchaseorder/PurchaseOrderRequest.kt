@@ -12,5 +12,5 @@ data class PurchaseOrderRequest(
 	val paymentMethod: String? = null,
 
 	@field:SerializedName("products")
-	val products: List<ProductsItem?>? = null
+	val products: List<PurchaseOrderProducts?>? = null
 ):Serializable
