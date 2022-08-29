@@ -2,6 +2,7 @@ package com.raantech.mycups.utils
 
 import android.content.Context
 import android.net.Uri
+import android.provider.OpenableColumns
 import android.text.TextUtils
 import java.io.*
 
@@ -9,10 +10,10 @@ import java.io.*
 object ContentUriUtils {
 
     private const val BUFFER_SIZE = 1024 * 2
-    private const val IMAGE_DIRECTORY = "/mycups_upload_pdf"
+    private const val IMAGE_DIRECTORY = "/mycups_upload"
 
     fun Uri.getFilePathFromURI(context: Context): String? {
-        val fileName = getFileName(this)
+        val fileName = context.getFileName(this)
         val wallpaperDirectory = File(
             context.getExternalFilesDir(null)?.absolutePath + IMAGE_DIRECTORY
         )
@@ -29,16 +30,14 @@ object ContentUriUtils {
         return null
     }
 
-    fun getFileName(uri: Uri?): String? {
+    fun Context.getFileName(uri: Uri?): String? {
         if (uri == null) return null
         var fileName: String? = null
-        val path = uri.path
+        val path = uri.getName(this)
         val cut = path!!.lastIndexOf('/')
-        if (cut != -1) {
-            fileName = path.substring(cut + 1)
-        }
-        if(fileName?.contains(".pdf") == false)
-            fileName = "$fileName.pdf"
+        fileName = path.substring(cut + 1)
+//        if(fileName?.contains(".pdf") == false)
+//            fileName = "$fileName.pdf"
         return fileName
     }
 
@@ -85,5 +84,20 @@ object ContentUriUtils {
             }
         }
         return count
+    }
+
+    fun Uri.getName(context: Context): String? {
+        context.contentResolver.query(this, null, null, null, null)
+            ?.use { cursor ->
+                /*
+                 * Get the column indexes of the data in the Cursor,
+                 * move to the first row in the Cursor, get the data,
+                 * and display it.
+                 */
+                val nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                val sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE)
+                cursor.moveToFirst()
+                return cursor.getString(nameIndex)
+            } ?: return ""
     }
 }

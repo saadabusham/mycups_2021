@@ -6,6 +6,7 @@ import com.raantech.mycups.data.daos.remote.common.CommonRemoteDao
 import com.raantech.mycups.data.daos.remote.configuration.ConfigurationRemoteDao
 import com.raantech.mycups.data.daos.remote.favorites.FavoritesRemoteDao
 import com.raantech.mycups.data.daos.remote.lookups.LookupsRemoteDao
+import com.raantech.mycups.data.daos.remote.media.MediaRemoteDao
 import com.raantech.mycups.data.daos.remote.orders.OrdersRemoteDao
 import com.raantech.mycups.data.daos.remote.product.ProductRemoteDao
 import com.raantech.mycups.data.daos.remote.user.UserRemoteDao
@@ -97,6 +98,14 @@ object RemoteDaosModule {
         retrofit: Retrofit
     ): WishListRemoteDao {
         return retrofit.create(WishListRemoteDao::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideMediaRemoteDao(
+        retrofit: Retrofit
+    ): MediaRemoteDao {
+        return retrofit.create(MediaRemoteDao::class.java)
     }
 
 }

@@ -26,6 +26,7 @@ import com.raantech.mycups.common.interfaces.LoginCallBack
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
+import com.raantech.mycups.data.enums.MediaTypesEnum
 import com.raantech.mycups.data.enums.NavigationTabsEnum
 import com.raantech.mycups.data.models.more.More
 import com.raantech.mycups.databinding.ActivityMainBinding
@@ -39,6 +40,7 @@ import com.raantech.mycups.ui.main.fragments.favorites.viewmodels.FavoritesViewM
 import com.raantech.mycups.ui.main.viewmodels.MainViewModel
 import com.raantech.mycups.ui.more.aboutus.AboutUsActivity
 import com.raantech.mycups.ui.more.contactus.activity.ContactUsActivity
+import com.raantech.mycups.ui.more.media.MediaActivity
 import com.raantech.mycups.ui.notifications.activity.NotificationsActivity
 import com.raantech.mycups.ui.splash.SplashActivity
 import com.raantech.mycups.utils.LocaleUtil
@@ -283,10 +285,10 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
             binding?.drawerLayout?.closeDrawer(GravityCompat.START)
             when (position) {
 //                0 -> WishListActivity.start(this)
+                1 -> MediaActivity.start(this,MediaTypesEnum.DESIGN.value)
 //                1 -> OrdersActivity.start(this)
-//                2 -> NotificationsActivity.start(this)
 //                3 -> UpdateProfileActivity.start(this)
-//                4 -> SettingsActivity.start(this)
+                3 -> MediaActivity.start(this,MediaTypesEnum.IMAGES.value)
                 5 -> ContactUsActivity.start(this)
                 6 -> AboutUsActivity.start(this)
                 7 -> {

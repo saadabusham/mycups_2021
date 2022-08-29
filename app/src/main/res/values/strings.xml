@@ -296,5 +296,9 @@
     <string name="attachments_if_any">Attachments, if any</string>
     <string name="attachments">Attachments</string>
 
-
+    <!-- Image Picker Strings -->
+    <string name="upload_photo">Upload Photo</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="select_file">Select File</string>
+    <string name="please_choose_file_type_psd">Please choose file type (psd,pdf,il)</string>
 </resources>

@@ -15,6 +15,8 @@ import com.raantech.mycups.data.repos.favorites.FavoritesRepo
 import com.raantech.mycups.data.repos.favorites.FavoritesRepoImp
 import com.raantech.mycups.data.repos.lookups.LookupsRepo
 import com.raantech.mycups.data.repos.lookups.LookupsRepoImp
+import com.raantech.mycups.data.repos.media.MediaRepo
+import com.raantech.mycups.data.repos.media.MediaRepoImp
 import com.raantech.mycups.data.repos.orders.OrdersRepo
 import com.raantech.mycups.data.repos.orders.OrdersRepoImp
 import com.raantech.mycups.data.repos.product.ProductRepo
@@ -70,5 +72,9 @@ abstract class RepoModule {
     @Singleton
     @Binds
     abstract fun bindWishListRepo(wishListRepoImp: WishListRepoImp): WishListRepo
+
+    @Singleton
+    @Binds
+    abstract fun bindMediaRepo(mediaRepoImp: MediaRepoImp): MediaRepo
 
 }

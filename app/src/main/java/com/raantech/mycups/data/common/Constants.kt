@@ -27,6 +27,9 @@ object Constants {
         const val CATEGORY_NAME: String = "categoryName"
         const val PRODUCT_ID: String = "productId"
         const val PRODUCT_NAME: String = "productName"
+        const val MEDIA: String = "media"
+        const val SELECT_MEDIA: String = "selectMedia"
+        const val MEDIA_TYPE: String = "mediaType"
     }
 
     object NotificationsChannels {

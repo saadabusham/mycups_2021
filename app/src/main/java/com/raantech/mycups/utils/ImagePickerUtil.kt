@@ -6,11 +6,14 @@ import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.nguyenhoanglam.imagepicker.model.Config
 import com.nguyenhoanglam.imagepicker.model.Image
 import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker
 import com.raantech.mycups.R
+import com.raantech.mycups.data.enums.ImageSelectorType
+import com.raantech.mycups.ui.base.dialogs.selectphoto.SelectPhotoBottomSheet
 
 class ImagePickerUtil {
 
@@ -126,3 +129,34 @@ fun Activity.captureImage(requestCode: Int) {
         )    //Final image resolution will be less than 1080 x 1080(Optional)
         .start(requestCode)
 }
+
+fun AppCompatActivity.showSelectPhotoSheet(
+    requestCode: Int,
+    photoSelectorCallBack: SelectPhotoBottomSheet.PhotoSelectorCallBack,
+    imageSelectorType: ImageSelectorType = ImageSelectorType.BOTH
+) {
+    SelectPhotoBottomSheet(
+        requestCode = requestCode,
+        photoSelectorCallBack = photoSelectorCallBack,
+        imageSelectorType = imageSelectorType
+    ).show(
+        this.supportFragmentManager,
+        "photoSelector"
+    )
+}
+
+fun Fragment.showSelectPhotoSheet(
+    requestCode: Int,
+    photoSelectorCallBack: SelectPhotoBottomSheet.PhotoSelectorCallBack,
+    imageSelectorType: ImageSelectorType = ImageSelectorType.BOTH
+) {
+    SelectPhotoBottomSheet(
+        requestCode = requestCode,
+        photoSelectorCallBack = photoSelectorCallBack,
+        imageSelectorType = imageSelectorType
+    ).show(
+        this.childFragmentManager,
+        "photoSelector"
+    )
+}
+
