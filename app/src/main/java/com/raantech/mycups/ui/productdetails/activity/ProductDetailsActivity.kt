@@ -13,18 +13,21 @@ import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
+import com.raantech.mycups.data.enums.MediaTypesEnum
 import com.raantech.mycups.data.models.category.Category
 import com.raantech.mycups.data.models.category.DesignCategory
 import com.raantech.mycups.data.models.home.homedata.CategoriesItem
 import com.raantech.mycups.data.models.home.product.productdetails.Measurement
 import com.raantech.mycups.data.models.home.product.productdetails.Product
 import com.raantech.mycups.data.models.home.product.productdetails.ProductResponse
+import com.raantech.mycups.data.models.media.Media
 import com.raantech.mycups.databinding.ActivityFastProductDetailsBinding
 import com.raantech.mycups.databinding.ActivityProductDetailsBinding
 import com.raantech.mycups.ui.base.activity.BaseBindingActivity
 import com.raantech.mycups.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.mycups.ui.base.bindingadapters.setOnItemClickListener
 import com.raantech.mycups.ui.main.fragments.home.adapters.HomeItemsAdapter
+import com.raantech.mycups.ui.more.media.MediaActivity
 import com.raantech.mycups.ui.productdetails.adapters.MeasurementAdapter
 import com.raantech.mycups.ui.productdetails.presenter.ProductDetailsPresenter
 import com.raantech.mycups.ui.productdetails.viewmodels.ProductDetailsViewModel
@@ -82,34 +85,19 @@ class ProductDetailsActivity :
     }
 
     override fun onSelectDesignClicked() {
-        openDocumentPicker()
+        MediaActivity.start(this, true, MediaTypesEnum.DESIGN.value, selectFileResultLauncher)
     }
 
-    private fun openDocumentPicker() {
-        val intent = Intent("com.sec.android.app.myfiles.PICK_DATA")
-        intent.type = "application/pdf"
-        intent.action = Intent.ACTION_GET_CONTENT
-        val mimetypes = arrayOf("application/pdf")
-        intent.addCategory(Intent.CATEGORY_OPENABLE)
-        intent.putExtra("CONTENT_TYPE", "application/pdf");
-        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes)
-        intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
-        frontImageFileResultLauncher.launch(Intent.createChooser(intent, "Choose Pdf"))
-    }
-
-    var frontImageFileResultLauncher =
+    var selectFileResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
-                var realPath = data?.data?.getFilePathFromURI(this)
-                if (realPath == null)
-                    realPath = data?.data?.toString()
-                realPath?.let {
+                data?.getSerializableExtra(Constants.BundleData.MEDIA).let {
+                    it as Media
                     viewModel.design.value = it
-                    binding?.tvDesign?.text = getFileNameFromUri(realPath)
+                    binding?.tvDesign?.text = it.filename
                 }
-
             }
         }
 

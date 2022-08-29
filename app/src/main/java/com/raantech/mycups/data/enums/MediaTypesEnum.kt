@@ -5,7 +5,8 @@ enum class MediaTypesEnum(val value: String) {
     PNG("png"),
     PSD("psd"),
     PDF("pdf"),
-    DESIGN("psd,pdf"),
+    IL("il"),
+    DESIGN("psd,pdf,il"),
     IMAGES("jpeg,png"),
     ALL("jpeg,png,psd,pdf"),
 }

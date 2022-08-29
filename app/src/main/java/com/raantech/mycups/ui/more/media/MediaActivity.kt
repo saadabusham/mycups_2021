@@ -126,7 +126,10 @@ class MediaActivity : BaseBindingActivity<ActivityMediaBinding, Nothing>(),
                 val data: Intent? = result.data
                 var realPath = data?.data?.getFilePathFromURI(this)
                 File(realPath).name.let {
-                    if (it.contains(MediaTypesEnum.PDF.value) || it.contains(MediaTypesEnum.PSD.value)) {
+                    if (it.endsWith(MediaTypesEnum.PDF.value) || it.endsWith(MediaTypesEnum.PSD.value) || it.endsWith(
+                            MediaTypesEnum.IL.value
+                        )
+                    ) {
                         realPath?.let {
                             viewModel.uploadMedia(
                                 realPath.createPsdFileMultipart(
@@ -332,10 +335,14 @@ class MediaActivity : BaseBindingActivity<ActivityMediaBinding, Nothing>(),
         fun start(
             context: Activity?,
             selectMedia: Boolean? = false,
+            mediaType: String,
             resultLauncher: ActivityResultLauncher<Intent>
         ) {
             val intent = Intent(context, MediaActivity::class.java)
-            intent.putExtra(Constants.BundleData.SELECT_MEDIA, selectMedia)
+                .apply {
+                    putExtra(Constants.BundleData.MEDIA_TYPE, mediaType)
+                    putExtra(Constants.BundleData.SELECT_MEDIA, selectMedia)
+                }
             resultLauncher.launch(intent)
         }
     }

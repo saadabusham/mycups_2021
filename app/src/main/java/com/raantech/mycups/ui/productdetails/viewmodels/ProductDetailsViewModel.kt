@@ -9,6 +9,7 @@ import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.enums.UserEnums
 import com.raantech.mycups.data.models.category.Category
 import com.raantech.mycups.data.models.home.product.productdetails.Product
+import com.raantech.mycups.data.models.media.Media
 import com.raantech.mycups.data.pref.configuration.ConfigurationPref
 import com.raantech.mycups.data.pref.user.UserPref
 import com.raantech.mycups.data.repos.common.CommonRepo
@@ -27,7 +28,7 @@ class ProductDetailsViewModel @Inject constructor(
     private val userRepo: UserRepo,
     private val productRepo: ProductRepo
 ) : BaseViewModel() {
-    val design: MutableLiveData<String> = MutableLiveData()
+    val design: MutableLiveData<Media> = MutableLiveData()
     val productToView: MutableLiveData<Product> = MutableLiveData()
     val count: MutableLiveData<Int> = MutableLiveData(0)
     fun getProductsByID(
