@@ -323,4 +323,11 @@
     <string name="your_purchase_has_been_successfully_completed_n_npurchase_no">لقد تمت عملية الشراء بنجاح\n\nرقم الشراء</string>
     <string name="the_work_team_will_prepare_your_request_as_soon_as_possible_and_send_it_no_later_than_7_working_days"> سيقوم فريق العمل بتحضير طلبك باسرع وقت وارسالها في موعد اقصاه ٧ ايام عمل</string>
 
+    <!--    Orders-->
+    <string name="order_search_hint">البحث عن رقم طلب ، مكونات طلب </string>
+    <string name="request_no_">طلب رقم %s</string>
+    <string name="waiting_for_price_quote">بإنتظار عرض الاسعار</string>
+    <string name="a_price_offer_has_been_submitted">تم تقديم عرض سعر</string>
+    <string name="requests_for_quotations">طلبات عروض الاسعار</string>
+    <string name="purchase_orders">طلبات الشراء</string>
 </resources>

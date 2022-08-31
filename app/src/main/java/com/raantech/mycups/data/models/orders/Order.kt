@@ -1,6 +1,7 @@
 package com.raantech.mycups.data.models.orders
 
 import com.google.gson.annotations.SerializedName
+import com.raantech.mycups.data.models.Price
 import java.io.Serializable
 
 data class Order(
@@ -9,7 +10,7 @@ data class Order(
 	val createdAt: String? = null,
 
 	@field:SerializedName("price")
-	val price: Int? = null,
+	val price: Price? = null,
 
 	@field:SerializedName("paymentMethod")
 	val paymentMethod: Int? = null,

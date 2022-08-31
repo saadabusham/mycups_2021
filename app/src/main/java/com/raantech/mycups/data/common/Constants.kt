@@ -28,6 +28,8 @@ object Constants {
         const val PRODUCT_ID: String = "productId"
         const val PRODUCT_NAME: String = "productName"
         const val IS_FAST: String = "isFast"
+        const val IS_LISTING: String = "isListing"
+        const val ORDER_ID: String = "orderId"
         const val MEDIA: String = "media"
         const val SELECT_MEDIA: String = "selectMedia"
         const val MEDIA_TYPE: String = "mediaType"

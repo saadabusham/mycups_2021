@@ -15,8 +15,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.raantech.mycups.R
@@ -27,7 +25,6 @@ import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
 import com.raantech.mycups.data.enums.MediaTypesEnum
-import com.raantech.mycups.data.enums.NavigationTabsEnum
 import com.raantech.mycups.data.models.more.More
 import com.raantech.mycups.databinding.ActivityMainBinding
 import com.raantech.mycups.ui.auth.AuthActivity
@@ -41,12 +38,11 @@ import com.raantech.mycups.ui.main.viewmodels.MainViewModel
 import com.raantech.mycups.ui.more.aboutus.AboutUsActivity
 import com.raantech.mycups.ui.more.contactus.activity.ContactUsActivity
 import com.raantech.mycups.ui.more.media.MediaActivity
+import com.raantech.mycups.ui.more.orders.activtiy.OrdersActivity
 import com.raantech.mycups.ui.notifications.activity.NotificationsActivity
 import com.raantech.mycups.ui.splash.SplashActivity
 import com.raantech.mycups.utils.LocaleUtil
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_auth.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.math.abs
 
 @AndroidEntryPoint
@@ -284,9 +280,9 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
         if (item is More) {
             binding?.drawerLayout?.closeDrawer(GravityCompat.START)
             when (position) {
+                0 -> OrdersActivity.start(this)
 //                0 -> WishListActivity.start(this)
                 1 -> MediaActivity.start(this,MediaTypesEnum.DESIGN.value)
-//                1 -> OrdersActivity.start(this)
 //                3 -> UpdateProfileActivity.start(this)
                 3 -> MediaActivity.start(this,MediaTypesEnum.IMAGES.value)
                 5 -> ContactUsActivity.start(this)

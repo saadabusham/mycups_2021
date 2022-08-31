@@ -16,6 +16,9 @@ data class CategoriesItem(
     @field:SerializedName("description")
     val description: String? = null,
 
+    @field:SerializedName("value")
+    val value: String? = null,
+
     @field:SerializedName("logo")
     val logo: Media? = null,
 

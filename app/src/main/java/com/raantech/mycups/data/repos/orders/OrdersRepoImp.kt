@@ -4,9 +4,8 @@ import com.raantech.mycups.data.api.response.APIResource
 import com.raantech.mycups.data.api.response.ResponseHandler
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.daos.remote.orders.OrdersRemoteDao
-import com.raantech.mycups.data.models.general.ListWrapper
-import com.raantech.mycups.data.models.orders.Order
 import com.raantech.mycups.data.models.orders.OrderDetails
+import com.raantech.mycups.data.models.orders.OrdersResponse
 import com.raantech.mycups.data.models.orders.request.offerorder.OfferOrderRequest
 import com.raantech.mycups.data.models.orders.request.purchaseorder.PurchaseOrderRequest
 import com.raantech.mycups.data.repos.base.BaseRepo
@@ -34,12 +33,11 @@ class OrdersRepoImp @Inject constructor(
     }
 
     override suspend fun getOrders(
-        pageSize: Int,
-        pageNumber: Int,
-        status: Int?
-    ): APIResource<ResponseWrapper<ListWrapper<Order>>> {
+        type: String?,
+        name: String?
+    ): APIResource<ResponseWrapper<OrdersResponse>> {
         return try {
-            responseHandle.handleSuccess(ordersRemoteDao.getOrders(pageSize, pageNumber, status))
+            responseHandle.handleSuccess(ordersRemoteDao.getOrders(type, name))
         } catch (e: Exception) {
             responseHandle.handleException(e)
         }

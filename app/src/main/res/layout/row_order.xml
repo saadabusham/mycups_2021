@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.raantech.mycups.R" />
+
+        <import type="android.view.View" />
+
+        <import type="com.raantech.mycups.data.enums.OrderStatusEnum" />
+
+        <variable
+            name="item"
+            type="com.raantech.mycups.data.models.orders.Order" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.raantech.mycups.ui.base.views.appviews.AppTextView
+            android:id="@+id/tvTitle"
+            style="@style/textview_normal_bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:ellipsize="end"
+            android:gravity="center|start"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{@string/request_no_(item.id)}"
+            android:textColor="@color/tab_text_color"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintBottom_toTopOf="@id/tvDescription"
+            app:layout_constraintEnd_toStartOf="@+id/tvDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Request No. 233211" />
+
+        <com.raantech.mycups.ui.base.views.appviews.AppTextView
+            android:id="@+id/tvDescription"
+            style="@style/textview_normal_regular"
+            order_text_by_status="@{item.status}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:ellipsize="end"
+            android:gravity="center|start"
+            android:textColor="@color/tab_text_color"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            tools:text="Waiting for price quote" />
+
+        <com.raantech.mycups.ui.base.views.appviews.AppTextView
+            android:id="@+id/tvDate"
+            style="@style/textview_normal_regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:ellipsize="end"
+            android:gravity="center|start"
+            android:text="2/11/2021"
+            android:textColor="@color/tab_text_color"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvTitle"
+            tools:text="2 /11/2021" />
+
+        <com.raantech.mycups.ui.base.views.appviews.AppTextView
+            android:id="@+id/tvOfferPrice"
+            style="@style/textview_normal_bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:ellipsize="end"
+            android:gravity="center|start"
+            android:text="@{item.price.formatted}"
+            android:textColor="@color/button_color"
+            android:textSize="@dimen/_14ssp"
+            android:visibility="@{item.status == OrderStatusEnum.OFFER_PRICE_RECEIVED.value ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/tvDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvDescription"
+            tools:text="300 SAR" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/divider_dark_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -5,6 +5,7 @@ import com.raantech.mycups.data.common.NetworkConstants
 import com.raantech.mycups.data.models.general.ListWrapper
 import com.raantech.mycups.data.models.orders.Order
 import com.raantech.mycups.data.models.orders.OrderDetails
+import com.raantech.mycups.data.models.orders.OrdersResponse
 import com.raantech.mycups.data.models.orders.request.offerorder.OfferOrderRequest
 import com.raantech.mycups.data.models.orders.request.purchaseorder.PurchaseOrderRequest
 import retrofit2.http.*
@@ -26,10 +27,9 @@ interface OrdersRemoteDao {
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @GET("orders")
     suspend fun getOrders(
-        @Query("PageSize") pageSize: Int,
-        @Query("PageNumber") pageNumber: Int,
-        @Query("Status") status: Int?
-    ): ResponseWrapper<ListWrapper<Order>>
+        @Query("Type") type: String?,
+        @Query("Name") name: String?
+    ): ResponseWrapper<OrdersResponse>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @GET("orders/{id}")
