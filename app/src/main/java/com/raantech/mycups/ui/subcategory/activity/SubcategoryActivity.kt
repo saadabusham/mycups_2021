@@ -14,13 +14,11 @@ import com.raantech.mycups.data.common.CustomObserverResponse
 import com.raantech.mycups.data.models.category.CategoriesResponse
 import com.raantech.mycups.data.models.home.homedata.CategoriesItem
 import com.raantech.mycups.data.models.home.product.productdetails.Product
-import com.raantech.mycups.data.models.home.product.productdetails.ProductResponse
 import com.raantech.mycups.data.models.home.product.productdetails.ProductsResponse
 import com.raantech.mycups.databinding.ActivitySubcategoryBinding
 import com.raantech.mycups.ui.base.activity.BaseBindingActivity
 import com.raantech.mycups.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.mycups.ui.base.bindingadapters.setOnItemClickListener
-import com.raantech.mycups.ui.productdetails.activity.FastProductDetailsActivity
 import com.raantech.mycups.ui.productdetails.activity.ProductDetailsActivity
 import com.raantech.mycups.ui.subcategory.adapter.ProductVerticalRecyclerAdapter
 import com.raantech.mycups.ui.subcategory.adapter.TabListRecyclerAdapter
@@ -28,7 +26,6 @@ import com.raantech.mycups.ui.subcategory.viewmodels.SubcategoryViewModel
 import com.raantech.mycups.utils.extensions.gone
 import com.raantech.mycups.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class SubcategoryActivity : BaseBindingActivity<ActivitySubcategoryBinding, Nothing>(),
@@ -204,20 +201,11 @@ class SubcategoryActivity : BaseBindingActivity<ActivitySubcategoryBinding, Noth
                 }
             }
             is Product -> {
-                if (item.is_fast == true) {
-                    item.id?.let {
-                        FastProductDetailsActivity.start(
-                            this,
-                            it, item.name
-                        )
-                    }
-                } else {
-                    item.id?.let {
-                        ProductDetailsActivity.start(
-                            this,
-                            it, item.name
-                        )
-                    }
+                item.id?.let {
+                    ProductDetailsActivity.start(
+                        this,
+                        it, item.name, item.is_fast
+                    )
                 }
             }
         }

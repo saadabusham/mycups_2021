@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.raantech.mycups.R" />
+
+        <variable
+            name="viewModel"
+            type="com.raantech.mycups.ui.productdetails.viewmodels.ProductDetailsViewModel" />
+
+        <variable
+            name="presenter"
+            type="com.raantech.mycups.ui.productdetails.presenter.ProductDetailsPresenter" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.raantech.mycups.ui.base.views.appviews.AppImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_product_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
+            android:id="@+id/relToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/layout_toolbar"
+                layout="@layout/layout_product_toolbar" />
+
+            <com.raantech.mycups.ui.base.views.appviews.AppImageView
+                android:id="@+id/imgFavorite"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:background="?android:selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{()->presenter.onFavoriteClicked()}"
+                android:src="@{viewModel.productToView.isWishlist() ? @drawable/ic_nav_favorites_selected : @drawable/ic_nav_favorites_unselected}"
+                tools:src="@drawable/ic_nav_favorites_selected" />
+        </RelativeLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/relToolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.raantech.mycups.ui.base.views.appviews.AppImageView
+                    android:id="@+id/imgPhoto"
+                    ivImageErrorPlaceholder="@{R.drawable.ic_product_place_holder}"
+                    ivImagePlaceholder="@{R.drawable.ic_product_place_holder}"
+                    ivImageUrl="@{viewModel.productToView.base_image.url}"
+                    android:layout_width="@dimen/_180sdp"
+                    android:layout_height="@dimen/_220sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:src="@drawable/ic_product_place_holder" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    style="@style/textview_normal_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="@{viewModel.productToView.name}"
+                    android:textColor="@color/button_color"
+                    android:textSize="@dimen/_16ssp"
+                    tools:text="Cup/0.3" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:gravity="center|start"
+                    android:includeFontPadding="false"
+                    android:text="@{viewModel.productToView.description}"
+                    android:textColor="@color/tab_text_color"
+                    android:textSize="@dimen/_10ssp"
+                    tools:text="Details about the product, any information you want to add Details about the product, any information you want to add
+Product details, any information you would like to add" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvPrice"
+                        style="@style/textview_normal_bold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:includeFontPadding="false"
+                        android:text="@{viewModel.productToView.price.formatted}"
+                        android:textColor="@color/tab_text_color"
+                        android:textSize="@dimen/_24ssp"
+                        tools:text="50 SR" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:layout_marginBottom="@dimen/_7sdp"
+                        app:cardCornerRadius="@dimen/_5sdp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="@color/stroke_color"
+                        app:strokeWidth="@dimen/_1sdp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <com.raantech.mycups.ui.base.views.appviews.AppImageViewClick
+                                android:id="@+id/imgPlus"
+                                android:layout_width="@dimen/_18sdp"
+                                android:layout_height="@dimen/_18sdp"
+                                android:layout_marginStart="@dimen/_7sdp"
+                                android:background="?android:selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:onClick="@{()->presenter.onPlusClicked()}"
+                                android:padding="@dimen/_2sdp"
+                                android:src="@drawable/ic_plus" />
+
+                            <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                                android:id="@+id/tvQuantity"
+                                style="@style/textview_normal_regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_7sdp"
+                                android:layout_marginEnd="@dimen/_7sdp"
+                                android:includeFontPadding="false"
+                                android:text="@{viewModel.count.toString()}"
+                                android:textColor="@color/tab_text_color"
+                                android:textSize="@dimen/_18ssp"
+                                tools:text="100" />
+
+                            <com.raantech.mycups.ui.base.views.appviews.AppImageViewClick
+                                android:id="@+id/imgMinus"
+                                android:layout_width="@dimen/_18sdp"
+                                android:layout_height="@dimen/_18sdp"
+                                android:layout_marginEnd="@dimen/_7sdp"
+                                android:background="?android:selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:onClick="@{()->presenter.onMinusClicked()}"
+                                android:padding="@dimen/_2sdp"
+                                android:src="@drawable/ic_minus" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/layout_designs"
+                    layout="@layout/row_home_categories"
+                    android:visibility="gone" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    android:id="@+id/tvStorage"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_17sdp"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:drawableStart="@{viewModel.needStock ? @drawable/ic_checked : @drawable/ic_unchecked}"
+                    android:drawablePadding="@dimen/_7sdp"
+                    android:onClick="@{()->presenter.onSelectStorageClicked()}"
+                    android:text="@string/need_stock"
+                    tools:checked="false"
+                    tools:drawableStart="@drawable/ic_checked" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLogin"
+                    style="@style/AppTheme.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:onClick="@{()->presenter.onAddToCartClicked()}"
+                    android:text="@string/add_to_cart"
+                    android:textSize="@dimen/_12ssp" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

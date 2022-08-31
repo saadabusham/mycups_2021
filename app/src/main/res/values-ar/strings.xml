@@ -200,7 +200,7 @@
     <string name="touch_id_for_faster_login">Touch ID for faster login</string>
     <string name="enable_face_id_to_let_you_login_proceed_your_insurance_faster"><![CDATA[Enable Face ID to let you login & proceed your insurance faster.]]></string>
     <string name="skip_i_ll_do_this_later">Skip, I’ll do this later</string>
-    <string name="go_to_home">Go to home</string>
+    <string name="go_to_home">العودة للرئيسية</string>
     <string name="log_in_with_email">Log in with email</string>
 
     <!--    City Picker-->
@@ -284,7 +284,8 @@
     <string name="please_select_the_quantity">يرجى تحديد الكمية</string>
     <string name="design">التصميم</string>
     <string name="please_select_the_design">يرجى اختيار التصميم</string>
-    <string name="menu_notifications">الاشعارات</string>
+    <string name="need_stock">أريد مخزنا</string>
+    <string name="please_choose_file_type_psd">الرجاء اختيار نوع الملف (psd ، pdf ، il)</string>
 
     <!--    Customer Support-->
     <string name="submit_successfully">تم إرسال بنجاح</string>
@@ -296,5 +297,30 @@
     <string name="attachments_if_any">مرفقات ان وُجد</string>
     <string name="attachments">المرفقات</string>
 
+    <string name="menu_notifications">الاشعارات</string>
+
+    <!-- Image Picker Strings -->
+    <string name="upload_photo">ارفع الصورة</string>
+    <string name="take_photo">التقط صورة</string>
+    <string name="select_file">اختر ملف</string>
+
+
+    <!--    Storage Info Hint-->
+    <string name="storage_information">معلومات عن التخزين</string>
+    <string name="storage_information_desc">شرح عن خدمة التخزين والشحن حيث عندما يضغط على ارغب في استئجار مكان للتخزين تظهر هذه الشاشة ، ويكون لديه خيارين اما الموافقة وتضاف هذه الخدمة على السعر النهائي او الرفض</string>
+    <string name="agree">موافق</string>
+    <string name="disagree">لا أرغب</string>
+
+    <!--    Order Sent-->
+    <string name="order_id_">#%s</string>
+    <string name="your_request_has_been_sent">تم ارسال  طلبك الذي يحمل الرقم</string>
+    <string name="successfully_we_will_submit_a_quotation_as_soon_as_possible"> بنجاح ،، سنقوم بتقديم عرض الاسعار باقرب وقت</string>
+    <string name="thank_you">شكرا لك</string>
+
+<!--    Order Success-->
+    <string name="print_invoice">طباعة الفاتورة</string>
+    <string name="send_invoice">ارسال الفاتورة عبر البريد الالكتروني</string>
+    <string name="your_purchase_has_been_successfully_completed_n_npurchase_no">لقد تمت عملية الشراء بنجاح\n\nرقم الشراء</string>
+    <string name="the_work_team_will_prepare_your_request_as_soon_as_possible_and_send_it_no_later_than_7_working_days"> سيقوم فريق العمل بتحضير طلبك باسرع وقت وارسالها في موعد اقصاه ٧ ايام عمل</string>
 
 </resources>

@@ -185,7 +185,7 @@ class MediaActivity : BaseBindingActivity<ActivityMediaBinding, Nothing>(),
         if (resultCode != Activity.RESULT_OK) return
 
         when (requestCode) {
-            TAKE_USER_IMAGE_REQUEST_CODE -> {
+            requestCode -> {
                 val fileUri = data?.data
                 fileUri?.path?.let {
                     viewModel.uploadMedia(it.createImageMultipart("file"))

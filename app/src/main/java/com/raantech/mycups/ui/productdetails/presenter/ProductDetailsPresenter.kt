@@ -7,5 +7,6 @@ interface ProductDetailsPresenter :BaseBindingPresenter{
     fun onFavoriteClicked()
     fun onPlusClicked(){}
     fun onMinusClicked(){}
+    fun onSelectStorageClicked(){}
     fun onSelectDesignClicked(){}
 }

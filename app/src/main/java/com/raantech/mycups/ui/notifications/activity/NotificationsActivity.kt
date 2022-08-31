@@ -100,22 +100,19 @@ class NotificationsActivity : BaseBindingActivity<ActivityNotificationsBinding,N
          adapter.submitItems(
                 arrayListOf(
                         Notification(
-                                title = "متجرك المفضل (جوالك) اضاف خدمة جديدة",
+                                title = "تم ارسال تسعير للطلب رقم #3321",
                                 read = true
                         ),
                         Notification(
-                                title = "طلبك الان في الطريق",
+                                title = "لقد تم اضافة منتجات جديدة تصفحها الان",
                                 read = true
                         ),
                         Notification(
-                                title = "اعلان مميز : خصم ٣٠٪ على جميع منتجات ….",
+                                title = "نود تذكيرك بان لديك في مخازننا اكواب عدد 10000",
                                 read = true
                         ),
                         Notification(
-                                title = "متجرك المفضل (هايبر نت) اضاف خدمة جديدة"
-                        ),
-                        Notification(
-                                title = "اعلان مميز : خصم ٣٠٪ على جميع منتجات …."
+                                title = "لقد تم توصيل منتجاتك الان الى المخزن"
                         )
                 )
         )

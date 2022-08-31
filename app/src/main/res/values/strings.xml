@@ -285,7 +285,8 @@
     <string name="please_select_the_quantity">Please select the quantity</string>
     <string name="design">Design</string>
     <string name="please_select_the_design">Please select the design</string>
-    <string name="menu_notifications">Notifications</string>
+    <string name="need_stock">Need Stock</string>
+    <string name="please_choose_file_type_psd">Please choose file type (psd,pdf,il)</string>
 
 
     <!--    Customer Support-->
@@ -298,9 +299,29 @@
     <string name="attachments_if_any">Attachments, if any</string>
     <string name="attachments">Attachments</string>
 
+    <string name="menu_notifications">Notifications</string>
+
     <!-- Image Picker Strings -->
     <string name="upload_photo">Upload Photo</string>
     <string name="take_photo">Take Photo</string>
     <string name="select_file">Select File</string>
-    <string name="please_choose_file_type_psd">Please choose file type (psd,pdf,il)</string>
+
+
+    <!--    Storage Info Hint-->
+    <string name="storage_information">Storage information</string>
+    <string name="storage_information_desc">An explanation of the storage and shipping service, where when he clicks on I want to rent a storage place, this screen appears, and he has two options: either to accept and this service is added to the final price or to refuse\n\n</string>
+    <string name="agree">Agree</string>
+    <string name="disagree">Disagree</string>
+
+    <!--    Order Sent -->
+    <string name="order_id_">#%s</string>
+    <string name="your_request_has_been_sent">Your request has been sent</string>
+    <string name="successfully_we_will_submit_a_quotation_as_soon_as_possible">Successfully, we will submit a quotation as soon as possible</string>
+    <string name="thank_you">Thank You</string>
+
+    <!--    Order Success-->
+    <string name="print_invoice">Print Invoice</string>
+    <string name="send_invoice">Send Invoice Email</string>
+    <string name="your_purchase_has_been_successfully_completed_n_npurchase_no">Your purchase has been successfully completed\n\nPurchase No.</string>
+    <string name="the_work_team_will_prepare_your_request_as_soon_as_possible_and_send_it_no_later_than_7_working_days">The work team will prepare your request as soon as possible and send it no later than 7 working days</string>
 </resources>

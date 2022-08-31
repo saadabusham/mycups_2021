@@ -5,12 +5,18 @@ import java.io.Serializable
 
 data class PurchaseOrderRequest(
 
-	@field:SerializedName("order_type")
-	val orderType: String? = null,
+    @field:SerializedName("order_type")
+    val orderType: String? = null,
 
-	@field:SerializedName("payment_method")
-	val paymentMethod: String? = null,
+	@field:SerializedName("has_stock")
+	val hasStock: Boolean? = null,
 
-	@field:SerializedName("products")
-	val products: List<PurchaseOrderProducts?>? = null
-):Serializable
+	@field:SerializedName("design_id")
+	var designId: Int? = null,
+
+    @field:SerializedName("payment_method")
+    val paymentMethod: String? = null,
+
+    @field:SerializedName("products")
+    val products: List<PurchaseOrderProducts?>? = null
+) : Serializable

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+
+        <variable
+            name="canAuth"
+            type="Boolean" />
+        <variable
+            name="viewModel"
+            type="com.raantech.mycups.ui.productdetails.viewmodels.ProductDetailsViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/layout_toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/_105sdp"
+                    android:layout_height="@dimen/_105sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:src="@drawable/ic_success" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:includeFontPadding="false"
+                    android:gravity="center"
+                    android:text="@string/your_purchase_has_been_successfully_completed_n_npurchase_no"
+                    android:textColor="@color/tab_text_color"
+                    android:textSize="@dimen/_13ssp" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    style="@style/textview_normal_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@{@string/order_id_(viewModel.orderId)}"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/_13ssp"
+                    tools:text="#3321" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/the_work_team_will_prepare_your_request_as_soon_as_possible_and_send_it_no_later_than_7_working_days"
+                    android:textColor="@color/tab_text_color"
+                    android:textSize="@dimen/_13ssp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSendBill"
+            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:text="@string/send_invoice"
+            android:textAllCaps="true"
+            android:textAppearance="@style/normalMediumFontStyle"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_14ssp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPrintInvoice"
+            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:text="@string/print_invoice"
+            android:textAllCaps="true"
+            android:textAppearance="@style/normalMediumFontStyle"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_14ssp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGoHome"
+            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:text="@string/go_to_home"
+            android:textAllCaps="true"
+            android:textAppearance="@style/normalMediumFontStyle"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_14ssp" />
+
+    </LinearLayout>
+
+</layout>

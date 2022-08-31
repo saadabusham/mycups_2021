@@ -35,6 +35,7 @@ class ProductDetailsViewModel @Inject constructor(
     val design: MutableLiveData<Media> = MutableLiveData()
     val productToView: MutableLiveData<Product> = MutableLiveData()
     val count: MutableLiveData<Int> = MutableLiveData(0)
+    val orderId: MutableLiveData<String> = MutableLiveData()
     val needStock: MutableLiveData<Boolean> = MutableLiveData(false)
     fun getProductsByID(
         productId: Int

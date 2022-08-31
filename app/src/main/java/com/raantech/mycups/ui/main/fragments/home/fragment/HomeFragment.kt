@@ -18,7 +18,6 @@ import com.raantech.mycups.ui.base.fragment.BaseBindingFragment
 import com.raantech.mycups.ui.main.fragments.home.adapters.HomeCategoriesAdapter
 import com.raantech.mycups.ui.main.fragments.home.presenter.HomePresenter
 import com.raantech.mycups.ui.main.fragments.home.viewmodels.HomeViewModel
-import com.raantech.mycups.ui.productdetails.activity.FastProductDetailsActivity
 import com.raantech.mycups.ui.productdetails.activity.ProductDetailsActivity
 import com.raantech.mycups.ui.subcategory.activity.SubcategoryActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -69,20 +68,11 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding, HomePresenter>(),
 
                     }
                     is Product -> {
-                        if (item.is_fast == true) {
-                            item.id?.let {
-                                FastProductDetailsActivity.start(
-                                    requireContext(),
-                                    it, item.name
-                                )
-                            }
-                        } else {
-                            item.id?.let {
-                                ProductDetailsActivity.start(
-                                    requireContext(),
-                                    it, item.name
-                                )
-                            }
+                        item.id?.let {
+                            ProductDetailsActivity.start(
+                                requireContext(),
+                                it, item.name, item.is_fast
+                            )
                         }
                     }
                 }

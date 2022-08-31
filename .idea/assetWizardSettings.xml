@@ -315,8 +315,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_dial" />
-                            <entry key="sourceFile" value="H:\freelance\mycubs2021\data\icons\ic_dial.svg" />
+                            <entry key="outputName" value="ic_success" />
+                            <entry key="sourceFile" value="H:\freelance\mycubs2021\data\icons\MDI - check-circle-outline.svg" />
                           </map>
                         </option>
                       </PersistentState>

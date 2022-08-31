@@ -22,7 +22,7 @@ import com.raantech.mycups.databinding.ActivityWishlistBinding
 import com.raantech.mycups.ui.base.activity.BaseBindingActivity
 import com.raantech.mycups.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.mycups.ui.base.bindingadapters.setOnItemClickListener
-import com.raantech.mycups.ui.productdetails.activity.FastProductDetailsActivity
+import com.raantech.mycups.ui.productdetails.activity.ProductDetailsActivity
 import com.raantech.mycups.ui.wishlist.adapter.WishListRecyclerAdapter
 import com.raantech.mycups.ui.wishlist.viewmodels.WishListViewModel
 import com.raantech.mycups.utils.extensions.gone
@@ -190,7 +190,7 @@ class WishListActivity : BaseBindingActivity<ActivityWishlistBinding, Nothing>()
         } else {
             if (item.is_fast == true) {
                 item.id?.let { item.name?.let { it1 ->
-                    FastProductDetailsActivity.start(this, it,
+                    ProductDetailsActivity.start(this, it,
                         it1
                     )
                 } }

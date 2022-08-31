@@ -154,6 +154,7 @@
     <color name="edit_text_title_color_alpha50">#806D6F72</color>
     <color name="see_all_color">#F5700F</color>
     <color name="price_color">#008E4A</color>
+    <color name="green">#229D3A</color>
 
     <color name="profile_corner">#126267</color>
     <color name="tab_text_color">#333333</color>
