@@ -317,7 +317,7 @@
     <string name="successfully_we_will_submit_a_quotation_as_soon_as_possible"> بنجاح ،، سنقوم بتقديم عرض الاسعار باقرب وقت</string>
     <string name="thank_you">شكرا لك</string>
 
-<!--    Order Success-->
+    <!--    Order Success-->
     <string name="print_invoice">طباعة الفاتورة</string>
     <string name="send_invoice">ارسال الفاتورة عبر البريد الالكتروني</string>
     <string name="your_purchase_has_been_successfully_completed_n_npurchase_no">لقد تمت عملية الشراء بنجاح\n\nرقم الشراء</string>
@@ -330,4 +330,15 @@
     <string name="a_price_offer_has_been_submitted">تم تقديم عرض سعر</string>
     <string name="requests_for_quotations">طلبات عروض الاسعار</string>
     <string name="purchase_orders">طلبات الشراء</string>
+
+    <!--    Amount-->
+    <string name="amount">المجموع</string>
+    <string name="total_amount">المبلغ الإجمالي</string>
+    <string name="tax">ضريبة القيمة المضافة</string>
+    <string name="shipping_fees">مصاريف الشحن</string>
+    <string name="store_renting">أجار مخزن</string>
+
+    <!--    Offer Details-->
+    <string name="pay">اتم عملية الدفع</string>
+
 </resources>

@@ -3,6 +3,7 @@ package com.raantech.mycups.data.daos.remote.orders
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.common.NetworkConstants
 import com.raantech.mycups.data.models.general.ListWrapper
+import com.raantech.mycups.data.models.home.offer.OfferDetails
 import com.raantech.mycups.data.models.orders.Order
 import com.raantech.mycups.data.models.orders.OrderDetails
 import com.raantech.mycups.data.models.orders.OrdersResponse
@@ -36,5 +37,11 @@ interface OrdersRemoteDao {
     suspend fun getOrderDetails(
         @Path("id") id: Int
     ): ResponseWrapper<OrderDetails>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @GET("offer/{id}")
+    suspend fun getOfferDetails(
+        @Path("id") id: String
+    ): ResponseWrapper<OfferDetails>
 
 }

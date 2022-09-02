@@ -40,6 +40,7 @@ import com.raantech.mycups.ui.more.contactus.activity.ContactUsActivity
 import com.raantech.mycups.ui.more.media.MediaActivity
 import com.raantech.mycups.ui.more.orders.activtiy.OrdersActivity
 import com.raantech.mycups.ui.notifications.activity.NotificationsActivity
+import com.raantech.mycups.ui.offerdetails.activity.OfferDetailsActivity
 import com.raantech.mycups.ui.splash.SplashActivity
 import com.raantech.mycups.utils.LocaleUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -284,6 +285,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
 //                0 -> WishListActivity.start(this)
                 1 -> MediaActivity.start(this,MediaTypesEnum.DESIGN.value)
 //                3 -> UpdateProfileActivity.start(this)
+                2 -> OfferDetailsActivity.start(this,"1")
                 3 -> MediaActivity.start(this,MediaTypesEnum.IMAGES.value)
                 5 -> ContactUsActivity.start(this)
                 6 -> AboutUsActivity.start(this)

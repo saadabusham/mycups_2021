@@ -332,4 +332,13 @@
     <string name="requests_for_quotations">Requests for quotations</string>
     <string name="purchase_orders">Purchase orders</string>
     <string name="order_search_hint">Find an order number, components of an order</string>
+
+    <!--    Amount-->
+    <string name="amount">Amount</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="tax">Tax</string>
+    <string name="shipping_fees">Shipping Fees</string>
+    <string name="store_renting">Store Renting</string>
+    <!--    Offer Details-->
+    <string name="pay">Pay</string>
 </resources>

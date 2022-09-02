@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="cartPrice"
+            type="com.raantech.mycups.data.models.home.offer.OfferPrices" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp">
+
+        <com.raantech.mycups.ui.base.views.appviews.AppTextView
+            android:id="@+id/tvTitle"
+            style="@style/textview_normal_medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:text="@string/total_amount"
+            android:textColor="@color/title_color"
+            android:textSize="@dimen/_12ssp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:cardBackgroundColor="#F8F8F8"
+            app:cardCornerRadius="@dimen/dimen_zero"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:orientation="horizontal">
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvProductPriceTxt"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layouts_margin_end"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:paddingEnd="@dimen/_25sdp"
+                        android:text="@string/amount"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/tab_text_color"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvProductPrice"
+                        style="@style/textview_normal_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{@string/price_(cartPrice.subtotalPrice != null ? cartPrice.subtotalPrice : 0.0)}"
+                        android:textColor="@color/button_color"
+                        android:textSize="@dimen/_15ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="$1327.00" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:visibility="@{cartPrice.shippingPrice > 0 ? View.VISIBLE : View.GONE}">
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvTaxTxt"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layouts_margin_end"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:paddingEnd="@dimen/_25sdp"
+                        android:text="@string/tax"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/tab_text_color"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvTax"
+                        style="@style/textview_normal_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{@string/price_(cartPrice.taxPrice != null ? cartPrice.taxPrice : 0.0)}"
+                        android:textColor="@color/button_color"
+                        android:textSize="@dimen/_15ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="$5.00" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:visibility="@{cartPrice.shippingPrice > 0 ? View.VISIBLE : View.GONE}">
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvShippingFeeTxt"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layouts_margin_end"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:paddingEnd="@dimen/_25sdp"
+                        android:text="@string/shipping_fees"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/tab_text_color"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvShippingFee"
+                        style="@style/textview_normal_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{@string/price_(cartPrice.shippingPrice != null ? cartPrice.shippingPrice : 0.0)}"
+                        android:textColor="@color/button_color"
+                        android:textSize="@dimen/_15ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="$5.00" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:visibility="@{cartPrice.discountPrice > 0 ? View.VISIBLE : View.GONE}">
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvDiscountTxt"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layouts_margin_end"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:paddingEnd="@dimen/_25sdp"
+                        android:text="@string/store_renting"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/tab_text_color"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvDiscount"
+                        style="@style/textview_normal_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{@string/price_(cartPrice.discountPrice != null ? cartPrice.discountPrice : 0.0)}"
+                        android:textColor="@color/button_color"
+                        android:textSize="@dimen/_15ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="$20.00" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@color/divider_dark_gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:orientation="horizontal">
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvTotalTxt"
+                        style="@style/textview_normal_bold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layouts_margin_end"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:paddingEnd="@dimen/_25sdp"
+                        android:text="@string/total_amount"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/tab_text_color"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvTotal"
+                        style="@style/textview_normal_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{@string/price_(cartPrice.totalPrice!= null ? cartPrice.totalPrice : 0.0)}"
+                        android:textColor="@color/button_color"
+                        android:textSize="@dimen/_15ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="$1332.00" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

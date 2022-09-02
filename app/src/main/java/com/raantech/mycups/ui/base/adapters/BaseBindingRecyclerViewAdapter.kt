@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseBindingRecyclerViewAdapter<MODEL>(
-    protected val context: Context
+    val context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var items: MutableList<MODEL> = ArrayList()
@@ -47,6 +47,10 @@ abstract class BaseBindingRecyclerViewAdapter<MODEL>(
     fun submitItem(newItem: MODEL, position: Int = 0) {
         items.add(position, newItem)
         notifyDataSetChanged()
+    }
+
+    fun getItem(position: Int): MODEL {
+        return items[position]
     }
 
     fun clear(){
