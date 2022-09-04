@@ -2,6 +2,7 @@ package com.raantech.mycups.ui.offerdetails.fragments
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -68,7 +69,9 @@ class OfferDetailsFragment :
     }
 
     override fun onPayClicked() {
-        navigationController.navigate(R.id.action_offerDetailsFragment_to_orderSuccessFragment)
+        navigationController.navigate(R.id.action_offerDetailsFragment_to_orderSuccessFragment,
+            bundleOf(Pair(Constants.BundleData.ORDER_ID,"1".toString()))
+        )
     }
 
     private fun setUpAdapter() {

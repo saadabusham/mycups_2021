@@ -33,22 +33,8 @@
         android:id="@+id/fastProductDetailsFragment"
         android:name="com.raantech.mycups.ui.productdetails.fragments.FastProductDetailsFragment"
         android:label="FastProductDetailsFragment"
-        tools:layout="@layout/fragment_fast_product_details">
-        <action
-            android:id="@+id/action_fastProductDetailsFragment_to_orderSuccessFragment"
-            app:destination="@id/orderSuccessFragment"
-            app:enterAnim="@anim/slide_in_end"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_start"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/fastProductDetailsFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/orderSuccessFragment"
-        android:name="com.raantech.mycups.ui.productdetails.fragments.OrderSuccessFragment"
-        android:label="OrderSuccessFragment"
-        tools:layout="@layout/fragment_order_success" />
+        tools:layout="@layout/fragment_fast_product_details" />
+
     <fragment
         android:id="@+id/orderOfferSentFragment"
         android:name="com.raantech.mycups.ui.productdetails.fragments.OrderOfferSentFragment"

@@ -3,6 +3,7 @@ package com.raantech.mycups.ui.productdetails.fragments
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import com.raantech.mycups.R
+import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.databinding.FragmentOrderSuccessBinding
 import com.raantech.mycups.ui.base.fragment.BaseBindingFragment
 import com.raantech.mycups.ui.main.activity.MainActivity
@@ -29,6 +30,7 @@ class OrderSuccessFragment : BaseBindingFragment<FragmentOrderSuccessBinding, No
             title = R.string.thank_you
         )
         binding?.viewModel = viewModel
+        binding?.orderId = arguments?.getString(Constants.BundleData.ORDER_ID)
         setUpViewsListeners()
     }
 

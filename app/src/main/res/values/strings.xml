@@ -361,5 +361,6 @@
     <!--    Storage-->
     <string name="request_a_shipment">Request a shipment</string>
     <string name="storage">Storage</string>
+    <string name="cart">Cart</string>
 
 </resources>

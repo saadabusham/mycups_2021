@@ -11,6 +11,7 @@ import com.raantech.mycups.data.enums.UserEnums
 import com.raantech.mycups.data.pref.cart.CartPref
 import com.raantech.mycups.data.pref.configuration.ConfigurationPref
 import com.raantech.mycups.data.pref.user.UserPref
+import com.raantech.mycups.data.repos.cart.CartRepo
 import com.raantech.mycups.data.repos.user.UserRepo
 import com.raantech.mycups.ui.base.viewmodel.BaseViewModel
 import com.raantech.mycups.utils.extensions.getRequestBody
@@ -25,6 +26,7 @@ class MainViewModel @Inject constructor(
     private val sharedPreferencesUtil: SharedPreferencesUtil,
     private val userPref: UserPref,
     private val cartPref: CartPref,
+    private val cartRepo: CartRepo,
     private val configurationPref: ConfigurationPref
 ) : BaseViewModel() {
     val selectedTab:MutableLiveData<NavigationTabsEnum> = MutableLiveData(NavigationTabsEnum.HOME)
@@ -36,7 +38,15 @@ class MainViewModel @Inject constructor(
     fun isUserLoggedIn() = userRepo.getUserStatus() == UserEnums.UserState.LoggedIn
 
     fun getCartsCount() = viewModelScope.launch {
-        cartCount.postValue(cartPref.getCartList().count().toString())
+        cartRepo.getCartsCount().observeForever {
+            viewModelScope.launch {
+                if (it != null)
+                    cartCount.postValue(it.toString())
+                else {
+                    cartCount.postValue("0")
+                }
+            }
+        }
     }
 
     fun updateRegId(token: String) = liveData {

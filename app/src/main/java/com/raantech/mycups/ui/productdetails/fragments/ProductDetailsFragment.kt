@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.os.bundleOf
 import com.raantech.mycups.R
 import com.raantech.mycups.data.api.response.GeneralError
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
@@ -97,8 +98,8 @@ class ProductDetailsFragment : BaseProductDetailsFragment<FragmentProductDetails
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: Int?
                 ) {
-                    viewModel.orderId.value = data.toString()
-                    navigationController.navigate(R.id.action_productDetailsFragment_to_orderOfferSentFragment)
+                    navigationController.navigate(R.id.action_productDetailsFragment_to_orderOfferSentFragment,
+                        bundleOf(Pair(Constants.BundleData.ORDER_ID,data.toString())))
                 }
 
                 override fun onError(
@@ -107,8 +108,8 @@ class ProductDetailsFragment : BaseProductDetailsFragment<FragmentProductDetails
                     errors: List<GeneralError>?
                 ) {
                     super.onError(subErrorCode, message, errors)
-                    viewModel.orderId.value = "10254"
-                    navigationController.navigate(R.id.action_productDetailsFragment_to_orderOfferSentFragment)
+                    navigationController.navigate(R.id.action_productDetailsFragment_to_orderOfferSentFragment,
+                        bundleOf(Pair(Constants.BundleData.ORDER_ID,"1".toString())))
                 }
             }
         )

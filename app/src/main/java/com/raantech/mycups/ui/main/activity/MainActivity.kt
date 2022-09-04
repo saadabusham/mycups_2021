@@ -31,7 +31,7 @@ import com.raantech.mycups.ui.auth.AuthActivity
 import com.raantech.mycups.ui.base.activity.BaseBindingActivity
 import com.raantech.mycups.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.mycups.ui.base.bindingadapters.setOnItemClickListener
-import com.raantech.mycups.ui.checkout.viewmodels.CheckoutViewModel
+import com.raantech.mycups.ui.cart.activity.CartActivity
 import com.raantech.mycups.ui.main.adapters.DrawerRecyclerAdapter
 import com.raantech.mycups.ui.main.fragments.favorites.viewmodels.FavoritesViewModel
 import com.raantech.mycups.ui.main.viewmodels.MainViewModel
@@ -41,7 +41,6 @@ import com.raantech.mycups.ui.more.media.MediaActivity
 import com.raantech.mycups.ui.more.orders.activtiy.OrdersActivity
 import com.raantech.mycups.ui.more.profile.activity.UpdateProfileActivity
 import com.raantech.mycups.ui.notifications.activity.NotificationsActivity
-import com.raantech.mycups.ui.offerdetails.activity.OfferDetailsActivity
 import com.raantech.mycups.ui.splash.SplashActivity
 import com.raantech.mycups.ui.storage.activtiy.StorageActivity
 import com.raantech.mycups.utils.LocaleUtil
@@ -54,7 +53,6 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
 
     private val viewModel: MainViewModel by viewModels()
     private val favoriteViewModel: FavoritesViewModel by viewModels()
-    private val checkoutViewModel: CheckoutViewModel by viewModels()
     var loginCallBack: LoginCallBack? = null
     var navController: NavController? = null
 
@@ -62,7 +60,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
 
     override fun onResume() {
         super.onResume()
-        loadCarts()
+        viewModel.getCartsCount()
         loadFavorites()
     }
 
@@ -86,7 +84,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
     private fun setUpListeners() {
         binding?.appBarMain?.layoutToolbar?.imgCart?.setOnClickListener {
             if (!viewModel.cartCount.value.equals("0")) {
-//                CartActivity.start(this)
+                CartActivity.start(this)
             }
         }
         binding?.appBarMain?.layoutToolbar?.imgSearch?.setOnClickListener {
@@ -144,8 +142,6 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
     }
 
     private fun loadCarts() {
-        if (viewModel.isUserLoggedIn())
-            checkoutViewModel.getCartProductsIds().observe(this, cartIdsResultObserver())
     }
 
     private fun favoriteIdsResultObserver(): CustomObserverResponse<List<Int>> {
@@ -158,26 +154,6 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
                     data: List<Int>?
                 ) {
                     data?.let { favoriteViewModel.setFavoriteList(it) }
-                }
-            }, showError = false
-        )
-    }
-
-    private fun cartIdsResultObserver(): CustomObserverResponse<List<Int>> {
-        return CustomObserverResponse(
-            this,
-            object : CustomObserverResponse.APICallBack<List<Int>> {
-                override fun onSuccess(
-                    statusCode: Int,
-                    subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: List<Int>?
-                ) {
-                    if (data != null || data?.isEmpty() == true) {
-                        checkoutViewModel.setCartList(data)
-                    } else {
-                        checkoutViewModel.setCartList(mutableListOf())
-                    }
-                    viewModel.getCartsCount()
                 }
             }, showError = false
         )

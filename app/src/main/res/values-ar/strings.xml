@@ -359,5 +359,6 @@
     <!--    Storage-->
     <string name="request_a_shipment">اطلب شحنة</string>
     <string name="storage">المخزون</string>
+    <string name="cart">سلة المشتريات</string>
 
 </resources>

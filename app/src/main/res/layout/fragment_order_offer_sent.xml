@@ -14,6 +14,9 @@
         <variable
             name="viewModel"
             type="com.raantech.mycups.ui.productdetails.viewmodels.ProductDetailsViewModel" />
+        <variable
+            name="orderId"
+            type="String" />
     </data>
 
     <LinearLayout
@@ -62,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@{@string/order_id_(viewModel.orderId)}"
+                    android:text="@{@string/order_id_(orderId)}"
                     android:textColor="@color/tab_text_color"
                     android:textSize="@dimen/_13ssp"
                     tools:text="#3321" />
