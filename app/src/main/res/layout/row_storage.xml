@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.raantech.mycups.R" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.raantech.mycups.data.models.storage.Storage" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_30sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:strokeColor="@color/divider_dark_gray"
+        app:strokeWidth="@dimen/_1sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                style="@style/textview_normal_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@{item.measurement.name}"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/tab_text_color"
+                android:textSize="@dimen/_10ssp"
+                tools:text="2 ons" />
+
+            <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                style="@style/textview_normal_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@{item.quantity.toString()}"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/button_color"
+                android:textSize="@dimen/_27ssp"
+                tools:text="2000" />
+
+            <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                style="@style/textview_normal_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="@{item.category.name}"
+                android:textAlignment="viewStart"
+                android:textColor="@color/tab_text_color"
+                android:textSize="@dimen/_10ssp"
+                tools:text="Cups" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

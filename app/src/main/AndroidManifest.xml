@@ -137,6 +137,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name="com.raantech.mycups.ui.storage.activtiy.StorageActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".ui.more.addresses.activity.AddressesActivity"
             android:screenOrientation="portrait" />
     </application>

@@ -31,6 +31,7 @@
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/drawable/ic_search.xml" value="0.20833333333333334" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/drawable/ic_true.xml" value="0.1375" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/drawable/ic_unchecked.xml" value="0.134" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/drawable/shape_edittext_focused.xml" value="0.1375" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/drawable/shape_textview_not_focused.xml" value="0.14" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/activity_about_us.xml" value="0.1921875" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/activity_address.xml" value="0.1921875" />
@@ -52,6 +53,7 @@
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/activity_product_details_fast.xml" value="0.1921875" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/activity_register.xml" value="0.1921875" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/activity_splash.xml" value="0.15" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/activity_storage.xml" value="0.1921875" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/activity_subcategory.xml" value="0.1921875" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/activity_update_profile.xml" value="0.1921875" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/activity_view_image.xml" value="0.1" />
@@ -72,6 +74,8 @@
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/fragment_product_details.xml" value="0.1921875" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/fragment_register.xml" value="0.22" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/fragment_storage.xml" value="0.2" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/fragment_storage_request.xml" value="0.22" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/fragment_subcategory.xml" value="0.2" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/layout_amount.xml" value="0.22" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/layout_empty_product.xml" value="0.25" />
@@ -106,6 +110,8 @@
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/row_product_horizontal.xml" value="0.33" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/row_product_horizontal_shimmer.xml" value="0.1921875" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/row_product_vertical.xml" value="0.25" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/row_storage.xml" value="0.25" />
+        <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/row_storage_request.xml" value="0.25" />
         <entry key="..\:/freelance/mycubs2021/mycups2021/app/src/main/res/layout/row_tab.xml" value="0.5" />
       </map>
     </option>

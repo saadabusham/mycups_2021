@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.raantech.mycups.R" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.raantech.mycups.data.models.storage.Storage" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_weight="1"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:strokeColor="@color/divider_dark_gray"
+            app:strokeWidth="@dimen/_1sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    tools:text="2 ons"
+                    android:text="@{item.measurement.name}"
+                    android:textAlignment="viewEnd"
+                    android:textColor="@color/tab_text_color"
+                    android:textSize="@dimen/_10ssp" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    style="@style/textview_normal_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    tools:text="2000"
+                    android:text="@{item.quantity.toString()}"
+                    android:textAlignment="viewEnd"
+                    android:textColor="@color/button_color"
+                    android:textSize="@dimen/_27ssp" />
+
+                <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    tools:text="Cups"
+                    android:text="@{item.category.name}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/tab_text_color"
+                    android:textSize="@dimen/_10ssp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/_5sdp"
+                android:layout_gravity="center"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/stroke_color"
+                app:strokeWidth="@dimen/_1sdp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppImageViewClick
+                        android:id="@+id/imgPlus"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_marginStart="@dimen/_7sdp"
+                        android:background="?android:selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="@dimen/_2sdp"
+                        android:src="@drawable/ic_plus" />
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvQuantity"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_7sdp"
+                        android:layout_marginEnd="@dimen/_7sdp"
+                        android:includeFontPadding="false"
+                        android:text="@{item.count.toString()}"
+                        android:textColor="@color/tab_text_color"
+                        android:textSize="@dimen/_18ssp"
+                        tools:text="100" />
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppImageViewClick
+                        android:id="@+id/imgMinus"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_marginEnd="@dimen/_7sdp"
+                        android:background="?android:selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="@dimen/_2sdp"
+                        android:src="@drawable/ic_minus" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

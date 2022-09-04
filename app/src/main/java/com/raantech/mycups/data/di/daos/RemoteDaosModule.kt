@@ -9,6 +9,7 @@ import com.raantech.mycups.data.daos.remote.lookups.LookupsRemoteDao
 import com.raantech.mycups.data.daos.remote.media.MediaRemoteDao
 import com.raantech.mycups.data.daos.remote.orders.OrdersRemoteDao
 import com.raantech.mycups.data.daos.remote.product.ProductRemoteDao
+import com.raantech.mycups.data.daos.remote.storage.StorageRemoteDao
 import com.raantech.mycups.data.daos.remote.user.UserRemoteDao
 import com.raantech.mycups.data.daos.remote.wishlist.WishListRemoteDao
 import dagger.Module
@@ -106,6 +107,14 @@ object RemoteDaosModule {
         retrofit: Retrofit
     ): MediaRemoteDao {
         return retrofit.create(MediaRemoteDao::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideStorageRemoteDao(
+        retrofit: Retrofit
+    ): StorageRemoteDao {
+        return retrofit.create(StorageRemoteDao::class.java)
     }
 
 }

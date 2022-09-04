@@ -43,6 +43,7 @@ import com.raantech.mycups.ui.more.profile.activity.UpdateProfileActivity
 import com.raantech.mycups.ui.notifications.activity.NotificationsActivity
 import com.raantech.mycups.ui.offerdetails.activity.OfferDetailsActivity
 import com.raantech.mycups.ui.splash.SplashActivity
+import com.raantech.mycups.ui.storage.activtiy.StorageActivity
 import com.raantech.mycups.utils.LocaleUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
@@ -284,7 +285,8 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
             when (position) {
                 0 -> OrdersActivity.start(this)
                 1 -> MediaActivity.start(this, MediaTypesEnum.DESIGN.value)
-                2 -> OfferDetailsActivity.start(this, "1")
+//                2 -> OfferDetailsActivity.start(this, "1")
+                2 -> StorageActivity.start(this)
                 3 -> MediaActivity.start(this, MediaTypesEnum.IMAGES.value)
                 4 -> UpdateProfileActivity.start(this)
                 5 -> ContactUsActivity.start(this)

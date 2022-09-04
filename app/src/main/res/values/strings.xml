@@ -358,4 +358,8 @@
     <string name="please_select_city">Please select city</string>
     <string name="address">Address</string>
 
+    <!--    Storage-->
+    <string name="request_a_shipment">Request a shipment</string>
+    <string name="storage">Storage</string>
+
 </resources>

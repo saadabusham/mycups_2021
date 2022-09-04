@@ -356,4 +356,8 @@
     <string name="please_select_city">الرجاء اختيار المدينة</string>
     <string name="address">العنوان</string>
 
+    <!--    Storage-->
+    <string name="request_a_shipment">اطلب شحنة</string>
+    <string name="storage">المخزون</string>
+
 </resources>
