@@ -7,43 +7,54 @@
         <variable
             name="showCode"
             type="Boolean" />
+        <import type="android.view.View"/>
         <variable
-            name="item"
+            name="city"
             type="com.raantech.mycups.data.models.general.City" />
     </data>
 
-    <RelativeLayout
-        android:id="@+id/relativeContainer"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_42sdp">
+        android:layout_height="@dimen/_40sdp"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical">
 
-        <com.raantech.mycups.ui.base.views.appviews.AppTextView
-            android:id="@+id/tvTitle"
-            style="@style/textview_normal_regular"
+        <RelativeLayout
+            android:id="@+id/relativeContainer"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_41sdp"
-            android:layout_toStartOf="@id/imgSelected"
-            android:gravity="center|start"
-            android:text="@{item.name}"
-            android:textSize="@dimen/_13ssp"
-            tools:text="Riyadh"
-            android:textColor="@color/edit_text_title_color" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@{city.selected ? @color/button_color :  @color/white}">
 
-        <ImageView
-            android:id="@+id/imgSelected"
-            android:layout_width="@dimen/_10sdp"
-            android:layout_height="@dimen/_10sdp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerInParent="true"
-            android:layout_marginEnd="@dimen/layouts_margin_end"
-            android:src="@drawable/ic_true"
-            android:visibility="gone"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_alignParentStart="true"
+                android:gravity="center|start"
+                android:text="@{city.name}"
+                android:textAppearance="@style/textview_normal_regular"
+                android:textColor="@{city.selected ? @color/white : @color/black}"
+                android:textSize="@dimen/_12ssp"
+                tools:text="Amman , Jordan" />
 
+            <ImageView
+                android:id="@+id/imgSelected"
+                android:layout_width="@dimen/_17sdp"
+                android:layout_height="@dimen/_17sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:src="@drawable/ic_true"
+                android:visibility="@{city.selected ? View.VISIBLE : View.GONE}" />
+        </RelativeLayout>
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/divider_gray"
-            android:layout_below="@id/tvTitle"/>
-    </RelativeLayout>
+            android:layout_height="0.5dp"
+            android:background="@color/divider_gray"/>
+    </LinearLayout>
 
 </layout>

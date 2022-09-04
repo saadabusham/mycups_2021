@@ -3,65 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
+    <data></data>
 
-        <import type="android.view.View" />
-
-        <variable
-            name="presenter"
-            type="com.raantech.mycups.ui.offerdetails.presenter.OfferDetailsPresenter" />
-        <variable
-            name="viewModel"
-            type="com.raantech.mycups.ui.notifications.viewmodel.NotificationsViewModel" />
-    </data>
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/layout_toolbar"
-            layout="@layout/layout_toolbar" />
-
-        <include
-            android:id="@+id/layout_no_data"
-            layout="@layout/layout_no_data"
+        <fragment
+            android:id="@+id/offer_nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone" />
+            app:defaultNavHost="true"
+            app:navGraph="@id/offer_nav_host_fragment"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:clipToPadding="false"
-            android:nestedScrollingEnabled="false"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/_15sdp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:itemCount="10"
-            tools:listitem="@layout/row_offer_product" />
-
-        <include
-            android:id="@+id/layout_amount"
-            layout="@layout/layout_amount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnPay"
-            style="@style/AppTheme.Button"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/button_height"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="@dimen/layouts_margin_start"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/layouts_margin_end"
-            android:layout_marginBottom="@dimen/_15sdp"
-            android:onClick="@{()->presenter.onPayClicked()}"
-            android:text="@string/pay"
-            android:textSize="@dimen/_12ssp" />
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

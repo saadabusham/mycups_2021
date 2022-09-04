@@ -204,11 +204,6 @@
     <string name="go_to_home">Go to home</string>
     <string name="log_in_with_email">Log in with email</string>
 
-    <!--    City Picker-->
-    <string name="select_a_city">Select a City</string>
-    <string name="where_should_we_place_your_ads">Where should we place your ads?</string>
-
-
     <!--   MainActivity-->
     <string name="nav_home">Home</string>
     <string name="nav_favorites">Favorites</string>
@@ -339,6 +334,28 @@
     <string name="tax">Tax</string>
     <string name="shipping_fees">Shipping Fees</string>
     <string name="store_renting">Store Renting</string>
+
     <!--    Offer Details-->
     <string name="pay">Pay</string>
+
+    <!--    Map    -->
+    <string name="search_here">Search here</string>
+    <string name="location">Location</string>
+    <string name="please_pick_location">Please pick location</string>
+
+    <!--    Create Address   -->
+    <string name="save_address">Save Address</string>
+    <string name="update_address">Update Address</string>
+    <string name="contact_name">Name</string>
+    <string name="city">City</string>
+    <string name="district">District</string>
+    <string name="street">Street</string>
+    <string name="building_number">Building Number</string>
+    <string name="description">Description</string>
+
+    <!--    City Picker-->
+    <string name="select_a_city">Select a City</string>
+    <string name="please_select_city">Please select city</string>
+    <string name="address">Address</string>
+
 </resources>

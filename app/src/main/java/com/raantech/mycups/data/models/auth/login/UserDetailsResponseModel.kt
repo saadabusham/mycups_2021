@@ -8,5 +8,5 @@ data class UserDetailsResponseModel(
     val accessToken: String? = null,
 
     @field:SerializedName("user")
-    val user: User? = null
+    var user: User? = null
 ) : Serializable

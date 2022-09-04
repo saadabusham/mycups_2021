@@ -34,6 +34,7 @@ object Constants {
         const val MEDIA: String = "media"
         const val SELECT_MEDIA: String = "selectMedia"
         const val MEDIA_TYPE: String = "mediaType"
+        const val ADDRESS: String = "address"
     }
 
     object NotificationsChannels {

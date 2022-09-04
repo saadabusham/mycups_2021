@@ -54,7 +54,7 @@ class OrdersFragment : BaseBindingFragment<FragmentOrdersBinding, Nothing>(),
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = true,
-            title = R.string.thank_you
+            title = R.string.menu_my_orders
         )
         setUpBinding()
         observeLoading()

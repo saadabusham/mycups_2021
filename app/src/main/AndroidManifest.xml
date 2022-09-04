@@ -18,6 +18,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="allowBackup">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
         <activity
             android:name="com.raantech.mycups.ui.splash.SplashActivity"
             android:exported="true">
@@ -93,11 +97,6 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.raantech.mycups.ui.productdetails.activity.FastProductDetailsActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name="com.raantech.mycups.ui.productdetails.activity.ProductDetailsActivity"
             android:exported="false"
             android:screenOrientation="portrait"
@@ -132,6 +131,14 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.raantech.mycups.ui.more.profile.activity.UpdateProfileActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.more.addresses.activity.AddressesActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

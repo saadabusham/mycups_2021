@@ -38,7 +38,7 @@ class CitiesRecyclerAdapter(
         BaseViewHolder<City>(binding.root) {
 
         override fun bind(item: City) {
-            binding.item = item
+            binding.city = item
             binding.root.setOnClickListener {
                 items.withIndex().singleOrNull { it.value.selected }?.let {
                     it.value.selected = false

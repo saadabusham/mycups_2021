@@ -2,6 +2,7 @@ package com.raantech.mycups.data.daos.remote.configuration
 
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.common.NetworkConstants
+import com.raantech.mycups.data.models.CitiesResponse
 import com.raantech.mycups.data.models.configuration.ConfigurationWrapperResponse
 import com.raantech.mycups.data.models.more.AboutUsResponse
 import retrofit2.http.GET
@@ -15,5 +16,10 @@ interface ConfigurationRemoteDao {
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:true")
     @GET("app/info")
     suspend fun getAboutUs(): ResponseWrapper<AboutUsResponse>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @GET("app/cities")
+    suspend fun getCities(
+    ): ResponseWrapper<CitiesResponse>
 
 }

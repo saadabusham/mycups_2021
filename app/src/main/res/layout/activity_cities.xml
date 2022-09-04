@@ -17,33 +17,36 @@
             style="@style/textview_normal_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="@string/select_a_city"
-            android:textColor="@color/focused_color"
-            android:layout_gravity="center"
+            android:textColor="@color/title_color"
             android:textSize="@dimen/_17ssp" />
-
-        <com.raantech.mycups.ui.base.views.appviews.AppTextView
-            style="@style/textview_normal_regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_gravity="center"
-            android:text="@string/where_should_we_place_your_ads"
-            android:textColor="@color/edit_text_title_color"
-            android:gravity="center"
-            android:lineSpacingExtra="@dimen/_3sdp"
-            android:textSize="@dimen/_11ssp" />
 
         <com.raantech.mycups.ui.base.views.appviews.AppEditText
             android:id="@+id/edTitle"
+            style="@style/textview_normal_regular"
             android:layout_width="match_parent"
             android:layout_height="@dimen/Edittext_height"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:background="@android:color/transparent"
+            android:drawableStart="@drawable/places_ic_search"
+            android:drawablePadding="@dimen/_5sdp"
             android:hint="@string/search_hint"
+            android:includeFontPadding="false"
+            android:padding="0dp"
+            android:textAlignment="viewStart"
+            android:textColorHint="@color/gray_btn_bg_color"
+            android:textSize="@dimen/_16ssp" />
+
+        <View
+            android:id="@+id/viewName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
             android:layout_marginStart="@dimen/layouts_margin_start"
             android:layout_marginEnd="@dimen/layouts_margin_end"
-            android:drawableStart="@drawable/places_ic_search"
-            android:drawablePadding="@dimen/_5sdp"/>
+            android:background="@color/divider_gray" />
 
         <include
             android:id="@+id/layoutShimmer"
@@ -63,9 +66,9 @@
             android:layout_marginEnd="@dimen/layouts_margin_end"
             android:visibility="gone"
             app:icon="@{@drawable/ic_no_search_result}"
-            app:title="@{@string/no_results}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutShimmer"/>
+            app:layout_constraintTop_toBottomOf="@id/layoutShimmer"
+            app:title="@{@string/no_results}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -74,9 +77,9 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:clipToPadding="false"
             android:nestedScrollingEnabled="false"
+            android:orientation="vertical"
             android:paddingStart="@dimen/layouts_margin_start"
             android:paddingEnd="@dimen/layouts_margin_end"
-            android:orientation="vertical"
             android:paddingBottom="@dimen/_100sdp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/row_city" />

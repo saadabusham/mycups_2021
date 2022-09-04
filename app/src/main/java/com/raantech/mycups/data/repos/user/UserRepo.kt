@@ -4,6 +4,7 @@ import com.raantech.mycups.data.api.response.APIResource
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.enums.UserEnums
 import com.raantech.mycups.data.models.auth.login.TokenModel
+import com.raantech.mycups.data.models.auth.login.User
 import com.raantech.mycups.data.models.auth.login.UserDetailsResponseModel
 import com.raantech.mycups.data.models.notification.Notification
 import okhttp3.MultipartBody
@@ -12,7 +13,6 @@ import retrofit2.http.Query
 
 
 interface UserRepo {
-
 
     suspend fun login(
         userName: String,
@@ -55,10 +55,10 @@ interface UserRepo {
     ): APIResource<ResponseWrapper<UserDetailsResponseModel>>
 
     suspend fun updateProfile(
-        firstName: RequestBody,
-        lastName: RequestBody,
-        phoneNumber: RequestBody
-    ): APIResource<ResponseWrapper<Any>>
+        name: String,
+        email: String,
+        phoneNumber: String?=null
+    ): APIResource<ResponseWrapper<User>>
 
     suspend fun updatePassword(
         oldPassword: String,
@@ -81,6 +81,18 @@ interface UserRepo {
     suspend fun getNotifications(
         skip:Int
     ): APIResource<ResponseWrapper<List<Notification>>>
+
+    suspend fun updateAddress(
+        name: String,
+        phone: String,
+        city: String,
+        district: String,
+        street: String,
+        building_number: String,
+        description: String,
+        latitude: Double,
+        longitude: Double,
+    ): APIResource<ResponseWrapper<User>>
 
     fun saveNotificationStatus(flag: Boolean)
     fun getNotificationStatus(): Boolean

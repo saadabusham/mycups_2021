@@ -39,6 +39,7 @@ import com.raantech.mycups.ui.more.aboutus.AboutUsActivity
 import com.raantech.mycups.ui.more.contactus.activity.ContactUsActivity
 import com.raantech.mycups.ui.more.media.MediaActivity
 import com.raantech.mycups.ui.more.orders.activtiy.OrdersActivity
+import com.raantech.mycups.ui.more.profile.activity.UpdateProfileActivity
 import com.raantech.mycups.ui.notifications.activity.NotificationsActivity
 import com.raantech.mycups.ui.offerdetails.activity.OfferDetailsActivity
 import com.raantech.mycups.ui.splash.SplashActivity
@@ -282,18 +283,17 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
             binding?.drawerLayout?.closeDrawer(GravityCompat.START)
             when (position) {
                 0 -> OrdersActivity.start(this)
-//                0 -> WishListActivity.start(this)
-                1 -> MediaActivity.start(this,MediaTypesEnum.DESIGN.value)
-//                3 -> UpdateProfileActivity.start(this)
-                2 -> OfferDetailsActivity.start(this,"1")
-                3 -> MediaActivity.start(this,MediaTypesEnum.IMAGES.value)
+                1 -> MediaActivity.start(this, MediaTypesEnum.DESIGN.value)
+                2 -> OfferDetailsActivity.start(this, "1")
+                3 -> MediaActivity.start(this, MediaTypesEnum.IMAGES.value)
+                4 -> UpdateProfileActivity.start(this)
                 5 -> ContactUsActivity.start(this)
                 6 -> AboutUsActivity.start(this)
                 7 -> {
                     if (viewModel.isUserLoggedIn())
                         viewModel.logoutRemote().observe(this, logoutResultObserver())
                     else
-                        AuthActivity.startForResult(this@MainActivity, true,loginResultLauncher)
+                        AuthActivity.startForResult(this@MainActivity, true, loginResultLauncher)
                 }
                 8 -> viewModel.saveLanguage().observe(this, Observer {
                     this.let {
@@ -306,6 +306,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
             }
         }
     }
+
     var loginResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -318,6 +319,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
                 }
             }
         }
+
     private fun logoutResultObserver(): CustomObserverResponse<Any> {
         return CustomObserverResponse(
             this,
@@ -355,7 +357,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (data?.getBooleanExtra(Constants.BundleData.IS_LOGIN_SUCCESS, false) == true){
+        if (data?.getBooleanExtra(Constants.BundleData.IS_LOGIN_SUCCESS, false) == true) {
             setUpDrawer()
             loginCallBack?.loggedInSuccess()
         }

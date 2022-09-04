@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/offer_nav_graph"
+    app:startDestination="@id/offerDetailsFragment">
+
+
+    <fragment
+        android:id="@+id/offerDetailsFragment"
+        android:name="com.raantech.mycups.ui.offerdetails.fragments.OfferDetailsFragment"
+        android:label="OfferDetailsFragment">
+        <action
+            android:id="@+id/action_offerDetailsFragment_to_orderSuccessFragment"
+            app:destination="@id/orderSuccessFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/offerDetailsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderSuccessFragment"
+        android:name="com.raantech.mycups.ui.productdetails.fragments.OrderSuccessFragment"
+        android:label="OrderSuccessFragment" />
+</navigation>

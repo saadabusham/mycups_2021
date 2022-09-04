@@ -3,6 +3,7 @@ package com.raantech.mycups.data.daos.remote.user
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.common.NetworkConstants
 import com.raantech.mycups.data.models.auth.login.TokenModel
+import com.raantech.mycups.data.models.auth.login.User
 import com.raantech.mycups.data.models.auth.login.UserDetailsResponseModel
 import com.raantech.mycups.data.models.notification.Notification
 import okhttp3.MultipartBody
@@ -69,13 +70,12 @@ interface UserRemoteDao {
     ): ResponseWrapper<UserDetailsResponseModel>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @Multipart
-    @PATCH("api/user/update")
+    @POST("profile/update")
     suspend fun updateProfile(
-        @Part("FirstName") firstName: RequestBody,
-        @Part("LastName") lastName: RequestBody,
-        @Part("PhoneNumber") phoneNumber: RequestBody
-    ): ResponseWrapper<Any>
+        @Query("name") name: String,
+        @Query("email") email: String,
+        @Query("PhoneNumber") phoneNumber: String?
+    ): ResponseWrapper<User>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @POST("api/user/newPassword")
@@ -110,5 +110,19 @@ interface UserRemoteDao {
     suspend fun getNotifications(
         @Query("skip") skip: Int
     ): ResponseWrapper<List<Notification>>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @POST("profile/update/address")
+    suspend fun updateAddress(
+        @Query("name") name: String,
+        @Query("phone") phone: String,
+        @Query("city") city: String,
+        @Query("district") district: String,
+        @Query("street") street: String,
+        @Query("building_number") building_number: String,
+        @Query("description") description: String,
+        @Query("latitude") latitude: Double,
+        @Query("longitude") longitude: Double,
+    ): ResponseWrapper<User>
 
 }

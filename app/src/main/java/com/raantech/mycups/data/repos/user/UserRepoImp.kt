@@ -6,6 +6,7 @@ import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.daos.remote.user.UserRemoteDao
 import com.raantech.mycups.data.enums.UserEnums
 import com.raantech.mycups.data.models.auth.login.TokenModel
+import com.raantech.mycups.data.models.auth.login.User
 import com.raantech.mycups.data.pref.user.UserPref
 import com.raantech.mycups.data.models.auth.login.UserDetailsResponseModel
 import com.raantech.mycups.data.models.notification.Notification
@@ -132,14 +133,14 @@ class UserRepoImp @Inject constructor(
     }
 
     override suspend fun updateProfile(
-        firstName: RequestBody,
-        lastName: RequestBody,
-        phoneNumber: RequestBody
-    ): APIResource<ResponseWrapper<Any>> {
+        name: String,
+        email: String,
+        phoneNumber: String?
+    ): APIResource<ResponseWrapper<User>> {
         return try {
             responseHandle.handleSuccess(
                 userRemoteDao.updateProfile(
-                    firstName, lastName, phoneNumber
+                    name, email, phoneNumber
                 )
             )
         } catch (e: Exception) {
@@ -208,6 +209,28 @@ class UserRepoImp @Inject constructor(
             responseHandle.handleSuccess(
                 userRemoteDao.getNotifications(
                     skip
+                )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun updateAddress(
+        name: String,
+        phone: String,
+        city: String,
+        district: String,
+        street: String,
+        building_number: String,
+        description: String,
+        latitude: Double,
+        longitude: Double
+    ): APIResource<ResponseWrapper<User>> {
+        return try {
+            responseHandle.handleSuccess(
+                userRemoteDao.updateAddress(
+                    name, phone, city, district, street, building_number,description, latitude, longitude
                 )
             )
         } catch (e: Exception) {

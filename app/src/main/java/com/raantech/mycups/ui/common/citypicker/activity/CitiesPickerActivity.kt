@@ -14,6 +14,8 @@ import com.raantech.mycups.data.api.response.GeneralError
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
+import com.raantech.mycups.data.models.CitiesResponse
+import com.raantech.mycups.data.models.general.City
 import com.raantech.mycups.data.models.general.Countries
 import com.raantech.mycups.data.models.general.ListWrapper
 import com.raantech.mycups.databinding.ActivityCitiesBinding
@@ -37,24 +39,15 @@ import java.util.concurrent.TimeUnit
 @AndroidEntryPoint
 class CitiesPickerActivity : BaseBindingActivity<ActivityCitiesBinding, Nothing>(),
     BaseBindingRecyclerViewAdapter.OnItemClickListener {
-
     private val viewModel: CitiesViewModel by viewModels()
 
     private lateinit var citiesRecyclerAdapter: CitiesRecyclerAdapter
-    private val originalList: MutableList<Countries> = mutableListOf()
+    private val originalList: MutableList<City> = mutableListOf()
     var compositeDisposable: CompositeDisposable? = CompositeDisposable()
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
-    private var isFinished = false
-    var page = 1
-
-    override fun finish() {
-        super.finish()
-        overridePendingTransition(R.anim.nothing, R.anim.slide_in_bottom);
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        overridePendingTransition(R.anim.slide_out_bottom, R.anim.nothing)
         setContentView(
             R.layout.activity_cities,
             hasToolbar = true,
@@ -68,25 +61,21 @@ class CitiesPickerActivity : BaseBindingActivity<ActivityCitiesBinding, Nothing>
         )
         observeLoading()
         setUpRecyclerView()
-        setUpListeners()
         initSearch()
     }
 
-    private fun setUpListeners() {
-    }
-
     private fun onDone() {
-        val selectedCountry = citiesRecyclerAdapter.getSelectedItem()
-        if (selectedCountry == null) {
+        val selectedCity = citiesRecyclerAdapter.getSelectedItem()
+        if (selectedCity == null) {
             showErrorAlert(
-                message = getString(R.string.please_select_country)
+                message = getString(R.string.please_select_city)
             )
             return
         }
         val data = Intent()
         data.putExtra(
-            Constants.BundleData.COUNTRY,
-            selectedCountry
+            Constants.BundleData.CITY,
+            selectedCity
         )
         setResult(RESULT_OK, data)
         finish()
@@ -96,14 +85,6 @@ class CitiesPickerActivity : BaseBindingActivity<ActivityCitiesBinding, Nothing>
         citiesRecyclerAdapter = CitiesRecyclerAdapter(this)
         binding?.recyclerView?.adapter = citiesRecyclerAdapter
         binding?.recyclerView?.setOnItemClickListener(this)
-//        val localData: List<Countries> =
-//            readRawJson(this, R.raw.countries)
-//        countriesAdapter.submitItems(localData)
-//        localData.singleOrNull { it.code == intent.getStringExtra(Constants.BundleData.CURRENT_COUNTRY) }
-//            ?.apply {
-//                selected = true
-//            }
-//        originalList.addAll(localData)
         loadData()
     }
 
@@ -125,36 +106,38 @@ class CitiesPickerActivity : BaseBindingActivity<ActivityCitiesBinding, Nothing>
     }
 
     private fun applyFilter(text: String) {
-        citiesRecyclerAdapter.clear()
-        page = 1
-        viewModel.textToSearch = text
-        loadData()
+        if (text.isEmpty()) {
+            citiesRecyclerAdapter.clear()
+            citiesRecyclerAdapter.submitItems(originalList)
+        } else {
+            citiesRecyclerAdapter.clear()
+            citiesRecyclerAdapter.submitItems(originalList.filter {
+                it.name?.contains(text) == true || it.code?.contains(
+                    text
+                ) == true
+            })
+            hideShowNoData()
+        }
     }
 
     private fun loadData() {
-        viewModel.getCities(pageNumber = page, pageSize = Constants.PAGE_SIZE)
-            .observe(this, countriesCodeResultObserver())
+        viewModel.getCities()
+            .observe(this, citiesResultObserver())
     }
 
 
-    private fun countriesCodeResultObserver(): CustomObserverResponse<ListWrapper<Countries>> {
+    private fun citiesResultObserver(): CustomObserverResponse<CitiesResponse> {
         return CustomObserverResponse(
             this,
-            object : CustomObserverResponse.APICallBack<ListWrapper<Countries>> {
+            object : CustomObserverResponse.APICallBack<CitiesResponse> {
                 override fun onSuccess(
                     statusCode: Int,
                     subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: ListWrapper<Countries>?
+                    data: CitiesResponse?
                 ) {
-                    isFinished =
-                        data?.data?.size?.plus(citiesRecyclerAdapter.itemCount) ?: 0 >= data?.totalRows ?: 0
-
-                    data?.data?.let {
-//                        if (page == 1) {
-//                            citiesRecyclerAdapter.submitNewItems(it)
-//                        } else {
-//                            citiesRecyclerAdapter.addItems(it)
-//                        }
+                    data?.cities?.let {
+                        originalList.addAll(it)
+                        citiesRecyclerAdapter.submitItems(it)
                     }
                     loading.postValue(false)
                     hideShowNoData()
@@ -178,7 +161,7 @@ class CitiesPickerActivity : BaseBindingActivity<ActivityCitiesBinding, Nothing>
     }
 
     private fun observeLoading() {
-        loading.observe(this, {
+        loading.observe(this) {
             if (it) {
                 binding?.layoutShimmer?.shimmerViewContainer?.visible()
                 binding?.layoutShimmer?.shimmerViewContainer?.startShimmer()
@@ -186,7 +169,7 @@ class CitiesPickerActivity : BaseBindingActivity<ActivityCitiesBinding, Nothing>
                 binding?.layoutShimmer?.shimmerViewContainer?.gone()
                 binding?.layoutShimmer?.shimmerViewContainer?.stopShimmer()
             }
-        })
+        }
     }
 
     private fun hideShowNoData() {
@@ -197,6 +180,10 @@ class CitiesPickerActivity : BaseBindingActivity<ActivityCitiesBinding, Nothing>
                 binding?.layoutNoResult?.root?.gone()
             }
         }
+    }
+
+    override fun onItemClick(view: View?, position: Int, item: Any) {
+        onDone()
     }
 
     companion object {
@@ -213,13 +200,10 @@ class CitiesPickerActivity : BaseBindingActivity<ActivityCitiesBinding, Nothing>
             resultLauncher: ActivityResultLauncher<Intent>
         ) {
             val intent = Intent(context, CitiesPickerActivity::class.java).apply {
-                putExtra(Constants.BundleData.CURRENT_COUNTRY, currentCode)
+                putExtra(Constants.BundleData.CITY, currentCode)
             }
             resultLauncher.launch(intent)
         }
     }
 
-    override fun onItemClick(view: View?, position: Int, item: Any) {
-        onDone()
-    }
 }
