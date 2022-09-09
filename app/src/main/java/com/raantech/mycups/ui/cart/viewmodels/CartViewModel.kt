@@ -6,10 +6,12 @@ import androidx.lifecycle.viewModelScope
 import com.raantech.mycups.data.api.response.APIResource
 import com.raantech.mycups.data.enums.PaymentTypeEnum
 import com.raantech.mycups.data.models.Price
+import com.raantech.mycups.data.models.auth.login.Address
 import com.raantech.mycups.data.models.home.product.productdetails.Product
 import com.raantech.mycups.data.models.orders.request.purchaseorder.PurchaseOrderRequest
 import com.raantech.mycups.data.repos.cart.CartRepo
 import com.raantech.mycups.data.repos.orders.OrdersRepo
+import com.raantech.mycups.data.repos.user.UserRepo
 import com.raantech.mycups.ui.base.viewmodel.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,6 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CartViewModel @Inject constructor(
+    private val userRepo: UserRepo,
     private val cartRepo: CartRepo,
     private val ordersRepo: OrdersRepo
 ) : BaseViewModel() {
@@ -68,4 +71,12 @@ class CartViewModel @Inject constructor(
         emit(response)
     }
 
+    fun hasUserAddress(): Boolean {
+        return userRepo.getUser()?.user?.address != null &&
+                userRepo.getUser()?.user?.address?.addressLat != null &&
+                userRepo.getUser()?.user?.address?.addressLng != null
+    }
+    fun hasBrandName(): Boolean {
+        return !userRepo.getUser()?.user?.brandName.isNullOrEmpty()
+    }
 }

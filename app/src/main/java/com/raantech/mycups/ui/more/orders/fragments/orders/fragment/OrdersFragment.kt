@@ -21,6 +21,7 @@ import com.raantech.mycups.ui.base.bindingadapters.setOnItemClickListener
 import com.raantech.mycups.ui.base.fragment.BaseBindingFragment
 import com.raantech.mycups.ui.more.orders.fragments.orders.adapters.OrdersRecyclerAdapter
 import com.raantech.mycups.ui.more.orders.viewmodels.OrdersViewModel
+import com.raantech.mycups.ui.offerdetails.activity.OfferDetailsActivity
 import com.raantech.mycups.ui.productdetails.activity.ProductDetailsActivity
 import com.raantech.mycups.ui.subcategory.adapter.ProductVerticalRecyclerAdapter
 import com.raantech.mycups.ui.subcategory.adapter.TabListRecyclerAdapter
@@ -112,6 +113,7 @@ class OrdersFragment : BaseBindingFragment<FragmentOrdersBinding, Nothing>(),
     }
 
     private fun applyFilter(text: String) {
+        viewModel.searchText.value = text
         tabListRecyclerAdapter.getSelectedItem()?.let {
             loadOrders(it, text)
         }
@@ -184,10 +186,11 @@ class OrdersFragment : BaseBindingFragment<FragmentOrdersBinding, Nothing>(),
             }
             is Order -> {
                 item.id?.let {
-//                    ProductDetailsActivity.start(
-//                        this,
-//                        it, item.name, item.is_fast
-//                    )
+                    if (item.isOffer == true)
+                        OfferDetailsActivity.start(
+                            requireContext(),
+                            it
+                        )
                 }
             }
         }

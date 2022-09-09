@@ -15,6 +15,7 @@ import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
 import com.raantech.mycups.data.enums.InputFieldValidStateEnums
 import com.raantech.mycups.data.models.auth.login.User
+import com.raantech.mycups.data.models.auth.login.UserDetailsResponseModel
 import com.raantech.mycups.data.models.general.City
 import com.raantech.mycups.data.models.map.Address
 import com.raantech.mycups.databinding.ActivityAddressBinding
@@ -49,12 +50,7 @@ class AddressesActivity : BaseBindingActivity<ActivityAddressBinding, Nothing>()
     }
 
     private fun setUpListener() {
-        binding?.tvCity?.setOnClickListener {
-            CitiesPickerActivity.start(
-                context = this,
-                resultLauncher = cityResultLauncher
-            )
-        }
+
         binding?.tvLocation?.setOnClickListener {
             MapActivity.start(
                 context = this,
@@ -66,13 +62,7 @@ class AddressesActivity : BaseBindingActivity<ActivityAddressBinding, Nothing>()
                 viewModel.addAddress().observe(this, updateAddressResultObserver())
             }
         }
-        binding?.edContactName?.addTextChangedListener(inputListeners)
-        binding?.edPhoneNumber?.addTextChangedListener(inputListeners)
-        binding?.tvCity?.addTextChangedListener(inputListeners)
-        binding?.edDistrict?.addTextChangedListener(inputListeners)
-        binding?.edStreet?.addTextChangedListener(inputListeners)
-        binding?.edBuildingNumber?.addTextChangedListener(inputListeners)
-        binding?.edDescription?.addTextChangedListener(inputListeners)
+        binding?.edName?.addTextChangedListener(inputListeners)
     }
 
     private var mapResultLauncher =
@@ -89,30 +79,20 @@ class AddressesActivity : BaseBindingActivity<ActivityAddressBinding, Nothing>()
             }
         }
 
-    private var cityResultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-                viewModel.city.value =
-                    ((data?.getSerializableExtra(Constants.BundleData.CITY) as City)).code
-                isDataValidate()
-            }
-        }
-
     private val inputListeners = object : TextTypingCallback {
         override fun textChanged(text: String) {
             isDataValidate()
         }
     }
 
-    private fun updateAddressResultObserver(): CustomObserverResponse<User> {
+    private fun updateAddressResultObserver(): CustomObserverResponse<UserDetailsResponseModel> {
         return CustomObserverResponse(
             this,
-            object : CustomObserverResponse.APICallBack<User> {
+            object : CustomObserverResponse.APICallBack<UserDetailsResponseModel> {
                 override fun onSuccess(
                     statusCode: Int,
                     subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: User?
+                    data: UserDetailsResponseModel?
                 ) {
                     onBackPressed()
                 }
@@ -121,7 +101,7 @@ class AddressesActivity : BaseBindingActivity<ActivityAddressBinding, Nothing>()
 
     private fun isDataValidate(): Boolean {
         var valid = true
-        binding?.edContactName?.text.toString()
+        binding?.edName?.text.toString()
             .validate(ValidatorInputTypesEnums.TEXT, this).let {
                 if (!it.isValid) {
                     binding?.tvContactNameError?.text = it.errorMessage
@@ -131,77 +111,6 @@ class AddressesActivity : BaseBindingActivity<ActivityAddressBinding, Nothing>()
                 } else {
                     binding?.viewName?.updateStrokeColor(InputFieldValidStateEnums.VALID)
                     binding?.tvContactNameError?.gone()
-                }
-            }
-        binding?.edPhoneNumber?.text.toString()
-            .validate(ValidatorInputTypesEnums.PHONE_NUMBER, this).let {
-                if (!it.isValid) {
-                    binding?.tvPhoneError?.text = it.errorMessage
-                    binding?.tvPhoneError?.visible()
-                    binding?.viewPhone?.updateStrokeColor(InputFieldValidStateEnums.ERROR)
-                    return false
-                } else {
-                    binding?.viewPhone?.updateStrokeColor(InputFieldValidStateEnums.VALID)
-                    binding?.tvPhoneError?.gone()
-                }
-            }
-        if (viewModel.city.value == null) {
-            binding?.tvCityError?.text = resources.getString(R.string.please_select_city)
-            binding?.tvCityError?.visible()
-            binding?.viewCity?.updateStrokeColor(InputFieldValidStateEnums.ERROR)
-            return false
-        } else {
-            binding?.viewCity?.updateStrokeColor(InputFieldValidStateEnums.VALID)
-            binding?.tvCityError?.gone()
-        }
-
-        binding?.edDistrict?.text.toString()
-            .validate(ValidatorInputTypesEnums.TEXT, this).let {
-                if (!it.isValid) {
-                    binding?.tvDescriptionError?.text = it.errorMessage
-                    binding?.tvDescriptionError?.visible()
-                    binding?.viewDistrict?.updateStrokeColor(InputFieldValidStateEnums.ERROR)
-                    return false
-                } else {
-                    binding?.viewDistrict?.updateStrokeColor(InputFieldValidStateEnums.VALID)
-                    binding?.tvDescriptionError?.gone()
-                }
-            }
-
-        binding?.edStreet?.text.toString()
-            .validate(ValidatorInputTypesEnums.TEXT, this).let {
-                if (!it.isValid) {
-                    binding?.tvStreetError?.text = it.errorMessage
-                    binding?.tvStreetError?.visible()
-                    binding?.viewStreet?.updateStrokeColor(InputFieldValidStateEnums.ERROR)
-                    return false
-                } else {
-                    binding?.viewStreet?.updateStrokeColor(InputFieldValidStateEnums.VALID)
-                    binding?.tvStreetError?.gone()
-                }
-            }
-        binding?.edBuildingNumber?.text.toString()
-            .validate(ValidatorInputTypesEnums.TEXT, this).let {
-                if (!it.isValid) {
-                    binding?.tvBuildingNumberError?.text = it.errorMessage
-                    binding?.tvBuildingNumberError?.visible()
-                    binding?.viewBuildingNumber?.updateStrokeColor(InputFieldValidStateEnums.ERROR)
-                    return false
-                } else {
-                    binding?.viewBuildingNumber?.updateStrokeColor(InputFieldValidStateEnums.VALID)
-                    binding?.tvBuildingNumberError?.gone()
-                }
-            }
-        binding?.edDescription?.text.toString()
-            .validate(ValidatorInputTypesEnums.TEXT, this).let {
-                if (!it.isValid) {
-                    binding?.tvDescriptionError?.text = it.errorMessage
-                    binding?.tvDescriptionError?.visible()
-                    binding?.viewDesctiption?.updateStrokeColor(InputFieldValidStateEnums.ERROR)
-                    return false
-                } else {
-                    binding?.viewDesctiption?.updateStrokeColor(InputFieldValidStateEnums.VALID)
-                    binding?.tvDescriptionError?.gone()
                 }
             }
         if (viewModel.latitude.value == null ||

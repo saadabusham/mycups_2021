@@ -110,40 +110,6 @@ abstract class BaseProductDetailsFragment<BINDING : ViewDataBinding> :
         )
     }
 
-    private fun showLoginDialog() {
-        ConfirmBottomSheet(
-            title = getString(R.string.you_re_not_logged_in),
-            description = getString(R.string.you_need_to_login_into_your_account_to_see_this_content),
-            btnConfirmTxt = getString(R.string.login),
-            btnCancelTxt = getString(R.string.skip_for_now),
-            object : ConfirmBottomSheet.CallBack {
-                override fun onConfirmed() {
-                    AuthActivity.startForResult(
-                        requireActivity(),
-                        true,
-                        loginResultLauncher
-                    )
-                }
-
-                override fun onDecline() {
-
-                }
-            }).show(childFragmentManager, "tag")
-    }
-
-    var loginResultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                if (result.data?.getBooleanExtra(
-                        Constants.BundleData.IS_LOGIN_SUCCESS,
-                        false
-                    ) == true
-                ) {
-
-                }
-            }
-        }
-
     private fun showStorageHintDialog() {
         ConfirmBottomSheet(
             title = getString(R.string.storage_information),

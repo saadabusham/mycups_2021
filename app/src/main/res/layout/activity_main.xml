@@ -13,7 +13,7 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/button_color"
+        android:background="@color/white"
         tools:openDrawer="start">
 
         <include
@@ -25,10 +25,10 @@
 
         <LinearLayout
             android:id="@+id/navigationView"
-            android:layout_width="@dimen/_120sdp"
+            android:layout_width="@dimen/_200sdp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@color/button_color"
+            android:background="@color/white"
             android:elevation="0dp"
             android:focusable="true"
             android:focusableInTouchMode="true"

@@ -14,8 +14,8 @@ import com.raantech.mycups.data.models.home.homedata.HomeResponse
 import com.raantech.mycups.data.models.home.product.productdetails.SocialMedia
 import com.raantech.mycups.data.models.notification.Notification
 import com.raantech.mycups.data.repos.base.BaseRepo
-import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.FieldMap
 import javax.inject.Inject
 
 class CommonRepoImp @Inject constructor(
@@ -48,12 +48,13 @@ class CommonRepoImp @Inject constructor(
     }
 
     override suspend fun contactUs(
-        title: RequestBody,
-        description: RequestBody,
-        images: List<MultipartBody.Part>?
+        title: String,
+        description: String,
+        @FieldMap params: Map<String, Int>,
+        images: List<Int?>?
     ): APIResource<ResponseWrapper<Any>> {
         return try {
-            responseHandle.handleSuccess(commonRemoteDao.contactUs(title, description, images))
+            responseHandle.handleSuccess(commonRemoteDao.contactUs(title, description, params))
         } catch (e: Exception) {
             responseHandle.handleException(e)
         }

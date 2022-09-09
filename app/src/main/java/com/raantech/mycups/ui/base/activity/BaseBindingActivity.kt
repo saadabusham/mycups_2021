@@ -1,5 +1,6 @@
 package com.raantech.mycups.ui.base.activity
 
+import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
 import android.graphics.Color
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
 import android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 import android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
@@ -22,6 +24,9 @@ import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.raantech.mycups.BR
 import com.raantech.mycups.R
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
+import com.raantech.mycups.data.common.Constants
+import com.raantech.mycups.ui.auth.AuthActivity
+import com.raantech.mycups.ui.base.dialogs.ConfirmBottomSheet
 import com.raantech.mycups.ui.base.dialogs.CustomDialogUtils
 import com.raantech.mycups.ui.base.presenters.BaseBindingPresenter
 import com.raantech.mycups.utils.HandleRequestFailedUtil
@@ -33,7 +38,8 @@ import java.io.IOException
 import java.net.SocketTimeoutException
 
 
-abstract class BaseBindingActivity<BINDING : ViewDataBinding, PRESENTER : BaseBindingPresenter?> : LocalizationActivity(),
+abstract class BaseBindingActivity<BINDING : ViewDataBinding, PRESENTER : BaseBindingPresenter?> :
+    LocalizationActivity(),
     IBaseBindingActivity<PRESENTER> {
 
     var binding: BINDING? = null
@@ -51,6 +57,7 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding, PRESENTER : BaseBi
     override fun hideLoadingView() {
         customDialogUtils.hideProgress()
     }
+
     private val localizationDelegate = LocalizationActivityDelegate(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +69,7 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding, PRESENTER : BaseBi
         customDialogUtils = CustomDialogUtils(this, withProgress = true, isShowNow = false)
         super.onCreate(savedInstanceState)
     }
+
     private fun setNavigationBarButtonsColor(navigationBarColor: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val decorView = window.decorView;
@@ -76,6 +84,7 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding, PRESENTER : BaseBi
             1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255
         return darkness < 0.5
     }
+
     open fun setContentView(
         layoutResID: Int,
         hasToolbar: Boolean = false,
@@ -319,5 +328,39 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding, PRESENTER : BaseBi
                     .toString() == "ar"
             ) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR
     }
+
+    protected fun showLoginDialog() {
+        ConfirmBottomSheet(
+            title = getString(R.string.you_re_not_logged_in),
+            description = getString(R.string.you_need_to_login_into_your_account_to_see_this_content),
+            btnConfirmTxt = getString(R.string.login),
+            btnCancelTxt = getString(R.string.skip_for_now),
+            object : ConfirmBottomSheet.CallBack {
+                override fun onConfirmed() {
+                    AuthActivity.startForResult(
+                        this@BaseBindingActivity,
+                        true,
+                        loginResultLauncher
+                    )
+                }
+
+                override fun onDecline() {
+
+                }
+            }).show(supportFragmentManager, "tag")
+    }
+
+    var loginResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                if (result.data?.getBooleanExtra(
+                        Constants.BundleData.IS_LOGIN_SUCCESS,
+                        false
+                    ) == true
+                ) {
+
+                }
+            }
+        }
 
 }

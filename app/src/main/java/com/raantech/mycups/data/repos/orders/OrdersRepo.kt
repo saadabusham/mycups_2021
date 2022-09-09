@@ -13,6 +13,7 @@ import com.raantech.mycups.data.models.orders.request.purchaseorder.PurchaseOrde
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.Path
 
 
 interface OrdersRepo {
@@ -35,7 +36,11 @@ interface OrdersRepo {
     ): APIResource<ResponseWrapper<OrderDetails>>
 
     suspend fun getOfferDetails(
-        id: String
+        id: Int
     ): APIResource<ResponseWrapper<OfferDetails>>
 
+    suspend fun acceptOffer(
+        orderId: Int,
+        offerId: Int
+    ): APIResource<ResponseWrapper<Any>>
 }

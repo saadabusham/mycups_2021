@@ -57,12 +57,18 @@ interface UserRepo {
     suspend fun updateProfile(
         name: String,
         email: String,
-        phoneNumber: String?=null
-    ): APIResource<ResponseWrapper<User>>
+        phoneNumber: String? = null,
+        brandName: String? = null,
+        hasStock: Int?,
+        addressText: String,
+        latitude: Double,
+        longitude: Double
+    ): APIResource<ResponseWrapper<UserDetailsResponseModel>>
 
     suspend fun updatePassword(
         oldPassword: String,
-        newPassword: String
+        newPassword: String,
+        newPasswordConfirmation: String
     ): APIResource<ResponseWrapper<Any>>
 
     suspend fun resetPassword(
@@ -79,20 +85,16 @@ interface UserRepo {
     ): APIResource<ResponseWrapper<Any>>
 
     suspend fun getNotifications(
-        skip:Int
+        skip: Int
     ): APIResource<ResponseWrapper<List<Notification>>>
 
     suspend fun updateAddress(
-        name: String,
-        phone: String,
-        city: String,
-        district: String,
-        street: String,
-        building_number: String,
-        description: String,
+        addressText: String,
         latitude: Double,
         longitude: Double,
-    ): APIResource<ResponseWrapper<User>>
+        name: String,
+        hasStock: Int?
+    ): APIResource<ResponseWrapper<UserDetailsResponseModel>>
 
     fun saveNotificationStatus(flag: Boolean)
     fun getNotificationStatus(): Boolean

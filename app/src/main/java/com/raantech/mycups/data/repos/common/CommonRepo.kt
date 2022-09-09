@@ -15,6 +15,7 @@ import com.raantech.mycups.data.models.home.product.productdetails.SocialMedia
 import com.raantech.mycups.data.models.notification.Notification
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.FieldMap
 import retrofit2.http.GET
 import retrofit2.http.Headers
 
@@ -32,9 +33,10 @@ interface CommonRepo {
     ): APIResource<ResponseWrapper<ListWrapper<FaqsResponse>>>
 
     suspend fun contactUs(
-        title: RequestBody,
-        description: RequestBody,
-        images: List<MultipartBody.Part>? = null
+        title: String,
+        description: String,
+        @FieldMap params: Map<String, Int>,
+        images: List<Int?>? = null
     ): APIResource<ResponseWrapper<Any>>
 
     suspend fun getCategories(

@@ -19,4 +19,9 @@ interface ProductRemoteDao {
         @Path("categoryId") categoryId: Int
     ): ResponseWrapper<ProductsResponse>
 
+    @GET("products/search/list")
+    suspend fun searchProductsList(
+        @Query("query") query: String?
+    ): ResponseWrapper<ProductsResponse>
+
 }

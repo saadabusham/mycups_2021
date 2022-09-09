@@ -15,7 +15,7 @@ class OfferDetailsViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     fun getOfferDetails(
-        offerId: String
+        offerId: Int
     ) = liveData {
         emit(APIResource.loading())
         val response =

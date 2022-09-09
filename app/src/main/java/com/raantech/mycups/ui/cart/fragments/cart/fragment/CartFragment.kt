@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import com.raantech.mycups.R
 import com.raantech.mycups.data.api.response.GeneralError
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
+import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
 import com.raantech.mycups.data.enums.OrderTypesEnum
@@ -19,6 +20,7 @@ import com.raantech.mycups.ui.base.fragment.BaseBindingFragment
 import com.raantech.mycups.ui.cart.fragments.cart.presenter.CartPresenter
 import com.raantech.mycups.ui.cart.viewmodels.CartViewModel
 import com.raantech.mycups.ui.offerdetails.adapters.OfferDetailsRecyclerAdapter
+import com.raantech.mycups.utils.extensions.showErrorAlert
 import com.raantech.mycups.utils.recycleviewutils.SwipeItemTouchCallBack
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -71,11 +73,25 @@ class CartFragment : BaseBindingFragment<FragmentCartBinding, CartPresenter>(), 
     }
 
     override fun onPayClicked() {
+        if (!viewModel.hasUserAddress()) {
+            requireActivity().showErrorAlert(
+                resources.getString(R.string.location),
+                resources.getString(R.string.please_pick_location)
+            )
+            return
+        }
+        if (!viewModel.hasBrandName()) {
+            requireActivity().showErrorAlert(
+                resources.getString(R.string.brand_name),
+                resources.getString(R.string.brand_name_error)
+            )
+            return
+        }
         viewModel.createPurchaseOrder(
             PurchaseOrderRequest(
                 orderType = OrderTypesEnum.PURCHASE.value,
                 hasStock = false,
-                paymentMethod = PaymentTypeEnum.CASH_ON_DELIVERY.value,
+                paymentMethod = PaymentTypeEnum.ONLINE_PAYMENT.value,
                 products = adapter.items.map {
                     PurchaseOrderProducts(
                         productId = it.id,
@@ -98,23 +114,6 @@ class CartFragment : BaseBindingFragment<FragmentCartBinding, CartPresenter>(), 
                     }
                 })
         ).attachToRecyclerView(binding?.recyclerView)
-
-        adapter.submitItems(
-            arrayListOf(
-                Product(
-                    name = "تم ارسال تسعير للطلب رقم #3321",
-                ),
-                Product(
-                    name = "لقد تم اضافة منتجات جديدة تصفحها الان",
-                ),
-                Product(
-                    name = "نود تذكيرك بان لديك في مخازننا اكواب عدد 10000",
-                ),
-                Product(
-                    name = "لقد تم توصيل منتجاتك الان الى المخزن"
-                )
-            )
-        )
     }
 
     private fun orderResultObserver(): CustomObserverResponse<Int> {
@@ -124,25 +123,15 @@ class CartFragment : BaseBindingFragment<FragmentCartBinding, CartPresenter>(), 
                 override fun onSuccess(
                     statusCode: Int,
                     subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: Int?
+                    data: ResponseWrapper<Int>?
                 ) {
+                    super.onSuccess(statusCode, subErrorCode, data)
                     viewModel.clearCart()
                     viewModel.orderId.value = data.toString()
                     navigationController.navigate(
                         R.id.action_cartFragment_to_orderSuccessFragment,
-                        bundleOf(Pair(Constants.BundleData.ORDER_ID, data.toString()))
+                        bundleOf(Pair(Constants.BundleData.ORDER_ID, data?.message))
                     )
-                }
-
-                override fun onError(
-                    subErrorCode: ResponseSubErrorsCodeEnum,
-                    message: String,
-                    errors: List<GeneralError>?
-                ) {
-                    super.onError(subErrorCode, message, errors)
-                    viewModel.clearCart()
-                    viewModel.orderId.value = "10254"
-                    navigationController.navigate(R.id.action_cartFragment_to_orderSuccessFragment)
                 }
             }
         )

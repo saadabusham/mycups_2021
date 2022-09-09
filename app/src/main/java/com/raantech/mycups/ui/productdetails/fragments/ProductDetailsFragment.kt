@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import com.raantech.mycups.R
 import com.raantech.mycups.data.api.response.GeneralError
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
+import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
 import com.raantech.mycups.data.enums.MediaTypesEnum
@@ -96,20 +97,12 @@ class ProductDetailsFragment : BaseProductDetailsFragment<FragmentProductDetails
                 override fun onSuccess(
                     statusCode: Int,
                     subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: Int?
+                    data: ResponseWrapper<Int>?
                 ) {
-                    navigationController.navigate(R.id.action_productDetailsFragment_to_orderOfferSentFragment,
-                        bundleOf(Pair(Constants.BundleData.ORDER_ID,data.toString())))
-                }
-
-                override fun onError(
-                    subErrorCode: ResponseSubErrorsCodeEnum,
-                    message: String,
-                    errors: List<GeneralError>?
-                ) {
-                    super.onError(subErrorCode, message, errors)
-                    navigationController.navigate(R.id.action_productDetailsFragment_to_orderOfferSentFragment,
-                        bundleOf(Pair(Constants.BundleData.ORDER_ID,"1".toString())))
+                    navigationController.navigate(
+                        R.id.action_productDetailsFragment_to_orderOfferSentFragment,
+                        bundleOf(Pair(Constants.BundleData.ORDER_ID, data?.message))
+                    )
                 }
             }
         )
@@ -129,6 +122,21 @@ class ProductDetailsFragment : BaseProductDetailsFragment<FragmentProductDetails
             requireActivity().showErrorAlert(
                 title = getString(R.string.quantity),
                 message = getString(R.string.please_select_the_design)
+            )
+            return false
+        }
+        if (!viewModel.hasUserAddress()) {
+            requireActivity().showErrorAlert(
+                resources.getString(R.string.location),
+                resources.getString(R.string.please_pick_location)
+            )
+            return false
+        }
+
+        if (!viewModel.hasBrandName()) {
+            requireActivity().showErrorAlert(
+                resources.getString(R.string.brand_name),
+                resources.getString(R.string.brand_name_error)
             )
             return false
         }

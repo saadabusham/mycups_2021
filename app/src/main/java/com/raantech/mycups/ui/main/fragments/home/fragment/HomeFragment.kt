@@ -52,13 +52,10 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding, HomePresenter>(),
             override fun onItemClick(view: View?, position: Int, item: Any) {
                 when (item) {
                     is CategoriesItem -> {
-                        item.id?.let {
-                            item.name?.let { it1 ->
-                                SubcategoryActivity.start(
-                                    requireContext(), it,
-                                    it1
-                                )
-                            }
+                        item.let {
+                            SubcategoryActivity.start(
+                                requireContext(), it
+                            )
                         }
                     }
                     is DesignCategory -> {

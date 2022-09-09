@@ -9,6 +9,7 @@ import com.raantech.mycups.data.api.response.GeneralError
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.common.CustomObserverResponse
 import com.raantech.mycups.data.models.auth.login.User
+import com.raantech.mycups.data.models.auth.login.UserDetailsResponseModel
 import com.raantech.mycups.databinding.ActivityUpdateProfileBinding
 import com.raantech.mycups.ui.base.activity.BaseBindingActivity
 import com.raantech.mycups.ui.main.activity.MainActivity
@@ -63,6 +64,18 @@ class UpdateProfileActivity : BaseBindingActivity<ActivityUpdateProfileBinding,N
                 return false
             }
         }
+        binding?.edBrandName?.text.toString().validate(
+            ValidatorInputTypesEnums.TEXT,
+            this
+        ).let {
+            if (!it.isValid) {
+                showErrorAlert(
+                    title = getString(R.string.brand_name),
+                    message = it.errorMessage
+                )
+                return false
+            }
+        }
 //        binding?.edPhoneNumber?.text.toString().validate(
 //            ValidatorInputTypesEnums.PHONE_NUMBER,
 //            this
@@ -103,16 +116,16 @@ class UpdateProfileActivity : BaseBindingActivity<ActivityUpdateProfileBinding,N
         return true
     }
 
-    private fun updateResultObserver(): CustomObserverResponse<User> {
+    private fun updateResultObserver(): CustomObserverResponse<UserDetailsResponseModel> {
         return CustomObserverResponse(
             this,
-            object : CustomObserverResponse.APICallBack<User> {
+            object : CustomObserverResponse.APICallBack<UserDetailsResponseModel> {
                 override fun onSuccess(
                     statusCode: Int,
                     subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: User?
+                    data: UserDetailsResponseModel?
                 ) {
-                    data?.let {
+                    data?.user?.let {
                         viewModel.storeUser(it)
                         MainActivity.start(this@UpdateProfileActivity)
                     }

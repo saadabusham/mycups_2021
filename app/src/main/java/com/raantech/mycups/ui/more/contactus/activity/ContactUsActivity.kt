@@ -5,10 +5,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.raantech.mycups.R
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
+import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
+import com.raantech.mycups.data.enums.MediaTypesEnum
+import com.raantech.mycups.data.models.media.Media
 import com.raantech.mycups.databinding.ActivityContactUsBinding
 import com.raantech.mycups.ui.base.activity.BaseBindingActivity
 import com.raantech.mycups.ui.base.adapters.BaseBindingRecyclerViewAdapter
@@ -17,6 +21,7 @@ import com.raantech.mycups.ui.base.dialogs.CompletedDialog
 import com.raantech.mycups.ui.more.contactus.adapter.ImagesAdapter
 import com.raantech.mycups.ui.more.contactus.presenter.ContactUsPresenter
 import com.raantech.mycups.ui.more.contactus.viewmodels.ContactUsViewModel
+import com.raantech.mycups.ui.more.media.MediaActivity
 import com.raantech.mycups.utils.ImagePickerUtil
 import com.raantech.mycups.utils.extensions.gone
 import com.raantech.mycups.utils.extensions.showErrorAlert
@@ -57,16 +62,35 @@ class ContactUsActivity : BaseBindingActivity<ActivityContactUsBinding, ContactU
     override fun onSubmitClicked() {
         if (validateInput()) {
             viewModel.imagesMutableLiveData.clear()
-            viewModel.imagesMutableLiveData.addAll(adapter.items.filter { it.isNotEmpty() })
+            viewModel.imagesMutableLiveData.addAll(adapter.items.filter { it.id != null })
             viewModel.contactUs().observe(this, contactUsObserver())
         }
     }
 
     override fun onSelectImageClicked() {
-        pickImages(
-            requestCode = ImagePickerUtil.TAKE_USER_IMAGE_REQUEST_CODE
+        MediaActivity.start(
+            this,
+            true,
+            MediaTypesEnum.IMAGES.value,
+            selectFileResultLauncher
         )
     }
+
+    var selectFileResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                data?.getSerializableExtra(Constants.BundleData.MEDIA).let {
+                    it as Media
+                    adapter.submitItem(
+                        it,
+                        (if (adapter.itemCount == 0) 1 else adapter.itemCount) - 1
+                    )
+                    validateImages()
+                }
+            }
+        }
 
     override fun onReasonClicked() {
 
@@ -130,7 +154,7 @@ class ContactUsActivity : BaseBindingActivity<ActivityContactUsBinding, ContactU
             binding?.rvData?.gone()
         } else {
             if (adapter.itemCount == 1) {
-                adapter.submitItem("")
+                adapter.submitItem(Media(id = null))
             }
             binding?.tvAddImages?.gone()
             binding?.rvData?.visible()
@@ -138,27 +162,15 @@ class ContactUsActivity : BaseBindingActivity<ActivityContactUsBinding, ContactU
     }
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
-        item as String
-        if (item.isEmpty()) {
-            pickImages(
-                requestCode = ImagePickerUtil.TAKE_USER_IMAGE_REQUEST_CODE
-            )
+        item as Media
+        if (item.id == null) {
+            onSelectImageClicked()
         } else {
             adapter.removeItemAt(position)
             if (adapter.itemCount == 1) {
                 adapter.clear()
                 validateImages()
             }
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode != Activity.RESULT_OK) return
-        val fileUri = data?.data
-        fileUri?.path?.let {
-            adapter.submitItem(it, (if (adapter.itemCount == 0) 1 else adapter.itemCount) - 1)
-            validateImages()
         }
     }
 

@@ -6,24 +6,24 @@ import java.io.Serializable
 
 data class Order(
 
-	@field:SerializedName("createdAt")
-	val createdAt: String? = null,
-
-	@field:SerializedName("price")
-	val price: Price? = null,
-
-	@field:SerializedName("paymentMethod")
-	val paymentMethod: Int? = null,
-
 	@field:SerializedName("id")
 	val id: Int? = null,
 
+	@field:SerializedName("order_number")
+	val orderNumber: String? = null,
+
+	@field:SerializedName("status_text")
+	val statusText: String? = null,
+
 	@field:SerializedName("status")
-	val status: Int? = null,
+	val status: String? = null,
 
-	@field:SerializedName("quantitiy")
-	val quantity: Int? = null,
+	@field:SerializedName("total")
+	val total: Price? = null,
 
-	@field:SerializedName("contactNumber")
-	val contactNumber: String? = null
+	@field:SerializedName("order_date")
+	val orderDate: String? = null,
+
+	@field:SerializedName("is_offer")
+	val isOffer: Boolean? = null
 ):Serializable

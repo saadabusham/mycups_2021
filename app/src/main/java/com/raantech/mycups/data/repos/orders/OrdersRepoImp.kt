@@ -53,10 +53,21 @@ class OrdersRepoImp @Inject constructor(
     }
 
     override suspend fun getOfferDetails(
-        id: String
-    ): APIResource<ResponseWrapper<OfferDetails>>{
+        id: Int
+    ): APIResource<ResponseWrapper<OfferDetails>> {
         return try {
             responseHandle.handleSuccess(ordersRemoteDao.getOfferDetails(id))
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun acceptOffer(
+        orderId: Int,
+        offerId: Int
+    ): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(ordersRemoteDao.acceptOffer(orderId, offerId))
         } catch (e: Exception) {
             responseHandle.handleException(e)
         }

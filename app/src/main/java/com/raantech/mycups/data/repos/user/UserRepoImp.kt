@@ -6,13 +6,13 @@ import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.daos.remote.user.UserRemoteDao
 import com.raantech.mycups.data.enums.UserEnums
 import com.raantech.mycups.data.models.auth.login.TokenModel
-import com.raantech.mycups.data.models.auth.login.User
 import com.raantech.mycups.data.pref.user.UserPref
 import com.raantech.mycups.data.models.auth.login.UserDetailsResponseModel
 import com.raantech.mycups.data.models.notification.Notification
 import com.raantech.mycups.data.repos.base.BaseRepo
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.Query
 import javax.inject.Inject
 
 class UserRepoImp @Inject constructor(
@@ -135,12 +135,17 @@ class UserRepoImp @Inject constructor(
     override suspend fun updateProfile(
         name: String,
         email: String,
-        phoneNumber: String?
-    ): APIResource<ResponseWrapper<User>> {
+        phoneNumber: String?,
+        brandName: String?,
+        hasStock: Int?,
+        addressText: String,
+        latitude: Double,
+        longitude: Double
+    ): APIResource<ResponseWrapper<UserDetailsResponseModel>> {
         return try {
             responseHandle.handleSuccess(
                 userRemoteDao.updateProfile(
-                    name, email, phoneNumber
+                    name, email, phoneNumber, brandName, hasStock,addressText, latitude, longitude
                 )
             )
         } catch (e: Exception) {
@@ -150,12 +155,13 @@ class UserRepoImp @Inject constructor(
 
     override suspend fun updatePassword(
         oldPassword: String,
-        newPassword: String
+        newPassword: String,
+        newPasswordConfirmation: String
     ): APIResource<ResponseWrapper<Any>> {
         return try {
             responseHandle.handleSuccess(
                 userRemoteDao.updatePassword(
-                    oldPassword, newPassword
+                    oldPassword, newPassword, newPasswordConfirmation
                 )
             )
         } catch (e: Exception) {
@@ -217,20 +223,16 @@ class UserRepoImp @Inject constructor(
     }
 
     override suspend fun updateAddress(
-        name: String,
-        phone: String,
-        city: String,
-        district: String,
-        street: String,
-        building_number: String,
-        description: String,
+        addressText: String,
         latitude: Double,
-        longitude: Double
-    ): APIResource<ResponseWrapper<User>> {
+        longitude: Double,
+        name: String,
+        hasStock: Int?
+    ): APIResource<ResponseWrapper<UserDetailsResponseModel>> {
         return try {
             responseHandle.handleSuccess(
                 userRemoteDao.updateAddress(
-                    name, phone, city, district, street, building_number,description, latitude, longitude
+                    addressText, latitude, longitude, name, hasStock
                 )
             )
         } catch (e: Exception) {

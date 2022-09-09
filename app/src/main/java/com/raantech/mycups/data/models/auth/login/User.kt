@@ -1,6 +1,7 @@
 package com.raantech.mycups.data.models.auth.login
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class User(
 
@@ -30,4 +31,4 @@ data class User(
 
 	@field:SerializedName("picture")
 	val picture: String? = null
-)
+):Serializable

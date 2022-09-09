@@ -197,21 +197,6 @@ Product details, any information you would like to add" />
                     layout="@layout/row_home_categories"
                     android:visibility="gone" />
 
-                <com.raantech.mycups.ui.base.views.appviews.AppTextView
-                    android:id="@+id/tvStorage"
-                    style="@style/textview_normal_medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_17sdp"
-                    android:layout_marginStart="@dimen/layouts_margin_start"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/layouts_margin_end"
-                    android:drawableStart="@{viewModel.needStock ? @drawable/ic_checked : @drawable/ic_unchecked}"
-                    android:drawablePadding="@dimen/_7sdp"
-                    android:onClick="@{()->presenter.onSelectStorageClicked()}"
-                    android:text="@string/need_stock"
-                    tools:checked="false"
-                    tools:drawableStart="@drawable/ic_checked" />
-
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnLogin"
                     style="@style/AppTheme.Button"

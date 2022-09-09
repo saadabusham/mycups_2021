@@ -25,11 +25,12 @@ class ChangePasswordViewModel @Inject constructor(
     fun changePassword() = liveData {
         emit(APIResource.loading())
         val response = userRepo.updatePassword(
-                oldPassword = oldPasswordMutableLiveData.value.toString(),
-                newPassword = newPasswordMutableLiveData.value.toString()
+            oldPassword = oldPasswordMutableLiveData.value.toString(),
+            newPassword = newPasswordMutableLiveData.value.toString(),
+            newPasswordConfirmation = confirmPasswordMutableLiveData.value.toString()
         )
-        if(response.statusSubCode == ResponseSubErrorsCodeEnum.Success)
-            userRepo.saveUserPassword(newPasswordMutableLiveData.value?:"")
+        if (response.statusSubCode == ResponseSubErrorsCodeEnum.Success)
+            userRepo.saveUserPassword(newPasswordMutableLiveData.value ?: "")
         emit(response)
     }
 

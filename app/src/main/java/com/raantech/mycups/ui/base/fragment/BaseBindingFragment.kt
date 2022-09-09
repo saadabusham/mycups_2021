@@ -1,11 +1,13 @@
 package com.raantech.mycups.ui.base.fragment
 
+import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -16,8 +18,11 @@ import com.akexorcist.localizationactivity.core.OnLocaleChangedListener
 import com.raantech.mycups.BR
 import com.raantech.mycups.R
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
+import com.raantech.mycups.data.common.Constants
+import com.raantech.mycups.ui.auth.AuthActivity
 import com.raantech.mycups.ui.base.activity.BaseBindingActivity
 import com.raantech.mycups.ui.base.activity.IBaseBindingActivity
+import com.raantech.mycups.ui.base.dialogs.ConfirmBottomSheet
 import com.raantech.mycups.ui.base.dialogs.CustomDialogUtils
 import com.raantech.mycups.ui.base.dialogs.progressdialog.ProgressDialogUtil
 import com.raantech.mycups.ui.base.presenters.BaseBindingPresenter
@@ -243,4 +248,39 @@ abstract class BaseBindingFragment<BINDING : ViewDataBinding, PRESENTER : BaseBi
             viewGroup.startTransitionDelay()
         }
     }
+
+    protected fun showLoginDialog() {
+        ConfirmBottomSheet(
+            title = getString(R.string.you_re_not_logged_in),
+            description = getString(R.string.you_need_to_login_into_your_account_to_see_this_content),
+            btnConfirmTxt = getString(R.string.login),
+            btnCancelTxt = getString(R.string.skip_for_now),
+            object : ConfirmBottomSheet.CallBack {
+                override fun onConfirmed() {
+                    AuthActivity.startForResult(
+                        requireActivity(),
+                        true,
+                        loginResultLauncher
+                    )
+                }
+
+                override fun onDecline() {
+
+                }
+            }).show(childFragmentManager, "tag")
+    }
+
+    var loginResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                if (result.data?.getBooleanExtra(
+                        Constants.BundleData.IS_LOGIN_SUCCESS,
+                        false
+                    ) == true
+                ) {
+
+                }
+            }
+        }
+
 }

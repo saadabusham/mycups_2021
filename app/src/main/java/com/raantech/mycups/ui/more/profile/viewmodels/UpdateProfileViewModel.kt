@@ -20,24 +20,34 @@ class UpdateProfileViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     //    register
-    val username: MutableLiveData<String> = MutableLiveData()
-    val phoneNumber: MutableLiveData<String> = MutableLiveData()
-    val email: MutableLiveData<String> = MutableLiveData()
-    val address: MutableLiveData<String> = MutableLiveData()
+    val username: MutableLiveData<String?> = MutableLiveData()
+    val phoneNumber: MutableLiveData<String?> = MutableLiveData()
+    val email: MutableLiveData<String?> = MutableLiveData()
+    val address: MutableLiveData<String?> = MutableLiveData()
+    val brandName: MutableLiveData<String?> = MutableLiveData()
+    val hasStock: MutableLiveData<Boolean?> = MutableLiveData()
 
     init {
         userRepo.getUser()?.user?.let {
             username.postValue(it.name)
             phoneNumber.postValue(it.phoneNumber)
             email.postValue(it.email)
-//            address.postValue(it.address)
+            brandName.postValue(it.brandName)
+            address.postValue(it.address?.addressText)
+            hasStock.postValue(it.hasStock)
         }
     }
+
     fun updateUser() = liveData {
         emit(APIResource.loading())
         val response = userRepo.updateProfile(
-            username.value.toString(),
-            email.value.toString()
+            name = username.value.toString(),
+            email = email.value.toString(),
+            brandName = brandName.value.toString(),
+            hasStock = if(hasStock.value == true) 1 else 0,
+            latitude = getUserData()?.address?.addressLat ?: 0.0,
+            longitude = getUserData()?.address?.addressLng ?: 0.0,
+            addressText = getUserData()?.address?.addressText?:""
         )
         emit(response)
     }
@@ -46,5 +56,9 @@ class UpdateProfileViewModel @Inject constructor(
         val user = userRepo.getUser()
         user?.user = userinfo
         user?.let { userRepo.setUser(it) }
+    }
+
+    fun getUserData():User?{
+        return userRepo.getUser()?.user
     }
 }

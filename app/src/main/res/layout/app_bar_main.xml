@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -21,10 +22,11 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:src="@drawable/ic_close"
+            android:background="?selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
-            android:background="?selectableItemBackgroundBorderless"/>
+            android:src="@drawable/ic_close_white"
+            app:tint="@color/tab_text_color" />
 
         <RelativeLayout
             android:id="@+id/holder"
@@ -32,26 +34,33 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/container"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
+                android:id="@+id/container"
                 android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:orientation="vertical">
+                app:cardElevation="@dimen/_3sdp">
 
-                <include
-                    android:id="@+id/layout_toolbar"
-                    layout="@layout/layout_home_toolbar"
-                    viewModel="@{viewModel}"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:orientation="vertical">
 
-                <include
-                    android:id="@+id/drawer_main_content"
-                    layout="@layout/activity_main_content"
-                    viewModel="@{viewModel}"/>
+                    <include
+                        android:id="@+id/layout_toolbar"
+                        layout="@layout/layout_home_toolbar"
+                        viewModel="@{viewModel}" />
 
-            </LinearLayout>
+                    <include
+                        android:id="@+id/drawer_main_content"
+                        layout="@layout/activity_main_content"
+                        viewModel="@{viewModel}" />
 
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
         </RelativeLayout>
+
     </RelativeLayout>
 
 </layout>

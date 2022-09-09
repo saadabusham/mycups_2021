@@ -127,7 +127,7 @@
                     android:gravity="center"
                     android:drawableEnd="@drawable/ic_upload_doc"
                     android:paddingEnd="@dimen/_20sdp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:onClick="@{()->presenter.onSelectImageClicked()}"
                     android:text="@string/attachments"
                     android:textColor="@color/subtitle_color"

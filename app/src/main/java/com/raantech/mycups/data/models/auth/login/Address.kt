@@ -1,6 +1,7 @@
 package com.raantech.mycups.data.models.auth.login
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Address(
 
@@ -12,4 +13,4 @@ data class Address(
 
 	@field:SerializedName("address_lat")
 	val addressLat: Double? = null
-)
+):Serializable

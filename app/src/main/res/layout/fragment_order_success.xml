@@ -11,9 +11,11 @@
         <variable
             name="canAuth"
             type="Boolean" />
+
         <variable
             name="viewModel"
             type="com.raantech.mycups.ui.productdetails.viewmodels.ProductDetailsViewModel" />
+
         <variable
             name="orderId"
             type="String" />
@@ -54,11 +56,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_40sdp"
-                    android:includeFontPadding="false"
                     android:gravity="center"
-                    android:text="@string/your_purchase_has_been_successfully_completed_n_npurchase_no"
+                    android:includeFontPadding="false"
+                    android:text="@{orderId}"
                     android:textColor="@color/tab_text_color"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textSize="@dimen/_13ssp"
+                    tools:text="@string/your_purchase_has_been_successfully_completed_n_npurchase_no" />
 
                 <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     style="@style/textview_normal_bold"
@@ -69,6 +72,7 @@
                     android:text="@{@string/order_id_(orderId)}"
                     android:textColor="@color/green"
                     android:textSize="@dimen/_13ssp"
+                    android:visibility="gone"
                     tools:text="#3321" />
 
                 <com.raantech.mycups.ui.base.views.appviews.AppTextView
@@ -106,8 +110,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_gravity="bottom"
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/layouts_margin_end"
             android:text="@string/print_invoice"
             android:textAllCaps="true"
@@ -121,10 +125,10 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_gravity="bottom"
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginStart="@dimen/layouts_margin_start"
-            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:text="@string/go_to_home"
             android:textAllCaps="true"
             android:textAppearance="@style/normalMediumFontStyle"

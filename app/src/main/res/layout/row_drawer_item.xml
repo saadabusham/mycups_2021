@@ -27,14 +27,14 @@
             style="@style/textview_normal_regular"
             android:text="@{item.title}"
             tools:text="@string/login"
-            android:textColor="@color/white"
+            android:textColor="@color/tab_text_color"
             android:textSize="@dimen/_13ssp"
             android:layout_marginTop="@dimen/_15sdp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:background="#3D7982"
+            android:background="#DEDEDE"
             android:layout_below="@id/tvTitle"
             android:layout_marginTop="@dimen/_15sdp"/>
     </RelativeLayout>

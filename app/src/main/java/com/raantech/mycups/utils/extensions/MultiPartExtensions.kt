@@ -14,12 +14,11 @@ fun String.createImageMultipart(name: String): MultipartBody.Part {
 
 fun List<String>.createImageMultipart(name: String): ArrayList<MultipartBody.Part> {
     val images = ArrayList<MultipartBody.Part>()
-    forEach {
-        val file = File(it)
+    forEachIndexed { index, s ->
+        val file = File(s)
         val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-        images.add(MultipartBody.Part.createFormData(name, file.name, requestFile))
+        images.add(MultipartBody.Part.createFormData(name+"[${index}]", file.name, requestFile))
     }
-
     return images
 }
 

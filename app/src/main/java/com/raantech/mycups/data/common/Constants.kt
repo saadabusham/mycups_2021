@@ -25,6 +25,7 @@ object Constants {
         const val FAVORITE_LIST: String = "favoriteList"
         const val CART_LIST: String = "cartList"
         const val CATEGORY_ID: String = "categoryId"
+        const val CATEGORY: String = "category"
         const val CATEGORY_NAME: String = "categoryName"
         const val PRODUCT_ID: String = "productId"
         const val PRODUCT_NAME: String = "productName"

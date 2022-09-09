@@ -6,6 +6,7 @@ import com.raantech.mycups.data.models.general.ListWrapper
 import com.raantech.mycups.data.models.home.product.productdetails.Product
 import com.raantech.mycups.data.models.home.product.productdetails.ProductResponse
 import com.raantech.mycups.data.models.home.product.productdetails.ProductsResponse
+import retrofit2.http.Path
 
 interface ProductRepo {
 
@@ -17,4 +18,7 @@ interface ProductRepo {
         categoryId:Int,
     ): APIResource<ResponseWrapper<ProductsResponse>>
 
+    suspend fun searchProductsList(
+        query: String?
+    ): APIResource<ResponseWrapper<ProductsResponse>>
 }

@@ -58,7 +58,7 @@ class OfferDetailsFragment :
     }
 
     private fun loadData() {
-        requireActivity().intent.getStringExtra(Constants.BundleData.OFFER_ID)?.let {
+        requireActivity().intent.getIntExtra(Constants.BundleData.OFFER_ID, -1).let {
             viewModel.getOfferDetails(it)
                 .observe(this, offerDetailsObserver())
         }
@@ -69,8 +69,9 @@ class OfferDetailsFragment :
     }
 
     override fun onPayClicked() {
-        navigationController.navigate(R.id.action_offerDetailsFragment_to_orderSuccessFragment,
-            bundleOf(Pair(Constants.BundleData.ORDER_ID,"1".toString()))
+        navigationController.navigate(
+            R.id.action_offerDetailsFragment_to_orderSuccessFragment,
+            bundleOf(Pair(Constants.BundleData.ORDER_ID, "1".toString()))
         )
     }
 

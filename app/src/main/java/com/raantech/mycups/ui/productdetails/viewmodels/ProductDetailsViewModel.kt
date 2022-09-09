@@ -53,4 +53,14 @@ class ProductDetailsViewModel @Inject constructor(
     }
 
     fun isUserLoggedIn() = userRepo.getUserStatus() == UserEnums.UserState.LoggedIn
+
+    fun hasUserAddress(): Boolean {
+        return userRepo.getUser()?.user?.address != null &&
+                userRepo.getUser()?.user?.address?.addressLat != null &&
+                userRepo.getUser()?.user?.address?.addressLng != null
+    }
+
+    fun hasBrandName(): Boolean {
+        return !userRepo.getUser()?.user?.brandName.isNullOrEmpty()
+    }
 }

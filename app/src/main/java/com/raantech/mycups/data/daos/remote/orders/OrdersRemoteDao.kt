@@ -28,8 +28,8 @@ interface OrdersRemoteDao {
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @GET("orders")
     suspend fun getOrders(
-        @Query("Type") type: String?,
-        @Query("Name") name: String?
+        @Query("order_type") type: String?,
+        @Query("query") name: String?
     ): ResponseWrapper<OrdersResponse>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
@@ -41,7 +41,14 @@ interface OrdersRemoteDao {
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @GET("offer/{id}")
     suspend fun getOfferDetails(
-        @Path("id") id: String
+        @Path("id") id: Int
     ): ResponseWrapper<OfferDetails>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @GET("orders/{orderId}/offer/{offerId}/accept")
+    suspend fun acceptOffer(
+        @Path("orderId") orderId: Int,
+        @Path("offerId") offerId: Int
+    ): ResponseWrapper<Any>
 
 }

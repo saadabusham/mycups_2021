@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.raantech.mycups.data.api.response.APIResource
-import com.raantech.mycups.data.models.addresses.UserAddress
+import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
+import com.raantech.mycups.data.models.auth.login.Address
+import com.raantech.mycups.data.models.auth.login.User
 import com.raantech.mycups.data.repos.user.UserRepo
 import com.raantech.mycups.ui.base.viewmodel.BaseViewModel
 import com.raantech.mycups.utils.getLocationName
@@ -18,14 +20,8 @@ class AddressesViewModel @Inject constructor(
     @ApplicationContext private val context: Context
 ) : BaseViewModel() {
 
-    var addressToEdit: UserAddress? = null
-    val name: MutableLiveData<String?> = MutableLiveData("")
-    val phone: MutableLiveData<String?> by lazy { MutableLiveData<String?>() }
-    val city: MutableLiveData<String?> = MutableLiveData(null)
-    val district: MutableLiveData<String?> = MutableLiveData("")
-    val street: MutableLiveData<String?> = MutableLiveData("")
-    val buildingNumber: MutableLiveData<String?> = MutableLiveData("")
-    val description: MutableLiveData<String?> = MutableLiveData("")
+    var addressToEdit: Address? = null
+    val addressName: MutableLiveData<String?> = MutableLiveData("")
     val latitude: MutableLiveData<Double?> = MutableLiveData()
     val longitude: MutableLiveData<Double?> = MutableLiveData()
     val addressStr: MutableLiveData<String> = MutableLiveData()
@@ -33,40 +29,32 @@ class AddressesViewModel @Inject constructor(
     fun addAddress() = liveData {
         emit(APIResource.loading())
         val response = userRepo.updateAddress(
-            name = name.value.toString(),
-            phone = phone.value.toString(),
-            city = city.value.toString(),
-            district = district.value.toString(),
-            street = street.value.toString(),
-            building_number = buildingNumber.value.toString(),
-            description = description.value.toString(),
+            name = getUserData()?.name?:"",
+            hasStock = if(getUserData()?.hasStock == true) 1 else 0,
             latitude = latitude.value ?: 0.0,
-            longitude = longitude.value ?: 0.0
+            longitude = longitude.value ?: 0.0,
+            addressText = addressName.value.toString()
         )
-//        if (response.statusSubCode == ResponseSubErrorsCodeEnum.Success) {
-//            val user = userRepo.getUser()
-//            user?.userInfo = response.data?.body
-//            user?.let { userRepo.setUser(it) }
-//        }
+        if (response.statusSubCode == ResponseSubErrorsCodeEnum.Success) {
+            val user = userRepo.getUser()
+            user?.user = response.data?.body?.user
+            user?.let { userRepo.setUser(it) }
+        }
         emit(response)
     }
 
     fun setData() {
-//        userRepo.getUser()?.user.let {
-//            addressToEdit = it?.address
-//        }
+        userRepo.getUser()?.user.let {
+            addressToEdit = it?.address
+        }
         addressToEdit?.let {
-            name.value = it.name
-            phone.value = it.phone
-            city.value = it.city
-            district.value = it.district
-            street.value = it.street
-            buildingNumber.value = it.buildingNumber
-            description.value = it.description
-            latitude.value = it.latitude
-            longitude.value = it.longitude
-            addressStr.value = context.getLocationName(it.latitude, it.longitude)
+            addressName.value = it.addressText
+            latitude.value = it.addressLat
+            longitude.value = it.addressLng
+            addressStr.value = context.getLocationName(it.addressLat, it.addressLng)
         }
     }
-
+    fun getUserData():User?{
+        return userRepo.getUser()?.user
+    }
 }

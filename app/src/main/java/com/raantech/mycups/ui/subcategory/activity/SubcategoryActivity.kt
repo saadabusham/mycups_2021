@@ -36,21 +36,30 @@ class SubcategoryActivity : BaseBindingActivity<ActivitySubcategoryBinding, Noth
     lateinit var tabListRecyclerAdapter: TabListRecyclerAdapter
     lateinit var productVerticalRecyclerAdapter: ProductVerticalRecyclerAdapter
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
-
+    private var category: CategoriesItem? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        handleIntentData()
         setContentView(
             layoutResID = R.layout.activity_subcategory,
             hasToolbar = true,
+            hasTitle = true,
             showBackArrow = true,
             hasBackButton = true,
-            titleString = intent.getStringExtra(Constants.BundleData.CATEGORY_NAME) ?: ""
+            titleString = category?.name ?: ""
         )
         setUpBinding()
         observeLoading()
         setUpRvTabs()
         setUpRvProduct()
         loadData()
+    }
+
+    private fun handleIntentData() {
+        intent.getSerializableExtra(Constants.BundleData.CATEGORY)?.let {
+            it as CategoriesItem
+            category = it
+        }
     }
 
     private fun setUpBinding() {
@@ -71,14 +80,20 @@ class SubcategoryActivity : BaseBindingActivity<ActivitySubcategoryBinding, Noth
     }
 
     private fun loadData() {
-        productVerticalRecyclerAdapter.clear()
-        loadCategories()
+        if (category?.hasSub == true) {
+            productVerticalRecyclerAdapter.clear()
+            loadCategories()
+        } else {
+            category?.id?.let { loadProducts(it) }
+        }
     }
 
     private fun loadCategories() {
-        viewModel.getSubCategories(
-            intent.getIntExtra(Constants.BundleData.CATEGORY_ID, -1)
-        ).observe(this, categoriesResultObserver())
+        category?.id?.let {
+            viewModel.getSubCategories(
+                it
+            ).observe(this, categoriesResultObserver())
+        }
     }
 
     private fun categoriesResultObserver(): CustomObserverResponse<CategoriesResponse> {
@@ -115,13 +130,13 @@ class SubcategoryActivity : BaseBindingActivity<ActivitySubcategoryBinding, Noth
         )
     }
 
-    private fun handleCategoriesResult(selectedPosition:Int) {
-        if(tabListRecyclerAdapter.items.isEmpty()){
+    private fun handleCategoriesResult(selectedPosition: Int) {
+        if (tabListRecyclerAdapter.items.isEmpty()) {
             return
         }
         tabListRecyclerAdapter.items[selectedPosition].let {
             it.isSelected.value = true
-            loadProducts(it)
+            it.id?.let { it1 -> loadProducts(it1) }
         }
     }
 
@@ -132,8 +147,8 @@ class SubcategoryActivity : BaseBindingActivity<ActivitySubcategoryBinding, Noth
             binding?.layoutEmptyWishlist?.constraintEmptyView?.visible()
     }
 
-    private fun loadProducts(categoriesItem: CategoriesItem) {
-        categoriesItem.id?.let {
+    private fun loadProducts(categoriesId: Int) {
+        categoriesId.let {
             viewModel.getProducts(it)
                 .observe(this, productsResultObserver())
         }
@@ -197,7 +212,7 @@ class SubcategoryActivity : BaseBindingActivity<ActivitySubcategoryBinding, Noth
                 productVerticalRecyclerAdapter.clear()
                 hideShowNoData(true)
                 item.id?.let { it1 ->
-                    loadProducts(item)
+                    loadProducts(item.id)
                 }
             }
             is Product -> {
@@ -213,10 +228,9 @@ class SubcategoryActivity : BaseBindingActivity<ActivitySubcategoryBinding, Noth
 
     companion object {
 
-        fun start(context: Context?, categoryId: Int, categoryName: String) {
+        fun start(context: Context?, category: CategoriesItem) {
             val intent = Intent(context, SubcategoryActivity::class.java).apply {
-                putExtra(Constants.BundleData.CATEGORY_ID, categoryId)
-                putExtra(Constants.BundleData.CATEGORY_NAME, categoryName)
+                putExtra(Constants.BundleData.CATEGORY, category)
             }
             context?.startActivity(intent)
         }

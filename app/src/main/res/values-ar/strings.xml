@@ -361,4 +361,7 @@
     <string name="storage">المخزون</string>
     <string name="cart">سلة المشتريات</string>
 
+    <!--    Update profile-->
+    <string name="brand_name">اسم العلامة التجارية</string>
+    <string name="brand_name_error">يرجى تحديث اسم علامتك التجارية</string>
 </resources>

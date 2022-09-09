@@ -33,12 +33,13 @@ interface CommonRemoteDao {
     ): ResponseWrapper<ListWrapper<FaqsResponse>>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @Multipart
+    @FormUrlEncoded
     @POST("tickets")
     suspend fun contactUs(
-        @Part("title") title: RequestBody,
-        @Part("description") description: RequestBody,
-        @Part images: List<MultipartBody.Part>? = null
+        @Field("title") title: String,
+        @Field("description") description: String,
+        @FieldMap params: Map<String, Int>,
+//        @Part("files[attachments]") images: List<Int?>? = null
     ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")

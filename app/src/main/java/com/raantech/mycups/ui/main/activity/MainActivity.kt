@@ -41,6 +41,7 @@ import com.raantech.mycups.ui.more.media.MediaActivity
 import com.raantech.mycups.ui.more.orders.activtiy.OrdersActivity
 import com.raantech.mycups.ui.more.profile.activity.UpdateProfileActivity
 import com.raantech.mycups.ui.notifications.activity.NotificationsActivity
+import com.raantech.mycups.ui.search.activity.SearchActivity
 import com.raantech.mycups.ui.splash.SplashActivity
 import com.raantech.mycups.ui.storage.activtiy.StorageActivity
 import com.raantech.mycups.utils.LocaleUtil
@@ -88,7 +89,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
             }
         }
         binding?.appBarMain?.layoutToolbar?.imgSearch?.setOnClickListener {
-//            FiltersActivity.start(this)
+            SearchActivity.start(this)
         }
         binding?.appBarMain?.layoutToolbar?.imgNotifications?.setOnClickListener {
             NotificationsActivity.start(this)
@@ -139,9 +140,6 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
     private fun loadFavorites() {
         if (viewModel.isUserLoggedIn())
             favoriteViewModel.getFavoritesIds().observe(this, favoriteIdsResultObserver())
-    }
-
-    private fun loadCarts() {
     }
 
     private fun favoriteIdsResultObserver(): CustomObserverResponse<List<Int>> {
@@ -207,20 +205,33 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
 //                    binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.4f - 1)
 //                    binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.2f - 1)
 //                }
+//                if (LocaleUtil.getLanguage() == "ar") {
+//                    binding?.appBarMain?.holder?.rotation = (slideOffset * -1) * 10
+//                    binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.2f - 1)
+//                    binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.2f - 1)
+//                    binding?.appBarMain?.container?.pivotX = 0.toFloat()
+//                    binding?.appBarMain?.container?.pivotY = (1000).toFloat()
+//                } else {
+//                    binding?.appBarMain?.container?.x =
+//                        (binding?.navigationView?.width!! * (slideOffset))
+//                    binding?.appBarMain?.holder?.rotation = slideOffset * 10
+//                    binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.2f - 1)
+//                    binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.2f - 1)
+//                    binding?.appBarMain?.container?.pivotX = 0.toFloat()
+//                    binding?.appBarMain?.container?.pivotY = (1000).toFloat()
+//                }
                 if (LocaleUtil.getLanguage() == "ar") {
+                    binding?.appBarMain?.container?.x =
+                        ((binding?.navigationView?.width!!-400) * (slideOffset)) * -1
                     binding?.appBarMain?.holder?.rotation = (slideOffset * -1) * 10
                     binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.4f - 1)
-                    binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.4f - 1)
-                    binding?.appBarMain?.container?.pivotX = 0.toFloat()
-                    binding?.appBarMain?.container?.pivotY = (1000).toFloat()
+                    binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.33f - 1)
                 } else {
                     binding?.appBarMain?.container?.x =
-                        (binding?.navigationView?.width!! * (slideOffset))
+                        ((binding?.navigationView?.width!!-400) * (slideOffset))
                     binding?.appBarMain?.holder?.rotation = slideOffset * 10
                     binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.4f - 1)
-                    binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.4f - 1)
-                    binding?.appBarMain?.container?.pivotX = 0.toFloat()
-                    binding?.appBarMain?.container?.pivotY = (1000).toFloat()
+                    binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.33f - 1)
                 }
             }
 
@@ -257,18 +268,54 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
         if (item is More) {
+            val loggedIn = viewModel.isUserLoggedIn()
             binding?.drawerLayout?.closeDrawer(GravityCompat.START)
             when (position) {
-                0 -> OrdersActivity.start(this)
-                1 -> MediaActivity.start(this, MediaTypesEnum.DESIGN.value)
-//                2 -> OfferDetailsActivity.start(this, "1")
-                2 -> StorageActivity.start(this)
-                3 -> MediaActivity.start(this, MediaTypesEnum.IMAGES.value)
-                4 -> UpdateProfileActivity.start(this)
-                5 -> ContactUsActivity.start(this)
+                0 -> {
+                    if (!loggedIn) {
+                        showLoginDialog()
+                    } else {
+                        OrdersActivity.start(this)
+                    }
+                }
+                1 -> {
+                    if (!loggedIn) {
+                        showLoginDialog()
+                    } else {
+                        MediaActivity.start(this, MediaTypesEnum.DESIGN.value)
+                    }
+                }
+                2 -> {
+                    if (!loggedIn) {
+                        showLoginDialog()
+                    } else {
+                        StorageActivity.start(this)
+                    }
+                }
+                3 -> {
+                    if (!loggedIn) {
+                        showLoginDialog()
+                    } else {
+                        MediaActivity.start(this, MediaTypesEnum.IMAGES.value)
+                    }
+                }
+                4 -> {
+                    if (!loggedIn) {
+                        showLoginDialog()
+                    } else {
+                        UpdateProfileActivity.start(this)
+                    }
+                }
+                5 -> {
+                    if (!loggedIn) {
+                        showLoginDialog()
+                    } else {
+                        ContactUsActivity.start(this)
+                    }
+                }
                 6 -> AboutUsActivity.start(this)
                 7 -> {
-                    if (viewModel.isUserLoggedIn())
+                    if (loggedIn)
                         viewModel.logoutRemote().observe(this, logoutResultObserver())
                     else
                         AuthActivity.startForResult(this@MainActivity, true, loginResultLauncher)
@@ -284,19 +331,6 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
             }
         }
     }
-
-    var loginResultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                if (result.data?.getBooleanExtra(
-                        Constants.BundleData.IS_LOGIN_SUCCESS,
-                        false
-                    ) == true
-                ) {
-
-                }
-            }
-        }
 
     private fun logoutResultObserver(): CustomObserverResponse<Any> {
         return CustomObserverResponse(

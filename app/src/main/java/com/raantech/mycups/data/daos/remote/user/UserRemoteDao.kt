@@ -70,18 +70,24 @@ interface UserRemoteDao {
     ): ResponseWrapper<UserDetailsResponseModel>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @POST("profile/update")
+    @POST("profile/update/profile")
     suspend fun updateProfile(
         @Query("name") name: String,
         @Query("email") email: String,
-        @Query("PhoneNumber") phoneNumber: String?
-    ): ResponseWrapper<User>
+        @Query("PhoneNumber") phoneNumber: String?,
+        @Query("brand_name") brand_Name: String?,
+        @Query("has_stock") hasStock: Int?,
+        @Query("address_text") addressText: String,
+        @Query("address_lat") latitude: Double,
+        @Query("address_lng") longitude: Double
+    ): ResponseWrapper<UserDetailsResponseModel>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @POST("api/user/newPassword")
+    @POST("profile/update/password")
     suspend fun updatePassword(
-        @Query("OldPassword") oldPassword: String,
-        @Query("Password") newPassword: String
+        @Query("current_password") oldPassword: String,
+        @Query("new_password") newPassword: String,
+        @Query("new_password_confirmation") newPasswordConfirmation: String
     ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
@@ -112,17 +118,13 @@ interface UserRemoteDao {
     ): ResponseWrapper<List<Notification>>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @POST("profile/update/address")
+    @POST("profile/update/profile")
     suspend fun updateAddress(
+        @Query("address_text") addressText: String,
+        @Query("address_lat") latitude: Double,
+        @Query("address_lng") longitude: Double,
         @Query("name") name: String,
-        @Query("phone") phone: String,
-        @Query("city") city: String,
-        @Query("district") district: String,
-        @Query("street") street: String,
-        @Query("building_number") building_number: String,
-        @Query("description") description: String,
-        @Query("latitude") latitude: Double,
-        @Query("longitude") longitude: Double,
-    ): ResponseWrapper<User>
+        @Query("has_stock") hasStock: Int?
+    ): ResponseWrapper<UserDetailsResponseModel>
 
 }

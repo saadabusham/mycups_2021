@@ -34,4 +34,13 @@ class ProductRepoImpl @Inject constructor(
         }
     }
 
+    override suspend fun searchProductsList(query: String?): APIResource<ResponseWrapper<ProductsResponse>> {
+        return try {
+            responseHandle.handleSuccess(
+                remoteDao.searchProductsList(query)
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
 }

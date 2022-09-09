@@ -103,7 +103,29 @@
                         tools:text="Your phone number is incorrect." />
 
                     <com.raantech.mycups.ui.base.views.appviews.AppTextView
-                        android:id="@+id/tvFirstNameError"
+                        android:id="@+id/tvBrandName"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|start"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:text="@string/brand_name"
+                        android:textColor="@color/edit_text_title_color"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextInputEditText
+                        android:id="@+id/edBrandName"
+                        style="@style/TextInputEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/Edittext_height"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:hint="@string/brand_name"
+                        android:maxLines="1"
+                        android:text="@={viewModel.brandName}"/>
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvBrandNameError"
                         style="@style/textview_normal_medium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -114,7 +136,6 @@
                         android:textSize="@dimen/_9ssp"
                         android:visibility="gone"
                         tools:text="Your phone number is incorrect." />
-
 
                     <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         android:id="@+id/tvPhoneNumber"

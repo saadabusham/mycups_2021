@@ -363,4 +363,7 @@
     <string name="storage">Storage</string>
     <string name="cart">Cart</string>
 
+<!--    Update profile-->
+    <string name="brand_name">Brand Name</string>
+    <string name="brand_name_error">Please update your brand name</string>
 </resources>

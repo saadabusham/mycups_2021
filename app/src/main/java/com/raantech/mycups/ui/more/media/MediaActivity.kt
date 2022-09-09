@@ -267,8 +267,18 @@ class MediaActivity : BaseBindingActivity<ActivityMediaBinding, Nothing>(),
                 setResult(RESULT_OK, data)
                 finish()
             } else {
-                view?.imgMedia?.let {
-                    item.url?.let { it1 ->
+                previewFile(media = item,view)
+            }
+        }
+    }
+    private fun previewFile(media: Media,view : View?){
+        view?.imgMedia?.let {
+            when(media.extension){
+                MediaTypesEnum.PSD.value,MediaTypesEnum.PDF.value,MediaTypesEnum.IL.value ->{
+                    media.url?.let { it1 -> openUrl(it1) }
+                }
+                else ->{
+                    media.url?.let { it1 ->
                         ViewImageActivity.start(
                             this,
                             it1,
