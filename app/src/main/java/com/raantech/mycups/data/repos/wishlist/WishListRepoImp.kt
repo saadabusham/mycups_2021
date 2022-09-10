@@ -16,7 +16,7 @@ class WishListRepoImp @Inject constructor(
 
     override suspend fun getWishList(skip: Int): APIResource<ResponseWrapper<WishList>> {
         return try {
-            responseHandle.handleSuccess(wishListRemoteDao.getWishList(skip))
+            responseHandle.handleSuccess(wishListRemoteDao.getWishList())
         } catch (e: Exception) {
             responseHandle.handleException(e)
         }

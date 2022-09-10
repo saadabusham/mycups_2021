@@ -1,10 +1,8 @@
 package com.raantech.mycups.data.di.daos
 
-import com.raantech.mycups.data.daos.remote.adresses.AddressRemoteDao
 import com.raantech.mycups.data.daos.remote.cart.CartRemoteDao
 import com.raantech.mycups.data.daos.remote.common.CommonRemoteDao
 import com.raantech.mycups.data.daos.remote.configuration.ConfigurationRemoteDao
-import com.raantech.mycups.data.daos.remote.favorites.FavoritesRemoteDao
 import com.raantech.mycups.data.daos.remote.lookups.LookupsRemoteDao
 import com.raantech.mycups.data.daos.remote.media.MediaRemoteDao
 import com.raantech.mycups.data.daos.remote.orders.OrdersRemoteDao
@@ -67,26 +65,10 @@ object RemoteDaosModule {
 
     @Singleton
     @Provides
-    fun provideAddressRemoteDao(
-        retrofit: Retrofit
-    ): AddressRemoteDao {
-        return retrofit.create(AddressRemoteDao::class.java)
-    }
-
-    @Singleton
-    @Provides
     fun provideOrdersRemoteDao(
         retrofit: Retrofit
     ): OrdersRemoteDao {
         return retrofit.create(OrdersRemoteDao::class.java)
-    }
-
-    @Singleton
-    @Provides
-    fun provideFavoritesRemoteDao(
-        retrofit: Retrofit
-    ): FavoritesRemoteDao {
-        return retrofit.create(FavoritesRemoteDao::class.java)
     }
 
     @Provides

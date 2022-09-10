@@ -1,4 +1,4 @@
-package com.raantech.mycups.ui.wishlist.activities
+package com.raantech.mycups.ui.more.wishlist.activities
 
 import android.content.Context
 import android.content.Intent
@@ -23,8 +23,8 @@ import com.raantech.mycups.ui.base.activity.BaseBindingActivity
 import com.raantech.mycups.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.mycups.ui.base.bindingadapters.setOnItemClickListener
 import com.raantech.mycups.ui.productdetails.activity.ProductDetailsActivity
-import com.raantech.mycups.ui.wishlist.adapter.WishListRecyclerAdapter
-import com.raantech.mycups.ui.wishlist.viewmodels.WishListViewModel
+import com.raantech.mycups.ui.more.wishlist.adapter.WishListRecyclerAdapter
+import com.raantech.mycups.ui.more.wishlist.viewmodels.WishListViewModel
 import com.raantech.mycups.utils.extensions.gone
 import com.raantech.mycups.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,7 +36,6 @@ class WishListActivity : BaseBindingActivity<ActivityWishlistBinding, Nothing>()
 
     private val viewModel: WishListViewModel by viewModels()
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
-    private var isFinished = false
 
     var positionToUpdate: Int = -1
     lateinit var wishListRecyclerAdapter: WishListRecyclerAdapter
@@ -65,40 +64,6 @@ class WishListActivity : BaseBindingActivity<ActivityWishlistBinding, Nothing>()
         wishListRecyclerAdapter = WishListRecyclerAdapter(this)
         binding?.recyclerView?.adapter = wishListRecyclerAdapter
         binding?.recyclerView?.setOnItemClickListener(this)
-        Paginate.with(binding?.recyclerView, object : Paginate.Callbacks {
-            override fun onLoadMore() {
-                if (loading.value == false && wishListRecyclerAdapter.itemCount > 0 && !isFinished) {
-                    loadData()
-                }
-            }
-
-            override fun isLoading(): Boolean {
-                return loading.value ?: false
-            }
-
-            override fun hasLoadedAllItems(): Boolean {
-                return isFinished
-            }
-
-        })
-            .setLoadingTriggerThreshold(1)
-            .addLoadingListItem(false)
-            .setLoadingListItemCreator(object : LoadingListItemCreator {
-                override fun onCreateViewHolder(
-                    parent: ViewGroup?,
-                    viewType: Int
-                ): RecyclerView.ViewHolder {
-                    val view = LayoutInflater.from(parent!!.context)
-                        .inflate(R.layout.loading_row, parent, false)
-                    return object : RecyclerView.ViewHolder(view) {}
-                }
-
-                override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-
-                }
-
-            })
-            .build()
     }
 
     private fun setUpListeners() {
@@ -119,7 +84,6 @@ class WishListActivity : BaseBindingActivity<ActivityWishlistBinding, Nothing>()
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ResponseWrapper<WishList>?
                 ) {
-                    isFinished = data?.body?.products?.isEmpty() == true
                     data?.body?.products?.let {
                         wishListRecyclerAdapter.addItems(it)
                     }
@@ -164,10 +128,10 @@ class WishListActivity : BaseBindingActivity<ActivityWishlistBinding, Nothing>()
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ResponseWrapper<Any>?
                 ) {
-//                    wishListRecyclerAdapter.items[positionToUpdate].isWishlist =
-//                        wishListRecyclerAdapter.items[positionToUpdate].isWishlist != true
-//                    wishListRecyclerAdapter.notifyItemChanged(positionToUpdate)
-//                    positionToUpdate = -1
+                    wishListRecyclerAdapter.items[positionToUpdate].isWishlist =
+                        wishListRecyclerAdapter.items[positionToUpdate].isWishlist != true
+                    wishListRecyclerAdapter.notifyItemChanged(positionToUpdate)
+                    positionToUpdate = -1
                 }
             }, false
         )
@@ -175,7 +139,7 @@ class WishListActivity : BaseBindingActivity<ActivityWishlistBinding, Nothing>()
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as Product
-        var isWishList = item.isWishlist == false
+        var isWishList = item.isWishlist == true
         var id = item.id ?: 0
 
         if (view?.id == R.id.imgFavorite) {

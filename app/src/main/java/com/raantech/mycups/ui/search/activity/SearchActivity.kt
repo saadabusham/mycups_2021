@@ -10,6 +10,7 @@ import com.jakewharton.rxbinding3.widget.textChangeEvents
 import com.raantech.mycups.R
 import com.raantech.mycups.data.api.response.GeneralError
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
+import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
 import com.raantech.mycups.data.models.category.CategoriesResponse
@@ -21,6 +22,7 @@ import com.raantech.mycups.databinding.ActivitySubcategoryBinding
 import com.raantech.mycups.ui.base.activity.BaseBindingActivity
 import com.raantech.mycups.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.mycups.ui.base.bindingadapters.setOnItemClickListener
+import com.raantech.mycups.ui.more.wishlist.viewmodels.WishListViewModel
 import com.raantech.mycups.ui.productdetails.activity.ProductDetailsActivity
 import com.raantech.mycups.ui.search.viewmodels.SearchViewModel
 import com.raantech.mycups.ui.subcategory.adapter.ProductVerticalRecyclerAdapter
@@ -39,9 +41,11 @@ class SearchActivity : BaseBindingActivity<ActivitySearchBinding, Nothing>(),
     BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
     private val viewModel: SearchViewModel by viewModels()
+    private val wishListViewModel: WishListViewModel by viewModels()
 
     lateinit var productVerticalRecyclerAdapter: ProductVerticalRecyclerAdapter
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
+    var positionToUpdate: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -145,14 +149,45 @@ class SearchActivity : BaseBindingActivity<ActivitySearchBinding, Nothing>(),
         }
     }
 
+    private fun wishListActionObserver(): CustomObserverResponse<Any> {
+        return CustomObserverResponse(
+            this,
+            object : CustomObserverResponse.APICallBack<Any> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: ResponseWrapper<Any>?
+                ) {
+                    productVerticalRecyclerAdapter.items[positionToUpdate].isWishlist =
+                        productVerticalRecyclerAdapter.items[positionToUpdate].isWishlist != true
+                    productVerticalRecyclerAdapter.notifyItemChanged(positionToUpdate)
+                    positionToUpdate = -1
+                }
+            }, false
+        )
+    }
+
     override fun onItemClick(view: View?, position: Int, item: Any) {
         when (item) {
             is Product -> {
-                item.id?.let {
-                    ProductDetailsActivity.start(
-                        this,
-                        it, item.name, item.is_fast
-                    )
+                var isWishList = item.isWishlist == true
+                var id = item.id ?: 0
+                positionToUpdate = position
+                if (view?.id == R.id.imgFavorite) {
+                    if (isWishList) {
+                        wishListViewModel.removeFromWishList(id).observe(this, wishListActionObserver())
+                    } else {
+                        wishListViewModel.addToWishList(
+                            id
+                        ).observe(this, wishListActionObserver())
+                    }
+                } else {
+                    item.id?.let {
+                        ProductDetailsActivity.start(
+                            this,
+                            it, item.name, item.is_fast
+                        )
+                    }
                 }
             }
         }

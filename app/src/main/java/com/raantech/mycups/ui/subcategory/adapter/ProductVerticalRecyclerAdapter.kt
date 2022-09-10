@@ -5,15 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.raantech.mycups.data.models.home.homedata.CategoriesItem
 import com.raantech.mycups.data.models.home.product.productdetails.Product
 import com.raantech.mycups.databinding.RowProductVerticalBinding
-import com.raantech.mycups.databinding.RowTabBinding
 import com.raantech.mycups.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.mycups.ui.base.adapters.BaseViewHolder
-import dagger.hilt.android.qualifiers.ActivityContext
-import dagger.hilt.android.scopes.FragmentScoped
-import javax.inject.Inject
 
 class ProductVerticalRecyclerAdapter constructor(
     context: Context
@@ -39,6 +34,9 @@ class ProductVerticalRecyclerAdapter constructor(
         override fun bind(item: Product) {
             binding.item = item
             binding.lifecycleOwner = context as AppCompatActivity
+            binding.imgFavorite.setOnClickListener {
+                itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
+            }
             binding.root.setOnClickListener {
                 itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }

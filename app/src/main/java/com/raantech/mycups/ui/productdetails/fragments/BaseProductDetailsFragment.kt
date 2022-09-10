@@ -15,7 +15,7 @@ import com.raantech.mycups.ui.base.dialogs.ConfirmBottomSheet
 import com.raantech.mycups.ui.base.fragment.BaseBindingFragment
 import com.raantech.mycups.ui.productdetails.presenter.ProductDetailsPresenter
 import com.raantech.mycups.ui.productdetails.viewmodels.ProductDetailsViewModel
-import com.raantech.mycups.ui.wishlist.viewmodels.WishListViewModel
+import com.raantech.mycups.ui.more.wishlist.viewmodels.WishListViewModel
 
 abstract class BaseProductDetailsFragment<BINDING : ViewDataBinding> :
     BaseBindingFragment<BINDING, ProductDetailsPresenter>(),

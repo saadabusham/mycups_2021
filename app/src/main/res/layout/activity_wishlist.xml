@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.raantech.mycups.ui.wishlist.viewmodels.WishListViewModel" />
+            type="com.raantech.mycups.ui.more.wishlist.viewmodels.WishListViewModel" />
     </data>
 
     <RelativeLayout

@@ -1,4 +1,4 @@
-package com.raantech.mycups.ui.wishlist.adapter
+package com.raantech.mycups.ui.more.wishlist.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

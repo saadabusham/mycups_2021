@@ -1,4 +1,4 @@
-package com.raantech.mycups.ui.wishlist.viewmodels
+package com.raantech.mycups.ui.more.wishlist.viewmodels
 
 import androidx.lifecycle.liveData
 import com.raantech.mycups.data.api.response.APIResource

@@ -36,9 +36,10 @@
 
                 <ImageView
                     android:id="@+id/imgLogo"
-                    android:layout_width="@dimen/_150sdp"
-                    android:layout_height="@dimen/_190sdp"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
                     android:layout_gravity="center"
+                    android:scaleType="centerCrop"
                     android:layout_marginTop="@dimen/_25sdp"
                     android:src="@drawable/ic_logo" />
 
@@ -46,7 +47,7 @@
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:gravity="center|start"
                     android:text="@{body}"
                     android:includeFontPadding="false"

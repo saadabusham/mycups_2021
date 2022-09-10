@@ -261,6 +261,7 @@
 
     <!--    More Items-->
     <string name="menu_my_orders">Orders</string>
+    <string name="menu_my_wishlist">Favorite</string>
     <string name="menu_my_designes">Designs</string>
     <string name="menu_my_storage">Storage</string>
     <string name="menu_account">Account</string>

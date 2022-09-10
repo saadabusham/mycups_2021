@@ -10,11 +10,9 @@ interface WishListRemoteDao {
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @GET("wish-lists")
     suspend fun getWishList(
-        @Query("skip") skip: Int
     ): ResponseWrapper<WishList>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @FormUrlEncoded
     @POST("wish-lists")
     suspend fun addToWishList(
         @Query("product_id") productId: Int

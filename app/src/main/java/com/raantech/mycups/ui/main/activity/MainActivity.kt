@@ -1,12 +1,10 @@
 package com.raantech.mycups.ui.main.activity
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.res.ResourcesCompat
@@ -33,13 +31,13 @@ import com.raantech.mycups.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.mycups.ui.base.bindingadapters.setOnItemClickListener
 import com.raantech.mycups.ui.cart.activity.CartActivity
 import com.raantech.mycups.ui.main.adapters.DrawerRecyclerAdapter
-import com.raantech.mycups.ui.main.fragments.favorites.viewmodels.FavoritesViewModel
 import com.raantech.mycups.ui.main.viewmodels.MainViewModel
 import com.raantech.mycups.ui.more.aboutus.AboutUsActivity
 import com.raantech.mycups.ui.more.contactus.activity.ContactUsActivity
 import com.raantech.mycups.ui.more.media.MediaActivity
 import com.raantech.mycups.ui.more.orders.activtiy.OrdersActivity
 import com.raantech.mycups.ui.more.profile.activity.UpdateProfileActivity
+import com.raantech.mycups.ui.more.wishlist.activities.WishListActivity
 import com.raantech.mycups.ui.notifications.activity.NotificationsActivity
 import com.raantech.mycups.ui.search.activity.SearchActivity
 import com.raantech.mycups.ui.splash.SplashActivity
@@ -53,7 +51,6 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
     BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
     private val viewModel: MainViewModel by viewModels()
-    private val favoriteViewModel: FavoritesViewModel by viewModels()
     var loginCallBack: LoginCallBack? = null
     var navController: NavController? = null
 
@@ -62,7 +59,6 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
     override fun onResume() {
         super.onResume()
         viewModel.getCartsCount()
-        loadFavorites()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -137,26 +133,6 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
         }
     }
 
-    private fun loadFavorites() {
-        if (viewModel.isUserLoggedIn())
-            favoriteViewModel.getFavoritesIds().observe(this, favoriteIdsResultObserver())
-    }
-
-    private fun favoriteIdsResultObserver(): CustomObserverResponse<List<Int>> {
-        return CustomObserverResponse(
-            this,
-            object : CustomObserverResponse.APICallBack<List<Int>> {
-                override fun onSuccess(
-                    statusCode: Int,
-                    subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: List<Int>?
-                ) {
-                    data?.let { favoriteViewModel.setFavoriteList(it) }
-                }
-            }, showError = false
-        )
-    }
-
     private fun setupNavigation() {
         navController = findNavController(R.id.main_nav_host_fragment)
     }
@@ -194,41 +170,15 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
         binding?.drawerLayout?.drawerElevation = 0.toFloat()
         binding?.drawerLayout?.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
             override fun onDrawerSlide(drawer: View, slideOffset: Float) {
-//                if (LocaleUtil.getLanguage() == "ar") {
-//                    binding?.appBarMain?.container?.x =
-//                        (binding?.navigationView?.width!! * (slideOffset)) * -1
-//                    binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.4f - 1)
-//                    binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.2f - 1)
-//                } else {
-//                    binding?.appBarMain?.container?.x =
-//                        (binding?.navigationView?.width!! * (slideOffset))
-//                    binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.4f - 1)
-//                    binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.2f - 1)
-//                }
-//                if (LocaleUtil.getLanguage() == "ar") {
-//                    binding?.appBarMain?.holder?.rotation = (slideOffset * -1) * 10
-//                    binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.2f - 1)
-//                    binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.2f - 1)
-//                    binding?.appBarMain?.container?.pivotX = 0.toFloat()
-//                    binding?.appBarMain?.container?.pivotY = (1000).toFloat()
-//                } else {
-//                    binding?.appBarMain?.container?.x =
-//                        (binding?.navigationView?.width!! * (slideOffset))
-//                    binding?.appBarMain?.holder?.rotation = slideOffset * 10
-//                    binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.2f - 1)
-//                    binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.2f - 1)
-//                    binding?.appBarMain?.container?.pivotX = 0.toFloat()
-//                    binding?.appBarMain?.container?.pivotY = (1000).toFloat()
-//                }
                 if (LocaleUtil.getLanguage() == "ar") {
                     binding?.appBarMain?.container?.x =
-                        ((binding?.navigationView?.width!!-400) * (slideOffset)) * -1
+                        ((binding?.navigationView?.width!! - 400) * (slideOffset)) * -1
                     binding?.appBarMain?.holder?.rotation = (slideOffset * -1) * 10
                     binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.4f - 1)
                     binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.33f - 1)
                 } else {
                     binding?.appBarMain?.container?.x =
-                        ((binding?.navigationView?.width!!-400) * (slideOffset))
+                        ((binding?.navigationView?.width!! - 400) * (slideOffset))
                     binding?.appBarMain?.holder?.rotation = slideOffset * 10
                     binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.4f - 1)
                     binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.33f - 1)
@@ -247,6 +197,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
             addAll(
                 arrayListOf(
                     More(resources.getString(R.string.menu_my_orders)),
+                    More(resources.getString(R.string.menu_my_wishlist)),
                     More(resources.getString(R.string.menu_my_designes)),
                     More(resources.getString(R.string.menu_my_storage)),
                     More(resources.getString(R.string.media)),
@@ -282,45 +233,52 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
                     if (!loggedIn) {
                         showLoginDialog()
                     } else {
-                        MediaActivity.start(this, MediaTypesEnum.DESIGN.value)
+                        WishListActivity.start(this)
                     }
                 }
                 2 -> {
                     if (!loggedIn) {
                         showLoginDialog()
                     } else {
-                        StorageActivity.start(this)
+                        MediaActivity.start(this, MediaTypesEnum.DESIGN.value)
                     }
                 }
                 3 -> {
                     if (!loggedIn) {
                         showLoginDialog()
                     } else {
-                        MediaActivity.start(this, MediaTypesEnum.IMAGES.value)
+                        StorageActivity.start(this)
                     }
                 }
                 4 -> {
                     if (!loggedIn) {
                         showLoginDialog()
                     } else {
-                        UpdateProfileActivity.start(this)
+                        MediaActivity.start(this, MediaTypesEnum.IMAGES.value)
                     }
                 }
                 5 -> {
                     if (!loggedIn) {
                         showLoginDialog()
                     } else {
+                        UpdateProfileActivity.start(this)
+                    }
+                }
+                6 -> {
+                    if (!loggedIn) {
+                        showLoginDialog()
+                    } else {
                         ContactUsActivity.start(this)
                     }
                 }
-                6 -> AboutUsActivity.start(this)
-                7 -> {
+                7 -> AboutUsActivity.start(this)
+                8 -> {
                     if (loggedIn)
                         viewModel.logoutRemote().observe(this, logoutResultObserver())
                     else
                         AuthActivity.startForResult(this@MainActivity, true, loginResultLauncher)
                 }
-                8 -> viewModel.saveLanguage().observe(this, Observer {
+                9 -> viewModel.saveLanguage().observe(this, Observer {
                     this.let {
                         (it as BaseBindingActivity<*, *>).setLanguage(
                             if (viewModel.getAppLanguage() == "ar")
