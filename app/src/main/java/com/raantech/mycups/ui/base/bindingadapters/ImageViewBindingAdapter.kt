@@ -193,6 +193,35 @@ fun setUpRequestOptions(
         else -> RequestOptions.noTransformation()
     }
 
+fun ImageView.loadImage(url: String, onLoadingFinished: () -> Unit = {}) {
+    val listener = object : RequestListener<Drawable> {
+        override fun onLoadFailed(
+            e: GlideException?,
+            model: Any?,
+            target: Target<Drawable>?,
+            isFirstResource: Boolean
+        ): Boolean {
+            onLoadingFinished()
+            return false
+        }
+
+        override fun onResourceReady(
+            resource: Drawable?,
+            model: Any?,
+            target: Target<Drawable>?,
+            dataSource: DataSource?,
+            isFirstResource: Boolean
+        ): Boolean {
+            onLoadingFinished()
+            return false
+        }
+    }
+    Glide.with(this)
+        .load(getLoadingUrl(url))
+        .listener(listener)
+        .into(this)
+}
+
 
 fun getLoadingUrl(imageUrl: String): Any {
 

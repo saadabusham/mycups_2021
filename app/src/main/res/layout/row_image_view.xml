@@ -5,6 +5,10 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <import type="com.raantech.mycups.data.enums.MediaTypesEnum" />
+
         <variable
             name="item"
             type="com.raantech.mycups.data.models.media.Media" />
@@ -13,10 +17,11 @@
     <RelativeLayout
         android:id="@+id/relativePreview"
         android:layout_width="@dimen/_140sdp"
-        android:layout_height="@dimen/_140sdp"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/_7sdp">
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvImage"
             android:layout_width="@dimen/_140sdp"
             android:layout_height="@dimen/_140sdp"
             app:cardCornerRadius="@dimen/_10sdp"
@@ -24,14 +29,30 @@
 
             <ImageView
                 android:id="@+id/imgMedia"
-                ivImageUrl="@{item.url}"
                 ivImageExtension="@{item.extension}"
+                ivImageUrl="@{item.url}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:transitionName="image"
                 tools:src="@drawable/ic_file" />
+
         </com.google.android.material.card.MaterialCardView>
+
+        <com.raantech.mycups.ui.base.views.appviews.AppTextView
+            style="@style/textview_normal_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cvImage"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:gravity="center"
+            android:text="@{item.filename}"
+            android:textColor="@color/tab_text_color"
+            android:textSize="@dimen/_11ssp"
+            android:visibility="@{item.isDesignFile ? View.VISIBLE : View.GONE}"
+            tools:text="file name" />
 
         <ImageView
             android:id="@+id/imgRemove"
@@ -43,6 +64,7 @@
             android:layout_marginEnd="@dimen/_5sdp"
             android:background="?selectableItemBackgroundBorderless"
             android:padding="@dimen/_3sdp"
-            android:src="@drawable/ic_close" />
+            android:src="@drawable/ic_close"
+            app:tint="@color/red" />
     </RelativeLayout>
 </layout>

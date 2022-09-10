@@ -48,7 +48,6 @@ class MediaActivity : BaseBindingActivity<ActivityMediaBinding, Nothing>(),
     var selectMedia: Boolean? = null
 
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
-    private var isFinished = false
 
     private lateinit var mediaAdapter: MediaRecyclerAdapter
 
@@ -211,25 +210,6 @@ class MediaActivity : BaseBindingActivity<ActivityMediaBinding, Nothing>(),
                 0, resources.getDimension(R.dimen._10sdp).toInt()
             )
         )
-        Paginate.with(binding?.recyclerView, object : Paginate.Callbacks {
-            override fun onLoadMore() {
-                if (loading.value == false && mediaAdapter.itemCount > 0 && !isFinished) {
-                    loadMedia()
-                }
-            }
-
-            override fun isLoading(): Boolean {
-                return loading.value ?: false
-            }
-
-            override fun hasLoadedAllItems(): Boolean {
-                return isFinished
-            }
-
-        })
-            .setLoadingTriggerThreshold(1)
-            .addLoadingListItem(false)
-            .build()
     }
 
     private fun hideShowNoData() {
@@ -267,17 +247,18 @@ class MediaActivity : BaseBindingActivity<ActivityMediaBinding, Nothing>(),
                 setResult(RESULT_OK, data)
                 finish()
             } else {
-                previewFile(media = item,view)
+                previewFile(media = item, view)
             }
         }
     }
-    private fun previewFile(media: Media,view : View?){
+
+    private fun previewFile(media: Media, view: View?) {
         view?.imgMedia?.let {
-            when(media.extension){
-                MediaTypesEnum.PSD.value,MediaTypesEnum.PDF.value,MediaTypesEnum.IL.value ->{
+            when (media.extension) {
+                MediaTypesEnum.PSD.value, MediaTypesEnum.PDF.value, MediaTypesEnum.IL.value -> {
                     media.url?.let { it1 -> openUrl(it1) }
                 }
-                else ->{
+                else -> {
                     media.url?.let { it1 ->
                         ViewImageActivity.start(
                             this,
@@ -293,7 +274,7 @@ class MediaActivity : BaseBindingActivity<ActivityMediaBinding, Nothing>(),
     override fun onItemLongClick(view: View?, position: Int, item: Any) {
         super.onItemLongClick(view, position, item)
         item as Media
-        view?.imgMedia?.let { item.url?.let { it1 -> ViewImageActivity.start(this, it1, it) } }
+        previewFile(media = item, view)
     }
 
     private fun mediaObserver(): CustomObserverResponse<List<Media>> {
@@ -305,11 +286,10 @@ class MediaActivity : BaseBindingActivity<ActivityMediaBinding, Nothing>(),
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ResponseWrapper<List<Media>>?
                 ) {
-                    isFinished = data?.body?.isNullOrEmpty() == true
                     data?.body?.let {
                         mediaAdapter.addItems(it)
                     }
-                    loading.postValue(false)
+                    loading.value = (false)
                     hideShowNoData()
                 }
 
@@ -319,12 +299,12 @@ class MediaActivity : BaseBindingActivity<ActivityMediaBinding, Nothing>(),
                     errors: List<GeneralError>?
                 ) {
                     super.onError(subErrorCode, message, errors)
-                    loading.postValue(false)
+                    loading.value = (false)
                     hideShowNoData()
                 }
 
                 override fun onLoading() {
-                    loading.postValue(true)
+                    loading.value = (true)
                 }
             }, true, showError = false
         )
