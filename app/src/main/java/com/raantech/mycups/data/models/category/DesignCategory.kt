@@ -16,7 +16,7 @@ data class DesignCategory(
     @field:SerializedName("description")
     val description: String? = null,
 
-    @field:SerializedName("logo")
+    @field:SerializedName("logo", alternate = ["base_image"])
     val logo: Media? = null,
 
     @field:SerializedName("has_sub")
