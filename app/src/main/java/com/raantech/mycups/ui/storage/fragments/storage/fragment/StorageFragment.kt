@@ -6,15 +6,9 @@ import com.raantech.mycups.R
 import com.raantech.mycups.data.api.response.GeneralError
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.common.CustomObserverResponse
-import com.raantech.mycups.data.models.home.homedata.CategoriesItem
-import com.raantech.mycups.data.models.home.offer.OfferDetails
-import com.raantech.mycups.data.models.home.product.productdetails.Measurement
-import com.raantech.mycups.data.models.home.product.productdetails.Product
-import com.raantech.mycups.data.models.storage.Storage
 import com.raantech.mycups.data.models.storage.StorageResponse
 import com.raantech.mycups.databinding.FragmentStorageBinding
 import com.raantech.mycups.ui.base.fragment.BaseBindingFragment
-import com.raantech.mycups.ui.offerdetails.adapters.OfferDetailsRecyclerAdapter
 import com.raantech.mycups.ui.storage.fragments.storage.adapters.StorageRecyclerAdapter
 import com.raantech.mycups.ui.storage.fragments.storage.presenter.StoragePresenter
 import com.raantech.mycups.ui.storage.viewmodels.StorageViewModel
@@ -69,35 +63,6 @@ class StorageFragment :
     private fun setUpAdapter() {
         adapter = StorageRecyclerAdapter(requireActivity())
         binding?.recyclerView?.adapter = adapter
-        adapter.submitItems(
-            arrayListOf(
-                Storage(
-                    measurement = Measurement(name = "2 onz"),
-                    category = CategoriesItem(name = "Cups"),
-                    quantity = 2000
-                ),
-                Storage(
-                    measurement = Measurement(name = "4 onz"),
-                    category = CategoriesItem(name = "Cups"),
-                    quantity = 6000
-                ),
-                Storage(
-                    measurement = Measurement(name = "6 onz"),
-                    category = CategoriesItem(name = "Cups"),
-                    quantity = 10000
-                ),
-                Storage(
-                    measurement = Measurement(name = "2 okz"),
-                    category = CategoriesItem(name = "Cups"),
-                    quantity = 10000
-                ),
-                Storage(
-                    measurement = Measurement(name = "2 okz"),
-                    category = CategoriesItem(name = "Cups"),
-                    quantity = 10000
-                )
-            )
-        )
     }
 
     private fun storageObserver(): CustomObserverResponse<StorageResponse> {
@@ -111,9 +76,9 @@ class StorageFragment :
                     data: StorageResponse?
                 ) {
                     data?.storages?.let {
-                        adapter.addItems(it)
+                        adapter.submitNewItems(it)
                     }
-                    loading.postValue(false)
+                    loading.value = (false)
                     hideShowNoData()
                 }
 
@@ -123,12 +88,12 @@ class StorageFragment :
                     errors: List<GeneralError>?
                 ) {
                     super.onError(subErrorCode, message, errors)
-                    loading.postValue(false)
+                    loading.value = (false)
                     hideShowNoData()
                 }
 
                 override fun onLoading() {
-                    loading.postValue(true)
+                    loading.value = (true)
                 }
             }, true, showError = false
         )

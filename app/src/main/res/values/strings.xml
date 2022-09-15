@@ -19,7 +19,7 @@
     <string name="error_server">timeout</string>
     <string name="error_msg">Something went wrong</string>
     <string name="session_ended">Session Ended</string>
-    <string name="screen_shot_denied">Grant stoarge permission to take screenshot!</string>
+    <string name="screen_shot_denied">Grant storage permission to take screenshot!</string>
     <string name="camera_permission_denied">Grant camera permission to take the 3 seconds video</string>
     <string name="screen_shot">take screenshot</string>
 
@@ -140,7 +140,7 @@
     <!--    Login-->
     <string name="login">Login</string>
     <string name="resend_code">Resend Code</string>
-    <string name="welcome_to_for9a">Welcome to For9a</string>
+    <string name="welcome_">Welcome</string>
     <string name="log_in_explore_all_the_genuine_products_and_get_deliver_to_your_doorstep">Log in Explore all the genuine products and get deliver to your doorstep.</string>
     <string name="forget_password_">Forget Password?</string>
     <string name="or">Or</string>
@@ -273,6 +273,7 @@
 
     <!--    Product Details-->
     <string name="add_to_cart">Add to cart</string>
+    <string name="send_request">Send Request</string>
     <string name="choose_the_size">Choose the size</string>
     <string name="suggested_designs">Suggested Designs</string>
     <string name="upload_design">Upload Design</string>

@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.paginate.Paginate
 import com.paginate.recycler.LoadingListItemCreator
@@ -16,6 +15,7 @@ import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
 import com.raantech.mycups.data.models.home.offer.OfferDetails
 import com.raantech.mycups.data.models.home.product.productdetails.Product
+import com.raantech.mycups.data.models.orders.OrderDetails
 import com.raantech.mycups.databinding.FragmentOfferDetailsBinding
 import com.raantech.mycups.ui.base.fragment.BaseBindingFragment
 import com.raantech.mycups.ui.offerdetails.adapters.OfferDetailsRecyclerAdapter
@@ -23,7 +23,6 @@ import com.raantech.mycups.ui.offerdetails.presenter.OfferDetailsPresenter
 import com.raantech.mycups.ui.offerdetails.viewmodel.OfferDetailsViewModel
 import com.raantech.mycups.utils.extensions.gone
 import com.raantech.mycups.utils.extensions.visible
-import com.raantech.mycups.utils.recycleviewutils.SwipeItemTouchCallBack
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
@@ -58,9 +57,9 @@ class OfferDetailsFragment :
     }
 
     private fun loadData() {
-        requireActivity().intent.getIntExtra(Constants.BundleData.OFFER_ID, -1).let {
-            viewModel.getOfferDetails(it)
-                .observe(this, offerDetailsObserver())
+        requireActivity().intent.getIntExtra(Constants.BundleData.ORDER_ID, -1).let {
+            viewModel.getOrderDetails(it)
+                .observe(this, orderDetailsObserver())
         }
     }
 
@@ -121,34 +120,17 @@ class OfferDetailsFragment :
 
             })
             .build()
-
-        adapter.submitItems(
-            arrayListOf(
-                Product(
-                    name = "تم ارسال تسعير للطلب رقم #3321",
-                ),
-                Product(
-                    name = "لقد تم اضافة منتجات جديدة تصفحها الان",
-                ),
-                Product(
-                    name = "نود تذكيرك بان لديك في مخازننا اكواب عدد 10000",
-                ),
-                Product(
-                    name = "لقد تم توصيل منتجاتك الان الى المخزن"
-                )
-            )
-        )
     }
 
-    private fun offerDetailsObserver(): CustomObserverResponse<OfferDetails> {
+    private fun orderDetailsObserver(): CustomObserverResponse<OrderDetails> {
         return CustomObserverResponse(
             requireActivity(),
-            object : CustomObserverResponse.APICallBack<OfferDetails> {
+            object : CustomObserverResponse.APICallBack<OrderDetails> {
 
                 override fun onSuccess(
                     statusCode: Int,
                     subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: OfferDetails?
+                    data: OrderDetails?
                 ) {
                     isFinished = data?.products?.isEmpty() == true
                     data?.products?.let {

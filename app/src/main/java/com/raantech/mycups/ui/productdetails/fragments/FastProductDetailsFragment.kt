@@ -85,7 +85,7 @@ class FastProductDetailsFragment : BaseProductDetailsFragment<FragmentFastProduc
                 forEach { it.canSelect = true }
             }
         )
-        designsAdapter = HomeItemsAdapter(requireContext())
+        designsAdapter = HomeItemsAdapter(requireActivity())
         binding?.layoutDesigns?.rvData?.adapter = designsAdapter
         binding?.layoutDesigns?.rvData?.setOnItemClickListener(object :
             BaseBindingRecyclerViewAdapter.OnItemClickListener {

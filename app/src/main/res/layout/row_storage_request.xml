@@ -45,7 +45,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
                     tools:text="2 ons"
-                    android:text="@{item.measurement.name}"
+                    android:text="@{item.measurementName}"
                     android:textAlignment="viewEnd"
                     android:textColor="@color/tab_text_color"
                     android:textSize="@dimen/_10ssp" />
@@ -71,7 +71,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
                     tools:text="Cups"
-                    android:text="@{item.category.name}"
+                    android:text="@{item.productName}"
                     android:textAlignment="viewStart"
                     android:textColor="@color/tab_text_color"
                     android:textSize="@dimen/_10ssp" />

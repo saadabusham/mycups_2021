@@ -9,7 +9,8 @@
     <fragment
         android:id="@+id/offerDetailsFragment"
         android:name="com.raantech.mycups.ui.offerdetails.fragments.OfferDetailsFragment"
-        android:label="OfferDetailsFragment">
+        android:label="OfferDetailsFragment"
+        tools:layout="@layout/fragment_offer_details">
         <action
             android:id="@+id/action_offerDetailsFragment_to_orderSuccessFragment"
             app:destination="@id/orderSuccessFragment"
@@ -23,5 +24,6 @@
     <fragment
         android:id="@+id/orderSuccessFragment"
         android:name="com.raantech.mycups.ui.productdetails.fragments.OrderSuccessFragment"
-        android:label="OrderSuccessFragment" />
+        android:label="OrderSuccessFragment"
+        tools:layout="@layout/fragment_order_success"/>
 </navigation>

@@ -6,18 +6,12 @@ import com.raantech.mycups.R
 import com.raantech.mycups.data.api.response.GeneralError
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.common.CustomObserverResponse
-import com.raantech.mycups.data.models.home.homedata.CategoriesItem
-import com.raantech.mycups.data.models.home.offer.OfferDetails
-import com.raantech.mycups.data.models.home.product.productdetails.Measurement
-import com.raantech.mycups.data.models.home.product.productdetails.Product
 import com.raantech.mycups.data.models.storage.Storage
+import com.raantech.mycups.data.models.storage.StorageItemRequest
+import com.raantech.mycups.data.models.storage.StorageRequest
 import com.raantech.mycups.data.models.storage.StorageResponse
-import com.raantech.mycups.databinding.FragmentStorageBinding
 import com.raantech.mycups.databinding.FragmentStorageRequestBinding
 import com.raantech.mycups.ui.base.fragment.BaseBindingFragment
-import com.raantech.mycups.ui.offerdetails.adapters.OfferDetailsRecyclerAdapter
-import com.raantech.mycups.ui.storage.fragments.storage.adapters.StorageRecyclerAdapter
-import com.raantech.mycups.ui.storage.fragments.storage.presenter.StoragePresenter
 import com.raantech.mycups.ui.storage.fragments.storagerequest.adapters.StorageRequestRecyclerAdapter
 import com.raantech.mycups.ui.storage.fragments.storagerequest.presenter.StorageRequestPresenter
 import com.raantech.mycups.ui.storage.viewmodels.StorageViewModel
@@ -62,41 +56,38 @@ class StorageRequestFragment :
     }
 
     override fun onRequestClicked() {
+        adapter.items.filter { (it.count.value ?: 0) > 0 }.let {
+            if (it.isEmpty()) {
+                return
+            }
+            StorageRequest(
+                storages = it.map {
+                    StorageItemRequest(itemId = it.id, quantity = it.quantity)
+                }
+            ).let {
+                viewModel.requestStorages(it).observe(this, storageRequestObserver())
+            }
+        }
+    }
 
+    private fun storageRequestObserver(): CustomObserverResponse<Any> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<Any> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: Any?
+                ) {
+
+                }
+            }
+        )
     }
 
     private fun setUpAdapter() {
         adapter = StorageRequestRecyclerAdapter(requireActivity())
         binding?.recyclerView?.adapter = adapter
-        adapter.submitItems(
-            arrayListOf(
-                Storage(
-                    measurement = Measurement(name = "2 onz"),
-                    category = CategoriesItem(name = "Cups"),
-                    quantity = 2000
-                ),
-                Storage(
-                    measurement = Measurement(name = "4 onz"),
-                    category = CategoriesItem(name = "Cups"),
-                    quantity = 6000
-                ),
-                Storage(
-                    measurement = Measurement(name = "6 onz"),
-                    category = CategoriesItem(name = "Cups"),
-                    quantity = 10000
-                ),
-                Storage(
-                    measurement = Measurement(name = "2 okz"),
-                    category = CategoriesItem(name = "Cups"),
-                    quantity = 10000
-                ),
-                Storage(
-                    measurement = Measurement(name = "2 okz"),
-                    category = CategoriesItem(name = "Cups"),
-                    quantity = 10000
-                )
-            )
-        )
     }
 
     private fun storageObserver(): CustomObserverResponse<StorageResponse> {
@@ -110,9 +101,9 @@ class StorageRequestFragment :
                     data: StorageResponse?
                 ) {
                     data?.storages?.let {
-                        adapter.addItems(it)
+                        adapter.submitNewItems(it)
                     }
-                    loading.postValue(false)
+                    loading.value = (false)
                     hideShowNoData()
                 }
 
@@ -122,12 +113,12 @@ class StorageRequestFragment :
                     errors: List<GeneralError>?
                 ) {
                     super.onError(subErrorCode, message, errors)
-                    loading.postValue(false)
+                    loading.value = (false)
                     hideShowNoData()
                 }
 
                 override fun onLoading() {
-                    loading.postValue(true)
+                    loading.value = (true)
                 }
             }, true, showError = false
         )

@@ -22,8 +22,5 @@ data class Order(
 	val total: Price? = null,
 
 	@field:SerializedName("order_date")
-	val orderDate: String? = null,
-
-	@field:SerializedName("is_offer")
-	val isOffer: Boolean? = null
+	val orderDate: String? = null
 ):Serializable

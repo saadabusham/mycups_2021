@@ -52,16 +52,6 @@ class OrdersRepoImp @Inject constructor(
         }
     }
 
-    override suspend fun getOfferDetails(
-        id: Int
-    ): APIResource<ResponseWrapper<OfferDetails>> {
-        return try {
-            responseHandle.handleSuccess(ordersRemoteDao.getOfferDetails(id))
-        } catch (e: Exception) {
-            responseHandle.handleException(e)
-        }
-    }
-
     override suspend fun acceptOffer(
         orderId: Int,
         offerId: Int

@@ -54,21 +54,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_40sdp"
-                    android:includeFontPadding="false"
-                    android:text="@string/your_request_has_been_sent"
-                    android:textColor="@color/tab_text_color"
-                    android:textSize="@dimen/_13ssp" />
-
-                <com.raantech.mycups.ui.base.views.appviews.AppTextView
-                    style="@style/textview_normal_bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@{@string/order_id_(orderId)}"
+                    android:includeFontPadding="false"
+                    android:text="@{orderId}"
                     android:textColor="@color/tab_text_color"
                     android:textSize="@dimen/_13ssp"
-                    tools:text="#3321" />
+                    tools:text="@string/your_purchase_has_been_successfully_completed_n_npurchase_no" />
 
                 <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     style="@style/textview_normal_regular"
@@ -76,7 +67,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/successfully_we_will_submit_a_quotation_as_soon_as_possible"
+                    android:visibility="gone"
+                    android:text="@string/the_work_team_will_prepare_your_request_as_soon_as_possible_and_send_it_no_later_than_7_working_days"
                     android:textColor="@color/tab_text_color"
                     android:textSize="@dimen/_13ssp" />
 

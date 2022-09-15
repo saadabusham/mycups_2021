@@ -6,7 +6,6 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
 import com.raantech.mycups.R
-import com.raantech.mycups.data.api.response.GeneralError
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.common.Constants
@@ -16,6 +15,7 @@ import com.raantech.mycups.data.enums.OrderTypesEnum
 import com.raantech.mycups.data.models.category.Category
 import com.raantech.mycups.data.models.category.DesignCategory
 import com.raantech.mycups.data.models.home.product.productdetails.Measurement
+import com.raantech.mycups.data.models.home.product.productdetails.Product
 import com.raantech.mycups.data.models.home.product.productdetails.ProductResponse
 import com.raantech.mycups.data.models.media.Media
 import com.raantech.mycups.data.models.orders.request.offerorder.Files
@@ -79,7 +79,7 @@ class ProductDetailsFragment : BaseProductDetailsFragment<FragmentProductDetails
                         }?.map { MeasurementsItem(qty = it.count.value, measurementId = it.id) }
                     )
                 ).apply {
-                    if (viewModel.productToView.value?.can_upload_design == true) {
+                    if (viewModel.productToView.value?.can_upload_design == true && viewModel.design.value == null) {
                         designsAdapter?.items?.singleOrNull { (it as DesignCategory).isSelected.value == true }
                             ?.let {
                                 designId = (it as DesignCategory).id
@@ -167,7 +167,7 @@ class ProductDetailsFragment : BaseProductDetailsFragment<FragmentProductDetails
         }
 
     private fun setUpRvMeasurement() {
-        measurementAdapter = MeasurementAdapter(requireContext())
+        measurementAdapter = MeasurementAdapter(requireActivity())
         binding?.rvMeasurement?.adapter = measurementAdapter
         binding?.rvMeasurement?.setOnItemClickListener(this)
     }
@@ -183,26 +183,24 @@ class ProductDetailsFragment : BaseProductDetailsFragment<FragmentProductDetails
                 ) {
                     viewModel.productToView.value = data?.product
                     measurementAdapter?.submitNewItems(data?.product?.measurements)
-                    handleDesigns(data?.product?.designsCategories)
+                    handleDesigns(data?.product)
                 }
             }
         )
     }
 
-    private fun handleDesigns(designs: List<DesignCategory>?) {
-        if (designs.isNullOrEmpty()) {
+    private fun handleDesigns(product: Product?) {
+        if (product?.designsCategories.isNullOrEmpty() || product?.can_upload_design == true) {
             return
         }
         val category = Category(
             name = getString(R.string.latest_designs),
-            items = designs.apply {
-                forEach { it.canSelect = true }
-            }
+            items = product?.designsCategories?.onEach { it.canSelect = true }
         )
-        designsAdapter = HomeItemsAdapter(requireContext())
+        designsAdapter = HomeItemsAdapter(requireActivity())
         binding?.layoutDesigns?.rvData?.adapter = designsAdapter
         binding?.layoutDesigns?.rvData?.setOnItemClickListener(this)
-        designsAdapter?.submitNewItems(designs)
+        designsAdapter?.submitNewItems(product?.designsCategories)
         binding?.layoutDesigns?.item = category
         binding?.layoutDesigns?.root?.visible()
     }

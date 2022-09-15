@@ -43,6 +43,8 @@ class StorageRequestRecyclerAdapter constructor(
                 item.count.value = (item.count.value ?: 1) - 1
             }
             binding.imgPlus.setOnClickListener {
+                if ((item.count.value ?: 0) >= (item.quantity ?: 0))
+                    return@setOnClickListener
                 item.count.value = (item.count.value ?: 1) + 1
             }
         }

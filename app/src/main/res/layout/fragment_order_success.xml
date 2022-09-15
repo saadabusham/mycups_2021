@@ -83,7 +83,8 @@
                     android:gravity="center"
                     android:text="@string/the_work_team_will_prepare_your_request_as_soon_as_possible_and_send_it_no_later_than_7_working_days"
                     android:textColor="@color/tab_text_color"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textSize="@dimen/_13ssp"
+                    android:visibility="gone" />
 
             </LinearLayout>
 

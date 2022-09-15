@@ -9,6 +9,7 @@ import com.raantech.mycups.R
 import com.raantech.mycups.data.api.response.GeneralError
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.common.CustomObserverResponse
+import com.raantech.mycups.data.enums.OrderStatusEnum
 import com.raantech.mycups.data.enums.OrderTypesEnum
 import com.raantech.mycups.data.models.home.homedata.CategoriesItem
 import com.raantech.mycups.data.models.home.product.productdetails.Product
@@ -185,12 +186,15 @@ class OrdersFragment : BaseBindingFragment<FragmentOrdersBinding, Nothing>(),
                 loadOrders(item)
             }
             is Order -> {
-                item.id?.let {
-                    if (item.isOffer == true)
-                        OfferDetailsActivity.start(
-                            requireContext(),
-                            it
-                        )
+                item.id?.let { orderId ->
+                    tabListRecyclerAdapter.getSelectedItem()?.let {
+                        if (it.value == OrderTypesEnum.OFFER.value && item.status == OrderStatusEnum.HAS_OFFERS.value) {
+                            OfferDetailsActivity.start(
+                                requireContext(),
+                                orderId
+                            )
+                        }
+                    }
                 }
             }
         }

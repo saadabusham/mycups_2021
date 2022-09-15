@@ -109,7 +109,7 @@ class HomeItemsAdapter(
         override fun bind(item: DesignCategory) {
             binding.item = item
             binding.lifecycleOwner = context as AppCompatActivity
-            binding.root.setOnClickListener {
+            binding.cvImage.setOnClickListener {
                 if (item.canSelect == true) {
                     items.withIndex().singleOrNull {
                         (it.value as DesignCategory).isSelected.value == true

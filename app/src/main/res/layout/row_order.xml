@@ -19,8 +19,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_10sdp"
         android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:selectableItemBackground"
         android:orientation="vertical">
 
         <com.raantech.mycups.ui.base.views.appviews.AppTextView
@@ -30,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:ellipsize="end"
             android:gravity="center|start"

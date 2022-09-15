@@ -5,6 +5,6 @@ import java.io.Serializable
 
 data class StorageResponse(
 
-    @field:SerializedName("storages")
+    @field:SerializedName("items")
     val storages: List<Storage>? = null
 ) : Serializable

@@ -10,15 +10,15 @@
     <string name="english">English</string>
     <string name="arabic">العربية</string>
     <string name="start">Start</string>
-    <string name="select_language">Select Language</string>
-    <string name="select_your_preferred_language">Select your preferred language!</string>
+    <string name="select_language">اختر اللغة</string>
+    <string name="select_your_preferred_language">اختر لغتك المفضلة</string>
 
     <!-- error view -->
-    <string name="btn_try_again">try Again</string>
-    <string name="error_no_internet">No Internet connection</string>
-    <string name="error_server">timeout</string>
-    <string name="error_msg">Something went wrong</string>
-    <string name="session_ended">Session Ended</string>
+    <string name="btn_try_again">اعد المحاولة</string>
+    <string name="error_no_internet">لا يوجد اتصال بالانترنت</string>
+    <string name="error_server">نفذ الوقت</string>
+    <string name="error_msg">لقد حصل خطأ ما</string>
+    <string name="session_ended">انتهت الجلسة</string>
     <string name="screen_shot_denied">Grant stoarge permission to take screenshot!</string>
     <string name="camera_permission_denied">Grant camera permission to take the 3 seconds video</string>
     <string name="screen_shot">take screenshot</string>
@@ -27,37 +27,38 @@
     <string name="alert_dialog_all_info_in_english">All information entered must be in English</string>
     <string name="not_available_yet">This feature is coming soon to Al Alami app!</string>
     <!-- General -->
-    <string name="cancel">Cancel</string>
-    <string name="select">Select</string>
-    <string name="loading">Loading …</string>
-    <string name="under_development">Under Development</string>
-    <string name="ok">OK</string>
-    <string name="none">None</string>
-    <string name="edit">Edit</string>
-    <string name="updated_successfully">Updated Successfully</string>
-    <string name="gender">Gender</string>
-    <string name="male">Male</string>
-    <string name="female">Female</string>
+    <string name="cancel">الغاء</string>
+    <string name="select">اختر</string>
+    <string name="loading">جاري التحميل …</string>
+    <string name="under_development">تحت التطوير</string>
+    <string name="ok">حسنا</string>
+    <string name="none">لا شيء</string>
+    <string name="edit">تعديل</string>
+    <string name="updated_successfully">تم التحديث</string>
+    <string name="gender">الجنس</string>
+    <string name="male">ذكر</string>
+    <string name="female">انثى</string>
     <string name="empty_string" />
     <string name="km">km</string>
+    <string name="skip_for_now">تخطي</string>
+    <string name="you_need_to_login_into_your_account_to_see_this_content">تحتاج إلى تسجيل الدخول إلى حسابك \n لمشاهدة هذه الشاشة</string>
     <string name="you_re_not_logged_in">أنت غير مسجل الدخول.</string>
-    <string name="you_need_to_login_into_your_account_to_see_this_screen">تحتاج إلى تسجيل الدخول إلى حسابك \n لمشاهدة هذه الشاشة</string>
 
     <!-- Image Picker Strings -->
     <string name="go_to_settings">Go To Settings</string>
-    <string name="no_activity_data_chart_err">No Data Yet !</string>
-    <string name="choose_image_folders_mode_title">select Image</string>
-    <string name="choose_image_done_button_txt">Done</string>
+    <string name="no_activity_data_chart_err">لا يوجد بيانات!</string>
+    <string name="choose_image_folders_mode_title">اختر الصورة</string>
+    <string name="choose_image_done_button_txt">تم</string>
     <string name="choose_image_max_select_message">You have reached selection limit!</string>
     <string name="general_err_msg">"SomeThing Happened Please Try Again "</string>
 
     <!--  Validator strings  -->
-    <string name="must_not_be_empty">must not be empty</string>
-    <string name="must_not_be_at_least">must not be at least </string>
-    <string name="characters"> characters</string>
-    <string name="numbers"> numbers</string>
-    <string name="text">Text</string>
-    <string name="date">Date</string>
+    <string name="must_not_be_empty">لا يجب ان يكون فارغا</string>
+    <string name="must_not_be_at_least">يجب ان يكون على الأقل</string>
+    <string name="characters"> رمز</string>
+    <string name="numbers"> رقم</string>
+    <string name="text">نص</string>
+    <string name="date">التاريخ</string>
     <string name="email_not_valid_err">Enter a valid email address (example: aaa@bbb.ccc)</string>
     <string name="phone_not_valid_err">Enter a valid phone number (example: 07xxxxxxx)</string>
     <string name="password_not_valid_err">Enter a valid password (example: P@ssw0rd)</string>
@@ -76,16 +77,16 @@
     <string name="please_fill_data_fields">Please fill all the data fields</string>
 
     <string name="confirm_password">تأكيد رقم الجوال</string>
-    <string name="first_name">First name</string>
-    <string name="last_name">Last name</string>
-    <string name="already_have_an_account">Already have an account?</string>
-    <string name="hint_date">Date</string>
-    <string name="time">Time</string>
+    <string name="first_name">الاسم الاول</string>
+    <string name="last_name">الاسم الاخير</string>
+    <string name="already_have_an_account">هل لديك حساب؟</string>
+    <string name="hint_date">التاريخ</string>
+    <string name="time">الوقت</string>
     <string name="email">البريد الالكتروني</string>
     <string name="password">كلمة المرور</string>
     <string name="phone_number">رقم الجوال</string>
     <string name="otp">رمز التحقق</string>
-    <string name="number">Number</string>
+    <string name="number">رقم</string>
 
     <!--    Update App-->
     <string name="new_update">NEW UPDATE!</string>
@@ -99,7 +100,7 @@
     <string name="completed_successfully">Completed Successfully</string>
 
     <!--    Language    -->
-    <string name="continue_">Continue</string>
+    <string name="continue_">التالي</string>
     <string name="please_choose_your_preferred_language">Please choose your preferred language!</string>
 
     <!--    OnBoarding  -->
@@ -130,16 +131,16 @@
     <string name="email_address">البريد الالكتروني</string>
     <!--    Verification-->
 
-    <string name="send_again">Send again</string>
-    <string name="didn_t_receive_the_code">Didn\'t receive your code?</string>
-    <string name="verify_your_account">Verify your account</string>
-    <string name="enter_the_verification_code_we_sent_to_your">Enter the verification code we sent to your</string>
-    <string name="verify">Verify</string>
+    <string name="send_again">اعد الارسال</string>
+    <string name="didn_t_receive_the_code">لم تستلم الرمز؟</string>
+    <string name="verify_your_account">توثيق الحساب</string>
+    <string name="enter_the_verification_code_we_sent_to_your">ادخل الرمز الذي استلمته</string>
+    <string name="verify">تأكيد</string>
 
     <!--    Login-->
-    <string name="login">Login</string>
-    <string name="resend_code">Resend Code</string>
-    <string name="welcome_to_for9a">Welcome to For9a</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="resend_code">اعد الارسال</string>
+    <string name="welcome_">اهلا بك</string>
     <string name="log_in_explore_all_the_genuine_products_and_get_deliver_to_your_doorstep">Log in Explore all the genuine products and get deliver to your doorstep.</string>
     <string name="forget_password_">Forget Password?</string>
     <string name="or">Or</string>
@@ -272,6 +273,7 @@
 
     <!--    Product Details-->
     <string name="add_to_cart">أضف لسلة المشتريات</string>
+    <string name="send_request">ارسل الطلب</string>
     <string name="choose_the_size">اختر القياس</string>
     <string name="suggested_designs">تصاميم مقترحة</string>
     <string name="upload_design">ارفع التصميم</string>

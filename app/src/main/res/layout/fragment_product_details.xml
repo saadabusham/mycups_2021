@@ -7,6 +7,8 @@
 
         <import type="com.raantech.mycups.R" />
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.raantech.mycups.ui.productdetails.viewmodels.ProductDetailsViewModel" />
@@ -131,7 +133,6 @@ Product details, any information you would like to add" />
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_4sdp"
-                    android:layout_marginBottom="@dimen/_4sdp"
                     android:clipToPadding="false"
                     android:nestedScrollingEnabled="false"
                     android:orientation="vertical"
@@ -144,20 +145,21 @@ Product details, any information you would like to add" />
                 <include
                     android:id="@+id/layout_designs"
                     layout="@layout/row_home_categories"
-                    android:visibility="gone" />
+                    android:visibility="@{viewModel.productToView.can_upload_design ? View.VISIBLE : View.GONE}" />
 
                 <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     style="@style/textview_normal_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/layouts_margin_start"
-                    android:layout_marginTop="@dimen/_18sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginEnd="@dimen/layouts_margin_end"
                     android:gravity="center|start"
                     android:includeFontPadding="false"
                     android:text="@string/upload_design"
                     android:textColor="@color/tab_text_color"
-                    android:textSize="@dimen/_15ssp" />
+                    android:textSize="@dimen/_15ssp"
+                    android:visibility="@{viewModel.productToView.can_upload_design ? View.VISIBLE : View.GONE}" />
 
                 <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvDesign"
@@ -182,7 +184,8 @@ Product details, any information you would like to add" />
                     android:scrollHorizontally="true"
                     android:singleLine="false"
                     android:text="@string/the_design_file_must_be_in_one_of_the_following_formats_psd_pdf_il"
-                    android:textColor="@color/tab_text_color" />
+                    android:textColor="@color/tab_text_color"
+                    android:visibility="@{viewModel.productToView.can_upload_design ? View.VISIBLE : View.GONE}" />
 
                 <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvStorage"
@@ -210,7 +213,7 @@ Product details, any information you would like to add" />
                     android:layout_marginEnd="@dimen/layouts_margin_end"
                     android:layout_marginBottom="@dimen/_15sdp"
                     android:onClick="@{()->presenter.onAddToCartClicked()}"
-                    android:text="@string/add_to_cart"
+                    android:text="@string/send_request"
                     android:textSize="@dimen/_12ssp" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

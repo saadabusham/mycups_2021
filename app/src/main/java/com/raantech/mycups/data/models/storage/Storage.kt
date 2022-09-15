@@ -12,17 +12,14 @@ data class Storage(
     @field:SerializedName("id")
     val id: Int? = null,
 
-    @field:SerializedName("measurement")
-    val measurement: Measurement? = null,
+    @field:SerializedName("measurement_name")
+    val measurementName: String? = null,
 
-    @field:SerializedName("quantitiy")
+    @field:SerializedName("qty")
     val quantity: Int? = null,
 
-    @field:SerializedName("createdAt")
-    val createdAt: String? = null,
-
-    @field:SerializedName("category")
-    val category: CategoriesItem? = null,
+    @field:SerializedName("product_name")
+    val productName: String? = null,
 
     @Transient
     val count: MutableLiveData<Int> = MutableLiveData(0)

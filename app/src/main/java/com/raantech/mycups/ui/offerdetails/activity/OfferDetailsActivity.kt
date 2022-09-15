@@ -30,9 +30,9 @@ class OfferDetailsActivity :
     }
 
     companion object {
-        fun start(context: Context?, offerId: Int) {
+        fun start(context: Context?, orderId: Int) {
             val intent = Intent(context, OfferDetailsActivity::class.java).apply {
-                putExtra(Constants.BundleData.OFFER_ID, offerId)
+                putExtra(Constants.BundleData.ORDER_ID, orderId)
             }
             context?.startActivity(intent)
         }

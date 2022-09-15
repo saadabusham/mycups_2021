@@ -35,10 +35,6 @@ interface OrdersRepo {
         id: Int
     ): APIResource<ResponseWrapper<OrderDetails>>
 
-    suspend fun getOfferDetails(
-        id: Int
-    ): APIResource<ResponseWrapper<OfferDetails>>
-
     suspend fun acceptOffer(
         orderId: Int,
         offerId: Int

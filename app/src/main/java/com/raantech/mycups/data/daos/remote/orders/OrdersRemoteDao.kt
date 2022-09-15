@@ -33,16 +33,10 @@ interface OrdersRemoteDao {
     ): ResponseWrapper<OrdersResponse>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @GET("orders/{id}")
+    @GET("orders/{id}/show")
     suspend fun getOrderDetails(
         @Path("id") id: Int
     ): ResponseWrapper<OrderDetails>
-
-    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @GET("offer/{id}")
-    suspend fun getOfferDetails(
-        @Path("id") id: Int
-    ): ResponseWrapper<OfferDetails>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @GET("orders/{orderId}/offer/{offerId}/accept")

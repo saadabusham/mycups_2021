@@ -14,12 +14,12 @@ class OfferDetailsViewModel @Inject constructor(
     private val ordersRepo: OrdersRepo
 ) : BaseViewModel() {
 
-    fun getOfferDetails(
-        offerId: Int
+    fun getOrderDetails(
+        orderId: Int
     ) = liveData {
         emit(APIResource.loading())
         val response =
-            ordersRepo.getOfferDetails(offerId)
+            ordersRepo.getOrderDetails(orderId)
         emit(response)
     }
 
