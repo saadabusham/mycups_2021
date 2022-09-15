@@ -79,7 +79,7 @@ class StorageRequestFragment :
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: Any?
                 ) {
-
+                    requireActivity().onBackPressed()
                 }
             }
         )
