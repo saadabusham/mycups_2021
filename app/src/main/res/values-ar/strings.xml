@@ -127,7 +127,7 @@
     <string name="new_password">New Password</string>
     <string name="enter_new_password">Enter your password</string>
     <string name="reset_your_password_">Reset Your Password</string>
-    <string name="change_password">Change Password</string>
+    <string name="change_password">تغيير كلمة المرور</string>
     <string name="email_address">البريد الالكتروني</string>
     <!--    Verification-->
 

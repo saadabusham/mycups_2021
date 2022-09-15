@@ -14,6 +14,7 @@ import com.raantech.mycups.databinding.ActivityUpdateProfileBinding
 import com.raantech.mycups.ui.base.activity.BaseBindingActivity
 import com.raantech.mycups.ui.main.activity.MainActivity
 import com.raantech.mycups.ui.more.addresses.activity.AddressesActivity
+import com.raantech.mycups.ui.more.changepassword.ChangePasswordActivity
 import com.raantech.mycups.ui.more.profile.viewmodels.UpdateProfileViewModel
 import com.raantech.mycups.utils.extensions.showErrorAlert
 import com.raantech.mycups.utils.extensions.validate
@@ -48,6 +49,9 @@ class UpdateProfileActivity : BaseBindingActivity<ActivityUpdateProfileBinding,N
         }
         binding?.btnUpdateAddress?.setOnClickListener {
             AddressesActivity.start(this)
+        }
+        binding?.btnUpdatePassword?.setOnClickListener {
+            ChangePasswordActivity.start(this)
         }
     }
 
