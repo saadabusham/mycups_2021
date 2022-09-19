@@ -165,7 +165,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:text="$5.00" />
+                        tools:text="@string/price_" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -175,7 +175,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:orientation="horizontal"
-                    android:visibility="@{amountPrice.discountPrice > 0 ? View.VISIBLE : View.GONE}">
+                    android:visibility="@{amountPrice.stockPrice > 0 ? View.VISIBLE : View.GONE}">
 
                     <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         android:id="@+id/tvDiscountTxt"
@@ -199,7 +199,7 @@
                         style="@style/textview_normal_bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{@string/price_(amountPrice.discountPrice != null ? amountPrice.discountPrice : 0.0)}"
+                        android:text="@{@string/price_(amountPrice.stockPrice != null ? amountPrice.stockPrice : 0.0)}"
                         android:textColor="@color/button_color"
                         android:textSize="@dimen/_15ssp"
                         app:layout_constraintEnd_toEndOf="parent"

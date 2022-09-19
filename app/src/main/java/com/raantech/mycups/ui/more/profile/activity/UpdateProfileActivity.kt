@@ -12,9 +12,11 @@ import com.raantech.mycups.data.models.auth.login.User
 import com.raantech.mycups.data.models.auth.login.UserDetailsResponseModel
 import com.raantech.mycups.databinding.ActivityUpdateProfileBinding
 import com.raantech.mycups.ui.base.activity.BaseBindingActivity
+import com.raantech.mycups.ui.base.dialogs.ConfirmBottomSheet
 import com.raantech.mycups.ui.main.activity.MainActivity
 import com.raantech.mycups.ui.more.addresses.activity.AddressesActivity
 import com.raantech.mycups.ui.more.changepassword.ChangePasswordActivity
+import com.raantech.mycups.ui.more.profile.presenter.UpdateProfilePresenter
 import com.raantech.mycups.ui.more.profile.viewmodels.UpdateProfileViewModel
 import com.raantech.mycups.utils.extensions.showErrorAlert
 import com.raantech.mycups.utils.extensions.validate
@@ -23,7 +25,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
-class UpdateProfileActivity : BaseBindingActivity<ActivityUpdateProfileBinding,Nothing>() {
+class UpdateProfileActivity :
+    BaseBindingActivity<ActivityUpdateProfileBinding, UpdateProfilePresenter>(),
+    UpdateProfilePresenter {
 
     private val viewModel: UpdateProfileViewModel by viewModels()
 
@@ -39,20 +43,46 @@ class UpdateProfileActivity : BaseBindingActivity<ActivityUpdateProfileBinding,N
             title = R.string.menu_account
         )
         binding?.viewModel = viewModel
-        setUpListeners()
     }
 
-    private fun setUpListeners() {
-        binding?.btnRegister?.setOnClickListener {
-            if (validateInput())
-                viewModel.updateUser().observe(this, updateResultObserver())
+    override fun onEditClicked() {
+        if (validateInput())
+            viewModel.updateUser().observe(this, updateResultObserver())
+    }
+
+    override fun onAddressClicked() {
+        AddressesActivity.start(this)
+
+    }
+
+    override fun onChangePasswordClicked() {
+        ChangePasswordActivity.start(this)
+
+    }
+
+    override fun onSelectStorageClicked() {
+        if (viewModel.hasStock.value == false) {
+            showStorageHintDialog()
+        } else {
+            viewModel.hasStock.value = false
         }
-        binding?.btnUpdateAddress?.setOnClickListener {
-            AddressesActivity.start(this)
-        }
-        binding?.btnUpdatePassword?.setOnClickListener {
-            ChangePasswordActivity.start(this)
-        }
+    }
+
+    private fun showStorageHintDialog() {
+        ConfirmBottomSheet(
+            title = getString(R.string.storage_information),
+            description = getString(R.string.storage_information_desc),
+            btnConfirmTxt = getString(R.string.agree),
+            btnCancelTxt = getString(R.string.disagree),
+            object : ConfirmBottomSheet.CallBack {
+                override fun onConfirmed() {
+                    viewModel.hasStock.value = true
+                }
+
+                override fun onDecline() {
+
+                }
+            }).show(supportFragmentManager, "tag")
     }
 
     private fun validateInput(): Boolean {

@@ -9,6 +9,7 @@ import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.databinding.ActivityOfferDetailsBinding
 import com.raantech.mycups.ui.base.activity.BaseBindingActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_auth.*
 import kotlinx.android.synthetic.main.activity_offer_details.*
 import kotlinx.android.synthetic.main.activity_product_details.*
 
@@ -27,6 +28,17 @@ class OfferDetailsActivity :
             hasTitle = true,
             titleString = resources.getString(R.string.empty_string)
         )
+        setStartDestination()
+    }
+
+    private fun setStartDestination() {
+
+        val navHostFragment = offer_nav_host_fragment as NavHostFragment
+        val inflater = navHostFragment.navController.navInflater
+        val graph = inflater.inflate(R.navigation.offer_nav_graph)
+
+        graph.startDestination = R.id.offerDetailsFragment
+        navHostFragment.navController.graph = graph
     }
 
     companion object {

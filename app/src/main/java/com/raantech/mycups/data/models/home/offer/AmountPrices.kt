@@ -8,15 +8,18 @@ data class AmountPrices(
 	@field:SerializedName("shippingPrice")
 	val shippingPrice: Double? = 0.0,
 
+	@field:SerializedName("stockPrice")
+	var stockPrice: Double? = 0.0,
+
 	@field:SerializedName("taxPrice")
-	val taxPrice: Double? = 0.0,
+	var taxPrice: Double? = 0.0,
 
 	@field:SerializedName("totalPrice")
-	val totalPrice: Double? = 0.0,
+	var totalPrice: Double? = 0.0,
 
 	@field:SerializedName("discountPrice")
 	val discountPrice: Double? = null,
 
 	@field:SerializedName("subtotalPrice")
-	val subtotalPrice: Double? = 0.0
+	var subtotalPrice: Double? = 0.0
 ):Serializable

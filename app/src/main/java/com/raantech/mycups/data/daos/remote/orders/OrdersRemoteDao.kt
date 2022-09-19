@@ -6,6 +6,7 @@ import com.raantech.mycups.data.models.general.ListWrapper
 import com.raantech.mycups.data.models.home.offer.OfferDetails
 import com.raantech.mycups.data.models.orders.Order
 import com.raantech.mycups.data.models.orders.OrderDetails
+import com.raantech.mycups.data.models.orders.OrderResponse
 import com.raantech.mycups.data.models.orders.OrdersResponse
 import com.raantech.mycups.data.models.orders.request.offerorder.OfferOrderRequest
 import com.raantech.mycups.data.models.orders.request.purchaseorder.PurchaseOrderRequest
@@ -36,10 +37,10 @@ interface OrdersRemoteDao {
     @GET("orders/{id}/show")
     suspend fun getOrderDetails(
         @Path("id") id: Int
-    ): ResponseWrapper<OrderDetails>
+    ): ResponseWrapper<OrderResponse>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @GET("orders/{orderId}/offer/{offerId}/accept")
+    @POST("orders/{orderId}/offer/{offerId}/accept")
     suspend fun acceptOffer(
         @Path("orderId") orderId: Int,
         @Path("offerId") offerId: Int

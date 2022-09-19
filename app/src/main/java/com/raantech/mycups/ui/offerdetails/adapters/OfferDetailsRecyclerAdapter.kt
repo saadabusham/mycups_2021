@@ -5,13 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.raantech.mycups.data.models.home.product.productdetails.Product
+import com.raantech.mycups.data.models.orders.MeasurementOffer
 import com.raantech.mycups.databinding.RowOfferProductBinding
 import com.raantech.mycups.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.mycups.ui.base.adapters.BaseViewHolder
 
 class OfferDetailsRecyclerAdapter constructor(
-    context: Context
-) : BaseBindingRecyclerViewAdapter<Product>(context) {
+    context: Context,
+    private val product: Product
+) : BaseBindingRecyclerViewAdapter<MeasurementOffer>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
@@ -28,10 +30,11 @@ class OfferDetailsRecyclerAdapter constructor(
     }
 
     inner class ViewHolder(private val binding: RowOfferProductBinding) :
-        BaseViewHolder<Product>(binding.root) {
+        BaseViewHolder<MeasurementOffer>(binding.root) {
 
-        override fun bind(item: Product) {
-            binding.item = item
+        override fun bind(item: MeasurementOffer) {
+            binding.item = product
+            binding.offer = item
         }
     }
 }

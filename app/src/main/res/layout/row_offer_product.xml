@@ -11,6 +11,10 @@
         <variable
             name="item"
             type="com.raantech.mycups.data.models.home.product.productdetails.Product" />
+
+        <variable
+            name="offer"
+            type="com.raantech.mycups.data.models.orders.MeasurementOffer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,11 +69,11 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:ellipsize="end"
             android:gravity="center|start"
-            android:text="@{item.description}"
+            android:maxLines="2"
+            android:minLines="2"
+            android:text="@{offer.name}"
             android:textColor="@color/tab_text_color"
             android:textSize="@dimen/_11ssp"
-            android:minLines="2"
-            android:maxLines="2"
             app:layout_constraintBottom_toTopOf="@+id/div"
             app:layout_constraintEnd_toEndOf="@id/tvTitle"
             app:layout_constraintStart_toStartOf="@id/tvTitle"
@@ -85,7 +89,7 @@
             android:layout_marginEnd="@dimen/_10sdp"
             android:ellipsize="end"
             android:gravity="center|start"
-            android:text="@{item.price.formatted}"
+            android:text="@{offer.offer.formatted}"
             android:textColor="@color/button_color"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintBottom_toBottomOf="@id/tvTitle"
@@ -99,6 +103,6 @@
             android:layout_height="@dimen/_1sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:background="@color/divider_dark_gray"
-            app:layout_constraintTop_toBottomOf="@id/imgIcon"/>
+            app:layout_constraintTop_toBottomOf="@id/imgIcon" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

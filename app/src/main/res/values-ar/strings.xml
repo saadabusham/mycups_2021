@@ -206,14 +206,14 @@
 
     <!--   MainActivity-->
     <string name="nav_home">Home</string>
-    <string name="nav_favorites">Favorites</string>
+    <string name="nav_favorites">المفضلة</string>
     <string name="nav_buy">Buy</string>
     <string name="nav_chat">Chat</string>
     <string name="nav_profile">Profile</string>
 
     <!--    Home -->
     <string name="see_all">See All</string>
-    <string name="price_">%s SR</string>
+    <string name="price_">%s ر.س</string>
     <string name="bed_count_">%s Bed</string>
     <string name="bath_count_">%s Bath</string>
     <string name="no_items_yet">No product yet</string>
@@ -261,6 +261,7 @@
 
     <!--    More Items-->
     <string name="menu_my_orders">طلباتي</string>
+    <string name="order_details">تفاصيل الطلب</string>
     <string name="menu_my_wishlist">المفضلة</string>
     <string name="menu_my_designes">تصاميمي</string>
     <string name="menu_my_storage">المخزون</string>
@@ -286,7 +287,7 @@
     <string name="please_choose_file_type_psd">الرجاء اختيار نوع الملف (psd ، pdf ، il)</string>
 
     <!--    Customer Support-->
-    <string name="submit_successfully">تم إرسال بنجاح</string>
+    <string name="submit_successfully">تم إلارسال بنجاح</string>
     <string name="contact_us">تواصل معنا</string>
     <string name="do_you_have_a_problem_with_the_application_the_work_mechanism_or_any_comments_do_not_hesitate_to_send_them_to_us">هل تواجه مشكلة في التطبيق او في الية العمل او اي ملاحظات ، لا تتردد بارسالها لنا</string>
     <string name="problem_title">عنوان المشكلة</string>
@@ -365,6 +366,6 @@
     <string name="cart">سلة المشتريات</string>
 
     <!--    Update profile-->
-    <string name="brand_name">اسم العلامة التجارية</string>
-    <string name="brand_name_error">يرجى تحديث اسم علامتك التجارية</string>
+    <string name="brand_name">الاسم التجاري</string>
+    <string name="brand_name_error">يرجى تحديث الاسم التجاري</string>
 </resources>

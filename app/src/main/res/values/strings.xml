@@ -213,7 +213,7 @@
 
     <!--    Home -->
     <string name="see_all">See All</string>
-    <string name="price_">%s SR</string>
+    <string name="price_">SAR %s</string>
     <string name="bed_count_">%s Bed</string>
     <string name="bath_count_">%s Bath</string>
     <string name="no_items_yet">No Items Yet</string>
@@ -261,6 +261,7 @@
 
     <!--    More Items-->
     <string name="menu_my_orders">Orders</string>
+    <string name="order_details">Order Details</string>
     <string name="menu_my_wishlist">Favorite</string>
     <string name="menu_my_designes">Designs</string>
     <string name="menu_my_storage">Storage</string>

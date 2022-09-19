@@ -17,6 +17,7 @@ import com.raantech.mycups.data.models.orders.request.purchaseorder.PurchaseOrde
 import com.raantech.mycups.data.models.orders.request.purchaseorder.PurchaseOrderRequest
 import com.raantech.mycups.databinding.FragmentCartBinding
 import com.raantech.mycups.ui.base.fragment.BaseBindingFragment
+import com.raantech.mycups.ui.cart.fragments.cart.adapter.CartDetailsRecyclerAdapter
 import com.raantech.mycups.ui.cart.fragments.cart.presenter.CartPresenter
 import com.raantech.mycups.ui.cart.viewmodels.CartViewModel
 import com.raantech.mycups.ui.offerdetails.adapters.OfferDetailsRecyclerAdapter
@@ -29,7 +30,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 class CartFragment : BaseBindingFragment<FragmentCartBinding, CartPresenter>(), CartPresenter {
 
     private val viewModel: CartViewModel by activityViewModels()
-    lateinit var adapter: OfferDetailsRecyclerAdapter
+    lateinit var adapter: CartDetailsRecyclerAdapter
     override fun getPresenter() = this
 
     override fun getLayoutId(): Int = R.layout.fragment_cart
@@ -103,7 +104,7 @@ class CartFragment : BaseBindingFragment<FragmentCartBinding, CartPresenter>(), 
     }
 
     private fun setUpAdapter() {
-        adapter = OfferDetailsRecyclerAdapter(requireActivity())
+        adapter = CartDetailsRecyclerAdapter(requireActivity())
         binding?.recyclerView?.adapter = adapter
         ItemTouchHelper(
             SwipeItemTouchCallBack(adapter,

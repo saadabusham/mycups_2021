@@ -6,6 +6,7 @@ import com.raantech.mycups.data.api.response.ResponseWrapper
 import com.raantech.mycups.data.daos.remote.orders.OrdersRemoteDao
 import com.raantech.mycups.data.models.home.offer.OfferDetails
 import com.raantech.mycups.data.models.orders.OrderDetails
+import com.raantech.mycups.data.models.orders.OrderResponse
 import com.raantech.mycups.data.models.orders.OrdersResponse
 import com.raantech.mycups.data.models.orders.request.offerorder.OfferOrderRequest
 import com.raantech.mycups.data.models.orders.request.purchaseorder.PurchaseOrderRequest
@@ -44,7 +45,7 @@ class OrdersRepoImp @Inject constructor(
         }
     }
 
-    override suspend fun getOrderDetails(id: Int): APIResource<ResponseWrapper<OrderDetails>> {
+    override suspend fun getOrderDetails(id: Int): APIResource<ResponseWrapper<OrderResponse>> {
         return try {
             responseHandle.handleSuccess(ordersRemoteDao.getOrderDetails(id))
         } catch (e: Exception) {

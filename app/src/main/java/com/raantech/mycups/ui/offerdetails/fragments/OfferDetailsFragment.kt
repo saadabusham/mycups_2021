@@ -1,22 +1,22 @@
 package com.raantech.mycups.ui.offerdetails.fragments
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
-import androidx.recyclerview.widget.RecyclerView
-import com.paginate.Paginate
-import com.paginate.recycler.LoadingListItemCreator
+import com.google.gson.Gson
+import com.google.gson.JsonParseException
+import com.google.gson.JsonSyntaxException
 import com.raantech.mycups.R
 import com.raantech.mycups.data.api.response.GeneralError
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
-import com.raantech.mycups.data.models.home.offer.OfferDetails
+import com.raantech.mycups.data.models.Price
+import com.raantech.mycups.data.models.home.offer.AmountPrices
 import com.raantech.mycups.data.models.home.product.productdetails.Product
 import com.raantech.mycups.data.models.orders.OrderDetails
+import com.raantech.mycups.data.models.orders.OrderResponse
 import com.raantech.mycups.databinding.FragmentOfferDetailsBinding
+import com.raantech.mycups.ui.base.dialogs.CompletedDialog
 import com.raantech.mycups.ui.base.fragment.BaseBindingFragment
 import com.raantech.mycups.ui.offerdetails.adapters.OfferDetailsRecyclerAdapter
 import com.raantech.mycups.ui.offerdetails.presenter.OfferDetailsPresenter
@@ -30,11 +30,11 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 class OfferDetailsFragment :
     BaseBindingFragment<FragmentOfferDetailsBinding, OfferDetailsPresenter>(),
     OfferDetailsPresenter {
+    override fun getPresenter() = this
 
     private val viewModel: OfferDetailsViewModel by activityViewModels()
-    lateinit var adapter: OfferDetailsRecyclerAdapter
+    var adapter: OfferDetailsRecyclerAdapter? = null
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
-    private var isFinished = false
     override fun getLayoutId(): Int = R.layout.fragment_offer_details
 
     override fun onViewVisible() {
@@ -45,20 +45,20 @@ class OfferDetailsFragment :
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = true,
-            titleString = resources.getString(R.string.empty_string)
+            titleString = resources.getString(R.string.order_details)
         )
         init()
     }
 
     private fun init() {
+        binding?.viewModel = viewModel
         setUpListeners()
-        setUpAdapter()
         loadData()
     }
 
     private fun loadData() {
-        requireActivity().intent.getIntExtra(Constants.BundleData.ORDER_ID, -1).let {
-            viewModel.getOrderDetails(it)
+        requireActivity().intent.getIntExtra(Constants.BundleData.ORDER_ID, -1).let { orderId ->
+            viewModel.getOrderDetails(orderId)
                 .observe(this, orderDetailsObserver())
         }
     }
@@ -68,73 +68,74 @@ class OfferDetailsFragment :
     }
 
     override fun onPayClicked() {
-        navigationController.navigate(
-            R.id.action_offerDetailsFragment_to_orderSuccessFragment,
-            bundleOf(Pair(Constants.BundleData.ORDER_ID, "1".toString()))
-        )
+        requireActivity().intent.getIntExtra(Constants.BundleData.ORDER_ID, -1).let { orderId ->
+            viewModel.orderToView.value?.order?.offer_id?.let { offerId ->
+                viewModel.acceptOffer(orderId, offerId).observe(this, acceptOfferObserver())
+            }
+        }
     }
 
-    private fun setUpAdapter() {
-        adapter = OfferDetailsRecyclerAdapter(requireActivity())
+    private fun setUpAdapter(product: Product) {
+        adapter = OfferDetailsRecyclerAdapter(requireActivity(), product)
         binding?.recyclerView?.adapter = adapter
-//        ItemTouchHelper(
-//            SwipeItemTouchCallBack(adapter,
-//                object : SwipeItemTouchCallBack.MoveCallBack {
-//                    override fun onSwipe(item: Any, position: Int) {
-//                        item as Product
-//                        adapter.removeItemAt(position)
-//                    }
-//                })
-//        ).attachToRecyclerView(binding?.recyclerView)
-        Paginate.with(binding?.recyclerView, object : Paginate.Callbacks {
-            override fun onLoadMore() {
-                if (loading.value == false && adapter.itemCount > 0 && !isFinished) {
-                    loadData()
-                }
-            }
-
-            override fun isLoading(): Boolean {
-                return loading.value ?: false
-            }
-
-            override fun hasLoadedAllItems(): Boolean {
-                return isFinished
-            }
-
-        })
-            .setLoadingTriggerThreshold(1)
-            .addLoadingListItem(false)
-            .setLoadingListItemCreator(object : LoadingListItemCreator {
-                override fun onCreateViewHolder(
-                    parent: ViewGroup?,
-                    viewType: Int
-                ): RecyclerView.ViewHolder {
-                    val view = LayoutInflater.from(parent!!.context)
-                        .inflate(R.layout.loading_row, parent, false)
-                    return object : RecyclerView.ViewHolder(view) {}
-                }
-
-                override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-
-                }
-
-            })
-            .build()
     }
 
-    private fun orderDetailsObserver(): CustomObserverResponse<OrderDetails> {
+    private fun orderDetailsObserver(): CustomObserverResponse<OrderResponse> {
         return CustomObserverResponse(
             requireActivity(),
-            object : CustomObserverResponse.APICallBack<OrderDetails> {
+            object : CustomObserverResponse.APICallBack<OrderResponse> {
 
                 override fun onSuccess(
                     statusCode: Int,
                     subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: OrderDetails?
+                    data: OrderResponse?
                 ) {
-                    isFinished = data?.products?.isEmpty() == true
-                    data?.products?.let {
-                        adapter.addItems(it)
+                    viewModel.orderToView.value = data
+                    data?.order?.product?.let { setUpAdapter(it) }
+                    data?.order?.measurements?.let {
+                        adapter?.submitNewItems(it)
+                    }
+                    binding?.layoutAmount?.amountPrice = AmountPrices().apply {
+                        data?.order?.vat?.let {
+                            when (it) {
+                                is Double -> {
+                                    taxPrice = it
+                                }
+                                else -> {
+                                    try {
+                                        Gson().fromJson(it.toString(), Price::class.java)?.let {
+                                            taxPrice = it.amount?.toDoubleOrNull()
+                                        }
+                                    } catch (e: JsonSyntaxException) {
+
+                                    } catch (e: JsonParseException) {
+
+                                    }
+                                }
+                            }
+                        }
+                        totalPrice = data?.order?.total?.amount?.toDoubleOrNull()
+                        data?.order?.subTotal?.let {
+                            when (it) {
+                                is Double -> {
+                                    subtotalPrice = it
+                                }
+                                else -> {
+                                    try {
+                                        Gson().fromJson(it.toString(), Price::class.java)?.let {
+                                            subtotalPrice = it.amount?.toDoubleOrNull()
+                                        }
+                                    } catch (e: JsonSyntaxException) {
+
+                                    } catch (e: JsonParseException) {
+
+                                    }
+                                }
+                            }
+                        }
+                        if (data?.order?.hasStock == true) {
+                            stockPrice = data.order.stockFees?.amount?.toDoubleOrNull()
+                        }
                     }
                     loading.postValue(false)
                     hideShowNoData()
@@ -157,8 +158,37 @@ class OfferDetailsFragment :
         )
     }
 
+    private fun acceptOfferObserver(): CustomObserverResponse<Any> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<Any> {
+
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: Any?
+                ) {
+                    showCompletedDialog()
+                }
+            }
+        )
+    }
+
+    private fun showCompletedDialog() {
+        val completedDialog =
+            CompletedDialog(
+                context = requireContext(),
+                title = resources.getString(R.string.submit_successfully)
+            )
+        completedDialog.setOnDismissListener {
+            requireActivity().onBackPressed()
+        }
+        completedDialog.show()
+
+    }
+
     private fun hideShowNoData() {
-        if (adapter.itemCount == 0) {
+        if (adapter?.itemCount == 0) {
             binding?.recyclerView?.gone()
             binding?.layoutNoData?.constraintEmptyView?.visible()
         } else {

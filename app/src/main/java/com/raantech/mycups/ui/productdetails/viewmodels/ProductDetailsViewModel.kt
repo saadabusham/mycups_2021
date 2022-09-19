@@ -35,7 +35,14 @@ class ProductDetailsViewModel @Inject constructor(
     val design: MutableLiveData<Media> = MutableLiveData()
     val productToView: MutableLiveData<Product> = MutableLiveData()
     val count: MutableLiveData<Int> = MutableLiveData(0)
-    val needStock: MutableLiveData<Boolean> = MutableLiveData(false)
+    val needStock: MutableLiveData<Boolean?> = MutableLiveData(false)
+
+    init {
+        userRepo.getUser()?.user?.let {
+            needStock.postValue(it.hasStock)
+        }
+    }
+
     fun getProductsByID(
         productId: Int
     ) = liveData {

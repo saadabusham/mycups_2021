@@ -6,6 +6,9 @@
     <data>
 
         <variable
+            name="presenter"
+            type="com.raantech.mycups.ui.more.profile.presenter.UpdateProfilePresenter" />
+        <variable
             name="viewModel"
             type="com.raantech.mycups.ui.more.profile.viewmodels.UpdateProfileViewModel" />
     </data>
@@ -60,9 +63,9 @@
                         android:id="@+id/edFirstName"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
+                        android:layout_height="@dimen/Edittext_height"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:hint="@string/full_name"
-                        android:layout_height="@dimen/Edittext_height"
                         android:text="@={viewModel.username}" />
 
 
@@ -83,11 +86,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/Edittext_height"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:singleLine="true"
                         android:hint="@string/email_address"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
-                        android:text="@={viewModel.email}"/>
+                        android:singleLine="true"
+                        android:text="@={viewModel.email}" />
 
                     <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         android:id="@+id/tvEmailError"
@@ -119,10 +122,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/Edittext_height"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:singleLine="true"
                         android:hint="@string/brand_name"
                         android:maxLines="1"
-                        android:text="@={viewModel.brandName}"/>
+                        android:singleLine="true"
+                        android:text="@={viewModel.brandName}" />
 
                     <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         android:id="@+id/tvBrandNameError"
@@ -152,13 +155,13 @@
                         android:id="@+id/edPhoneNumber"
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/_5sdp"
                         android:layout_height="@dimen/Edittext_height"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:hint="@string/_700000000"
                         android:inputType="phone"
-                        android:textColor="@color/black"
                         android:text="@={viewModel.phoneNumber}"
-                        android:textSize="@dimen/_11ssp"  />
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11ssp" />
 
                     <com.raantech.mycups.ui.base.views.appviews.AppTextView
                         android:id="@+id/tvPhoneNumberError"
@@ -172,6 +175,19 @@
                         android:textSize="@dimen/_9ssp"
                         android:visibility="gone"
                         tools:text="Your phone number is incorrect." />
+
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextView
+                        android:id="@+id/tvStorage"
+                        style="@style/textview_normal_medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_17sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:drawableStart="@{viewModel.hasStock ? @drawable/ic_checked : @drawable/ic_unchecked}"
+                        android:drawablePadding="@dimen/_7sdp"
+                        android:onClick="@{()->presenter.onSelectStorageClicked()}"
+                        android:text="@string/need_stock"
+                        tools:checked="false"
+                        tools:drawableStart="@drawable/ic_checked" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/cvAddress"
@@ -213,6 +229,7 @@
             android:layout_marginBottom="@dimen/_15sdp"
             android:gravity="center"
             android:text="@string/update_address"
+            android:onClick="@{()->presenter.onAddressClicked()}"
             android:textSize="@dimen/_19ssp"
             app:cornerRadius="@dimen/_7sdp" />
 
@@ -225,11 +242,12 @@
             android:layout_marginBottom="@dimen/_15sdp"
             android:gravity="center"
             android:text="@string/change_password"
+            android:onClick="@{()->presenter.onChangePasswordClicked()}"
             android:textSize="@dimen/_19ssp"
             app:cornerRadius="@dimen/_7sdp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnRegister"
+            android:id="@+id/btnEdit"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_48sdp"
             android:layout_marginStart="@dimen/layouts_margin_start"
@@ -237,6 +255,7 @@
             android:layout_marginBottom="@dimen/_15sdp"
             android:gravity="center"
             android:text="@string/edit"
+            android:onClick="@{()->presenter.onEditClicked()}"
             android:textSize="@dimen/_19ssp"
             app:cornerRadius="@dimen/_7sdp" />
     </LinearLayout>

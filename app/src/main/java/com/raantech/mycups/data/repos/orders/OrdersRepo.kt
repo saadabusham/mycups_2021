@@ -7,6 +7,7 @@ import com.raantech.mycups.data.models.general.ListWrapper
 import com.raantech.mycups.data.models.home.offer.OfferDetails
 import com.raantech.mycups.data.models.orders.Order
 import com.raantech.mycups.data.models.orders.OrderDetails
+import com.raantech.mycups.data.models.orders.OrderResponse
 import com.raantech.mycups.data.models.orders.OrdersResponse
 import com.raantech.mycups.data.models.orders.request.offerorder.OfferOrderRequest
 import com.raantech.mycups.data.models.orders.request.purchaseorder.PurchaseOrderRequest
@@ -33,7 +34,7 @@ interface OrdersRepo {
 
     suspend fun getOrderDetails(
         id: Int
-    ): APIResource<ResponseWrapper<OrderDetails>>
+    ): APIResource<ResponseWrapper<OrderResponse>>
 
     suspend fun acceptOffer(
         orderId: Int,
