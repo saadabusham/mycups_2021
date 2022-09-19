@@ -188,13 +188,13 @@ class OrdersFragment : BaseBindingFragment<FragmentOrdersBinding, Nothing>(),
             is Order -> {
                 item.id?.let { orderId ->
                     tabListRecyclerAdapter.getSelectedItem()?.let {
-//                        if (it.value == OrderTypesEnum.OFFER.value && item.status != OrderStatusEnum.PENDING.value) {
+                        if (it.value == OrderTypesEnum.OFFER.value && item.status != OrderStatusEnum.PENDING.value) {
                             OfferDetailsActivity.start(
                                 requireContext(),
                                 orderId
                             )
                         }
-//                    }
+                    }
                 }
             }
         }
