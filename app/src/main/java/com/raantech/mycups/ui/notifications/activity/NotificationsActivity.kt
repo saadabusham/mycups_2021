@@ -96,26 +96,6 @@ class NotificationsActivity : BaseBindingActivity<ActivityNotificationsBinding,N
 
             })
             .build()
-
-         adapter.submitItems(
-                arrayListOf(
-                        Notification(
-                                title = "تم ارسال تسعير للطلب رقم #3321",
-                                read = true
-                        ),
-                        Notification(
-                                title = "لقد تم اضافة منتجات جديدة تصفحها الان",
-                                read = true
-                        ),
-                        Notification(
-                                title = "نود تذكيرك بان لديك في مخازننا اكواب عدد 10000",
-                                read = true
-                        ),
-                        Notification(
-                                title = "لقد تم توصيل منتجاتك الان الى المخزن"
-                        )
-                )
-        )
     }
 
     private fun notificationsObserver(): CustomObserverResponse<List<Notification>> {
@@ -128,7 +108,7 @@ class NotificationsActivity : BaseBindingActivity<ActivityNotificationsBinding,N
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: List<Notification>?
                 ) {
-                    isFinished = data?.isNullOrEmpty() == true
+                    isFinished = data?.isEmpty() == true
                     data?.let {
                         adapter.addItems(it)
                     }
