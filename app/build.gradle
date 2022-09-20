@@ -26,7 +26,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
-        setProperty("archivesBaseName", "Bai3 $currentVersion")
+        setProperty("archivesBaseName", "MyCups $currentVersion")
         vectorDrawables {
             useSupportLibrary = true
         }
