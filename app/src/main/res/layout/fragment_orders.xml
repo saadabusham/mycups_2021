@@ -36,61 +36,67 @@
             app:layout_constraintTop_toBottomOf="@id/tvHeader"
             tools:listitem="@layout/row_tab" />
 
-        <androidx.core.widget.NestedScrollView
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:fillViewport="true">
+            android:layout_height="match_parent">
 
-            <LinearLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fillViewport="true">
 
-                <include
-                    android:id="@+id/layoutShimmer"
-                    layout="@layout/layout_product_horizontal_shimmer"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/_15sdp"
-                    android:visibility="gone" />
+                    android:orientation="vertical">
 
-                <include
-                    android:id="@+id/layout_empty_wishlist"
-                    layout="@layout/layout_no_data"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/_15sdp"
-                    android:visibility="gone" />
+                    <include
+                        android:id="@+id/layoutShimmer"
+                        layout="@layout/layout_product_horizontal_shimmer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:visibility="gone" />
 
-                <com.raantech.mycups.ui.base.views.appviews.AppTextInputEditText
-                    android:id="@+id/edSearch"
-                    style="@style/TextInputEditTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/Edittext_height"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:hint="@string/order_search_hint"
-                    android:drawableEnd="@drawable/ic_search"
-                    android:text="" />
+                    <include
+                        android:id="@+id/layout_empty_wishlist"
+                        layout="@layout/layout_no_data"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:visibility="gone" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvProducts"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginBottom="@dimen/_15sdp"
-                    android:clipToPadding="false"
-                    android:nestedScrollingEnabled="false"
-                    android:orientation="vertical"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:itemCount="10"
-                    tools:listitem="@layout/row_order" />
+                    <com.raantech.mycups.ui.base.views.appviews.AppTextInputEditText
+                        android:id="@+id/edSearch"
+                        style="@style/TextInputEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/Edittext_height"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:drawableEnd="@drawable/ic_search"
+                        android:hint="@string/order_search_hint"
+                        android:text="" />
 
-            </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvProducts"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="10"
+                        tools:listitem="@layout/row_order" />
 
-        </androidx.core.widget.NestedScrollView>
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
 </layout>

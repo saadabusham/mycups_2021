@@ -62,7 +62,7 @@ class StorageRequestFragment :
             }
             StorageRequest(
                 storages = it.map {
-                    StorageItemRequest(itemId = it.id, quantity = it.quantity)
+                    StorageItemRequest(itemId = it.id, quantity = it.count.value)
                 }
             ).let {
                 viewModel.requestStorages(it).observe(this, storageRequestObserver())

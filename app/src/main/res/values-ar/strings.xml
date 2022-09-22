@@ -156,9 +156,9 @@
     <string name="skip">Skip</string>
 
     <!--    Search -->
-    <string name="no_results">No Results</string>
-    <string name="search">Search</string>
-    <string name="search_hint">Search ...</string>
+    <string name="no_results">لا يوجد نتائج</string>
+    <string name="search">البحث</string>
+    <string name="search_hint">البحث …</string>
 
 
     <!--    Country-->
@@ -212,11 +212,9 @@
     <string name="nav_profile">Profile</string>
 
     <!--    Home -->
-    <string name="see_all">See All</string>
+    <string name="see_all">شاهد المزيد</string>
     <string name="price_">%s ر.س</string>
-    <string name="bed_count_">%s Bed</string>
-    <string name="bath_count_">%s Bath</string>
-    <string name="no_items_yet">No product yet</string>
+    <string name="no_items_yet">لا يوجد منتجات بعد</string>
     <string name="latest_offers">آخر العروض</string>
     <string name="categories">التصنيفات</string>
     <string name="top_selling">الاكثر مبيعات</string>
@@ -224,8 +222,8 @@
     <string name="latest_products">احدث المنتجات</string>
 
     <!--    Login View-->
-    <string name="login_now">Login Now</string>
-    <string name="you_need_to_login_to_see_this_screen_s_content">You need to login to see this screen’s\ncontent.</string>
+    <string name="login_now">سجل الدخول الان</string>
+    <string name="you_need_to_login_to_see_this_screen_s_content">يجب عليك تسجيل الدخول للاكمال</string>
 
     <!--    More Screen-->
     <string name="account">Account</string>

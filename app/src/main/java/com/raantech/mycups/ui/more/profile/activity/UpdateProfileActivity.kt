@@ -29,6 +29,8 @@ class UpdateProfileActivity :
     BaseBindingActivity<ActivityUpdateProfileBinding, UpdateProfilePresenter>(),
     UpdateProfilePresenter {
 
+    override fun getPresenter()=this
+
     private val viewModel: UpdateProfileViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -59,14 +59,30 @@ class OrdersFragment : BaseBindingFragment<FragmentOrdersBinding, Nothing>(),
             title = R.string.menu_my_orders
         )
         setUpBinding()
+        setUpSwipeRefresh()
         observeLoading()
         setUpRvOrders()
         setUpRvTabs()
         initSearch()
     }
 
+    override fun onResume() {
+        super.onResume()
+        applyFilter(viewModel.searchText.value)
+    }
+
     private fun setUpBinding() {
         binding?.viewModel = viewModel
+    }
+
+    private fun setUpSwipeRefresh() {
+        binding?.swipeRefresh?.setOnRefreshListener {
+            if(loading.value == true){
+                binding?.swipeRefresh?.isRefreshing = false
+                return@setOnRefreshListener
+            }
+            applyFilter(viewModel.searchText.value)
+        }
     }
 
     private fun setUpRvTabs() {
@@ -86,7 +102,6 @@ class OrdersFragment : BaseBindingFragment<FragmentOrdersBinding, Nothing>(),
                 )
             )
         )
-        loadOrders(tabListRecyclerAdapter.items[0])
     }
 
     private fun setUpRvOrders() {
@@ -113,7 +128,7 @@ class OrdersFragment : BaseBindingFragment<FragmentOrdersBinding, Nothing>(),
             }
     }
 
-    private fun applyFilter(text: String) {
+    private fun applyFilter(text: String?) {
         viewModel.searchText.value = text
         tabListRecyclerAdapter.getSelectedItem()?.let {
             loadOrders(it, text)
@@ -173,6 +188,7 @@ class OrdersFragment : BaseBindingFragment<FragmentOrdersBinding, Nothing>(),
             } else {
                 binding?.layoutShimmer?.shimmerViewContainer?.gone()
                 binding?.layoutShimmer?.shimmerViewContainer?.stopShimmer()
+                binding?.swipeRefresh?.isRefreshing = false
             }
         }
     }
