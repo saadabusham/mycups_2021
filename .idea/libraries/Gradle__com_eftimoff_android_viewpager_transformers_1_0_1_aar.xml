@@ -13,6 +13,14 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cbd529f9f272b32b39c4b081d272675c/jetified-android-viewpager-transformers-1.0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cbd529f9f272b32b39c4b081d272675c/jetified-android-viewpager-transformers-1.0.1/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cbd529f9f272b32b39c4b081d272675c/jetified-android-viewpager-transformers-1.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0faa0cc86104af2d251c909c6a94ee99/jetified-android-viewpager-transformers-1.0.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0faa0cc86104af2d251c909c6a94ee99/jetified-android-viewpager-transformers-1.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0faa0cc86104af2d251c909c6a94ee99/jetified-android-viewpager-transformers-1.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e81c54a0a6c4cdf469feb1c36f80357c/jetified-android-viewpager-transformers-1.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3ed6ced35bb160c9d7333d6fd8c1d1ad/transformed/jetified-android-viewpager-transformers-1.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b17972093f318ace69386efd4328690c/transformed/jetified-android-viewpager-transformers-1.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b17972093f318ace69386efd4328690c/transformed/jetified-android-viewpager-transformers-1.0.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b17972093f318ace69386efd4328690c/transformed/jetified-android-viewpager-transformers-1.0.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

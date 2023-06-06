@@ -134,6 +134,7 @@
     <string name="send_again">Send again</string>
     <string name="didn_t_receive_the_code">Didn\'t receive your code?</string>
     <string name="verify_your_account">Verify your account</string>
+    <string name="enter_the_four_digit_code_sent_to_your_mobile_number">Enter the four-digit code sent to your mobile number</string>
     <string name="enter_the_verification_code_we_sent_to_your">Enter the verification code we sent to your</string>
     <string name="verify">Verify</string>
 
@@ -148,6 +149,8 @@
     <string name="continue_with_apple">Continue with Apple</string>
     <string name="dont_have_an_account">Don\'t have an account?</string>
     <string name="register">Register</string>
+    <string name="activate_account">Activate account</string>
+    <string name="register_info">Register information</string>
     <string name="google_login">Continue with Google</string>
     <string name="email_login">Continue with Email</string>
     <string name="failed_to_login_with_your_account">Failed to login with your account</string>

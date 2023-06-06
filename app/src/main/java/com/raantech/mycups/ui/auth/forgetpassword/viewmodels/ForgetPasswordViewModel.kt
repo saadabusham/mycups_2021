@@ -27,7 +27,7 @@ class ForgetPasswordViewModel @Inject constructor(
 
     companion object {
 
-        const val VALIDATION_CODE_LENGTH = 5
+        const val VALIDATION_CODE_LENGTH = 4
 
         const val RESEND_ENABLE_TIME_IN_MIN: Long = 1
         const val RESEND_ENABLE_TIME_UPDATE_TIMER_IN_SECOND: Long = 1
@@ -47,7 +47,7 @@ class ForgetPasswordViewModel @Inject constructor(
             by lazy { MutableLiveData<Boolean>(false) }
     val signUpResendTimer: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 
-    val userIdMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>("") }
+    val tokenMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>("") }
     private val forgetCountDownTimer: CountDownTimer by lazy {
         object : CountDownTimer(
             RESEND_ENABLE_TIME_IN_MIN.minToMillisecond(),
@@ -74,7 +74,7 @@ class ForgetPasswordViewModel @Inject constructor(
     fun verifyCode() = liveData {
         emit(APIResource.loading())
         val response = userRepo.verify(
-            userIdMutableLiveData.value.toString(),
+            tokenMutableLiveData.value.toString(),
             signUpVerificationCode.value.toString()
         )
         if (response.statusSubCode == ResponseSubErrorsCodeEnum.Success) {
@@ -86,8 +86,8 @@ class ForgetPasswordViewModel @Inject constructor(
 
     fun resendVerificationCode() = liveData {
         emit(APIResource.loading())
-        val response = userRepo.forgetPassword(
-            email.value.toString()
+        val response = userRepo.resendCode(
+            token = tokenMutableLiveData.value.toString()
         )
         emit(response)
     }

@@ -42,32 +42,13 @@
 
                 <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvHeader"
-                    style="@style/textview_normal_bold"
+                    style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_27sdp"
-                    android:text="@string/verify_your_account"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_21ssp" />
-
-                <com.raantech.mycups.ui.base.views.appviews.AppTextView
-                    style="@style/textview_normal_regular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:text="@string/enter_the_verification_code_we_sent_to_your"
-                    android:textColor="@color/black_alpha"
-                    android:textSize="@dimen/_11ssp" />
-
-                <com.raantech.mycups.ui.base.views.appviews.AppTextView
-                    style="@style/textview_normal_regular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:text="@{viewModel.emailMutableLiveData}"
-                    android:textColor="@color/black_alpha"
-                    android:textSize="@dimen/_11ssp"
-                    tools:text="John@gmail.com" />
+                    android:text="@string/enter_the_four_digit_code_sent_to_your_mobile_number"
+                    android:textColor="@color/tab_text_color"
+                    android:textSize="@dimen/_13ssp" />
 
                 <com.mukesh.OtpView
                     android:id="@+id/otp_view"
@@ -80,23 +61,24 @@
                     android:itemBackground="@color/white"
                     android:text="@={viewModel.signUpVerificationCode}"
                     android:textColor="@color/otp_color"
-                    android:textSize="@dimen/_30ssp"
-                    app:itemCount="5"
-                    app:itemHeight="@dimen/_50sdp"
+                    android:textSize="@dimen/_18ssp"
+                    app:itemCount="4"
+                    app:itemHeight="@dimen/_45sdp"
                     app:itemSpacing="@dimen/_13sdp"
-                    app:itemWidth="@dimen/_43sdp"
+                    app:itemWidth="@dimen/_60sdp"
+                    app:itemRadius="@dimen/_15sdp"
                     app:lineColor="@color/otp_outline_color"
                     app:lineWidth="@dimen/_1sdp"
                     app:state_filled="true"
                     app:validateMaxLength="@{viewModel.VALIDATION_CODE_LENGTH}"
                     app:validateMinLength="@{viewModel.VALIDATION_CODE_LENGTH}"
-                    app:viewType="line"
+                    app:viewType="rectangle"
                     tools:text="12345" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -116,8 +98,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_5sdp"
+                        android:enabled="@{viewModel.signUpResendPinCodeEnabled}"
+                        android:onClick="@{()->presenter.onResendClicked()}"
                         android:text="@{viewModel.signUpResendTimer}"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/button_color"
                         android:textSize="@dimen/_11ssp"
                         tools:text="@string/send_again" />
 
@@ -136,8 +120,9 @@
             android:layout_marginStart="@dimen/layouts_margin_start"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:onClick="@{()->presenter.onVerifyClicked()}"
             android:layout_marginBottom="@dimen/_15sdp"
-            android:text="@string/verify"/>
+            android:text="@string/verify" />
 
     </RelativeLayout>
 

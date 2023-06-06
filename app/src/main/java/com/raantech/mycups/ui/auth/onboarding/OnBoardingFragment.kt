@@ -95,32 +95,15 @@ class OnBoardingFragment : BaseBindingFragment<FragmentOnBoardingBinding,Nothing
         binding?.ivClose?.setOnClickListener {
             MainActivity.start(requireContext())
         }
-        binding?.btnGoogleLogin?.setOnClickListener {
-
-        }
-        binding?.btnEmailLogin?.setOnClickListener {
+        binding?.btnLogin?.setOnClickListener {
             navigationController.navigate(R.id.action_onBoardingFragment_to_loginFragment)
         }
-        binding?.tvSignUp?.setOnClickListener {
+        binding?.btnRegister?.setOnClickListener {
             RegisterActivity.startForResult(
                 requireActivity(), requireActivity().intent.getBooleanExtra(
                     Constants.BundleData.IS_ACTIVITY_RESULT,
                     false
                 )
-            )
-        }
-        binding?.tvTermsAndConditions?.setOnClickListener {
-            DataViewerActivity.start(
-                requireContext(),
-                resources.getString(R.string.terms_and_conditions),
-                viewModel.getTermsAndConditions()
-            )
-        }
-        binding?.tvPrivacyPolicy?.setOnClickListener {
-            DataViewerActivity.start(
-                requireContext(),
-                resources.getString(R.string.privacy_policy),
-                viewModel.getPrivacyPolicy()
             )
         }
     }

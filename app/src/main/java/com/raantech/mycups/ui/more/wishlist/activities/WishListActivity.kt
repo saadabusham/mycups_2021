@@ -128,8 +128,16 @@ class WishListActivity : BaseBindingActivity<ActivityWishlistBinding, Nothing>()
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ResponseWrapper<Any>?
                 ) {
+
+                }
+
+                override fun onError(
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    message: String,
+                    errors: List<GeneralError>?
+                ) {
                     wishListRecyclerAdapter.items[positionToUpdate].isWishlist =
-                        wishListRecyclerAdapter.items[positionToUpdate].isWishlist != true
+                        wishListRecyclerAdapter.items[positionToUpdate].isWishlist == false
                     wishListRecyclerAdapter.notifyItemChanged(positionToUpdate)
                     positionToUpdate = -1
                 }
@@ -144,7 +152,7 @@ class WishListActivity : BaseBindingActivity<ActivityWishlistBinding, Nothing>()
 
         if (view?.id == R.id.imgFavorite) {
             positionToUpdate = position
-            if (isWishList) {
+            if (!isWishList) {
                 viewModel.removeFromWishList(id).observe(this, wishListActionObserver())
             } else {
                 viewModel.addToWishList(

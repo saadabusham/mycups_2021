@@ -31,7 +31,7 @@ class RegistrationViewModel @Inject constructor(
         const val PHONE_NUMBER_MAX_LENGTH = 9
         const val JORDANIAN_PHONE_NUMBER_WITHOUT_COUNTRY_CODE_REGEX = "^(7|07)(7|8|9)([0-9]{7})\$"
 
-        const val VALIDATION_CODE_LENGTH = 5
+        const val VALIDATION_CODE_LENGTH = 4
 
         const val RESEND_ENABLE_TIME_IN_MIN: Long = 1
         const val RESEND_ENABLE_TIME_UPDATE_TIMER_IN_SECOND: Long = 1
@@ -43,7 +43,7 @@ class RegistrationViewModel @Inject constructor(
     val emailMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val passwordMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val confirmPasswordMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
-    val userIdMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>("") }
+    val tokenMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>("") }
     val buttonEnabled: MutableLiveData<Boolean> = MutableLiveData(false)
 
     // SignUp Verification Code
@@ -91,7 +91,7 @@ class RegistrationViewModel @Inject constructor(
     fun verifyCode() = liveData {
         emit(APIResource.loading())
         val response = userRepo.verify(
-            userIdMutableLiveData.value.toString(),
+            tokenMutableLiveData.value.toString(),
             signUpVerificationCode.value.toString()
         )
         emit(response)
@@ -99,8 +99,8 @@ class RegistrationViewModel @Inject constructor(
 
     fun resendVerificationCode() = liveData {
         emit(APIResource.loading())
-        val response = userRepo.forgetPassword(
-            emailMutableLiveData.value.toString()
+        val response = userRepo.resendCode(
+            tokenMutableLiveData.value.toString()
         )
         emit(response)
     }

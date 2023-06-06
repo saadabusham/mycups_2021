@@ -44,7 +44,7 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding,LoginPresenter>()
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = true,
-            title = R.string.empty_string
+            title = R.string.login
         )
         prefs.setIsFirstOpen(false)
         setUpBinding()

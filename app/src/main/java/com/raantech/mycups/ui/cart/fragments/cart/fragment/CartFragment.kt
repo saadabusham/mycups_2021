@@ -112,9 +112,18 @@ class CartFragment : BaseBindingFragment<FragmentCartBinding, CartPresenter>(), 
                     override fun onSwipe(item: Any, position: Int) {
                         item as Product
                         adapter.removeItemAt(position)
+                        handleRemoveItem(item)
                     }
                 })
         ).attachToRecyclerView(binding?.recyclerView)
+    }
+
+    private fun handleRemoveItem(product: Product) {
+        product.id?.let { viewModel.deleteCart(it) }
+        loadData()
+        if (adapter.itemCount == 0) {
+            requireActivity().onBackPressed()
+        }
     }
 
     private fun orderResultObserver(): CustomObserverResponse<Int> {

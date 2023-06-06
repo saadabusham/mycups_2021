@@ -12,7 +12,7 @@
             type="com.raantech.mycups.ui.auth.register.viewmodels.RegistrationViewModel" />
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -23,7 +23,8 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_below="@id/layout_toolbar"
             android:clipToPadding="false"
             android:fillViewport="true">
@@ -41,6 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|start"
+                    android:layout_marginTop="@dimen/_30sdp"
                     android:text="@string/full_name"
                     android:textColor="@color/edit_text_title_color"
                     android:textSize="@dimen/_13ssp" />
@@ -49,9 +51,9 @@
                     android:id="@+id/edFirstName"
                     style="@style/TextInputEditTextStyle"
                     android:layout_width="match_parent"
+                    android:layout_height="@dimen/Edittext_height"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:hint="@string/full_name"
-                    android:layout_height="@dimen/Edittext_height"
                     android:text="@={viewModel.fullNameMutableLiveData}" />
 
                 <com.raantech.mycups.ui.base.views.appviews.AppTextView
@@ -84,11 +86,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/Edittext_height"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:singleLine="true"
                     android:hint="@string/email_address"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:text="@={viewModel.emailMutableLiveData}"/>
+                    android:singleLine="true"
+                    android:text="@={viewModel.emailMutableLiveData}" />
 
                 <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvEmailError"
@@ -118,13 +120,13 @@
                     android:id="@+id/edPhoneNumber"
                     style="@style/TextInputEditTextStyle"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/_5sdp"
                     android:layout_height="@dimen/Edittext_height"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:hint="@string/_700000000"
                     android:inputType="phone"
-                    android:textColor="@color/black"
                     android:text="@={viewModel.phoneNumberWithoutCountryCode}"
-                    android:textSize="@dimen/_11ssp"  />
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp" />
 
                 <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvPhoneNumberError"
@@ -178,6 +180,7 @@
                     android:textSize="@dimen/_9ssp"
                     android:visibility="gone"
                     tools:text="Your phone number is incorrect." />
+
                 <com.raantech.mycups.ui.base.views.appviews.AppTextView
                     android:id="@+id/tvConfirmPassword"
                     style="@style/textview_normal_regular"
@@ -217,19 +220,6 @@
                     android:textSize="@dimen/_9ssp"
                     android:visibility="gone"
                     tools:text="Your phone number is incorrect." />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnSignUp"
-                    style="@style/AppTheme.Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/button_height"
-                    android:layout_gravity="bottom"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_15sdp"
-                    android:text="@string/sign_up"
-                    android:onClick="@{()->presenter.onRegisterClicked()}"
-                    btnEnabledClick="@{viewModel.buttonEnabled}"
-                    android:textSize="@dimen/_11ssp" />
 
                 <LinearLayout
                     android:id="@+id/linear_SignInOption"
@@ -271,6 +261,22 @@
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
-    </RelativeLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignUp"
+            style="@style/AppTheme.Button"
+            btnEnabledClick="@{viewModel.buttonEnabled}"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:onClick="@{()->presenter.onRegisterClicked()}"
+            android:text="@string/register"
+            android:textSize="@dimen/_11ssp" />
+
+    </LinearLayout>
 
 </layout>

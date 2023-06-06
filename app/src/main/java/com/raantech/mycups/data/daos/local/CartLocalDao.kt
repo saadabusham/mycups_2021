@@ -23,10 +23,10 @@ interface CartLocalDao {
     @Query("SELECT * FROM $TABLE_CART WHERE id = :id")
     suspend fun getCarts(id: Int): Product
 
-    @Query("SELECT SUM(qty) FROM $TABLE_CART")
+    @Query("SELECT COUNT(*) FROM $TABLE_CART")
     fun getCartsCount(): LiveData<Int>
 
-    @Query("SELECT SUM(qty) FROM $TABLE_CART")
+    @Query("SELECT COUNT(*) FROM $TABLE_CART")
     suspend fun getCartsCountInt(): Int?
 
     @Query("DELETE FROM $TABLE_CART WHERE id = :id")

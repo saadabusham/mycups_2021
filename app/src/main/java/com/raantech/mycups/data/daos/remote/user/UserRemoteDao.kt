@@ -36,7 +36,7 @@ interface UserRemoteDao {
         @Query("email") email: String,
         @Query("device_token") deviceToken: String,
         @Query("platform") platform: String
-    ): ResponseWrapper<String>
+    ): ResponseWrapper<TokenModel>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:true")
     @POST("auth/forgetPassword/{email}")

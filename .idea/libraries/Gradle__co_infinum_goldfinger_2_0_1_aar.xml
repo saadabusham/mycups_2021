@@ -1,9 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: co.infinum:goldfinger:2.0.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/650e9d1ac8e188452ba480debdfa27f0/jetified-goldfinger-2.0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/650e9d1ac8e188452ba480debdfa27f0/jetified-goldfinger-2.0.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/650e9d1ac8e188452ba480debdfa27f0/jetified-goldfinger-2.0.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/27646672c81f1f1fed96494777581a25/transformed/jetified-goldfinger-2.0.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/2e19a9f4aad6430ab71e1cc41ebc8004/transformed/jetified-goldfinger-2.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2e19a9f4aad6430ab71e1cc41ebc8004/transformed/jetified-goldfinger-2.0.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2e19a9f4aad6430ab71e1cc41ebc8004/transformed/jetified-goldfinger-2.0.1/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/co.infinum/goldfinger/2.0.1/af6562a7ada0cf4882e744da5012265f07afa2e6/goldfinger-2.0.1-javadoc.jar!/" />

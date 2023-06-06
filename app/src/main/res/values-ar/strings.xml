@@ -134,6 +134,7 @@
     <string name="send_again">اعد الارسال</string>
     <string name="didn_t_receive_the_code">لم تستلم الرمز؟</string>
     <string name="verify_your_account">توثيق الحساب</string>
+    <string name="enter_the_four_digit_code_sent_to_your_mobile_number">ادخل الرمز المكون من اربع خانات والمرسل الي رقم الجوال الخاص بك</string>
     <string name="enter_the_verification_code_we_sent_to_your">ادخل الرمز الذي استلمته</string>
     <string name="verify">تأكيد</string>
 
@@ -147,7 +148,9 @@
     <string name="continue_with_google">Continue with Google</string>
     <string name="continue_with_apple">Continue with Apple</string>
     <string name="dont_have_an_account">Don\'t have an account?</string>
-    <string name="register">Register</string>
+    <string name="register">انشاء حساب</string>
+    <string name="activate_account">تفعيل الحساب</string>
+    <string name="register_info">معلومات التسجيل</string>
     <string name="google_login">Continue with Google</string>
     <string name="email_login">Continue with Email</string>
     <string name="failed_to_login_with_your_account">Failed to login with your account</string>

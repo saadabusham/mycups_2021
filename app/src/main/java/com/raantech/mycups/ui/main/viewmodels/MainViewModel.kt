@@ -74,6 +74,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun logoutLocale() {
+        clearCart()
         if (userRepo.getTouchIdStatus())
             sharedPreferencesUtil.logout()
         else {
@@ -82,5 +83,8 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun clearCart() = viewModelScope.launch {
+        cartRepo.clearCart()
+    }
 
 }

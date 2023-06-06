@@ -1,9 +1,13 @@
 package com.raantech.mycups.ui.auth.register.fragments
 
+import android.app.Activity
+import android.content.Intent
 import androidx.fragment.app.activityViewModels
 import com.raantech.mycups.R
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
+import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
+import com.raantech.mycups.data.models.auth.login.TokenModel
 import com.raantech.mycups.data.models.auth.login.UserDetailsResponseModel
 import com.raantech.mycups.databinding.FragmentVerificationRegisterBinding
 import com.raantech.mycups.ui.auth.register.presenter.VerificationRegisterPresenter
@@ -33,7 +37,7 @@ class VerificationSignUpFragment : BaseBindingFragment<FragmentVerificationRegis
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = true,
-            title = R.string.empty_string
+            title = R.string.activate_account
         )
         setUpViewsListeners()
         setUpData()
@@ -55,21 +59,33 @@ class VerificationSignUpFragment : BaseBindingFragment<FragmentVerificationRegis
                 ) {
                     data?.let {
                         viewModel.storeUser(it)
-                        MainActivity.start(requireContext())
+                        if (requireActivity().intent.getBooleanExtra(
+                                Constants.BundleData.IS_ACTIVITY_RESULT,
+                                false
+                            )
+                        ) {
+                            requireActivity().setResult(Activity.RESULT_OK, Intent().apply {
+                                this.putExtra(Constants.BundleData.IS_LOGIN_SUCCESS, true)
+                            })
+                            requireActivity().finish()
+                        } else {
+                            MainActivity.start(context)
+                        }
                     }
                 }
             })
     }
 
-    private fun sendOtpResultObserver(): CustomObserverResponse<String> {
+    private fun sendOtpResultObserver(): CustomObserverResponse<TokenModel> {
         return CustomObserverResponse(
             requireActivity(),
-            object : CustomObserverResponse.APICallBack<String> {
+            object : CustomObserverResponse.APICallBack<TokenModel> {
                 override fun onSuccess(
                     statusCode: Int,
                     subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: String?
+                    data: TokenModel?
                 ) {
+                    viewModel.tokenMutableLiveData.value = data?.token
                     viewModel.startHandleResendSignUpPinCodeTimer()
                 }
             })

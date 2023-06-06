@@ -4,9 +4,11 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
 import com.raantech.mycups.R
 import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.databinding.ActivityRegisterBinding
+import com.raantech.mycups.ui.auth.AuthActivity
 import com.raantech.mycups.ui.base.activity.BaseBindingActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,11 +37,12 @@ class RegisterActivity : BaseBindingActivity<ActivityRegisterBinding,Nothing>() 
 
         fun startForResult(
             context: Activity?,
-            isActivityResult: Boolean
+            isActivityResult: Boolean,
+            resultLauncher: ActivityResultLauncher<Intent>? = null
         ) {
             val intent = Intent(context, RegisterActivity::class.java)
             intent.putExtra(Constants.BundleData.IS_ACTIVITY_RESULT, isActivityResult)
-            context?.startActivityForResult(intent, REQUEST_CODE)
+            resultLauncher?.launch(intent)
         }
     }
 

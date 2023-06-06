@@ -95,131 +95,23 @@
                     app:layout_constraintTop_toBottomOf="@id/recyclerViewImagesDot">
 
                     <com.raantech.mycups.ui.base.views.appviews.AppButton
-                        android:id="@+id/btnGoogleLogin"
-                        style="@style/AppTheme.Button.TransparentOutline"
+                        android:id="@+id/btnLogin"
+                        style="@style/AppTheme.Button"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginBottom="@dimen/_10sdp"
-                        android:text="@string/google_login"
-                        android:textSize="@dimen/_14ssp"
-                        app:icon="@drawable/ic_google_colored"
-                        app:iconTint="@null"
-                        app:iconGravity="textStart"
-                        app:iconPadding="@dimen/_10sdp" />
+                        android:text="@string/login"
+                        android:textSize="@dimen/_14ssp" />
 
                     <com.raantech.mycups.ui.base.views.appviews.AppButton
-                        android:id="@+id/btnEmailLogin"
+                        android:id="@+id/btnRegister"
                         style="@style/AppTheme.Button.TransparentOutline"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginBottom="@dimen/_10sdp"
-                        android:text="@string/email_login"
-                        android:textSize="@dimen/_14ssp"
-                        app:icon="@drawable/ic_email"
-                        app:iconGravity="textStart"
-                        app:iconPadding="@dimen/_10sdp" />
+                        android:text="@string/register"
+                        android:textSize="@dimen/_14ssp" />
 
-
-                    <LinearLayout
-                        android:id="@+id/linearAgreement"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_25sdp"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <com.raantech.mycups.ui.base.views.appviews.AppTextView
-                                style="@style/textview_normal_regular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_5sdp"
-                                android:text="@string/by_signing_up_i_agree_to_the"
-                                android:textColor="@color/defaultTextColor"
-                                android:textSize="@dimen/_11ssp" />
-
-                            <com.raantech.mycups.ui.base.views.appviews.AppTextView
-                                android:id="@+id/tvTermsAndConditions"
-                                style="@style/textview_normal_regular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_2sdp"
-                                android:background="?android:selectableItemBackground"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:text="@string/terms_and_conditions"
-                                android:textColor="@color/app_orange_color"
-                                android:textSize="@dimen/_10ssp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <com.raantech.mycups.ui.base.views.appviews.AppTextView
-                                style="@style/textview_normal_regular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_5sdp"
-                                android:text="@string/and"
-                                android:textColor="@color/defaultTextColor"
-                                android:textSize="@dimen/_10ssp" />
-
-                            <com.raantech.mycups.ui.base.views.appviews.AppTextView
-                                android:id="@+id/tvPrivacyPolicy"
-                                style="@style/textview_normal_regular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_2sdp"
-                                android:background="?android:selectableItemBackground"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:text="@string/privacy_policy"
-                                android:textColor="@color/app_orange_color"
-                                android:textSize="@dimen/_10ssp" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_30sdp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <com.raantech.mycups.ui.base.views.appviews.AppTextView
-                            style="@style/textview_normal_regular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/dont_have_an_account"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_11ssp" />
-
-                        <com.raantech.mycups.ui.base.views.appviews.AppTextView
-                            android:id="@+id/tvSignUp"
-                            style="@style/textview_normal_medium"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_2sdp"
-                            android:background="?android:selectableItemBackground"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:gravity="center"
-                            android:text="@string/sign_up"
-                            android:textAllCaps="true"
-                            android:textColor="@color/button_color"
-                            android:textSize="@dimen/_11ssp" />
-                    </LinearLayout>
                 </LinearLayout>
 
 

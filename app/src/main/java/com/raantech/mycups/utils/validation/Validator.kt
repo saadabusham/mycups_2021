@@ -9,7 +9,7 @@ class Validator() {
 
         private val FIRST_NAME_MIN_LENGTH = 3
         private val LAST_NAME_MIN_LENGTH = 3
-        private val OTP_LENGTH = 5
+        private val OTP_LENGTH = 4
         private val MINIMUM_COUNT = 1
 
 

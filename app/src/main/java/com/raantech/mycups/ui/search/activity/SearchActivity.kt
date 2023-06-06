@@ -76,6 +76,7 @@ class SearchActivity : BaseBindingActivity<ActivitySearchBinding, Nothing>(),
 
     private fun initSearch() {
         viewModel.compositeDisposable + binding?.edSearch?.textChangeEvents()
+            ?.skipInitialValue()
             ?.debounce(400, TimeUnit.MILLISECONDS)
             ?.distinctUntilChanged()
             ?.observeOn(AndroidSchedulers.mainThread())

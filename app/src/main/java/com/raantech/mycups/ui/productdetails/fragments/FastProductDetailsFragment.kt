@@ -48,7 +48,10 @@ class FastProductDetailsFragment : BaseProductDetailsFragment<FragmentFastProduc
     }
 
     override fun onAddToCartClicked() {
-        super.onAddToCartClicked()
+        if (!viewModel.isUserLoggedIn()) {
+            showLoginDialog()
+            return
+        }
         if (isDataValid()) {
             viewModel.productToView.value?.let {
                 cartViewModel.saveCart(it.apply {

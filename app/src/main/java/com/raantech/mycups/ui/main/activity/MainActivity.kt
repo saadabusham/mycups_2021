@@ -23,9 +23,11 @@ import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.common.Constants
 import com.raantech.mycups.data.common.CustomObserverResponse
 import com.raantech.mycups.data.enums.MediaTypesEnum
+import com.raantech.mycups.data.enums.MoreEnums
 import com.raantech.mycups.data.models.more.More
 import com.raantech.mycups.databinding.ActivityMainBinding
 import com.raantech.mycups.ui.auth.AuthActivity
+import com.raantech.mycups.ui.auth.register.RegisterActivity
 import com.raantech.mycups.ui.base.activity.BaseBindingActivity
 import com.raantech.mycups.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.mycups.ui.base.bindingadapters.setOnItemClickListener
@@ -196,23 +198,26 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
         list.apply {
             addAll(
                 arrayListOf(
-                    More(resources.getString(R.string.menu_my_orders)),
-                    More(resources.getString(R.string.menu_my_wishlist)),
-                    More(resources.getString(R.string.menu_my_designes)),
-                    More(resources.getString(R.string.menu_my_storage)),
-                    More(resources.getString(R.string.media)),
-                    More(resources.getString(R.string.menu_account)),
-                    More(resources.getString(R.string.menu_customer_support)),
-                    More(resources.getString(R.string.menu_about_us))
+                    More(resources.getString(R.string.menu_my_orders), MoreEnums.ORDERS),
+                    More(resources.getString(R.string.menu_my_wishlist), MoreEnums.FAVORITES),
+                    More(resources.getString(R.string.menu_my_designes), MoreEnums.DESIGNS),
+                    More(resources.getString(R.string.menu_my_storage), MoreEnums.STORAGE),
+                    More(resources.getString(R.string.media), MoreEnums.MEDIA),
+                    More(resources.getString(R.string.menu_account), MoreEnums.ACCOUNT),
+                    More(
+                        resources.getString(R.string.menu_customer_support),
+                        MoreEnums.CUSTOMER_SUPPORT
+                    ),
+                    More(resources.getString(R.string.menu_about_us), MoreEnums.ABOUT_US),
+                    More(resources.getString(R.string.menu_language), MoreEnums.LANGUAGE)
                 )
             )
-            add(
-                if (viewModel.isUserLoggedIn())
-                    More(resources.getString(R.string.logout))
-                else
-                    More(resources.getString(R.string.login))
-            )
-            add(More(resources.getString(R.string.menu_language)))
+            if (viewModel.isUserLoggedIn())
+                add(More(resources.getString(R.string.logout), MoreEnums.LOGOUT))
+            else {
+                add(More(resources.getString(R.string.login), MoreEnums.LOGIN))
+                add(More(resources.getString(R.string.register), MoreEnums.REGISTER))
+            }
         }
         return list
     }
@@ -221,71 +226,75 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, Nothing>(),
         if (item is More) {
             val loggedIn = viewModel.isUserLoggedIn()
             binding?.drawerLayout?.closeDrawer(GravityCompat.START)
-            when (position) {
-                0 -> {
+            when (item.type) {
+                MoreEnums.ORDERS -> {
                     if (!loggedIn) {
                         showLoginDialog()
                     } else {
                         OrdersActivity.start(this)
                     }
                 }
-                1 -> {
+                MoreEnums.FAVORITES -> {
                     if (!loggedIn) {
                         showLoginDialog()
                     } else {
                         WishListActivity.start(this)
                     }
                 }
-                2 -> {
+                MoreEnums.DESIGNS -> {
                     if (!loggedIn) {
                         showLoginDialog()
                     } else {
                         MediaActivity.start(this, MediaTypesEnum.DESIGN.value)
                     }
                 }
-                3 -> {
+                MoreEnums.STORAGE -> {
                     if (!loggedIn) {
                         showLoginDialog()
                     } else {
                         StorageActivity.start(this)
                     }
                 }
-                4 -> {
+                MoreEnums.MEDIA -> {
                     if (!loggedIn) {
                         showLoginDialog()
                     } else {
                         MediaActivity.start(this, MediaTypesEnum.IMAGES.value)
                     }
                 }
-                5 -> {
+                MoreEnums.ACCOUNT -> {
                     if (!loggedIn) {
                         showLoginDialog()
                     } else {
                         UpdateProfileActivity.start(this)
                     }
                 }
-                6 -> {
+                MoreEnums.CUSTOMER_SUPPORT -> {
                     if (!loggedIn) {
                         showLoginDialog()
                     } else {
                         ContactUsActivity.start(this)
                     }
                 }
-                7 -> AboutUsActivity.start(this)
-                8 -> {
-                    if (loggedIn)
-                        viewModel.logoutRemote().observe(this, logoutResultObserver())
-                    else
-                        AuthActivity.startForResult(this@MainActivity, true, loginResultLauncher)
-                }
-                9 -> viewModel.saveLanguage().observe(this, Observer {
+                MoreEnums.ABOUT_US -> AboutUsActivity.start(this)
+
+                MoreEnums.LANGUAGE -> viewModel.saveLanguage().observe(this) {
                     this.let {
                         (it as BaseBindingActivity<*, *>).setLanguage(
                             if (viewModel.getAppLanguage() == "ar")
                                 CommonEnums.Languages.Arabic.value else CommonEnums.Languages.English.value
                         )
                     }
-                })
+                }
+                MoreEnums.LOGIN -> {
+                    AuthActivity.startForResult(this@MainActivity, true, loginResultLauncher)
+                }
+                MoreEnums.REGISTER -> {
+                    RegisterActivity.startForResult(this@MainActivity, true, loginResultLauncher)
+                }
+                MoreEnums.LOGOUT -> {
+                    viewModel.logoutRemote().observe(this, logoutResultObserver())
+                }
             }
         }
     }

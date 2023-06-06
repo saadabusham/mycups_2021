@@ -6,6 +6,7 @@ import com.raantech.mycups.common.interfaces.TextTypingCallback
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.common.CustomObserverResponse
 import com.raantech.mycups.data.enums.InputFieldValidStateEnums
+import com.raantech.mycups.data.models.auth.login.TokenModel
 import com.raantech.mycups.databinding.FragmentForgetPasswordBinding
 import com.raantech.mycups.ui.auth.forgetpassword.presenters.ForgetPasswordPresenter
 import com.raantech.mycups.ui.auth.forgetpassword.viewmodels.ForgetPasswordViewModel
@@ -63,16 +64,16 @@ class ForgetPasswordFragment : BaseBindingFragment<FragmentForgetPasswordBinding
     }
 
 
-    private fun sendOtpResultObserver(): CustomObserverResponse<String> {
+    private fun sendOtpResultObserver(): CustomObserverResponse<TokenModel> {
         return CustomObserverResponse(
             requireActivity(),
-            object : CustomObserverResponse.APICallBack<String> {
+            object : CustomObserverResponse.APICallBack<TokenModel> {
                 override fun onSuccess(
                     statusCode: Int,
                     subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: String?
+                    data: TokenModel?
                 ) {
-                    viewModel.userIdMutableLiveData.value = data
+                    viewModel.tokenMutableLiveData.value = data?.token
                     navigationController.navigate(R.id.action_forgetPassword_to_verificationForgetPassword)
                 }
             })

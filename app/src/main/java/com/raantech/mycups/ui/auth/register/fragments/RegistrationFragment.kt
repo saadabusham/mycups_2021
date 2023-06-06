@@ -7,6 +7,7 @@ import com.raantech.mycups.common.interfaces.TextTypingCallback
 import com.raantech.mycups.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.mycups.data.common.CustomObserverResponse
 import com.raantech.mycups.data.enums.InputFieldValidStateEnums
+import com.raantech.mycups.data.models.auth.login.TokenModel
 import com.raantech.mycups.data.models.general.Countries
 import com.raantech.mycups.databinding.FragmentRegisterBinding
 import com.raantech.mycups.ui.auth.register.presenter.RegisterPresenter
@@ -36,7 +37,7 @@ class RegistrationFragment :
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = true,
-            title = R.string.empty_string
+            title = R.string.register_info
         )
         binding?.viewModel = viewModel
         setUpData()
@@ -75,17 +76,17 @@ class RegistrationFragment :
             readRawJson(requireContext(), R.raw.countries)
     }
 
-    private fun registerResultObserver(): CustomObserverResponse<String> {
+    private fun registerResultObserver(): CustomObserverResponse<TokenModel> {
         return CustomObserverResponse(
             requireActivity(),
-            object : CustomObserverResponse.APICallBack<String> {
+            object : CustomObserverResponse.APICallBack<TokenModel> {
                 override fun onSuccess(
                     statusCode: Int,
                     subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: String?
+                    data: TokenModel?
                 ) {
-                    viewModel.userIdMutableLiveData.value = data
-                    navigationController.navigate(R.id.action_registrationFragment_to_registerSuccessFragment)
+                    viewModel.tokenMutableLiveData.value = data?.token
+                    navigationController.navigate(R.id.action_registrationFragment_to_verificationSignUpFragment)
                 }
             })
     }

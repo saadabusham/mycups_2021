@@ -65,7 +65,10 @@ class ProductDetailsFragment : BaseProductDetailsFragment<FragmentProductDetails
     }
 
     override fun onAddToCartClicked() {
-        super.onAddToCartClicked()
+        if (!viewModel.isUserLoggedIn()) {
+            showLoginDialog()
+            return
+        }
         if (isDataValid()) {
             viewModel.createOfferOrder(
                 OfferOrderRequest(

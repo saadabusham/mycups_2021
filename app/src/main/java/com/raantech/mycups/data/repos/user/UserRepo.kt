@@ -32,7 +32,7 @@ interface UserRepo {
         email: String,
         deviceToken: String,
         platform: String
-    ): APIResource<ResponseWrapper<String>>
+    ): APIResource<ResponseWrapper<TokenModel>>
 
     suspend fun forgetPassword(
         email: String

@@ -61,7 +61,7 @@ class UserRepoImp @Inject constructor(
         email: String,
         deviceToken: String,
         platform: String
-    ): APIResource<ResponseWrapper<String>> {
+    ): APIResource<ResponseWrapper<TokenModel>> {
         return try {
             responseHandle.handleSuccess(
                 userRemoteDao.register(

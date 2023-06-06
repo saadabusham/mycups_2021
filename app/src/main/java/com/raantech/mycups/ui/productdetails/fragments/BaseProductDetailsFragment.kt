@@ -59,10 +59,7 @@ abstract class BaseProductDetailsFragment<BINDING : ViewDataBinding> :
     }
 
     override fun onAddToCartClicked() {
-        if (!viewModel.isUserLoggedIn()) {
-            showLoginDialog()
-            return
-        }
+
     }
 
     override fun onSelectStorageClicked() {
